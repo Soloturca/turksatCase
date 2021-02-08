@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<!-- <listeners> <listener class-name="org.uncommons.reportng.HTMLReporter"></listener> 
+		</listeners> -->
+	<parameter name="VIDEO_RECORDING" value="false"></parameter>
+	<parameter name="CalendarName" value="Calendar.xlsx"></parameter>
+	<parameter name="PLATFORM_NAME" value="Android"></parameter>
+	<parameter name="PLATFORM_VERSION" value="6.0.1"></parameter>
+	<!-- <parameter name="UDID" value="89RX0ED00, N000TA1183960606178"></parameter> -->
+	<parameter name="UDID" value="04d6bfeb0187efee"></parameter>
+	
+	
+	<!-- 
+	<parameter name="appPackage" value="com.bigbasket.mobileapp"></parameter>
+	<parameter name="appActivity" value=".activity.SplashActivity"></parameter>
+	<parameter name="appWaitPackage" value="com.bigbasket.mobileapp"></parameter>
+	<parameter name="appWaitActivity" value="com.bigbasket.mobileapp.activity.HomeActivity"></parameter>
+	 -->
+	
+	<!-- <test name="Nexus5_3" enabled="false">
+		<classes>
+			<class name="com.project.tests.testBrowserScenario"></class>
+			<parameter name="TestName" value="Nexus5_3"></parameter>
+		</classes>
+	</test>
+	
+	<test name="Name5_2" enabled="false">
+		<classes>
+			<class name="com.project.tests.testViewDataUsage"></class>
+			<parameter name="TestName" value="Nexus5_2"></parameter>
+		</classes>
+	</test>
+	
+	<test name="Nexus5_1" enabled="false">
+		<classes>
+			<class name="com.project.tests.testViewBillUsage"></class>
+			<parameter name="TestName" value="Nexus5_1"></parameter>
+		</classes>
+	</test> -->
+	
+	<!-- Cucumber Test -->
+	<test name="Test" enabled="true">
+		<classes>
+			<class name="com.project.tests.TestRunner"></class>
+		</classes>
+	</test>
+	<!-- Cucumber Test -->
+	
+	<!-- <test name="Login to TfL" enabled="false">
+		<classes>
+			<class name="com.project.tests.LoginToMobileApp"></class>
+			<parameter name="TestName" value="Login To TfL"></parameter>
+		</classes>
+	</test>
+ -->	
+	</suite> 
