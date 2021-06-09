@@ -2,7 +2,6 @@ package com.saf.framework;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -12,40 +11,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.testng.Assert;
-import page.HomePage;
-import page.LoginPage;
-import page.OurBasePage;
-import page.OurLoginPage;
 
 public class CommonLib 
 {
+	public static WebDriver oDriver;
 	public String page;
 	public Parser parser = new Parser();
-	public ThreadLocal<WebDriver> driver=new ThreadLocal<>();
-
-	public WebDriver getDriver(){
-		return driver.get();
-	}
-
 
 	public WebElement findElement(String elem, int index)
 	{
@@ -59,24 +38,24 @@ public class CommonLib
 			{
 				if (element.startsWith("//") || element.startsWith("(//"))
 				{
-					object = driver.get().findElements(By.xpath(element)).get(index-1);
+					object = oDriver.findElements(By.xpath(element)).get(index-1);
 
 					System.out.println("Nesne bulundu : " + element);
 				}
 				else if (element.startsWith("#") || element.startsWith("."))
 				{
-					object = driver.get().findElements(By.cssSelector(element)).get(index-1);
+					object = oDriver.findElements(By.cssSelector(element)).get(index-1);
 					System.out.println("Nesne bulundu : " + element);
 				}
 				else
 				{
-					object = driver.get().findElements(By.id(element)).get(index-1);
+					object = oDriver.findElements(By.id(element)).get(index-1);
 					System.out.println("Object found : " + element);
 				}
 			}
 			else if(element==null)
 			{
-				object= driver.get().findElement(By.xpath("//*[text()='"+elem+"'or contains(text(),'"+elem+"')]"));
+				object= oDriver.findElement(By.xpath("//*[text()='"+elem+"'or contains(text(),'"+elem+"')]"));
 			}
 
 			if (object==null){

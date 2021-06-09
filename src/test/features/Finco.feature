@@ -8,7 +8,8 @@ Feature: Orion Finance Finco Test Scenarios
   #| username| password | url |     | menuTitle|
   #| admin |    | http://orion-finance-finco-adtest.apps.mbt.vodafone.local/| | Müşteri İşlemleri |
 
-Scenario: Login Finco 
+Scenario: Login Finco
+ When driver is driver
   Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
   Then I see login page
   And I enter "admin" text to username text area

@@ -1,33 +1,28 @@
 package com.project.stepdefs;
 
-import com.project.tests.ClickTitleInTheLeftMenuTest;
-import com.project.tests.LoginPageTest;
-import com.project.tests.LogoutOfSystemTest;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
 import com.saf.framework.CommonLib;
-import com.saf.framework.HashMapNew;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
+import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import page.BasePage;
-import page.OurBasePage;
 
-import java.sql.SQLException;
+import java.net.MalformedURLException;
 
 public class StepDefs {
     CommonLib commonLib;
-    WebDriver oDriver;
+    public static WebDriver oDriver;
 
+    @When("^I initialize ([^\"]*) driver and run test local=([^\"]*)$")
+    public  void initializeChromeDriver(String browser,Boolean isLocal) throws MalformedURLException
+    {
+       // MyTestNGBaseClass.
+    }
 
     @Given("^Open the (.*) URL$")
-    public void openUrl(String url) {
+    public void openUrl(String URL) {
 
-        CommonLib.navigateToURL(oDriver, url);
+        CommonLib.navigateToURL(oDriver, URL);
     }
 
     @When("^I see (.*) page$")
