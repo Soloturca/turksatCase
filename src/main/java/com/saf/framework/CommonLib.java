@@ -182,7 +182,7 @@ public class CommonLib
 
 		switch (getBrowserId(sBrowserName)) {
 			case 1:
-				//  System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + AutomationConstants.sIEDriverPath);
+				System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + AutomationConstants.sIEDriverPath);
 				WebDriverManager.iedriver().setup();
 				System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + AutomationConstants.sIEDriverPath);
 
@@ -190,13 +190,13 @@ public class CommonLib
 				break;
 
 			case 2:
-				//  System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + AutomationConstants.sGeckoDriverPath);
+				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + AutomationConstants.sGeckoDriverPath);
 				WebDriverManager.firefoxdriver().setup();
 				oDriver = new FirefoxDriver(getFirefoxOptions());
 				break;
 
 			case 3:
-				//  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
+				//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
 				WebDriverManager.chromedriver().setup();
 				oDriver = new ChromeDriver(getChromeOptions());
 				break;

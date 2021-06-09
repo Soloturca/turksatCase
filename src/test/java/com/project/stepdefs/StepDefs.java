@@ -9,9 +9,9 @@ import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
 
-public class StepDefs {
+public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib;
-    public static WebDriver oDriver;
+    //public static WebDriver oDriver;
 
     @When("^I initialize ([^\"]*) driver and run test local=([^\"]*)$")
     public  void initializeChromeDriver(String browser,Boolean isLocal) throws MalformedURLException

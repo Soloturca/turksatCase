@@ -5,10 +5,6 @@
 		</listeners> -->
 	<parameter name="VIDEO_RECORDING" value="false"></parameter>
 	<parameter name="CalendarName" value="Calendar.xlsx"></parameter>
-	<parameter name="PLATFORM_NAME" value="Android"></parameter>
-	<parameter name="PLATFORM_VERSION" value="6.0.1"></parameter>
-	<!-- <parameter name="UDID" value="89RX0ED00, N000TA1183960606178"></parameter> -->
-	<parameter name="UDID" value="04d6bfeb0187efee"></parameter>
 	<parameter name="browserName" value="chrome"></parameter>
 
 
