@@ -23,14 +23,13 @@ import org.testng.Assert;
 public class CommonLib 
 {
 	public static WebDriver oDriver;
-	public String page;
+	public String page = "common";
 	public Parser parser = new Parser();
 
 	public WebElement findElement(String elem, int index)
 	{
-		index= index-1;
 		WebElement object=null;
-		String element=parser.getElement(page,elem);
+		String element = parser.getElement(page, elem);
 
 		try
 		{
@@ -75,6 +74,7 @@ public class CommonLib
 	public String seePage(String page) {
 		if (parser.isPageExist(page)) {
 			System.out.println(page + " page found!");
+			this.page=page;
 			return page;
 		} else {
 			Assert.fail("Page not found! '" + page + "'");
@@ -82,16 +82,20 @@ public class CommonLib
 		return null;
 	}
 
-	public void enterText(String text,String element)
-	{
+	public WebElement waitElement(String element, int timeout, int index) throws InterruptedException {
 		WebElement object;
-		int index=1;
-		object=findElement(element, index);
-		if(object!=null)
-		{
-			object.sendKeys(text);
-			System.out.println("Metin girildi.");
+		for (int i = 0; i < timeout; i++) {
+
+			object = findElement(element, index);
+			if (object != null) {
+				Thread.sleep(1000);
+				return object;
+			} else {
+				Thread.sleep(1000);
+			}
 		}
+		Assert.fail("Waiting element is not found!");
+		return null;
 	}
 
 	//-----------------------------------------------
@@ -178,7 +182,6 @@ public class CommonLib
 	}
 
 	public static WebDriver getDriver(String sBrowserName) throws Exception {
-		WebDriver oDriver;
 
 		switch (getBrowserId(sBrowserName)) {
 			case 1:
@@ -366,5 +369,4 @@ public class CommonLib
 			e.printStackTrace();
 		}
 	}
-
 }

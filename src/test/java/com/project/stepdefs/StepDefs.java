@@ -10,8 +10,8 @@ import org.openqa.selenium.WebElement;
 import java.net.MalformedURLException;
 
 public class StepDefs extends MyTestNGBaseClass {
-    CommonLib commonLib;
-    //public static WebDriver oDriver;
+    CommonLib commonLib = new CommonLib();
+    int timeout=30;
 
     @When("^I initialize ([^\"]*) driver and run test local=([^\"]*)$")
     public  void initializeChromeDriver(String browser,Boolean isLocal) throws MalformedURLException
@@ -30,7 +30,6 @@ public class StepDefs extends MyTestNGBaseClass {
         commonLib.seePage(page);
     }
 
-
     @When("^(?:I )?click element: (\\w+(?: \\w+)*) index: (\\d+)$")
     public void clickElement(String element,int index) {
         WebElement object = commonLib.findElement(element,index);
@@ -42,15 +41,20 @@ public class StepDefs extends MyTestNGBaseClass {
             System.out.println("Could not click on object-->" + element);
         }
     }
-    @When("^I enter \"([^\"]*)\" text to (.*) text area$")
+    @When("^I enter \"([^\"]*)\" text to (.*)$")
     public void enterText(String text, String element) throws InterruptedException {
         //mouseHover(element);
         WebElement object;
-        object = commonLib.findElement(element,0);
+        object = commonLib.waitElement(element,timeout,1);
 
         if (object != null) {
             object.sendKeys(text);
             System.out.println("The text has been entered.");
         }
+    }
+
+    @When("^I wait (.*) element (\\d+) seconds at index (\\d+)$")
+    public void waitElement(String element, int timeout, int index) throws InterruptedException {
+        commonLib.waitElement(element, timeout, index);
     }
 }

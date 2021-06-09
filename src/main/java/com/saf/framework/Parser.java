@@ -10,8 +10,7 @@ import java.nio.file.Paths;
 
 public class Parser {
     JSONParser parser = new JSONParser();
-    static String json =  Paths.get("").toAbsolutePath().toString()+"\\src\\test\\resources\\elements\\login.json";
-    static String config =  Paths.get("").toAbsolutePath().toString()+"\\src\\test\\config.json";
+    static String json =  Paths.get("").toAbsolutePath().toString()+"\\src\\test\\Elements";
     public void parse() throws  IOException, ParseException
     {
 
@@ -43,7 +42,7 @@ public class Parser {
         JSONObject object = null;
         try
         {
-            object = (JSONObject) parser.parse(new FileReader(json));
+            object = (JSONObject) parser.parse(new FileReader(json+"\\"+mypage.toLowerCase()+".json"));
         }
         catch (IOException | ParseException e)
         {
@@ -71,7 +70,7 @@ public class Parser {
     {
         JSONObject object = null;
         try {
-            object = (JSONObject) parser.parse(new FileReader(json));
+            object = (JSONObject) parser.parse(new FileReader(json+"\\"+mypage.toLowerCase()+".json"));
         }
         catch (IOException | ParseException e)
         {
@@ -140,18 +139,5 @@ public class Parser {
         return value;
     }
 
-    public String readConfigInfo(Boolean isLocal)
-    {
-        JSONObject object = null;
-        try {
-            object = (JSONObject) parser.parse(new FileReader(config));
-        }
-        catch (IOException | ParseException e)
-        {
-            e.printStackTrace();
-        }
-        JSONObject remoteConfig = (JSONObject) object.get("remote");
 
-        return  (String) remoteConfig.get("nodeUrl");
-    }
 }
