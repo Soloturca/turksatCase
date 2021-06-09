@@ -1,0 +1,37 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "common",
+        "parent": "",
+        "waitelement": ""
+      },
+      "elements": [
+        {
+          "always allow button": "//*[contains(@resource-id,'permission_allow_button')]"
+        },
+        {
+          "allow button when using app": "com.lbe.security.miui:id/permission_allow_foreground_only_button"
+        }
+      ]
+    },
+    {
+      "pageInfo": {
+        "pageName": "login",
+        "parent": "common",
+        "waitelement": ""
+      },
+      "elements": [
+        {
+          "username text area": "username"
+        },
+        {
+          "password text area": "password"
+        },
+        {
+          "login button": "login_button"
+        }
+      ]
+    }
+  ]
+}

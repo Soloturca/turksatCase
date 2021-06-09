@@ -1,32 +1,32 @@
 package com.project.tests;
 
+
+//extends AbstractTestNGCucumberTests
+
+import com.saf.framework.MyTestNGBaseClass;
+import cucumber.api.CucumberOptions;
+import cucumber.api.testng.CucumberFeatureWrapper;
+import cucumber.api.testng.TestNGCucumberRunner;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.saf.framework.MyTestNGBaseClass;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.TestNGCucumberRunner;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
-import cucumber.api.testng.CucumberFeatureWrapper;
-
-//extends AbstractTestNGCucumberTests
 
 @CucumberOptions(
-              
-              features = "src/test/features",
-         //     tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-            		 // tags="@Payment",
-       glue= {"com.project.stepdefs"}
-        )
+
+        features = "src/test/features/Finco.feature",
+        // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
+        // tags="@Payment",
+        glue = {"com.project.stepdefs"})
+
 public class TestRunner extends MyTestNGBaseClass {
-    
-       private TestNGCucumberRunner testNGCucumberRunner;
-//String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
+    private TestNGCucumberRunner testNGCucumberRunner;
+
+    //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
     @BeforeClass(alwaysRun = true)
-    public void setUpClass() throws Exception {
+    public void setUpClass() {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
@@ -41,7 +41,7 @@ public class TestRunner extends MyTestNGBaseClass {
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDownClass() throws Exception {
+    public void tearDownClass() {
         testNGCucumberRunner.finish();
     }
 }

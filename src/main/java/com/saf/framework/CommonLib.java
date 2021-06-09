@@ -5,16 +5,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.Proxy;
-import org.openqa.selenium.WebElement;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -37,10 +30,90 @@ import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.testng.Assert;
+import page.HomePage;
+import page.LoginPage;
+import page.OurBasePage;
+import page.OurLoginPage;
 
 public class CommonLib 
 {
+	public String page;
+	public Parser parser = new Parser();
+	public ThreadLocal<WebDriver> driver=new ThreadLocal<>();
 
+	public WebDriver getDriver(){
+		return driver.get();
+	}
+
+
+	public WebElement findElement(String elem, int index)
+	{
+		index= index-1;
+		WebElement object=null;
+		String element=parser.getElement(page,elem);
+
+		try
+		{
+			if(element!=null)
+			{
+				if (element.startsWith("//") || element.startsWith("(//"))
+				{
+					object = driver.get().findElements(By.xpath(element)).get(index-1);
+
+					System.out.println("Nesne bulundu : " + element);
+				}
+				else if (element.startsWith("#") || element.startsWith("."))
+				{
+					object = driver.get().findElements(By.cssSelector(element)).get(index-1);
+					System.out.println("Nesne bulundu : " + element);
+				}
+				else
+				{
+					object = driver.get().findElements(By.id(element)).get(index-1);
+					System.out.println("Object found : " + element);
+				}
+			}
+			else if(element==null)
+			{
+				object= driver.get().findElement(By.xpath("//*[text()='"+elem+"'or contains(text(),'"+elem+"')]"));
+			}
+
+			if (object==null){
+				System.out.println("Nesne bulunamadı : "+elem);
+				Assert.fail("Nesne bulunamadı : "+elem);
+			}
+			return  object;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Nesne bulunamadı : "+elem);
+			Assert.fail("Nesne bulunamadı : "+elem);
+			return null;
+		}
+	}
+
+	public String seePage(String page) {
+		if (parser.isPageExist(page)) {
+			System.out.println(page + " page found!");
+			return page;
+		} else {
+			Assert.fail("Page not found! '" + page + "'");
+		}
+		return null;
+	}
+
+	public void enterText(String text,String element)
+	{
+		WebElement object;
+		int index=1;
+		object=findElement(element, index);
+		if(object!=null)
+		{
+			object.sendKeys(text);
+			System.out.println("Metin girildi.");
+		}
+	}
 
 	//-----------------------------------------------
 	//Define the method for Proxy
@@ -88,10 +161,17 @@ public class CommonLib
 	//-----------------------------------------------
 	public static ChromeOptions getChromeOptions() throws Exception
 	{
-		ChromeOptions oChromeOptions = new ChromeOptions();
-		oChromeOptions.merge(getCapability());
-
-		return oChromeOptions;
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.merge(getCapability());
+		chromeOptions.addArguments("test-type");
+		//Dil çevirme penceresini kapattırma.
+		chromeOptions.addArguments("disable-translate");
+		//Browser tam ekranda gösterilir.
+		chromeOptions.addArguments("start-maximized");
+		//Pop-uplar bloklanır.
+		chromeOptions.addArguments("disable-popup-blocking");
+		chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
+		return chromeOptions;
 	}
 
 	//-----------------------------------------------
@@ -118,145 +198,33 @@ public class CommonLib
 		return -1;
 	}
 
-	//-------------------------------------------
-	//Define getDriver type
-	//-------------------------------------------
-	//getMobileDriver(sDriverName, platformName, platformVersion, UDID,  appPackage, appActivity, appWaitPackage, appWaitActivity)
-	//public static MobileDriver<MobileElement> getMobileDriver(String sDriverName) throws MalformedURLException
-	public static MobileDriver<MobileElement> getMobileDriver(String sDriverName, String platformName, String platformVersion, String UDID, String appPackage, String appActivity, String appWaitPackage, String appWaitActivity) throws MalformedURLException
-	{
-			DesiredCapabilities caps = new DesiredCapabilities();
-			MobileDriver<MobileElement> oDriver = null;
-					
-			//Local Devices
-			final String URL_STRING = "http://127.0.0.1:4723/wd/hub";
-			//final String URL_STRING = "http://0.0.0.0:4723/wd/hub";
-		    URL url = new URL(URL_STRING);
-		    
-			// we need to define platform name
-			//caps.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-		    caps.setCapability(MobileCapabilityType.PLATFORM_NAME,platformName);
-			// Set the device name as well (you can give any name)
-			caps.setCapability(MobileCapabilityType.DEVICE_NAME,"MyPhone");
-			//Automation MAe for appium
-			caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator1");
-			//Appium (default), UiAutomator2
-			//Device ID
-			//caps.setCapability(MobileCapabilityType.UDID,"89RX0ED00");
-			caps.setCapability(MobileCapabilityType.UDID,UDID);
-			//ANDROID Version
-			//caps.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10");
-			caps.setCapability(MobileCapabilityType.PLATFORM_VERSION,platformVersion);
-			//App Name
-			
-			
-			caps.setCapability("newCommandTimeout",90000);
-			
-			caps.setCapability("autoGrantPermissions",true);
-			caps.setCapability("noReset",true);
-			
-			//caps.setCapability("uiautomator1ServerLaunchTimeout", 90000);
-
-			caps.setCapability("appPackage",appPackage);
-			caps.setCapability("appActivity",appActivity);
-			caps.setCapability("appWaitPackage",appWaitPackage);
-			caps.setCapability("appWaitActivity",appWaitActivity);
-			
-			if (sDriverName.equalsIgnoreCase("Android"))
-			{
-
-				oDriver = new AndroidDriver<MobileElement>(url, caps);
-
-			    //Use a higher value if your mobile elements take time to show up
-				oDriver.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
-
-			}
-			return oDriver;
-		
-	}
-	
-	@SuppressWarnings({ "unchecked" })
-	public static MobileDriver<MobileElement> getThreadMobileDriver(String sDriverName, String platformName, String platformVersion, String UDID, String appPackage, String appActivity, String appWaitPackage, String appWaitActivity) throws MalformedURLException
-	{
-			DesiredCapabilities caps = new DesiredCapabilities();
-			final ThreadLocal<MobileDriver<MobileElement>> oDriver = new ThreadLocal<MobileDriver<MobileElement>>();
-			
-			//Local Devices
-			final String URL_STRING = "http://127.0.0.1:4723/wd/hub";
-		    URL url = new URL(URL_STRING);
-		    
-			//Platform Name
-		    caps.setCapability(MobileCapabilityType.PLATFORM_NAME,platformName);
-			// Device Name
-			caps.setCapability(MobileCapabilityType.DEVICE_NAME,"MyPhone");
-			//Automation Name
-			caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator1");
-			//Appium (default), UiAutomator2
-			//Device ID
-			caps.setCapability(MobileCapabilityType.UDID,UDID);
-			//ANDROID Version
-			caps.setCapability(MobileCapabilityType.PLATFORM_VERSION,platformVersion);
-
-
-			
-			caps.setCapability("newCommandTimeout",90000);
-			
-			caps.setCapability("autoGrantPermissions",true);
-			caps.setCapability("noReset",true);
-			
-
-
-			caps.setCapability("appPackage",appPackage);
-			caps.setCapability("appActivity",appActivity);
-			caps.setCapability("appWaitPackage",appWaitPackage);
-			caps.setCapability("appWaitActivity",appWaitActivity);
-
-			
-			if (sDriverName.equalsIgnoreCase("Android"))
-			{
-				if(oDriver.get() == null) {
-					oDriver.set(new AndroidDriver<MobileElement>(url, caps));
-
-				    //Use a higher value if your mobile elements take time to show up
-					oDriver.get().manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
-				}
-
-			}
-			return oDriver.get();
-		
-	}
-
-
-	public static WebDriver getDriver(String sBrowserName) throws Exception
-	{
+	public static WebDriver getDriver(String sBrowserName) throws Exception {
 		WebDriver oDriver;
 
-		switch (getBrowserId(sBrowserName))
-		{
-		case 1:
-			System.setProperty("webdriver.ie.driver",System.getProperty("user.dir")+ AutomationConstants.sIEDriverPath);
-			oDriver = new InternetExplorerDriver(getIEOptions());
-			break;
+		switch (getBrowserId(sBrowserName)) {
+			case 1:
+				//  System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + AutomationConstants.sIEDriverPath);
+				WebDriverManager.iedriver().setup();
+				System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + AutomationConstants.sIEDriverPath);
 
-		case 2:
-			System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+AutomationConstants.sGeckoDriverPath);
-			oDriver = new FirefoxDriver(getFirefoxOptions());
-			break;
+				oDriver = new InternetExplorerDriver(getIEOptions());
+				break;
 
-		case 3:
-			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+AutomationConstants.sChromeDriverPath);
-			oDriver = new ChromeDriver(getChromeOptions());
-			break;
+			case 2:
+				//  System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + AutomationConstants.sGeckoDriverPath);
+				WebDriverManager.firefoxdriver().setup();
+				oDriver = new FirefoxDriver(getFirefoxOptions());
+				break;
 
-		default:
-			throw new Exception("Unknown browsername =" + sBrowserName +
-					" valid names are: ie,firefox,chrome,htmlunit");			
-		}
+			case 3:
+				//  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
+				WebDriverManager.chromedriver().setup();
+				oDriver = new ChromeDriver(getChromeOptions());
+				break;
 
-
-		if (getBrowserId(sBrowserName) != 4)
-		{
-			oDriver.manage().window().maximize();
+			default:
+				throw new Exception("Unknown browsername =" + sBrowserName +
+						" valid names are: ie,firefox,chrome,htmlunit");
 		}
 
 		oDriver.manage().deleteAllCookies();
@@ -270,39 +238,36 @@ public class CommonLib
 	//-------------------------------------------
 	//Define remoteDriver type
 	//-------------------------------------------
-	public static WebDriver getRemoteDriver(String sHubUrl, String sBrowserName) throws Exception
-	{
+	public static WebDriver getRemoteDriver(String sHubUrl, String sBrowserName) throws Exception {
 		WebDriver oDriver;
 		DesiredCapabilities oCapability = getCapability();
 
-		switch (getBrowserId(sBrowserName)) 
-		{
-		case 1:
-			oCapability.setBrowserName("internet explorer");
-			break;
+		switch (getBrowserId(sBrowserName)) {
+			case 1:
+				oCapability.setBrowserName("internet explorer");
+				break;
 
-		case 2:
-			oCapability.setBrowserName("firefox");
-			break;
+			case 2:
+				oCapability.setBrowserName("firefox");
+				break;
 
-		case 3:
-			oCapability.setBrowserName("chrome");
-			break;
+			case 3:
+				oCapability.setBrowserName("chrome");
+				break;
 
-		case 4:
-			oCapability.setBrowserName("htmlunit");
+			case 4:
+				oCapability.setBrowserName("htmlunit");
 
-		default:
-			throw new Exception("Unknown browsername = " + sBrowserName +
-					"  Valid names are: ie,firefox,chrome,htmlunit");
+			default:
+				throw new Exception("Unknown browsername = " + sBrowserName +
+						"  Valid names are: ie,firefox,chrome,htmlunit");
 		}
 
 		oCapability.setPlatform(Platform.WINDOWS);
 
 		oDriver = new RemoteWebDriver(new URL(sHubUrl), oCapability);
 
-		if (getBrowserId(sBrowserName) != 4)
-		{
+		if (getBrowserId(sBrowserName) != 4) {
 			oDriver.manage().window().maximize();
 		}
 
@@ -313,24 +278,7 @@ public class CommonLib
 
 		return oDriver;
 	}
-	
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//This method is used to perform Send Keys after validation
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	public static boolean sendKeys(WebDriver oDriver, By identifier, String text){
-		if(oDriver.findElements(identifier).size() > 0) {
-			WebElement oElement = oDriver.findElement(identifier);
-			if(oElement.isDisplayed() && oElement.isEnabled()) {
-				oElement.sendKeys(text);
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			return false;
-		}
-	}
-	
+
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//This method is used to set a particular attribute using JavaScript
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -382,6 +330,62 @@ public class CommonLib
 			System.out.println("Element not found");
 		}
 		return status;
+	}
+	public static void navigateToURL(WebDriver oDriver, String URL)
+	{
+		oDriver.navigate().to(URL);
+	}
+
+	public static boolean waitElementVisible(WebDriver oDriver, WebElement element) {
+		boolean flag = false;
+		WebDriverWait wait = new WebDriverWait(oDriver, 60);
+		try {
+			wait.until(ExpectedConditions.visibilityOf(element));
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
+		}
+		return flag;
+	}
+
+	public static boolean checkElementVisibility(WebElement element) {
+		boolean res = false;
+		if (element.isDisplayed()) {
+			res = true;
+		} else {
+			return res;
+		}
+		return res;
+	}
+	public static boolean sendKeys(WebElement element, String text) {
+		boolean flag = false;
+		try {
+			if (element.isDisplayed() && element.isEnabled()) {
+				waitSeconds(1);
+				element.click();
+				if (element.getText().equals("")) {
+					element.clear();
+					waitSeconds(1);
+				}
+				element.sendKeys(text);
+				MyTestNGBaseClass.reportResult("PASS", "A value has been entered in the " + element.getText() + " Input field.", true);
+				return true;
+			}
+		} catch (Exception e) {
+			MyTestNGBaseClass.reportResult("FAIL", "Could not enter value for " + element.getText() + " element.", true);
+			Assert.fail("Could not enter value for element." + element.getText());
+			flag = false;
+		}
+		return flag;
+	}
+	//It allows to wait on the page for as long as required.
+	//-------------------------------------------------------------------------------------------------------------------------------
+	public static void waitSeconds(int sec) {
+		try {
+			Thread.sleep(sec * 1000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

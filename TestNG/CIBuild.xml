@@ -9,14 +9,15 @@
 	<parameter name="PLATFORM_VERSION" value="6.0.1"></parameter>
 	<!-- <parameter name="UDID" value="89RX0ED00, N000TA1183960606178"></parameter> -->
 	<parameter name="UDID" value="04d6bfeb0187efee"></parameter>
-	
-	
-	<!-- 
-	<parameter name="appPackage" value="com.bigbasket.mobileapp"></parameter>
-	<parameter name="appActivity" value=".activity.SplashActivity"></parameter>
-	<parameter name="appWaitPackage" value="com.bigbasket.mobileapp"></parameter>
-	<parameter name="appWaitActivity" value="com.bigbasket.mobileapp.activity.HomeActivity"></parameter>
-	 -->
+	<parameter name="browserName" value="chrome"></parameter>
+
+
+		<!--
+        <parameter name="appPackage" value="com.bigbasket.mobileapp"></parameter>
+        <parameter name="appActivity" value=".activity.SplashActivity"></parameter>
+        <parameter name="appWaitPackage" value="com.bigbasket.mobileapp"></parameter>
+        <parameter name="appWaitActivity" value="com.bigbasket.mobileapp.activity.HomeActivity"></parameter>
+         -->
 	
 	<!-- <test name="Nexus5_3" enabled="false">
 		<classes>
