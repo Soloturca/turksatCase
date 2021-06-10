@@ -4,29 +4,21 @@ import com.saf.framework.CommonLib;
 import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
-    int timeout=30;
-
-    @When("^I initialize ([^\"]*) driver and run test local=([^\"]*)$")
-    public  void initializeChromeDriver(String browser,Boolean isLocal) throws MalformedURLException
-    {
-       // MyTestNGBaseClass.
-    }
+    int timeout = 30;
 
     @Given("^Open the (.*) URL$")
     public void openUrl(String URL) {
-
         CommonLib.navigateToURL(oDriver, URL);
     }
 
     @When("^I see (.*) page$")
-    public void seePage(String page) {
+    public void seePage(String page) throws InterruptedException {
         commonLib.seePage(page);
     }
 

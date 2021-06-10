@@ -7,6 +7,8 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parser {
     JSONParser parser = new JSONParser();
@@ -37,8 +39,9 @@ public class Parser {
         }
     }
 
-    public Boolean isPageExist(String mypage)
+    public List<String> isPageExist(String mypage)
     {
+        List<String> returnValue= new ArrayList<>();
         JSONObject object = null;
         try
         {
@@ -56,14 +59,16 @@ public class Parser {
 
             JSONObject pageInfo = (JSONObject) page.get("pageInfo");
             String pagename=(String)pageInfo.get("pageName");
-
+            String waitelement=(String)pageInfo.get("waitelement");
             if(pagename.equalsIgnoreCase(mypage))
             {
+                returnValue.add(pagename);
+                returnValue.add(waitelement);
                 System.out.println(pagename+" sayfası bulundu");
-                return true;
+                return returnValue;
             }
         }
-        return false;
+        return returnValue;
     }
 
     public String getElement(String mypage,String myelement)
@@ -103,6 +108,14 @@ public class Parser {
                 //control parent
                 if(value==null)
                 {
+                    try {
+                        object = (JSONObject) parser.parse(new FileReader(json+"\\"+parentName+".json"));
+                        array = (JSONArray) object.get("pages");
+                    }
+                    catch (IOException | ParseException e)
+                    {
+                        e.printStackTrace();
+                    }
                     for (Object obj : array)
                     {
                         JSONObject parentPage = (JSONObject) obj;

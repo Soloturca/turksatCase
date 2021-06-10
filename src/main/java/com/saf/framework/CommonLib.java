@@ -2,6 +2,7 @@ package com.saf.framework;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -25,6 +26,7 @@ public class CommonLib
 	public static WebDriver oDriver;
 	public String page = "common";
 	public Parser parser = new Parser();
+	MyTestNGBaseClass testNGBaseClass = new MyTestNGBaseClass();
 
 	public WebElement findElement(String elem, int index)
 	{
@@ -71,10 +73,14 @@ public class CommonLib
 		}
 	}
 
-	public String seePage(String page) {
-		if (parser.isPageExist(page)) {
+	public String seePage(String page) throws InterruptedException {
+		List<String> returnValue = parser.isPageExist(page);
+		if (returnValue.get(0).equalsIgnoreCase(page)) {
 			System.out.println(page + " page found!");
-			this.page=page;
+			this.page = page;
+			if (returnValue.get(1).length() > 0) {
+				waitElement(returnValue.get(1), 30, 1);
+			}
 			return page;
 		} else {
 			Assert.fail("Page not found! '" + page + "'");
