@@ -1,6 +1,5 @@
 package com.saf.framework;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,12 +20,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.testng.Assert;
 
-public class CommonLib 
+public class CommonLib extends MyTestNGBaseClass
 {
 	public static WebDriver oDriver;
 	public String page = "common";
-	public Parser parser = new Parser();
-	MyTestNGBaseClass testNGBaseClass = new MyTestNGBaseClass();
+	int timeout = 30;
+	Parser parser = new Parser();
 
 	public WebElement findElement(String elem, int index)
 	{
@@ -73,16 +72,23 @@ public class CommonLib
 		}
 	}
 
-	public String seePage(String page) throws InterruptedException {
+	public String seePage(String page) {
 		List<String> returnValue = parser.isPageExist(page);
-		if (returnValue.get(0).equalsIgnoreCase(page)) {
-			System.out.println(page + " page found!");
-			this.page = page;
-			if (returnValue.get(1).length() > 0) {
-				waitElement(returnValue.get(1), 30, 1);
+
+		try {
+			if (returnValue.get(0).equalsIgnoreCase(page)) {
+				System.out.println(page + " page found!");
+				this.page = page;
+
+				if (returnValue.get(1).length() > 0) {
+					waitElement(returnValue.get(1), timeout, 1);
+				}
+				reportResult("PASS", "I see " + page + " page.(Page found)", false);
+				return page;
 			}
-			return page;
-		} else {
+		}
+		catch (Exception e){
+			reportResult("FAIL", "I see " + page + " page.(Page not found)", true);
 			Assert.fail("Page not found! '" + page + "'");
 		}
 		return null;
@@ -285,7 +291,6 @@ public class CommonLib
 		}
 	}
 	
-	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//This method is used to validate if an element is visible
 	//Make sure the same method is used throughout the pages classes as well as other generic methods  
@@ -319,6 +324,7 @@ public class CommonLib
 		}
 		return status;
 	}
+
 	public static void navigateToURL(WebDriver oDriver, String URL)
 	{
 		oDriver.navigate().to(URL);
@@ -345,6 +351,7 @@ public class CommonLib
 		}
 		return res;
 	}
+
 	public static boolean sendKeys(WebElement element, String text) {
 		boolean flag = false;
 		try {

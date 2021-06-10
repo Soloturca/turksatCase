@@ -17,7 +17,6 @@ import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.HashMap;
 
-
 public class MyTestNGBaseClass {
 
 	public static WebDriver oDriver;
@@ -28,7 +27,6 @@ public class MyTestNGBaseClass {
 	public static boolean dbFlag;
 	public static int testCaseId = 0;
 	public static String sDriverName = "";
-	public static String className = "";
 	DataDriver oDataDriver = new DataDriver();
 	HashMap<String, HashMap<String, String>> myMap = new HashMap<String, HashMap<String,String>>();
 	protected static HashMapNew dataMap = new HashMapNew();
@@ -270,10 +268,11 @@ public class MyTestNGBaseClass {
 		return true;
 	}
 
-	public static boolean  startTest() {
-		String completeClassName = new Exception().getStackTrace()[1].getClassName();
-		className = completeClassName.split("\\.")[completeClassName.split("\\.").length - 1];
-		oExtentTest = oExtentReport.startTest(className);
+	public static boolean  startTest(String scenarioName) {
+
+		//String completeClassName = new Exception().getStackTrace()[1].getClassName();
+		//className = completeClassName.split("\\.")[completeClassName.split("\\.").length - 1];
+		oExtentTest = oExtentReport.startTest(scenarioName);
 		//MyTestNGBaseClass.
 		//Create entry in the Test Execution table for the test started
 		//testCaseId = DBReporting.insertExecutionRecord(className);

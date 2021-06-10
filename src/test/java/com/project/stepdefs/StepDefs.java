@@ -2,15 +2,20 @@ package com.project.stepdefs;
 
 import com.saf.framework.CommonLib;
 import com.saf.framework.MyTestNGBaseClass;
+import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebElement;
 
-import java.net.MalformedURLException;
-
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
     int timeout = 30;
+
+    @Before
+    public void setReportName(Scenario scenario) {
+        commonLib.startTest(scenario.getName());
+    }
 
     @Given("^Open the (.*) URL$")
     public void openUrl(String URL) {
@@ -18,7 +23,7 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @When("^I see (.*) page$")
-    public void seePage(String page) throws InterruptedException {
+    public void seePage(String page) {
         commonLib.seePage(page);
     }
 
@@ -33,6 +38,7 @@ public class StepDefs extends MyTestNGBaseClass {
             System.out.println("Could not click on object-->" + element);
         }
     }
+
     @When("^I enter \"([^\"]*)\" text to (.*)$")
     public void enterText(String text, String element) throws InterruptedException {
         //mouseHover(element);

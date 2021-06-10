@@ -5,8 +5,10 @@ package com.project.tests;
 
 import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
+import org.junit.Before;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -18,7 +20,7 @@ import org.testng.annotations.Test;
 
         features = "src/test/features/Finco.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        // tags="@Payment",
+         tags="@Payment",
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
@@ -32,6 +34,7 @@ public class TestRunner extends MyTestNGBaseClass {
 
     @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
     public void feature(CucumberFeatureWrapper cucumberFeature) {
+
         testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
     }
 

@@ -7,7 +7,7 @@ Feature: Orion Finance Finco Test Scenarios
   #Examples:
   #| username| password | url |     | menuTitle|
   #| admin |    | http://orion-finance-finco-adtest.apps.mbt.vodafone.local/| | Müşteri İşlemleri |
-
+  @Payment
 Scenario: Login Finco
   Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
   Then I see login page
@@ -15,3 +15,9 @@ Scenario: Login Finco
   Then I enter "" text to password text area
   And I wait login button element 30 seconds at index 1
   When I click element: login button index: 1
+
+  @Payment
+  Scenario: Login Finco Soner
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see loginx page
+

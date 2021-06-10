@@ -12,145 +12,105 @@ import java.util.List;
 
 public class Parser {
     JSONParser parser = new JSONParser();
-    static String json =  Paths.get("").toAbsolutePath().toString()+"\\src\\test\\Elements";
-    public void parse() throws  IOException, ParseException
-    {
+    static String json = Paths.get("").toAbsolutePath().toString() + "\\src\\test\\Elements";
 
-        JSONObject ba = (JSONObject) parser.parse(new FileReader(json));
-        JSONArray  a= (JSONArray) ba.get("pages");
-
-        for (Object o : a) {
-            JSONObject page = (JSONObject) o;
-
-            JSONObject pageInfo = (JSONObject) page.get("pageInfo");
-            String pagename=(String)pageInfo.get("pageName");
-            System.out.println(pagename);
-
-            String logo = (String) pageInfo.get("logo");
-            System.out.println(logo);
-            String parent = (String) pageInfo.get("parent");
-            System.out.println(parent);
-
-            JSONArray cars = (JSONArray) page.get("elements");
-
-            for (Object c : cars) {
-                System.out.println(c + "");
-            }
-        }
-    }
-
-    public List<String> isPageExist(String mypage)
-    {
-        List<String> returnValue= new ArrayList<>();
+    public List<String> isPageExist(String myPage) {
+        List<String> returnValue = new ArrayList<>();
+        //index 0 da pageName index 1 de page waitelement
         JSONObject object = null;
-        try
-        {
-            object = (JSONObject) parser.parse(new FileReader(json+"\\"+mypage.toLowerCase()+".json"));
-        }
-        catch (IOException | ParseException e)
-        {
+        try {
+            object = (JSONObject) parser.parse(new FileReader(json + "\\" + myPage.toLowerCase() + ".json"));
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        JSONArray  array= (JSONArray) object.get("pages");
+        JSONArray array;
+        try {
+            array = (JSONArray) object.get("pages");
+        } catch (Exception e) {
+            array = new JSONArray();
+        }
 
-        for (Object o : array)
-        {
+
+        for (Object o : array) {
             JSONObject page = (JSONObject) o;
 
             JSONObject pageInfo = (JSONObject) page.get("pageInfo");
-            String pagename=(String)pageInfo.get("pageName");
-            String waitelement=(String)pageInfo.get("waitelement");
-            if(pagename.equalsIgnoreCase(mypage))
-            {
+            String pagename = (String) pageInfo.get("pageName");
+            String waitelement = (String) pageInfo.get("waitelement");
+            if (pagename.equalsIgnoreCase(myPage)) {
                 returnValue.add(pagename);
                 returnValue.add(waitelement);
-                System.out.println(pagename+" sayfası bulundu");
+                System.out.println(pagename + " sayfası bulundu");
                 return returnValue;
             }
         }
         return returnValue;
     }
 
-    public String getElement(String mypage,String myelement)
-    {
+    public String getElement(String myPage, String myElement) {
         JSONObject object = null;
         try {
-            object = (JSONObject) parser.parse(new FileReader(json+"\\"+mypage.toLowerCase()+".json"));
-        }
-        catch (IOException | ParseException e)
-        {
+            object = (JSONObject) parser.parse(new FileReader(json + "\\" + myPage.toLowerCase() + ".json"));
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
 
         JSONArray array = (JSONArray) object.get("pages");
-        String value=null;
-        String parentName="";
+        String value = null;
+        String parentName = "";
         for (Object o : array) {
             JSONObject page = (JSONObject) o;
 
             JSONObject pageInfo = (JSONObject) page.get("pageInfo");
             String pagename = (String) pageInfo.get("pageName");
-            parentName=(String) pageInfo.get("parent");
-            if (pagename.equalsIgnoreCase(mypage))
-            {
+            parentName = (String) pageInfo.get("parent");
+            if (pagename.equalsIgnoreCase(myPage)) {
 
                 JSONArray elements = (JSONArray) page.get("elements");
-                for (Object element : elements)
-                {
+                for (Object element : elements) {
                     JSONObject elem = (JSONObject) element;
-                    value= (String) elem.get(myelement);
+                    value = (String) elem.get(myElement);
 
-                    if(value!=null){
+                    if (value != null) {
                         break;
                     }
                 }
 
                 //control parent
-                if(value==null)
-                {
+                if (value == null) {
                     try {
-                        object = (JSONObject) parser.parse(new FileReader(json+"\\"+parentName+".json"));
+                        object = (JSONObject) parser.parse(new FileReader(json + "\\" + parentName + ".json"));
                         array = (JSONArray) object.get("pages");
-                    }
-                    catch (IOException | ParseException e)
-                    {
+                    } catch (IOException | ParseException e) {
                         e.printStackTrace();
                     }
-                    for (Object obj : array)
-                    {
+                    for (Object obj : array) {
                         JSONObject parentPage = (JSONObject) obj;
                         pageInfo = (JSONObject) parentPage.get("pageInfo");
                         pagename = (String) pageInfo.get("pageName");
 
-                        if (pagename.equalsIgnoreCase(parentName))
-                        {
+                        if (pagename.equalsIgnoreCase(parentName)) {
                             JSONArray parenEelements = (JSONArray) parentPage.get("elements");
-                            for (Object element : parenEelements)
-                            {
+                            for (Object element : parenEelements) {
                                 JSONObject elem = (JSONObject) element;
-                                value= (String) elem.get(myelement);
+                                value = (String) elem.get(myElement);
 
-                                if(value!=null)
-                                {
+                                if (value != null) {
                                     break;
                                 }
                             }
-                            if(value!=null)
-                            {
+                            if (value != null) {
                                 break;
                             }
                         }
                     }
                 }
             }
-            if(value!=null)
-            {
+            if (value != null) {
                 break;
             }
         }
 
         return value;
     }
-
-
 }
