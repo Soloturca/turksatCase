@@ -2,7 +2,7 @@
   "pages": [
     {
       "pageInfo": {
-        "pageName": "customerTransactions",
+        "pageName": "home",
         "parent": "login",
         "waitelement": "customer transactions button"
       },
@@ -10,9 +10,6 @@
 
         {
           "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
-        },
-        {
-          "add new main group button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[4]/button"
         }
       ]
     }

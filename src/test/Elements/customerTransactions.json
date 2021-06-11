@@ -3,7 +3,7 @@
     {
       "pageInfo": {
         "pageName": "customerTransactions",
-        "parent": "login",
+        "parent": "home",
         "waitelement": "customer transactions button"
       },
       "elements": [

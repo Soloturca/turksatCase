@@ -12,6 +12,7 @@ Feature: Orion Finance Finco Test Scenarios
   Scenario: Creating a job for getting a reference number
     And I wait customer transactions button element 30 seconds at index 1
     When I click element: customer transactions button index: 1
+    Then I see customerTransactions page
     And I wait customer group management button element 30 seconds at index 1
     When I click element: customer group management button index: 1
     And I wait add new main group button element 30 seconds at index 1
