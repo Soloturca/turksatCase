@@ -22,6 +22,8 @@ public class AutomationConstants
 	public static int itestCaseID;
 	
 	// Email constants
-	
+
+	//referans kısmı://*[@id="modal-title-text"]/b
+	//güncel referans:  20210611-00152
 	
 }

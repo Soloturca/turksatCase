@@ -5,6 +5,7 @@ import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebElement;
 
@@ -22,7 +23,7 @@ public class StepDefs extends MyTestNGBaseClass {
         CommonLib.navigateToURL(oDriver, URL);
     }
 
-    @When("^I see (.*) page$")
+    @Then("^I see (.*) page$")
     public void seePage(String page) {
         commonLib.seePage(page);
     }
@@ -54,5 +55,11 @@ public class StepDefs extends MyTestNGBaseClass {
     @When("^I wait (.*) element (\\d+) seconds at index (\\d+)$")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
+    }
+
+    @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) index: (\\d+)$")
+    public void getTheReferenceNumber(String element,int index) {
+        String object = commonLib.getTheElementInformation(element, index);
+
     }
 }

@@ -27,6 +27,14 @@ public class CommonLib extends MyTestNGBaseClass
 	int timeout = 30;
 	Parser parser = new Parser();
 
+	public String getTheElementInformation(String elem, int index){
+		System.out.println(findElement(elem,index).getText());
+		String elementText = findElement(elem,index).getText();
+		return elementText;
+
+
+	}
+
 	public WebElement findElement(String elem, int index)
 	{
 		WebElement object=null;

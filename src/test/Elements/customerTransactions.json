@@ -1,0 +1,47 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "customerTransactions",
+        "parent": "login",
+        "waitelement": "customer transactions button"
+      },
+      "elements": [
+        {
+          "customer group management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[2]/a"
+        },
+        {
+          "add new main group button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[4]/button"
+        },
+        {
+          "main group name text area": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[5]/div[4]/input"
+        },
+        {
+          "subgroup name text area": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[6]/div[4]/input"
+        }
+      ,
+        {
+          "save button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[6]/button"
+        }
+      ,
+        {
+          "warning popup": "//*[@id=\"modal-title-text\"]"
+        }
+      ,
+        {
+          "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
+        }
+      ,
+        {
+          "close button": "//*[@id=\"modal-footer-area\"]/button"
+        }
+      ,
+        {
+          "reference number area": "//*[@id=\"modal-title-text\"]/b"
+        }
+      ]
+    }
+  ]
+}
+
+
