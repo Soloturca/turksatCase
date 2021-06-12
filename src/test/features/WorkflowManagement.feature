@@ -72,7 +72,7 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait warning popup element 30 seconds at index 1
     When I click element: yes button index: 1
     When I click element: assign to pool button index: 1
-    When I click element: no button index: 1
+    When I click element: yes button index: 1
 
 
   @Payment
@@ -87,4 +87,4 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait warning popup element 30 seconds at index 1
     When I click element: yes button index: 1
     When I click element: cancel button index: 1
-    When I click element: no button index: 1
+    When I click element: yes button index: 1
