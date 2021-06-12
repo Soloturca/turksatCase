@@ -34,8 +34,7 @@
       ,
         {
           "close button": "//*[@id=\"modal-footer-area\"]/button"
-        }
-      ,
+        },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
         }

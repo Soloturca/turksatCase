@@ -4,10 +4,12 @@
       "pageInfo": {
         "pageName": "home",
         "parent": "login",
-        "waitelement": "customer transactions button"
+        "waitelement": "workflow management button"
       },
       "elements": [
-
+        {
+          "workflow management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/a"
+        },
         {
           "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
         }

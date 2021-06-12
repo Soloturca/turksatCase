@@ -9,7 +9,7 @@ Feature: Orion Finance Finco Test Scenarios
     Then I see home page
 
   @Payment
-  Scenario: Creating a job for getting a reference number
+  Scenario: PRECONDITION - Creating a job for getting a reference number
     And I wait customer transactions button element 30 seconds at index 1
     When I click element: customer transactions button index: 1
     Then I see customerTransactions page
@@ -25,3 +25,66 @@ Feature: Orion Finance Finco Test Scenarios
     Then I get the information: reference number area index: 1
     When I click element: close button index: 1
 
+   #Ece, case'lerin benim için precondition durumu taşıdığından, biraz senin case'ine de girmek zorunda kaldım.
+  #Case'e göre diğer alanların da dıoldurulması gerekiyor. Ben sadece yarattığımız referans numarası ile işlem yapıyorum.
+  #Eksik kalan kısımları (test 3 için) ve diğer case'lere (1 ve 2 ) sen bakabilir misin?
+
+    #Yaratılan işin referans numarasının diğer referans no alanlarına yazılması adımı: Then I enter my reference number text..... adımı. Metoduna oradan gidilebilir.
+  @Payment
+  Scenario: TC003
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button index: 1
+    Then I see workflowManagement page
+    When I click element: pending jobs button index: 1
+    Then I enter my "reference number" text to reference number area
+    When I click element: inquire button index: 1
+    When I click element: row button index: 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button index: 1
+    When I click element: approve button index: 1
+    When I click element: yes button index: 1
+
+
+  @Payment
+  Scenario: TC004 - E2E Approving
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button index: 1
+    Then I see workflowManagement page
+    When I click element: jobs pending on my list button index: 1
+    Then I enter my "reference number" text to reference number area
+    When I click element: inquire button index: 1
+    When I click element: row button index: 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button index: 1
+    When I click element: approve button index: 1
+    When I click element: yes button index: 1
+
+
+  @Payment
+  Scenario: TC005 - E2E Assign to Pool
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button index: 1
+    Then I see workflowManagement page
+    When I click element: jobs pending on my list button index: 1
+    Then I enter my "reference number" text to reference number area
+    When I click element: inquire button index: 1
+    When I click element: row button index: 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button index: 1
+    When I click element: assign to pool button index: 1
+    When I click element: no button index: 1
+
+
+  @Payment
+  Scenario: TC006 - E2E Cancel
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button index: 1
+    Then I see workflowManagement page
+    When I click element: jobs pending on my list button index: 1
+    Then I enter my "reference number" text to reference number area
+    When I click element: inquire button index: 1
+    When I click element: row button index: 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button index: 1
+    When I click element: cancel button index: 1
+    When I click element: no button index: 1
