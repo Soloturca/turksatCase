@@ -2,17 +2,64 @@
   "pages": [
     {
       "pageInfo": {
-        "pageName": "customerTransactions",
-        "parent": "login",
-        "waitelement": "customer transactions button"
+        "pageName": "home",
+        "parent": "common",
+        "waitelement": "workflow management button"
       },
       "elements": [
-
+        {
+          "workflow management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/a"
+        },
+        {
+          "application management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[2]/a"
+        },
+        {
+          "decision support system button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/a"
+        },
         {
           "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
         },
         {
-          "add new main group button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[4]/button"
+          "loan button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/a"
+        },
+        {
+          "package manager button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[6]/a"
+        },
+        {
+          "treasure button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[7]/a"
+        },
+        {
+          "collateral transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[8]/a"
+        },
+        {
+          "gateway button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[9]/a"
+        },
+        {
+          "risk monitoring button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[10]/a"
+        },
+        {
+          "financial inquiry button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[11]/a"
+        },
+        {
+          "note button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[12]/a"
+        },
+        {
+          "follow-up button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[13]/a"
+        },
+        {
+          "accounting button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[14]/a"
+        },
+        {
+          "instructional procedures button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[15]/a"
+        },
+        {
+          "purchase & expense button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[16]/a"
+        },
+        {
+          "reporting button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[17]/a"
+        },
+        {
+          "file transfer button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[18]/a"
         }
       ]
     }

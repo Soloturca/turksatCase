@@ -52,6 +52,7 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
+
     @When("^I wait (.*) element (\\d+) seconds at index (\\d+)$")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
@@ -59,7 +60,6 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) index: (\\d+)$")
     public void getTheReferenceNumber(String element,int index) {
-        String object = commonLib.getTheElementInformation(element, index);
-
+        String object = commonLib.getTheElementInformation(element, index); // Ref Num=object
     }
 }

@@ -3,7 +3,7 @@
     {
       "pageInfo": {
         "pageName": "customerTransactions",
-        "parent": "login",
+        "parent": "home",
         "waitelement": "customer transactions button"
       },
       "elements": [
@@ -18,24 +18,19 @@
         },
         {
           "subgroup name text area": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[6]/div[4]/input"
-        }
-      ,
+        },
         {
           "save button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[6]/button"
-        }
-      ,
+        },
         {
           "warning popup": "//*[@id=\"modal-title-text\"]"
-        }
-      ,
+        },
         {
           "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
-        }
-      ,
+        },
         {
           "close button": "//*[@id=\"modal-footer-area\"]/button"
-        }
-      ,
+        },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
         }
