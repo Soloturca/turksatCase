@@ -1,5 +1,9 @@
 package com.saf.framework;
 
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
@@ -9,27 +13,34 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import java.net.URL;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import org.testng.Assert;
 
 public class CommonLib extends MyTestNGBaseClass
 {
 	public static WebDriver oDriver;
 	public String page = "common";
+	public static String referenceNumber;
 	int timeout = 30;
 	Parser parser = new Parser();
+	Actions actions = new Actions(oDriver);
 
 	public String getTheElementInformation(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
 		String elementText = findElement(elem,index).getText();
+		this.referenceNumber=elementText;
+		System.out.println(elementText);
 		return elementText;
+
+	}
+
+	public void  doubleClickElement(WebElement object){
+		actions.doubleClick(object).perform();
 
 	}
 

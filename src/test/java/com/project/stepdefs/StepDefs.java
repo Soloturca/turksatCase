@@ -29,8 +29,8 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @When("^(?:I )?click element: (\\w+(?: \\w+)*) index: (\\d+)$")
-    public void clickElement(String element,int index) {
-        WebElement object = commonLib.findElement(element,index);
+    public void clickElement(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
 
         if (object != null) {
             object.click();
@@ -40,11 +40,11 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-    @When("^I enter \"([^\"]*)\" text to (.*)$")
+    @Then("^I enter \"([^\"]*)\" text to (.*)$")
     public void enterText(String text, String element) throws InterruptedException {
         //mouseHover(element);
         WebElement object;
-        object = commonLib.waitElement(element,timeout,1);
+        object = commonLib.waitElement(element, timeout, 1);
 
         if (object != null) {
             object.sendKeys(text);
@@ -52,14 +52,34 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-
     @When("^I wait (.*) element (\\d+) seconds at index (\\d+)$")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
     }
 
     @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) index: (\\d+)$")
-    public void getTheReferenceNumber(String element,int index) {
-        String object = commonLib.getTheElementInformation(element, index); // Ref Num=object
+    public void getTheReferenceNumber(String element, int index) {
+        String object = commonLib.getTheElementInformation(element, index);
+
+    }
+
+    @When("^(?:I )?double click element: (\\w+(?: \\w+)*) index: (\\d+)$")
+    public void doubleClickElement(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
+        commonLib.doubleClickElement(object);
+    }
+
+
+    @Then("^I enter my \"([^\"]*)\" text to (.*)$")
+    public void dynamicText(String text, String element) throws InterruptedException {
+        text = commonLib.referenceNumber;
+        System.out.println(text);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, 1);
+
+        if (object != null) {
+            object.sendKeys(text);
+            System.out.println("The reference number:" + text + "has been entered.");
+        }
     }
 }
