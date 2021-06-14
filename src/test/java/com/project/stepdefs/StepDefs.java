@@ -79,7 +79,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
         if (object != null) {
             object.sendKeys(text);
-            System.out.println("The reference number:" + text + "has been entered.");
+            System.out.println("The reference number:" + text + " "+"has been entered.");
         }
     }
 }
