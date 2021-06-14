@@ -4,6 +4,7 @@ import com.saf.framework.CommonLib;
 import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -28,8 +29,9 @@ public class StepDefs extends MyTestNGBaseClass {
         commonLib.seePage(page);
     }
 
-    @When("^(?:I )?click element: (\\w+(?: \\w+)*) index: (\\d+)$")
-    public void clickElement(String element, int index) {
+    @When("^(?:I )?click element: (\\w+(?: \\w+)*)")
+    public void clickElement(String element) {
+        int index=1;
         WebElement object = commonLib.findElement(element, index);
 
         if (object != null) {
@@ -52,19 +54,26 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-    @When("^I wait (.*) element (\\d+) seconds at index (\\d+)$")
-    public void waitElement(String element, int timeout, int index) throws InterruptedException {
+    @And("^I wait (.*) element (\\d+) seconds")
+    public void waitElement(String element, int timeout) throws InterruptedException {
+         int index=1;
         commonLib.waitElement(element, timeout, index);
     }
+    @And("^I need to just wait")
+    public void justWait() throws InterruptedException {
+        Thread.sleep(10000);
+    }
 
-    @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) index: (\\d+)$")
-    public void getTheReferenceNumber(String element, int index) {
+    @Then("^(?:I )?get the information: (\\w+(?: \\w+)*)")
+    public void getTheReferenceNumber(String element) {
+        int index=1;
         String object = commonLib.getTheElementInformation(element, index);
 
     }
 
-    @When("^(?:I )?double click element: (\\w+(?: \\w+)*) index: (\\d+)$")
-    public void doubleClickElement(String element, int index) {
+    @When("^(?:I )?double click element: (\\w+(?: \\w+)*)")
+    public void doubleClickElement(String element) {
+        int index=1;
         WebElement object = commonLib.findElement(element, index);
         commonLib.doubleClickElement(object);
     }

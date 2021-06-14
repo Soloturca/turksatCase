@@ -23,6 +23,10 @@
           "row button": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
         },
         {
+          "row button for jobs pending on my list": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
+        },
+
+        {
           "warning popup": "//*[@id=\"page-container\"]/div[7]/div/div/div[1]"
         },
         {

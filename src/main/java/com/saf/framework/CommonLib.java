@@ -29,6 +29,7 @@ public class CommonLib extends MyTestNGBaseClass
 	int timeout = 30;
 	Parser parser = new Parser();
 	Actions actions = new Actions(oDriver);
+	WebDriverWait wait = new WebDriverWait(oDriver,30);
 
 	public String getTheElementInformation(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
@@ -117,10 +118,10 @@ public class CommonLib extends MyTestNGBaseClass
 
 			object = findElement(element, index);
 			if (object != null) {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				return object;
 			} else {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			}
 		}
 		Assert.fail("Waiting element is not found!");
