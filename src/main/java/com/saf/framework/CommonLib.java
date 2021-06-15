@@ -70,6 +70,7 @@ public class CommonLib extends MyTestNGBaseClass
 					object = oDriver.findElements(By.id(element)).get(index-1);
 					System.out.println("Object found : " + element);
 				}
+				reportResult("PASS", "I see " + element + " element.(element found)", false);
 			}
 			else if(element==null)
 			{
@@ -78,8 +79,10 @@ public class CommonLib extends MyTestNGBaseClass
 
 			if (object==null){
 				System.out.println("Nesne bulunamadı : "+elem);
+				reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
 				Assert.fail("Nesne bulunamadı : "+elem);
 			}
+
 			return  object;
 		}
 		catch (Exception e)
@@ -114,17 +117,22 @@ public class CommonLib extends MyTestNGBaseClass
 
 	public WebElement waitElement(String element, int timeout, int index) throws InterruptedException {
 		WebElement object;
-		for (int i = 0; i < timeout; i++) {
+		try {
+			for (int i = 0; i < timeout; i++) {
 
-			object = findElement(element, index);
-			if (object != null) {
-				Thread.sleep(2000);
-				return object;
-			} else {
-				Thread.sleep(2000);
+				object = findElement(element, index);
+				if (object != null) {
+					Thread.sleep(2000);
+					return object;
+				} else {
+					Thread.sleep(2000);
+				}
 			}
+			reportResult("PASS", "I see " + element + " element.(element found)", false);
+		} catch (Exception e) {
+			reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
+			Assert.fail("Waiting element is not found!");
 		}
-		Assert.fail("Waiting element is not found!");
 		return null;
 	}
 

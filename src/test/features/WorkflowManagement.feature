@@ -27,6 +27,46 @@ Feature: Orion Finance Finco Test Scenarios
     When I click element: close button
     Then I see home page
 
+  @Payment
+  Scenario: TC001 - User Resumes Work that Started
+    And I wait workflow management button element 30 seconds
+    When I click element: workflow management button
+    Then I see workflowManagement page
+    When I click element: jobs I started button
+    Then I enter my "reference number" text to reference number area
+    When I select element: operation type selection
+  #Then I enter "Note is entered!" text to transaction note text area
+  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+    When I click element: query button
+    And I wait return to inquiry button element 30 seconds
+    When I click element: return to inquiry button
+
+  @Payment
+  Scenario: TC002 - Taking Over Pending Processes in the User's List
+    And I wait workflow management button element 30 seconds
+    When I click element: workflow management button
+    Then I see workflowManagement page
+    When I click element: pending jobs button
+    Then I enter my "reference number" text to reference number area
+    When I select element: operation type selection
+    Then I enter "Note is entered!" text to transaction note text area
+  # # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+    When I click element: query button
+    When I click element: row button
+    And I wait warning popup element 30 seconds
+    When I click element: yes button
+    And I wait approve button element 30 seconds
+    And I wait jobs pending on my list button element 30 seconds
+    When I click element: jobs pending on my list button
+    Then I enter my "reference number" text to reference number area
+    When I select element: operation type selection
+    Then I enter my "Note is entered!" text to transaction note text area
+  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+    When I click element: query button
+    And I wait return to inquiry button element 30 seconds
+    When I click element: row button
+    And I wait warning popup element 30 seconds
+
 
   @Payment
   Scenario: TC003 - Pending Jobs - [PRECONDITION FOR TC0004 - TC0005 - TC0006]
@@ -103,6 +143,7 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait warning popup element 30 seconds
     When I click element: yes button
 
+    And I need to just wait
     And I wait assign to pool button element 30 seconds
     When I click element: assign to pool button
     And I wait yes button element 30 seconds
@@ -137,8 +178,8 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait warning popup element 30 seconds
     When I click element: yes button
 
+    And I need to just wait
     And I wait cancel button element 30 seconds
     When I click element: cancel button
     And I wait yes button element 30 seconds
     When I click element: yes button
-

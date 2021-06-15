@@ -9,6 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
@@ -56,9 +57,27 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @And("^I wait (.*) element (\\d+) seconds")
     public void waitElement(String element, int timeout) throws InterruptedException {
-         int index=1;
+        int index=1;
         commonLib.waitElement(element, timeout, index);
     }
+    @When("^(?:I )?select element: (\\w+(?: \\w+)*)")
+    public void selectElement(String element) {
+        int index=1;
+        WebElement object = commonLib.findElement(element, index);
+
+        if (object != null) {
+            object.click();
+            System.out.println("Select the object type-->" + element);
+
+            Select select = new Select(object);
+            select.selectByVisibleText("Grup Kaydetme");
+
+        } else {
+            System.out.println("Could not select the object type-->" + element);
+        }
+    }
+
+
     @And("^I need to just wait")
     public void justWait() throws InterruptedException {
         Thread.sleep(10000);
