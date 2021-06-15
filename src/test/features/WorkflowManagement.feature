@@ -65,7 +65,7 @@ Feature: Orion Finance Finco Test Scenarios
     Then I enter my "reference number" text to reference number area
     And I wait inquire button element 30 seconds
     When I click element: inquire button
-    And I wait  row button for jobs pending on my list element 30 seconds
+
     When I click element: row button for jobs pending on my list
     And I wait warning popup element 30 seconds
     When I click element: yes button
@@ -98,7 +98,7 @@ Feature: Orion Finance Finco Test Scenarios
     Then I enter my "reference number" text to reference number area
     And I wait inquire button element 30 seconds
     When I click element: inquire button
-    And I wait  row button for jobs pending on my list element 30 seconds
+
     When I click element: row button for jobs pending on my list
     And I wait warning popup element 30 seconds
     When I click element: yes button
@@ -132,7 +132,7 @@ Feature: Orion Finance Finco Test Scenarios
     Then I enter my "reference number" text to reference number area
     And I wait inquire button element 30 seconds
     When I click element: inquire button
-    And I wait  row button for jobs pending on my list element 30 seconds
+
     When I click element: row button for jobs pending on my list
     And I wait warning popup element 30 seconds
     When I click element: yes button
