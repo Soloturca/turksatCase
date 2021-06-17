@@ -23,7 +23,7 @@
           "save button": "//button[@orionid='saveMainGroup']"
         },
         {
-          "warning popup": "//div[@id=\"//*[@id=\"]"
+          "warning popup": "//*[@id=\"modal-title-text\"] "
         },
         {
           "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
@@ -33,6 +33,9 @@
         },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
+        },
+        {
+          "close button": "//button[@class='btn btn-sm btn-info']"
         }
       ]
     }

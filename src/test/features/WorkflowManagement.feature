@@ -49,8 +49,8 @@ Feature: Orion Finance Finco Test Scenarios
     When I click element: pending jobs button
     Then I enter my "reference number" text to reference number area
     When I select element: operation type selection
-    Then I enter "Note is entered!" text to transaction note text area
-  # # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+      # Then I enter "Note is entered!" text to transaction note text area
+   # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button
     When I click element: row button
     And I wait warning popup element 30 seconds
@@ -60,8 +60,8 @@ Feature: Orion Finance Finco Test Scenarios
     When I click element: jobs pending on my list button
     Then I enter my "reference number" text to reference number area
     When I select element: operation type selection
-    Then I enter my "Note is entered!" text to transaction note text area
-  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+    #  Then I enter my "Note is entered!" text to transaction note text area
+    # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button
     And I wait return to inquiry button element 30 seconds
     When I click element: row button
@@ -106,7 +106,7 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait inquire button element 30 seconds
     When I click element: inquire button
 
-    When I click element: row button for jobs pending on my list
+    When I click element: row button
     And I wait warning popup element 30 seconds
     When I click element: yes button
 
@@ -139,7 +139,7 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait inquire button element 30 seconds
     When I click element: inquire button
 
-    When I click element: row button for jobs pending on my list
+    When I click element: row button
     And I wait warning popup element 30 seconds
     When I click element: yes button
 
@@ -174,7 +174,7 @@ Feature: Orion Finance Finco Test Scenarios
     And I wait inquire button element 30 seconds
     When I click element: inquire button
 
-    When I click element: row button for jobs pending on my list
+    When I click element: row button
     And I wait warning popup element 30 seconds
     When I click element: yes button
 
