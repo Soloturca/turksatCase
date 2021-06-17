@@ -8,62 +8,57 @@
       },
       "elements": [
         {
-          "pending jobs button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/ul/li[4]/a"
+          "refresh button:": "//a[contains(@data-href,'/orion/workflow/js/workflow_refresh_list.js')]"
         },
         {
-          "jobs pending on my list button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/ul/li[3]/a"
+          "jobs I started button": "//a[contains(@data-href,'/orion/workflow/js/define_startedbyme_list.js')]"
         },
         {
-          "reference number area": "//*[@id=\"content\"]/div/div/div/div[2]/div/div[1]/div[2]/div[4]/input"
+          "jobs pending on my list button": "//a[contains(@data-href,'/orion/workflow/js/define_waiting_list.js')]"
         },
         {
-          "inquire button": "//*[@id=\"content\"]/div/div/div/div[2]/div/div[1]/div[4]/div[2]/button"
+          "pending jobs button": "//a[contains(@data-href,'/orion/workflow/js/define_waitingall_list.js')]"
         },
         {
-          "row button": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
+          "operation type selection": "//select[@orionid='islem_turu']"
         },
         {
-          "row button for jobs pending on my list": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
+          "transaction note text area": "//input[@orionid='islem_notu']"
         },
-
         {
-          "warning popup": "//*[@id=\"page-container\"]/div[7]/div/div/div[1]"
+          "reference number area": "//input[@orionid='referans_no']"
+        },
+        {
+          "inquire button": "//button[@orionid='orion-id-008']"
+        },
+        {
+          "row button": "//*[@class='ht__highlight ht_currentRow']"
+        },
+        {
+          "warning popup": "//*[@class=\"btn btn-sm btn-warning\"]//parent::div"
         },
         {
           "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
         },
         {
-          "approve button": "//*[@id=\"content\"]/div/ul/li[2]/button"
-        },
-        {
           "no button": "//*[@id=\"modal-footer-area\"]/button[2]"
         },
         {
-          "assign to pool button": "//*[@id=\"content\"]/div/ul/li[1]/button"
+          "assign to pool button": "//button[@owf_type='back_to_pool']"
         },
         {
-          "cancel button": "//*[@id=\"content\"]/div/ul/li[3]/button"
+          "approve button": "//button[@owf_type='approve']"
         },
         {
-        "operation type selection": "//select[@orionid='islem_turu']"
+          "cancel button": "//button[@owf_type='reject']"
         },
         {
-        "transaction note text area": "//input[@orionid='islem_notu']"
+          "query button": "//button[@orionid='orion-id-008']"
         },
         {
-        "inquire button": "//*[@id=\"content\"]/div/div/div/div[2]/div/div[1]/div[4]/div[2]/button"
-        },
-        {
-        "return to inquiry button": "//button[@orionid='orion-id-011']"
-        },
-        {
-        "query button": "//button[@orionid='orion-id-008']"
-        },
-        {
-          "jobs I started button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/ul/li[2]/a"
+          "return to inquiry button": "//button[@orionid='orion-id-011']"
         }
       ]
     }
   ]
 }
-

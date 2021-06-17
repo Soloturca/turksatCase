@@ -8,32 +8,28 @@
       },
       "elements": [
         {
-          "customer group management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[2]/a"
+          "customer group management button": "//a[contains(@data-href,'/finance/customer/js/customerGroupManagementPage.js')]"
         },
         {
-          "add new main group button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[4]/button"
+          "add new main group button": "//button[@orionid='addMainGroup']"
         },
         {
-          "main group name text area": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[5]/div[4]/input"
+          "main group name text area": "//input[@orionid='groupName']"
         },
         {
-          "subgroup name text area": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[6]/div[4]/input"
-        }
-      ,
+          "subgroup name text area": "//input[@orionid='firstSubGroupName']"
+        },
         {
-          "save button": "//*[@id=\"step1\"]/div/div/div[3]/div[1]/div[7]/div[6]/button"
-        }
-      ,
+          "save button": "//button[@orionid='saveMainGroup']"
+        },
         {
-          "warning popup": "//*[@id=\"modal-title-text\"]"
-        }
-      ,
+          "warning popup": "//div[@id=\"//*[@id=\"]"
+        },
         {
           "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
-        }
-      ,
+        },
         {
-          "close button": "//*[@id=\"modal-footer-area\"]/button"
+          "no button": "//*[@id=\"modal-footer-area\"]/button[2]"
         },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
@@ -42,5 +38,3 @@
     }
   ]
 }
-
-
