@@ -58,19 +58,19 @@ public class CommonLib extends MyTestNGBaseClass
 				{
 					object = oDriver.findElements(By.xpath(element)).get(index-1);
 
-					System.out.println("Nesne bulundu : " + element);
+					System.out.println("Element found : " + elem);
 				}
 				else if (element.startsWith("#") || element.startsWith("."))
 				{
 					object = oDriver.findElements(By.cssSelector(element)).get(index-1);
-					System.out.println("Nesne bulundu : " + element);
+					System.out.println("Element found : " + elem);
 				}
 				else
 				{
 					object = oDriver.findElements(By.id(element)).get(index-1);
-					System.out.println("Object found : " + element);
+					System.out.println("Element found : " + elem);
 				}
-				reportResult("PASS", "I see " + element + " element.(element found)", false);
+				reportResult("PASS", "I see " + elem + " element.(element found)", false);
 			}
 			else if(element==null)
 			{
@@ -78,17 +78,17 @@ public class CommonLib extends MyTestNGBaseClass
 			}
 
 			if (object==null){
-				System.out.println("Nesne bulunamadı : "+elem);
-				reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
-				Assert.fail("Nesne bulunamadı : "+elem);
+				System.out.println("Element not found: "+elem);
+				reportResult("FAIL", "I do not see " + elem + " element.(element not found)", true);
+				Assert.fail("Element not found: "+elem);
 			}
 
 			return  object;
 		}
 		catch (Exception e)
 		{
-			System.out.println("Nesne bulunamadı : "+elem);
-			Assert.fail("Nesne bulunamadı : "+elem);
+			System.out.println("Element not found : "+elem);
+			Assert.fail("Element not found : "+elem);
 			return null;
 		}
 	}
@@ -128,9 +128,9 @@ public class CommonLib extends MyTestNGBaseClass
 					Thread.sleep(2000);
 				}
 			}
-			reportResult("PASS", "I see " + element + " element.(element found)", false);
+			//reportResult("PASS", "I see " + element + " element.(element found)", false);
 		} catch (Exception e) {
-			reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
+			//reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
 			Assert.fail("Waiting element is not found!");
 		}
 		return null;

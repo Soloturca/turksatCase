@@ -8,12 +8,15 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import java.util.UUID;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
     int timeout = 30;
+    public String uuid = UUID.randomUUID().toString();
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -52,6 +55,32 @@ public class StepDefs extends MyTestNGBaseClass {
         if (object != null) {
             object.sendKeys(text);
             System.out.println("The text has been entered.");
+        }
+    }
+
+    @Then("^I enter unique text to (.*)$")
+    public void uniqueText(String element) throws InterruptedException {
+        //mouseHover(element);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, 1);
+        String text="automation" + uuid ;
+
+        if (object != null) {
+            object.sendKeys(text);
+            System.out.println("The text has been entered.");
+        }
+    }
+
+    @Then("^I clear text to (.*)$")
+    public void clearText(String element) throws InterruptedException {
+        //mouseHover(element);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, 1);
+
+        if (object != null) {
+            object.click();
+            object.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+            System.out.println("The text has been deleted.");
         }
     }
 

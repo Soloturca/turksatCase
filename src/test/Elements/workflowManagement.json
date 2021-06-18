@@ -57,6 +57,9 @@
         },
         {
           "return to inquiry button": "//button[@orionid='orion-id-011']"
+        },
+        {
+          "warning popup text area": "/html/body/div[1]/div[7]/div/div/div[1]/div/div/textarea"
         }
       ]
     }

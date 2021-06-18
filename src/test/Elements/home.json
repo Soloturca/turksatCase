@@ -8,7 +8,7 @@
       },
       "elements": [
         {
-          "workflow management button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][1]"
+          "workflow management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/a"
         },
         {
           "application management button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][2]"
@@ -17,7 +17,7 @@
           "decision support system button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][3]"
         },
         {
-          "customer transactions button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][4]"
+          "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[2]/a"
         },
         {
           "loan button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][5]"
@@ -42,8 +42,16 @@
         },
         {
           "note button": ""
+        },
+        {
+          "close system button": "//img[@alt='Orion Logout']"
+        },
+        {
+          "close button": "//button[@class='btn btn-sm btn-info']"
         }
       ]
     }
   ]
 }
+
+

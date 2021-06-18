@@ -33,9 +33,6 @@
         },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
-        },
-        {
-          "close button": "//button[@class='btn btn-sm btn-info']"
         }
       ]
     }
