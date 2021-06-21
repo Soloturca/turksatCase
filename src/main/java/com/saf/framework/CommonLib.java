@@ -28,6 +28,7 @@ public class CommonLib extends MyTestNGBaseClass
 	int timeout = 30;
 	Parser parser = new Parser();
 	Actions actions = new Actions(oDriver);
+	WebDriverWait wait = new WebDriverWait(oDriver,30);
 
 	public String getTheElementInformation(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
@@ -55,18 +56,19 @@ public class CommonLib extends MyTestNGBaseClass
 				{
 					object = oDriver.findElements(By.xpath(element)).get(index-1);
 
-					System.out.println("Nesne bulundu : " + element);
+					System.out.println("Element found : " + elem);
 				}
 				else if (element.startsWith("#") || element.startsWith("."))
 				{
 					object = oDriver.findElements(By.cssSelector(element)).get(index-1);
-					System.out.println("Nesne bulundu : " + element);
+					System.out.println("Element found : " + elem);
 				}
 				else
 				{
 					object = oDriver.findElements(By.id(element)).get(index-1);
-					System.out.println("Object found : " + element);
+					System.out.println("Element found : " + elem);
 				}
+				reportResult("PASS", "I see " + elem + " element.(element found)", false);
 			}
 			else if(element==null)
 			{
@@ -74,15 +76,17 @@ public class CommonLib extends MyTestNGBaseClass
 			}
 
 			if (object==null){
-				System.out.println("Nesne bulunamadı : "+elem);
-				Assert.fail("Nesne bulunamadı : "+elem);
+				System.out.println("Element not found: "+elem);
+				reportResult("FAIL", "I do not see " + elem + " element.(element not found)", true);
+				Assert.fail("Element not found: "+elem);
 			}
+
 			return  object;
 		}
 		catch (Exception e)
 		{
-			System.out.println("Nesne bulunamadı : "+elem);
-			Assert.fail("Nesne bulunamadı : "+elem);
+			System.out.println("Element not found : "+elem);
+			Assert.fail("Element not found : "+elem);
 			return null;
 		}
 	}
@@ -111,17 +115,22 @@ public class CommonLib extends MyTestNGBaseClass
 
 	public WebElement waitElement(String element, int timeout, int index) throws InterruptedException {
 		WebElement object;
-		for (int i = 0; i < timeout; i++) {
+		try {
+			for (int i = 0; i < timeout; i++) {
 
-			object = findElement(element, index);
-			if (object != null) {
-				Thread.sleep(1000);
-				return object;
-			} else {
-				Thread.sleep(1000);
+				object = findElement(element, index);
+				if (object != null) {
+					Thread.sleep(2000);
+					return object;
+				} else {
+					Thread.sleep(2000);
+				}
 			}
+			//reportResult("PASS", "I see " + element + " element.(element found)", false);
+		} catch (Exception e) {
+			//reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
+			Assert.fail("Waiting element is not found!");
 		}
-		Assert.fail("Waiting element is not found!");
 		return null;
 	}
 

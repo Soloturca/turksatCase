@@ -23,7 +23,7 @@
           "save button": "//button[@orionid='saveMainGroup']"
         },
         {
-          "warning popup": "//div[@id=\"//*[@id=\"]"
+          "warning popup": "//*[@id=\"modal-title-text\"] "
         },
         {
           "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
@@ -38,5 +38,3 @@
     }
   ]
 }
-
-

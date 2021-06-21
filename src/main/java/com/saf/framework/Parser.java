@@ -4,6 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -12,14 +14,15 @@ import java.util.List;
 
 public class Parser {
     JSONParser parser = new JSONParser();
-    static String json = Paths.get("").toAbsolutePath().toString() + "\\src\\test\\Elements";
+    static String json = Paths.get("").toAbsolutePath().toString() + File.separator+ "src" + File.separator + "test" + File.separator + "Elements";
+
 
     public List<String> isPageExist(String myPage) {
         List<String> returnValue = new ArrayList<>();
         //index 0 da pageName index 1 de page waitelement
         JSONObject object = null;
         try {
-            object = (JSONObject) parser.parse(new FileReader(json + "\\" + myPage.toLowerCase() + ".json"));
+            object = (JSONObject) parser.parse(new FileReader(json + File.separator + myPage.toLowerCase() + ".json"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -50,7 +53,7 @@ public class Parser {
     public String getElement(String myPage, String myElement) {
         JSONObject object = null;
         try {
-            object = (JSONObject) parser.parse(new FileReader(json + "\\" + myPage.toLowerCase() + ".json"));
+            object = (JSONObject) parser.parse(new FileReader(json + File.separator + myPage.toLowerCase() + ".json"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -79,7 +82,7 @@ public class Parser {
                 //control parent
                 if (value == null) {
                     try {
-                        object = (JSONObject) parser.parse(new FileReader(json + "\\" + parentName + ".json"));
+                        object = (JSONObject) parser.parse(new FileReader(json + File.separator + parentName + ".json"));
                         array = (JSONArray) object.get("pages");
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
