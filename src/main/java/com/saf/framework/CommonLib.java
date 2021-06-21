@@ -1,9 +1,5 @@
 package com.saf.framework;
 
-import java.net.URL;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
@@ -18,8 +14,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.testng.Assert;
+
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CommonLib extends MyTestNGBaseClass
 {
@@ -36,7 +35,6 @@ public class CommonLib extends MyTestNGBaseClass
 		this.referenceNumber=elementText;
 		System.out.println(elementText);
 		return elementText;
-
 	}
 
 	public void  doubleClickElement(WebElement object){

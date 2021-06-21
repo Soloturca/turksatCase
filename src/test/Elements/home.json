@@ -8,10 +8,61 @@
       },
       "elements": [
         {
-          "workflow management button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[1]/a"
+          "workflow management button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][1]"
         },
         {
-          "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
+          "application management button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][2]"
+        },
+        {
+          "decision support system button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][3]"
+        },
+        {
+          "customer transactions button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][4]"
+        },
+        {
+          "loan button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][5]"
+        },
+        {
+          "package manager button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][12]"
+        },
+        {
+          "treasure button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][13]"
+        },
+        {
+          "collateral transactions button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][18]"
+        },
+        {
+          "gateway button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][19]"
+        },
+        {
+          "risk monitoring button:": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][22]"
+        },
+        {
+          "financial inquiry button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][24]"
+        },
+        {
+          "note button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][28]"
+        },
+        {
+          "follow-up button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][29]"
+        },
+        {
+          "accounting button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][33]"
+        },
+        {
+          "instructional procedures button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][34]"
+        },
+        {
+          "purchase&expense button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][35]"
+        },
+        {
+          "reporting button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][38]"
+        },
+        {
+          "file transfer button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][39]"
+        },
+        {
+          "demand management": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][40]"
         }
       ]
     }
