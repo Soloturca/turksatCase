@@ -46,6 +46,25 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
+    @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*)")
+    public void selectElement(String text, String element) {
+        int index=1;
+        WebElement object = commonLib.findElement(element, index);
+
+        if (object != null) {
+            object.click();
+
+            Select select = new Select(object);
+            select.selectByVisibleText(text);
+
+            System.out.println("The pen type:" + text + " " + "is selected.");
+
+
+        } else {
+            System.out.println("The pen type:" + text + " " + "is not selected.");
+        }
+    }
+
     @Then("^I enter \"([^\"]*)\" text to (.*)$")
     public void enterText(String text, String element) throws InterruptedException {
         //mouseHover(element);
@@ -88,22 +107,6 @@ public class StepDefs extends MyTestNGBaseClass {
     public void waitElement(String element, int timeout) throws InterruptedException {
         int index=1;
         commonLib.waitElement(element, timeout, index);
-    }
-    @When("^(?:I )?select element: (\\w+(?: \\w+)*)")
-    public void selectElement(String element) {
-        int index=1;
-        WebElement object = commonLib.findElement(element, index);
-
-        if (object != null) {
-            object.click();
-            System.out.println("Select the object type-->" + element);
-
-            Select select = new Select(object);
-            select.selectByVisibleText("Grup Kaydetme");
-
-        } else {
-            System.out.println("Could not select the object type-->" + element);
-        }
     }
 
 

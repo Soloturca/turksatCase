@@ -1,0 +1,37 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "loan",
+        "parent": "home",
+        "waitelement": "loan button"
+      },
+      "elements": [
+        {
+          "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
+        },
+        {
+          "financial item identification button": "//a[contains(@data-href,'/finance/creditapplication/js/financialAccountManagement.js')]"
+        },
+        {
+          "pen type selection": "//select[@orionid='finAccType']"
+        },
+        {
+          "window": "//*[@orionid='financialAccounts']"
+        },
+        {
+          "financial liabilities button": "//*[@id='40X_anchor']"
+        },
+        {
+          "item value selection": "//select[@orionid='finAccValue']"
+        },
+        {
+          "add button": "//button[@orionid='btnAddFinAcc']"
+        },
+        {
+          "save button": "//button[@orionid='btnNext']"
+        }
+      ]
+    }
+  ]
+}

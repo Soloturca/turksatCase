@@ -5,10 +5,8 @@ package com.project.tests;
 
 import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.CucumberOptions;
-import cucumber.api.Scenario;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
-import org.junit.Before;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -18,9 +16,9 @@ import org.testng.annotations.Test;
 
 @CucumberOptions(
 
-        features = "src/test/features/WorkflowManagement.feature",
+        features = "src/test/features/Credit.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-         tags="@Payment",
+        tags="@Finco",
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
