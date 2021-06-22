@@ -15,11 +15,15 @@ import java.util.List;
 public class Parser {
     JSONParser parser = new JSONParser();
     static String json = Paths.get("").toAbsolutePath().toString() + File.separator+ "src" + File.separator + "test" + File.separator + "Elements";
-
+/*
+Windows: C:\myfolder\mydocument.txt
+Unix: /usr/myuser/mydocument.txt
+Classic Mac OS: Hard Drive:My Folder:My Document
+ */
 
     public List<String> isPageExist(String myPage) {
         List<String> returnValue = new ArrayList<>();
-        //index 0 da pageName index 1 de page waitelement
+        //index 0 da pageName index 1 de page waitElement
         JSONObject object = null;
         try {
             object = (JSONObject) parser.parse(new FileReader(json + File.separator + myPage.toLowerCase() + ".json"));
