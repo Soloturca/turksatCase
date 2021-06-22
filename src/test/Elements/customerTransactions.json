@@ -33,6 +33,9 @@
         },
         {
           "reference number area": "//*[@id=\"modal-title-text\"]/b"
+        },
+        {
+          "warning popup text area": "//*[@id=\"modal-body-notetext\"]"
         }
       ]
     }

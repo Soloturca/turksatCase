@@ -68,7 +68,7 @@ public class CommonLib extends MyTestNGBaseClass
 					object = oDriver.findElements(By.id(element)).get(index-1);
 					System.out.println("Element found : " + elem);
 				}
-				reportResult("PASS", "I see " + elem + " element.(element found)", false);
+				//reportResult("PASS", "I see " + elem + " element.(element found)", false);
 			}
 			else if(element==null)
 			{
@@ -77,7 +77,7 @@ public class CommonLib extends MyTestNGBaseClass
 
 			if (object==null){
 				System.out.println("Element not found: "+elem);
-				reportResult("FAIL", "I do not see " + elem + " element.(element not found)", true);
+				//reportResult("FAIL", "I do not see " + elem + " element.(element not found)", true);
 				Assert.fail("Element not found: "+elem);
 			}
 
