@@ -23,6 +23,9 @@ Feature: Orion Finance Finco Test Scenarios / Credit
     When I select element: "MİKRO İŞLETME" under pen type selection
     And I wait window element 30 seconds
     When I click element: financial liabilities button
+    And I wait item value selection element 30 seconds
+    Then I get the Item Value: item value selection
+    Then I changed the "item value" selection under item value selection
 
 
 
