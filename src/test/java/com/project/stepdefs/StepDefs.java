@@ -57,11 +57,11 @@ public class StepDefs extends MyTestNGBaseClass {
             Select select = new Select(object);
             select.selectByVisibleText(text);
 
-            System.out.println("The pen type:" + text + " " + "is selected.");
+            System.out.println("The element:" + text + " " + "is selected.");
 
 
         } else {
-            System.out.println("The pen type:" + text + " " + "is not selected.");
+            System.out.println("The element:" + text + " " + "is not selected.");
         }
     }
 

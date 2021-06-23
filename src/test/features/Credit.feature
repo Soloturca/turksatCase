@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios
+Feature: Orion Finance Finco Test Scenarios / Credit
 
   Background: System Login
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
@@ -22,6 +22,10 @@ Feature: Orion Finance Finco Test Scenarios
     # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Mikro İşletme)
     When I select element: "MİKRO İŞLETME" under pen type selection
     And I wait window element 30 seconds
+    When I click element: financial liabilities button
+
+
+
 
 
 
