@@ -9,9 +9,6 @@
       "elements": [
         {
           "always allow button": "//*[contains(text(),'İş Akış')]"
-        },
-        {
-          "allow button when using app": "com.lbe.security.miui:id/permission_allow_foreground_only_button"
         }
       ]
     }

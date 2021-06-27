@@ -32,18 +32,6 @@
           "inquire button": "//button[@orionid='orion-id-008']"
         },
         {
-          "row button": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
-        },
-        {
-          "warning popup": "//*[@class=\"btn btn-sm btn-warning\"]//parent::div"
-        },
-        {
-          "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
-        },
-        {
-          "no button": "//*[@id=\"modal-footer-area\"]/button[2]"
-        },
-        {
           "assign to pool button": "//button[@owf_type='back_to_pool']"
         },
         {

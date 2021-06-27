@@ -18,24 +18,6 @@
         },
         {
           "subgroup name text area": "//input[@orionid='firstSubGroupName']"
-        },
-        {
-          "save button": "//button[@orionid='saveMainGroup']"
-        },
-        {
-          "warning popup": "//*[@id=\"modal-title-text\"] "
-        },
-        {
-          "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
-        },
-        {
-          "no button": "//*[@id=\"modal-footer-area\"]/button[2]"
-        },
-        {
-          "reference number area": "//*[@id=\"modal-title-text\"]/b"
-        },
-        {
-          "warning popup text area": "//*[@id=\"modal-body-notetext\"]"
         }
       ]
     }

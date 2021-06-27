@@ -25,6 +25,7 @@ public class CommonLib extends MyTestNGBaseClass
 	public static WebDriver oDriver;
 	public String page = "common";
 	public static String referenceNumber;
+	public static String myDate;
 	public static String positiveornegative;
 	int timeout = 30;
 	Parser parser = new Parser();
@@ -35,6 +36,13 @@ public class CommonLib extends MyTestNGBaseClass
 		System.out.println(findElement(elem,index).getText());
 		String elementText = findElement(elem,index).getText();
 		this.referenceNumber=elementText;
+		System.out.println(elementText);
+		return elementText;
+	}
+	public String getTheElementInformationForDate(String elem, int index){
+		System.out.println(findElement(elem,index).getText());
+		String elementText = findElement(elem,index).getText();
+		this.myDate=elementText;
 		System.out.println(elementText);
 		return elementText;
 	}

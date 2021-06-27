@@ -11,6 +11,15 @@
           "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
         },
         {
+          "pricing button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[4]/a"
+        },
+        {
+          "financial identification button": "//a[contains(@data-href,'/finance/pricing/js/pricingDefinition.js')]"
+        },
+        {
+          "financial observation button": "//a[contains(@data-href,'/finance/pricing/js/pricingObservation.js')]"
+        },
+        {
           "financial item identification button": "//a[contains(@data-href,'/finance/creditapplication/js/financialAccountManagement.js')]"
         },
         {
@@ -30,6 +39,131 @@
         },
         {
           "save button": "//button[@orionid='btnNext']"
+        },
+        {
+          "pricing save button": "//button[@orionid='btnSavePricing']"
+        },
+        {
+          "parameter management button": "//a[@data-href='/finance/creditadministration/js/parameterManagement.js']"
+        },
+        {
+          "kkdf area": "//input[@orionid='fundRate']"
+        },
+        {
+          "bsmv area": "//input[@orionid='taxRate']"
+        },
+        {
+          "invoice validity days area": "//input[@orionid='invoiceExpireDayCount']"
+        },
+        {
+          "application validity period area": "//input[@orionid='applicationValidityDay']"
+        },
+        {
+          "bring from existing area": "//input[@orionid='code']"
+        },
+        {
+          "pricing name area": "//input[@orionid='name']"
+        },
+        {
+          "start date area": "//input[@orionid='startDate']"
+        },
+        {
+          "end date area": "//input[@orionid='endDate']"
+        },
+        {
+          "explanation area": "//textarea[@orionid='description']"
+        },
+        {
+          "payment type selection": "//select[@orionid='paymentType']"
+        },
+        {
+          "period type selection": "//select[@orionid='maturityPeriodType']"
+        },
+        {
+          "n period no payment area": "//input[@orionid='nonPaidMaturityPeriod']"
+        },
+        {
+          "n period no payment selection": "//select[@orionid='nonPaidMaturityPeriodType']"
+        },
+        {
+          "file charge area": "//input[@orionid='allocationValidityDay']"
+        },
+        {
+          "file charge selection area": "//input[@orionid='allocationValidityDay']"
+        },
+
+        {
+          "product main group selection": "//select[@orionid='productGroupCode']"
+        },
+        {
+          "product area": "//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[2]/div[4]/div[1]/div[8]/span/span[1]/span"
+        },
+        {
+          "select all button": "//button[@class='btn btn-xs btn-default']"
+        },
+
+        {
+          "sales channel area": "//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[2]/div[4]/div[1]/div[12]/span/span[1]/span"
+        },
+        {
+          "customer type area": "//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[2]/div[4]/div[2]/div[4]/span/span[1]/span"
+        },
+        {
+          "application type area": "//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[2]/div[4]/div[2]/div[8]/span/span[1]/span"
+        },
+        {
+          "kkdf exemption area": "//*[@id=\"content\"]/div/div[2]/div/div[2]/div/div[2]/div[4]/div[2]/div[12]/span/span[1]/span"
+        },
+        {
+          "maturity range first area": "//input[@orionid='minMaturity']"
+        },
+        {
+          "maturity range second area": "//input[@orionid='maxMaturity']"
+        },
+        {
+          "amount range first area": "//input[@orionid='minAmount']"
+        },
+        {
+          "amount range second area": "//input[@orionid='maxAmount']"
+        },
+        {
+          "contract margin area": "//input[@orionid='contractInterestRate']"
+        },
+        {
+          "add price terms button": "//button[@orionid='btnAddPricingCondition']"
+        },
+        {
+          "click somewhere area": "//legend[@orionid='orion-id-022']"
+        },
+        {
+          "existing pricing button": "//a[@value='existing']"
+        },
+        {
+          "magnifying glass button": "//i[@type='search']"
+        },
+        {
+          "pricing code area": "//input[@orionid='code']"
+        },
+        {
+          "pricing number area": "//*[@id=\"modal-body-text\"]/b"
+        },
+        {
+          "inquire button": "//button[@orionid='orion-id-076']"
+        },
+        {
+          "inquire button for financial observation": "//button[@orionid='orion-id-057']"
+        },
+        {
+          "update button": "//button[@orionid='btnSaveAsPricing']"
+        },
+        {
+          "search and list pricings button": "//button[@orionid='btnSearchAndListPricings']"
+        },
+        {
+          "pricing details accordion area": "//h5[@class='orionrpm-accordion-title open']"
+        },
+        {
+          "  pricing inquiry frame": "/html/body/div[2]/div/div/div[2]"
         }
       ]
     }

@@ -20,7 +20,7 @@
           "customer transactions button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[2]/a"
         },
         {
-          "loan button": "//ul[(@class='nav')]/descendant::li[@class=\"has-sub\"][5]"
+          "loan button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/a"
         },
         {
           "package manager button": ""
@@ -48,7 +48,32 @@
         },
         {
           "close button": "//button[@class='btn btn-sm btn-info']"
+        },
+        {
+          "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
+        },
+        {
+          "reference number area": "//*[@id=\"modal-title-text\"]/b"
+        },
+        {
+          "save button": "//button[@orionid='saveMainGroup']"
+        },
+        {
+          "warning popup": "//*[@id=\"modal-title-text\"] "
+        },
+        {
+          "yes button": "//*[@id=\"modal-footer-area\"]/button[1]"
+        },
+        {
+          "no button": "//*[@id=\"modal-footer-area\"]/button[2]"
+        },
+        {
+          "warning popup text area": "//*[@id=\"modal-body-notetext\"]"
+        },
+        {
+          "row button": "//*/div[3]/div/div/div/table/tbody/tr[1]/th"
         }
+
       ]
     }
   ]

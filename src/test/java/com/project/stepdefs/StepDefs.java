@@ -119,7 +119,7 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (object != null) {
                 object.click();
-                System.out.println("Select the object type-->" + element);
+                System.out.println("Select the object type-->" + text + element);
                 reportResult("PASS", "I selected " + element + " element.(element selected)", false);
 
                 Select select = new Select(object);
@@ -137,11 +137,23 @@ public class StepDefs extends MyTestNGBaseClass {
     public void justWait() throws InterruptedException {
         Thread.sleep(10000);
     }
+    @And("^I need to switch the frame")
+    public void switchFrame() throws InterruptedException {
+        for (String windowName: oDriver.getWindowHandles()){
+            oDriver.switchTo().window(windowName);
+        }
+    }
+
 
     @Then("^(?:I )?get the information: (\\w+(?: \\w+)*)")
     public void getTheReferenceNumber(String element) {
         int index = 1;
         String object = commonLib.getTheElementInformation(element, index);
+    }
+    @Then("^(?:I )?get the information date from: (\\w+(?: \\w+)*)")
+    public void getTheDate(String element) {
+        int index = 1;
+        String object = commonLib.getTheElementInformationForDate(element, index);
     }
 
 
@@ -159,11 +171,19 @@ public class StepDefs extends MyTestNGBaseClass {
         System.out.println(text);
         WebElement object;
         object = commonLib.waitElement(element, timeout, 1);
+    }
+
+    @Then("^I enter date my \"([^\"]*)\" text to (.*)$")
+        public void dynamicTextForDate(String text, String element) throws InterruptedException {
+            text = commonLib.myDate;
+            System.out.println(text);
+            WebElement object;
+            object = commonLib.waitElement(element, timeout, 1);
 
         try {
             if (object != null) {
                 object.sendKeys(text);
-                System.out.println("The reference number:" + text + " " + "has been entered.");
+                System.out.println("The date:" + text + " " + "has been entered.");
                 reportResult("PASS", "I entered the text ", false);
             }
         } catch (Exception e) {
