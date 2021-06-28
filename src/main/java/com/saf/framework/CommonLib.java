@@ -24,6 +24,7 @@ public class CommonLib extends MyTestNGBaseClass
 {
 	public static WebDriver oDriver;
 	public String page = "common";
+	//hashmap ya da dic.
 	public static String referenceNumber;
 	public static String myDate;
 	public static String positiveornegative;
@@ -31,6 +32,7 @@ public class CommonLib extends MyTestNGBaseClass
 	Parser parser = new Parser();
 	Actions actions = new Actions(oDriver);
 	WebDriverWait wait = new WebDriverWait(oDriver,30);
+
 
 	public String getTheElementInformation(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
@@ -46,7 +48,6 @@ public class CommonLib extends MyTestNGBaseClass
 		System.out.println(elementText);
 		return elementText;
 	}
-
 	public String getTheElementInformation2(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
 		String elementText = findElement(elem,index).getText();
@@ -54,9 +55,6 @@ public class CommonLib extends MyTestNGBaseClass
 		System.out.println(elementText);
 		return elementText;
 	}
-
-
-
 
 	public void  doubleClickElement(WebElement object){
 		actions.doubleClick(object).perform();

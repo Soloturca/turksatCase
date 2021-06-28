@@ -34,9 +34,8 @@ public class StepDefs extends MyTestNGBaseClass {
         commonLib.seePage(page);
     }
 
-    @When("^(?:I )?click element: (\\w+(?: \\w+)*)")
-    public void clickElement(String element) {
-        int index = 1;
+    @When("^(?:I )?click element: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void clickElement(String element,int index) {
         WebElement object = commonLib.findElement(element, index);
 
         try {
@@ -52,11 +51,11 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-    @Then("^I enter \"([^\"]*)\" text to (.*)$")
-    public void enterText(String text, String element) throws InterruptedException {
+    @Then("^I enter \"([^\"]*)\" text to (.*) at index (\\d+)")
+    public void enterText(String text, String element, int index) throws InterruptedException {
         //mouseHover(element);
         WebElement object;
-        object = commonLib.waitElement(element, timeout, 1);
+        object = commonLib.waitElement(element, timeout, index);
 
         try {
             if (object != null) {
@@ -69,11 +68,11 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-    @Then("^I enter unique text to (.*)$")
-    public void uniqueText(String element) throws InterruptedException {
+    @Then("^I enter unique text to (.*) at index (\\d+)")
+    public void uniqueText(String element,int index) throws InterruptedException {
         //mouseHover(element);
         WebElement object;
-        object = commonLib.waitElement(element, timeout, 1);
+        object = commonLib.waitElement(element, timeout, index);
         String text = "automation" + uuid;
         try {
             if (object != null) {
@@ -86,10 +85,10 @@ public class StepDefs extends MyTestNGBaseClass {
         }
     }
 
-    @Then("^I clear text to (.*)$")
-    public void clearText(String element) throws InterruptedException {
+    @Then("^I clear text to (.*) at index (\\d+)")
+    public void clearText(String element, int index) throws InterruptedException {
         WebElement object;
-        object = commonLib.waitElement(element, timeout, 1);
+        object = commonLib.waitElement(element, timeout, index);
         try {
             if (object != null) {
                 object.click();
@@ -106,15 +105,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
     }
 
-    @And("^I wait (.*) element (\\d+) seconds")
-    public void waitElement(String element, int timeout) throws InterruptedException {
-        int index = 1;
+    @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
+    public void waitElement(String element, int timeout,int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
     }
 
-    @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*)")
-    public void selectElement(String text, String element) {
-        int index = 1;
+    @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*) at index (\\d+)")
+    public void selectElement(String text, String element, int index) {
         WebElement object = commonLib.findElement(element, index);
         try {
             if (object != null) {
@@ -137,29 +134,48 @@ public class StepDefs extends MyTestNGBaseClass {
     public void justWait() throws InterruptedException {
         Thread.sleep(10000);
     }
-    @And("^I need to switch the frame")
-    public void switchFrame() throws InterruptedException {
-        for (String windowName: oDriver.getWindowHandles()){
-            oDriver.switchTo().window(windowName);
+    @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void getTheReferenceNumber(String element ,int index) {
+                String object = commonLib.getTheElementInformation(element, index);
+    }
+    @Then("^(?:I )?get the information by copying the value from: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void copyElement (String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        try {
+            if (object != null) {
+                object.click();
+                Thread.sleep(1000);
+                object.sendKeys(Keys.CONTROL, "c");
+                Thread.sleep(1000);
+                System.out.println("The text has been copied.");
+                reportResult("PASS", "I copied the text ", false);
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I do not copied the text ", true);
+        }
+    }
+    @Then("^(?:I )?copy the information by copying the value to: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void pasteElement (String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        try {
+            if (object != null) {
+                object.click();
+                Thread.sleep(1000);
+                object.sendKeys(Keys.CONTROL, "v");
+                Thread.sleep(1000);
+                System.out.println("The text has been pasted.");
+                reportResult("PASS", "I pasted the text ", false);
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I do not pasted the text ", true);
         }
     }
 
 
-    @Then("^(?:I )?get the information: (\\w+(?: \\w+)*)")
-    public void getTheReferenceNumber(String element) {
-        int index = 1;
-        String object = commonLib.getTheElementInformation(element, index);
-    }
-    @Then("^(?:I )?get the information date from: (\\w+(?: \\w+)*)")
-    public void getTheDate(String element) {
-        int index = 1;
-        String object = commonLib.getTheElementInformationForDate(element, index);
-    }
-
-
-    @When("^(?:I )?double click element: (\\w+(?: \\w+)*)")
-    public void doubleClickElement(String element) {
-        int index = 1;
+    @When("^(?:I )?double click element: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void doubleClickElement(String element, int index) {
         WebElement object = commonLib.findElement(element, index);
         commonLib.doubleClickElement(object);
     }
@@ -173,27 +189,8 @@ public class StepDefs extends MyTestNGBaseClass {
         object = commonLib.waitElement(element, timeout, 1);
     }
 
-    @Then("^I enter date my \"([^\"]*)\" text to (.*)$")
-        public void dynamicTextForDate(String text, String element) throws InterruptedException {
-            text = commonLib.myDate;
-            System.out.println(text);
-            WebElement object;
-            object = commonLib.waitElement(element, timeout, 1);
-
-        try {
-            if (object != null) {
-                object.sendKeys(text);
-                System.out.println("The date:" + text + " " + "has been entered.");
-                reportResult("PASS", "I entered the text ", false);
-            }
-        } catch (Exception e) {
-            reportResult("FAIL", "I do not entered the text ", true);
-        }
-    }
-
-    @Then("^(?:I )?get the Item Value: (\\w+(?: \\w+)*)")
-    public void getTheItemValue(String element) {
-        int index = 1;
+    @Then("^(?:I )?get the Item Value: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void getTheItemValue(String element, int index) {
         String object = commonLib.getTheElementInformation2(element, index);
     }
 

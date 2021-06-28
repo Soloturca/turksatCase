@@ -1,211 +1,205 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Financing
 
-  #SORUNLAR
-  #1.) date'teki getText sorunu. Tarihin dinamik olması gerekli
-  #2.) Test 2 deki iframe'e geçilmesi gerekli. Çünkü locator'lar aynı çakışıyorlar.
-
-  
   Background: System Login
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
     Then I see login page
-    Then I enter "1001" text to username text area
-    Then I enter "" text to password text area
-    And I wait login button element 30 seconds
-    When I click element: login button
+    Then I enter "1001" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
     Then I see home page
 
   @Finco
   Scenario: TC001 - E2E Credit Pricing - New Pricing control
-    And I wait loan button element 30 seconds
-    When I click element: loan button
+    And I wait loan button element 30 seconds at index 1
+    When I click element: loan button at index 1
     Then I see loan page
-    And I wait pricing button element 30 seconds
-    When I click element: pricing button
-    And I wait financial identification button element 30 seconds
-    When I click element: financial identification button
-    When I select element: "HAFTADA" under period type selection
-    Then I enter "test" text to pricing name area
-    Then I get the information date from: start date area
-    Then I enter date my "date" text to end date area
-    #Then I enter "25/06/2021" text to end date area
-    When I select element: "ESNEK ÖDEME" under payment type selection
-    Then I enter "test" text to explanation area
-    Then I enter "1" text to n period no payment area
-    When I select element: "HAFTA" under n period no payment selection
-    When I select element: "VODAFONE NET SUNU TİPLERİ" under product main group selection
-    When I click element: click somewhere area
-    And I wait product area element 30 seconds
-    When I click element: product area
-    And I wait select all button element 30 seconds
-    When I click element: select all button
-    And I wait sales channel area element 30 seconds
-    When I click element: sales channel area
-    And I wait select all button element 30 seconds
-    When I click element: select all button
-    And I wait customer type area element 30 seconds
-    When I click element: customer type area
-    And I wait select all button element 30 seconds
-    When I click element: select all button
-    And I wait application type area element 30 seconds
-    When I click element: application type area
-    And I wait select all button element 30 seconds
-    When I click element: select all button
-    And I wait kkdf exemption area element 30 seconds
-    When I click element: kkdf exemption area
-    And I wait select all button element 30 seconds
-    When I click element: select all button
-    Then I enter "5" text to maturity range first area
-    Then I enter "6" text to maturity range second area
-    Then I enter "5" text to amount range first area
-    Then I enter "6" text to amount range second area
-    Then I enter "5" text to contract margin area
-    And I wait add price terms button element 30 seconds
-    When I click element: add price terms button
-    And I wait pricing save button element 30 seconds
-    When I click element: pricing save button
-    And I wait warning popup element 30 seconds
-    When I click element: yes button
-    And I wait reference number area element 30 seconds
-    Then I get the information: reference number area
-    And I wait close button element 30 seconds
-    When I click element: close button
+    And I wait pricing button element 30 seconds at index 1
+    When I click element: pricing button at index 1
+    And I wait financial identification button element 30 seconds at index 1
+    When I click element: financial identification button at index 1
+    When I select element: "HAFTADA" under period type selection at index 1
+    Then I enter "test" text to pricing name area at index 1
+    Then I get the information by copying the value from: start date area at index 1
+    Then I copy the information by copying the value to: end date area at index 1
+    When I select element: "ESNEK ÖDEME" under payment type selection at index 1
+    Then I enter "test" text to explanation area at index 1
+    Then I enter "1" text to n period no payment area at index 1
+    When I select element: "HAFTA" under n period no payment selection at index 1
+    When I select element: "VODAFONE NET SUNU TİPLERİ" under product main group selection at index 1
+    When I click element: click somewhere area at index 1
+    And I wait product area element 30 seconds at index 1
+    When I click element: product area at index 1
+    And I wait select all button element 30 seconds at index 1
+    When I click element: select all button at index 1
+    And I wait sales channel area element 30 seconds at index 1
+    When I click element: sales channel area at index 1
+    And I wait select all button element 30 seconds at index 1
+    When I click element: select all button at index 1
+    And I wait customer type area element 30 seconds at index 1
+    When I click element: customer type area at index 1
+    And I wait select all button element 30 seconds at index 1
+    When I click element: select all button at index 1
+    And I wait application type area element 30 seconds at index 1
+    When I click element: application type area at index 1
+    And I wait select all button element 30 seconds at index 1
+    When I click element: select all button at index 1
+    And I wait kkdf exemption area element 30 seconds at index 1
+    When I click element: kkdf exemption area at index 1
+    And I wait select all button element 30 seconds at index 1
+    When I click element: select all button at index 1
+    Then I enter "5" text to maturity range first area at index 1
+    Then I enter "6" text to maturity range second area at index 1
+    Then I enter "5" text to amount range first area at index 1
+    Then I enter "6" text to amount range second area at index 1
+    Then I enter "5" text to contract margin area at index 1
+    And I wait add price terms button element 30 seconds at index 1
+    When I click element: add price terms button at index 1
+    And I wait pricing save button element 30 seconds at index 1
+    When I click element: pricing save button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait reference number area element 30 seconds at index 1
+    Then I get the information: reference number area at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
     Then I see home page
 
-    And I wait close system button element 30 seconds
-    When I click element: close system button
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
     Then I see login page
 
-    Then I enter "3005" text to username text area
-    Then I enter "" text to password text area
-    And I wait login button element 30 seconds
-    When I click element: login button
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
     Then I see home page
 
-    And I wait workflow management button element 30 seconds
-    When I click element: workflow management button
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button at index 1
     Then I see workflowManagement page
 
 
-    And I wait jobs pending on my list button element 30 seconds
-    When I click element: jobs pending on my list button
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
     Then I enter my "reference number" text to reference number area
-    And I wait inquire button element 30 seconds
-    When I click element: inquire button
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
 
-    When I click element: row button
-    And I wait warning popup element 30 seconds
-    When I click element: yes button
-    And I wait approve button element 30 seconds
-    When I click element: approve button
-    And I wait yes button element 30 seconds
-    When I click element: yes button
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
 #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
 
   #And I wait pricing number area element 30 seconds
   #Then I get the information: pricing number area
 
-    And I wait close button element 30 seconds
-    When I click element: close button
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
-# @Finco
-# Scenario: TC002 - E2E Credit Pricing - Current Pricing check
-#
-#   And I wait loan button element 30 seconds
-#   When I click element: loan button
-#   Then I see loan page
-#   And I wait pricing button element 30 seconds
-#   When I click element: pricing button
-#   And I wait financial identification button element 30 seconds
-#   When I click element: financial identification button
-#   And I wait existing pricing button element 30 seconds
-#   When I click element: existing pricing button
-#   And I wait magnifying glass button element 30 seconds
-#   When I click element: magnifying glass button
-#  #pricing number'ın dinamik olması gerekli, referens no gibi.
-#   #burada açılan popup ile arkada kalan kısımların elementleri aynı olduğundan sistemin kafası karışmakta.
-#   And I need to switch the frame
-#   And I wait pricing code area element 30 seconds
-#   Then I enter "137" text to pricing code area
-#   And I wait inquire button for financial observation element 30 seconds
-#   When I click element: inquire button for financial observation
-#   And I need to just wait
-#   When I click element: row button
-#   And I wait maturity range first area element 30 seconds
-#   Then I clear text to maturity range first area
-#   Then I enter "5" text to maturity range first area
-#   Then I clear text to maturity range second area
-#   Then I enter "6" text to maturity range second area
-#   Then I clear text to amount range first area
-#   Then I enter "5" text to amount range first area
-#   Then I clear text to amount range second area
-#   Then I enter "6" text to amount range second area
-#   Then I clear text to contract margin area
-#   Then I enter "5" text to contract margin area
-#   And I wait update button element 30 seconds
-#   When I click element: update button
-#
-#   And I wait warning popup element 30 seconds
-#   When I click element: yes button
-#   And I wait reference number area element 30 seconds
-#   Then I get the information: reference number area
-#   And I wait close button element 30 seconds
-#   When I click element: close button
-#   Then I see home page
-#
-#   And I wait close system button element 30 seconds
-#   When I click element: close system button
-#   Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
-#   Then I see login page
-#
-#   Then I enter "3005" text to username text area
-#   Then I enter "" text to password text area
-#   And I wait login button element 30 seconds
-#   When I click element: login button
-#   Then I see home page
-#
-#And I wait workflow management button element 30 seconds
-#   When I click element: workflow management button
-#   Then I see workflowManagement page
-#
-#
-#   And I wait jobs pending on my list button element 30 seconds
-#   When I click element: jobs pending on my list button
-#   Then I enter my "reference number" text to reference number area
-#   And I wait inquire button element 30 seconds
-#   When I click element: inquire button
-#
-#   When I click element: row button
-#   And I wait warning popup element 30 seconds
-#   When I click element: yes button
-#   And I wait approve button element 30 seconds
-#   When I click element: approve button
-#   And I wait yes button element 30 seconds
-#   When I click element: yes button
-#burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
-#   And I need to just wait
-#
-#  #And I wait pricing number area element 30 seconds
-#  #Then I get the information: pricing number area
-#
-#   And I wait close button element 30 seconds
-#   When I click element: close button
+  @Finco
+  Scenario: TC002 - E2E Credit Pricing - Current Pricing check
+
+    And I wait loan button element 30 seconds at index 1
+    When I click element: loan button at index 1
+    Then I see loan page
+    And I wait pricing button element 30 seconds at index 1
+    When I click element: pricing button at index 1
+    And I wait financial identification button element 30 seconds at index 1
+    When I click element: financial identification button at index 1
+    And I wait existing pricing button element 30 seconds at index 1
+    When I click element: existing pricing button at index 1
+    And I wait magnifying glass button element 30 seconds at index 1
+    When I click element: magnifying glass button at index 1
+  #pricing number'ın dinamik olması gerekli, referens no gibi.
+   #burada açılan popup ile arkada kalan kısımların elementleri aynı olduğundan sistemin kafası karışmakta.
+
+    And I wait pricing code area element 30 seconds at index 2
+    Then I enter "138" text to pricing code area at index 2
+    And I wait inquire button for financial observation element 30 seconds at index 1
+    When I click element: inquire button for financial observation at index 1
+    And I need to just wait
+    When I click element: row button at index 2
+    And I wait maturity range first area element 30 seconds at index 1
+    Then I clear text to maturity range first area at index 1
+    Then I enter "5" text to maturity range first area at index 1
+    Then I clear text to maturity range second area at index 1
+    Then I enter "6" text to maturity range second area at index 1
+    Then I clear text to amount range first area at index 1
+    Then I enter "5" text to amount range first area at index 1
+    Then I clear text to amount range second area at index 1
+    Then I enter "6" text to amount range second area at index 1
+    Then I clear text to contract margin area at index 1
+    Then I enter "5" text to contract margin area at index 1
+    And I wait update button element 30 seconds at index 1
+    When I click element: update button at index 1
+
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait reference number area element 30 seconds at index 1
+    Then I get the information: reference number area at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+    Then I see home page
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait workflow management button element 30 seconds at index 1
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
 
 
-# @Finco
-# Scenario: TC003 - E2E Credit Pricing - pricing monitoring control
-#
-#   And I wait loan button element 30 seconds
-#   When I click element: loan button
-#   Then I see loan page
-#   And I wait pricing button element 30 seconds
-#   When I click element: pricing button
-#   And I wait financial observation button element 30 seconds
-#   When I click element: financial observation button
-#     #pricing number'ın dinamik olması gerekli, referens no gibi.
-#   Then I enter "137" text to pricing code area
-#   And I wait search and list pricings button element 30 seconds
-#   When I click element: search and list pricings button
-#   When I click element: row button
-#   And I wait pricing details accordion area element 30 seconds
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    Then I enter my "reference number" text to reference number area
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+ # burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
+    And I need to just wait
+
+  #And I wait pricing number area element 30 seconds
+  #Then I get the information: pricing number area
+
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+
+  @Finco
+  Scenario: TC003 - E2E Credit Pricing - pricing monitoring control
+
+    And I wait loan button element 30 seconds at index 1
+    When I click element: loan button at index 1
+    Then I see loan page
+    And I wait pricing button element 30 seconds at index 1
+    When I click element: pricing button at index 1
+    And I wait financial observation button element 30 seconds at index 1
+    When I click element: financial observation button at index 1
+    #pricing number'ın dinamik olması gerekli, referens no gibi.
+    Then I enter "138" text to pricing code area at index 1
+    And I wait search and list pricings button element 30 seconds at index 1
+    When I click element: search and list pricings button at index 1
+    When I click element: row button at index 1
+    And I wait pricing details accordion area element 30 seconds at index 1
