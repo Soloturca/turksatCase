@@ -26,8 +26,8 @@ Feature: Orion Finance Finco Test Scenarios
     Then I enter "AUTOMATION" text to warning popup text area at index 1
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
-    And I wait reference number area element 30 seconds at index 1
-    Then I get the information: reference number area at index 1
+    And I wait reference number text area element 30 seconds at index 1
+    Then I get the information: reference number text area at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
     Then I see home page
@@ -38,7 +38,7 @@ Feature: Orion Finance Finco Test Scenarios
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
     When I click element: jobs I started button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
 
   #Then I enter "Note is entered!" text to transaction note text area
@@ -53,7 +53,7 @@ Feature: Orion Finance Finco Test Scenarios
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
     When I click element: pending jobs button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
     # Then I enter "Note is entered!" text to transaction note text area
  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
@@ -69,7 +69,7 @@ Feature: Orion Finance Finco Test Scenarios
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
   #  Then I enter my "Note is entered!" text to transaction note text area
   # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
@@ -86,7 +86,7 @@ Feature: Orion Finance Finco Test Scenarios
     Then I see workflowManagement page
     And I wait pending jobs button element 30 seconds at index 1
     When I click element: pending jobs button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
   #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
@@ -117,7 +117,7 @@ Feature: Orion Finance Finco Test Scenarios
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
 
@@ -154,7 +154,7 @@ Feature: Orion Finance Finco Test Scenarios
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
 
@@ -191,7 +191,7 @@ Feature: Orion Finance Finco Test Scenarios
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
 

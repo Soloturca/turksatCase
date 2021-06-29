@@ -26,8 +26,9 @@ public class CommonLib extends MyTestNGBaseClass
 	public String page = "common";
 	//hashmap ya da dic.
 	public static String referenceNumber;
-	public static String myDate;
+	public static String pricingNo;
 	public static String positiveornegative;
+	public static String itemValue;
 	int timeout = 30;
 	Parser parser = new Parser();
 	Actions actions = new Actions(oDriver);
@@ -41,12 +42,12 @@ public class CommonLib extends MyTestNGBaseClass
 		System.out.println(elementText);
 		return elementText;
 	}
-	public String getTheElementInformationForDate(String elem, int index){
+	public String getTheElementInformationForPricing(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
-		String elementText = findElement(elem,index).getText();
-		this.myDate=elementText;
-		System.out.println(elementText);
-		return elementText;
+		String elementTextPricing = findElement(elem,index).getText();
+		this.pricingNo=elementTextPricing;
+		System.out.println(elementTextPricing);
+		return elementTextPricing;
 	}
 	public String getTheElementInformation2(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
@@ -107,6 +108,13 @@ public class CommonLib extends MyTestNGBaseClass
 			Assert.fail("Element not found : "+elem);
 			return null;
 		}
+	}
+	public String getTheItemValue(String elem, int index){
+		System.out.println(findElement(elem,index).getText());
+		String elementText =(findElement(elem,index).getText());
+		this.itemValue=elementText;
+		System.out.println(elementText);
+		return elementText;
 	}
 
 	public String seePage(String page) {

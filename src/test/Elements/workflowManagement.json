@@ -24,27 +24,6 @@
         },
         {
           "transaction note text area": "//input[@orionid='islem_notu']"
-        },
-        {
-          "reference number area": "//input[@orionid='referans_no']"
-        },
-        {
-          "inquire button": "//button[@orionid='orion-id-008']"
-        },
-        {
-          "assign to pool button": "//button[@owf_type='back_to_pool']"
-        },
-        {
-          "approve button": "//button[@owf_type='approve']"
-        },
-        {
-          "cancel button": "//button[@owf_type='reject']"
-        },
-        {
-          "query button": "//button[@orionid='orion-id-008']"
-        },
-        {
-          "return to inquiry button": "//button[@orionid='orion-id-011']"
         }
       ]
     }

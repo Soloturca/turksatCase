@@ -138,6 +138,10 @@ public class StepDefs extends MyTestNGBaseClass {
     public void getTheReferenceNumber(String element ,int index) {
                 String object = commonLib.getTheElementInformation(element, index);
     }
+    @Then("^(?:I )?get pricing information of: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void getThePricingNumber(String element ,int index) {
+        String object = commonLib.getTheElementInformationForPricing(element, index);
+    }
     @Then("^(?:I )?get the information by copying the value from: (\\w+(?: \\w+)*) at index (\\d+)")
     public void copyElement (String element, int index) throws InterruptedException {
         WebElement object;
@@ -181,45 +185,75 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
 
-    @Then("^I enter my \"([^\"]*)\" text to (.*)$")
-    public void dynamicText(String text, String element) throws InterruptedException {
+    @Then("^I enter my reference: \"([^\"]*)\" text to (.*) at index (\\d+)")
+    public void dynamicReferenceNumberText(String text, String element,int index) throws InterruptedException {
         text = commonLib.referenceNumber;
         System.out.println(text);
         WebElement object;
-        object = commonLib.waitElement(element, timeout, 1);
-    }
-
-    @Then("^(?:I )?get the Item Value: (\\w+(?: \\w+)*) at index (\\d+)")
-    public void getTheItemValue(String element, int index) {
-        String object = commonLib.getTheElementInformation2(element, index);
-    }
-
-    @Then("^I changed the \"([^\"]*)\" selection under (.*)$")
-    public void oppositeSituation(String text, String element) throws InterruptedException {
-        text = commonLib.positiveornegative;
-        System.out.println(text);
-        WebElement object;
-        object = commonLib.waitElement(element, timeout, 1);
-        object.click();
-        Select select = new Select(object);
+        object = commonLib.waitElement(element, timeout,index);
 
         try {
             if (object != null) {
-                if(text=="POZİTİF") {
-                    text = "NEGATİF";
-                    select.selectByVisibleText(text);
-                }
-
-                else if (text=="NEGATİF") {
-                    text= "POZİTİF";
-                    select.selectByVisibleText(text);
-                }
-
-                System.out.println("The situation returned to:" + text + " " + "successfully.");
-                reportResult("PASS", "The opposite of the item value is taken. ", false);
+                object.sendKeys(text);
+                System.out.println("The reference number:" + text + " " + "has been entered.");
+                reportResult("PASS", "I entered the text ", false);
             }
         } catch (Exception e) {
-            reportResult("FAIL", "The opposite of the item value is not taken. ", true);
+            reportResult("FAIL", "I do not entered the text ", true);
+        }
+    }
+
+    @Then("^I enter my pricing no: \"([^\"]*)\" text to (.*) at index (\\d+)")
+    public void dynamicPricingNoText(String text, String element,int index) throws InterruptedException {
+        text = commonLib.pricingNo;
+        System.out.println(text);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout,index);
+
+        try {
+            if (object != null) {
+                object.sendKeys(text);
+                System.out.println("The Pricing No number:" + text + " " + "has been entered.");
+                reportResult("PASS", "I entered the text ", false);
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I do not entered the text ", true);
+        }
+    }
+
+    @Then("^(?:I )?get the item value: (\\w+(?: \\w+)*)")
+    public void getTheItemValue(String element) {
+        int index = 1;
+        String object = commonLib.getTheItemValue(element, index);
+    }
+
+    @Then("^The item value is changed to \"([^\"]*)\" under (.*)$")
+    public void oppositeOption(String text, String element) throws InterruptedException {
+
+        text = commonLib.itemValue;
+        System.out.println(text);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, 1);
+
+        Select select = new Select(object);
+        object.click();
+
+        try {
+            if (object != null) {
+                if (text=="POZİTİF"){
+                    select.selectByVisibleText(text="NEGATİF");
+                    System.out.println("The opposite option:" + text + " " + "is entered.");
+                }
+
+                else if (text=="NEGATİF"){
+                    select.selectByVisibleText(text="POZİTİF");
+                    System.out.println("The opposite option:" + text + " " + "is entered.");
+                }
+
+                reportResult("PASS", "I changed the option ", false);
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I do not change the option ", true);
         }
     }
 }

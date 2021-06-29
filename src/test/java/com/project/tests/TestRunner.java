@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 @CucumberOptions(
 
-        features = "src/test/features/CreditPricing.feature",
+        features = "src/test/features/CreditManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags="@Finco",
         glue = {"com.project.stepdefs"})

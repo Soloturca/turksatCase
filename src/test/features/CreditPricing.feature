@@ -10,7 +10,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
     Then I see home page
 
   @Finco
-  Scenario: TC001 - E2E Credit Pricing - New Pricing control
+  Scenario: TC001 - E2E Credit Pricing - New pricing control
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
     Then I see loan page
@@ -59,8 +59,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
     When I click element: pricing save button at index 1
     And I wait warning popup element 30 seconds at index 1
     When I click element: yes button at index 1
-    And I wait reference number area element 30 seconds at index 1
-    Then I get the information: reference number area at index 1
+    And I wait reference number text area element 30 seconds at index 1
+    Then I get the information: reference number text area at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
     Then I see home page
@@ -83,7 +83,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
 
@@ -96,10 +97,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
     When I click element: yes button at index 1
 #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
-
-  #And I wait pricing number area element 30 seconds
-  #Then I get the information: pricing number area
-
+    Then I get pricing information of: pricing no area at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
 
@@ -117,11 +115,10 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
     When I click element: existing pricing button at index 1
     And I wait magnifying glass button element 30 seconds at index 1
     When I click element: magnifying glass button at index 1
-  #pricing number'ın dinamik olması gerekli, referens no gibi.
-   #burada açılan popup ile arkada kalan kısımların elementleri aynı olduğundan sistemin kafası karışmakta.
 
     And I wait pricing code area element 30 seconds at index 2
-    Then I enter "138" text to pricing code area at index 2
+    Then I enter my pricing no: "pricing code" text to pricing code area at index 2
+
     And I wait inquire button for financial observation element 30 seconds at index 1
     When I click element: inquire button for financial observation at index 1
     And I need to just wait
@@ -142,8 +139,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
 
     And I wait warning popup element 30 seconds at index 1
     When I click element: yes button at index 1
-    And I wait reference number area element 30 seconds at index 1
-    Then I get the information: reference number area at index 1
+    And I wait reference number text area element 30 seconds at index 1
+    Then I get the information: reference number text area at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
     Then I see home page
@@ -166,7 +163,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
-    Then I enter my "reference number" text to reference number area
+    Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
 
@@ -197,9 +194,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing
     When I click element: pricing button at index 1
     And I wait financial observation button element 30 seconds at index 1
     When I click element: financial observation button at index 1
-    #pricing number'ın dinamik olması gerekli, referens no gibi.
-    Then I enter "138" text to pricing code area at index 1
+    And I wait pricing code area element 30 seconds at index 1
+    Then I enter my pricing no: "pricing code" text to pricing code area at index 1
     And I wait search and list pricings button element 30 seconds at index 1
     When I click element: search and list pricings button at index 1
     When I click element: row button at index 1
-    And I wait pricing details accordion area element 30 seconds at index 1
