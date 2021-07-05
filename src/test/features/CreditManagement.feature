@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Credit Management
+Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 
   Background: System Login
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL

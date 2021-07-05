@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Credit Appeal
+Feature: Orion Finance Finco Test Scenarios / Credit Application - BAŞVURU
 
   Background: System Login
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL

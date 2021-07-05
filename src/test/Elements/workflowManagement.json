@@ -24,6 +24,12 @@
         },
         {
           "transaction note text area": "//input[@orionid='islem_notu']"
+        },
+        {
+          "customer information area": "//li[@data-title='Müşteri Bilgileri']"
+        },
+        {
+          "continue button": "//button[@orionid='btnContinue']"
         }
       ]
     }

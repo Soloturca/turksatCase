@@ -277,6 +277,51 @@
         },
         {
           "exception management button": "//a[contains(@data-href,'/finance/creditapplication/js/exceptionDefinition.js')]"
+        },
+        {
+          "test button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[6]/a"
+        },
+        {
+          "credit disbursement button": "//a[@data-href='/finance/creditdisbursement/js/serviceTest2.js']"
+        },
+        {
+          "credit no text area": "//input[@orionid='everythingCreditNo']"
+        },
+        {
+          "credit start date text area": "//input[@orionid='processStartDate']"
+        },
+        {
+          "credit end date text area": "//input[@orionid='processEndDate']"
+        },
+        {
+          "start test button": "//button[@orionid='orion-id-006']"
+        },
+        {
+          "credit collection test button": "//a[@data-href='/finance/creditcollection/js/serviceTest.js']"
+        },
+        {
+          "collection button": "//a[@value='collection']"
+        },
+        {
+          "installment payment verification send button": "//button[@orionid='orion-id-041']"
+        },
+        {
+          "finalize installment payment send button": "//button[@orionid='orion-id-049']"
+        },
+        {
+          "credit usage button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[2]/a"
+        },
+        {
+          "loan disbursement monitoring": "//a[@data-href='/finance/creditdisbursement/js/creditDisbursementInvestigation.js']"
+        },
+        {
+          "credit monitoring credit no text area": "//input[@orionid='creditNo']"
+        },
+        {
+          "credit monitoring inquire button": "//button[@orionid='btnSearch']"
+        },
+        {
+          "loan installments revolving send button": "//button[@orionid='orion-id-023']"
         }
       ]
     }

@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Credit Financing
+Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
 
   Background: System Login
     Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL

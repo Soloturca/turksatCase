@@ -1,0 +1,249 @@
+Feature: Orion Finance Finco Test Scenarios / Credit Application Evaluation - BAŞVURU DEĞERLENDİRME
+  @Finco
+  Scenario: TC001 - E2E - Credit Application Evaluation - Corporate Customer Application Evaluation Process - KURUMSAL MÜŞTERİ
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+    #kredi tahsis uzmanı kullanıcısı
+    Then I enter "3003" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    #Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    Then I wait customer information tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+#****************Bu adımdan sonrasını manual olarak ekranlara datasal sorunlardan ötürü geçemediğimden, öngörü şeklinde yazmaktayım.Elementlerin locator'ları yok.*****************
+    Then I wait external agency inquiry tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait FINCO observation tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait financial information tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait evaluation tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait documents tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait  opinion and decision tab area element 30 seconds at index 1
+
+  @Finco
+  Scenario: TC002 - E2E - Credit Application Evaluation - E2E Loan Application Evaluation of Real Person Merchant Customer - GERÇEK KİŞİ
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+    #kredi tahsis uzmanı kullanıcısı
+    Then I enter "3003" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    #Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    Then I wait customer information area element 30 seconds at index 1
+    When I click element: continue button at index 1
+#****************Bu adımdan sonrasını manual olarak ekranlara datasal sorunlardan ötürü geçemediğimden, öngörü şeklinde yazmaktayım.Elementlerin locator'ları yok.*****************
+    Then I wait external agency inquiry tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait FINCO observation tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait financial information tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait evaluation tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait documents tab area element 30 seconds at index 1
+    When I click element: continue button at index 1
+    Then I wait  opinion and decision tab area element 30 seconds at index 1
+
+
+  @Finco
+  Scenario: TC003 - E2E - Credit Application Evaluation - Application Evaluation Approval Flow Process of Loan amounting to TL 450,000 and below E2E
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+    #Tahsis Müdürü Kullanıcısı
+    Then I enter "3003" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    #Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır : 450.000 TL ve altındaki tutarlı Kredinin Başvuru
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+        #kredi komitesi
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    #And I wait workflow management button element 30 seconds
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+        #Yönetim Kurulu
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+  #And I wait workflow management button element 30 seconds
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+
+  @Finco
+  Scenario: TC004 - E2E - Credit Application Evaluation - Application Evaluation Approval Flow Process of 450,000 TL - 1,000,000 TL and below loan E2E
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+    #kredi komitesi
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    #Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır : 450.000TL - 1.000.000 TL ve altındaki tutarlı Kredinin Başvuru
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+        #Yönetim Kurulu
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    #And I wait workflow management button element 30 seconds
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    Then I enter my reference: "reference number" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+  @Finco
+  Scenario: TC005 - E2E - Credit Application Evaluation - Application Evaluation Approval flow process of the loan amounting over TL 1,000,000 E2E
+    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Then I see login page
+    #Yönetim Kurulu
+    Then I enter "3005" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+    When I click element: workflow management button at index 1
+    Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+    #Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır: 1.000.000 TL üzerinde tutarlı Kredinin Başvuru
+    Then I enter my reference: "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
