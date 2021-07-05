@@ -322,8 +322,38 @@
         },
         {
           "loan installments revolving send button": "//button[@orionid='orion-id-023']"
+        },
+        {
+          "credit detail button": "//button[@orionid='btnShowCreditDisbursement']"
+        },
+        {
+          "payment plan button": "//li[@data-title='Ödeme Planı']"
+        },
+        {
+          "bank code selection": "//select[@orionid='bankCode']"
+        },
+        {
+          "payment type selection": "//select[@orionid='paymentType']"
+        },
+        {
+          "amount text area": "//input[@orionid='amount']"
+        },
+        {
+          "bank code selection for finalize installment payment section": "//select[@orionid='accomplishBankCode']"
+        },
+        {
+          "accomplish payment id area": "//input[@orionid='accomplishPaymentId']"
+        },
+        {
+          "installment amount credit no text area": "//input[@orionid='installmentAmountCreditNo']"
         }
+
+
+
+
       ]
     }
   ]
 }
+
+
