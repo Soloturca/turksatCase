@@ -42,6 +42,12 @@ public class CommonLib extends MyTestNGBaseClass
 		System.out.println(elementText);
 		return elementText;
 	}
+	public String readTheElementInformation(String elem, int index){
+		System.out.println(findElement(elem,index).getText());
+		String elementText = findElement(elem,index).getText();
+		System.out.println(elementText);
+		return elementText;
+	}
 	public String getTheElementInformationForPricing(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
 		String elementTextPricing = findElement(elem,index).getText();

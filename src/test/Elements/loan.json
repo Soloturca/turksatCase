@@ -4,7 +4,7 @@
       "pageInfo": {
         "pageName": "loan",
         "parent": "home",
-        "waitelement": "loan button"
+        "waitelement": ""
       },
       "elements": [
         {
@@ -309,7 +309,13 @@
           "finalize installment payment send button": "//button[@orionid='orion-id-049']"
         },
         {
-          "credit usage button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[2]/a"
+          "credit usage button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[2]/a"
+        },
+        {
+          "credit application button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[1]/a"
+        },
+        {
+          "credit application observation and report button": "//a[@data-href='/finance/creditapplication/js/applicationObservationAndReport.js']"
         },
         {
           "loan disbursement monitoring": "//a[@data-href='/finance/creditdisbursement/js/creditDisbursementInvestigation.js']"
@@ -346,11 +352,58 @@
         },
         {
           "installment amount credit no text area": "//input[@orionid='installmentAmountCreditNo']"
+        },
+        {
+          "customer information tab area": "//li[@data-title='Müşteri Bilgileri']"
+        },
+        {
+          "external agency inquiry tab area": "//li[@data-title='Dış Kurum Sorguları']"
+        },
+
+        {
+          "FINCO observation tab area": "//li[@data-title='FİNCO Gözlem']"
+        },
+
+        {
+          "financial information tab area": "//li[@data-title='Mali Bilgiler']"
+        },
+
+        {
+          "evaluation tab area": "//li[@data-title='Değerlendirme']"
+        },
+        {
+          "documents tab area": "//li[@data-title='Evraklar']"
+        },
+        {
+          "opinion and decision tab area": "//li[@data-title='Görüş ve Karar']"
+        },
+        {
+          "customer information tab continue button": "//button[@orionid='btnCustomerInfo']"
+        },
+        {
+          "external agency inquiry tab continue button": "//button[@orionid='btnOuterQueryButton']"
+        },
+        {
+          "FINCO observation tab continue button": "//button[@orionid='btnFincoObservation']"
+        },
+        {
+          "financial information tab continue button": "//button[@orionid='btnFinancialInfoContinue']"
+        },
+        {
+          "evaluation tab continue button": "//button[@orionid='btnAssessmentButton']"
+        },
+        {
+          "documents tab continue button": "//button[@orionid='btnDocument']"
+        },
+        {
+          "credit application observation and report customer no button": "//input[@orionid='findCustomer']"
+        },
+        {
+          "credit application observation and report search and list button": "//button[@orionid='searchAndListApplications']"
+        },
+        {
+          "credit application observation and report transaction reference number text area": "//*/div[1]/div/div/div/table/tbody/tr[2]/td[8]"
         }
-
-
-
-
       ]
     }
   ]

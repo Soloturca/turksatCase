@@ -2,7 +2,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
   @Finco
   Scenario: TC001 -E2E Collection Transactions controls - PAID ON DATE
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -57,7 +57,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
   @Finco
   Scenario: TC002 -E2E Collection Transactions controls - PAID ON DATE
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -118,7 +118,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
   @Finco
   Scenario: TC003 -E2E Collection Process controls - PARTIAL PAID
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -179,7 +179,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
   @Finco
   Scenario: TC004 -E2E Collection Process controls - PAID DELAY
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -235,7 +235,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
   @Finco
   Scenario: TC005 -E2E Collection Process controls - IN DELAY
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -258,8 +258,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
     And I wait start test button element 30 seconds at index 1
     When I click element: start test button at index 1
 
-    And I wait finalize installment payment send button element 30 seconds at index 1
-    When I click element: finalize installment payment send button at index 1
+    And I wait credit button element 30 seconds at index 1
+    When I click element: credit button at index 1
 
     And I wait credit usage button element 30 seconds at index 1
     When I click element: credit usage button at index 1
@@ -273,7 +273,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
   @Finco
   Scenario: TC006 -E2E Collection Transactions controls - DELAYED PARTIAL PAID
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -334,7 +334,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
   @Finco
   Scenario: TC007 -E2E Collection Process controls - EARLY CLOSING
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1
@@ -395,7 +395,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
   @Finco
   Scenario: TC008 -E2E Collection Process checks - PAYMENT PENDING
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
     Then I enter "admin" text to username text area at index 1

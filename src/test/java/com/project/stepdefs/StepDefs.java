@@ -138,6 +138,11 @@ public class StepDefs extends MyTestNGBaseClass {
     public void getTheReferenceNumber(String element ,int index) {
                 String object = commonLib.getTheElementInformation(element, index);
     }
+    @Then("^(?:I )?read the information: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void readTheReferenceNumber(String element ,int index) {
+        String object = commonLib.readTheElementInformation(element, index);
+
+    }
     @Then("^(?:I )?get pricing information of: (\\w+(?: \\w+)*) at index (\\d+)")
     public void getThePricingNumber(String element ,int index) {
         String object = commonLib.getTheElementInformationForPricing(element, index);

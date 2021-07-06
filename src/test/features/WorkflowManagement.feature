@@ -1,8 +1,6 @@
 Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
-
-#https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/
   Background: System Login & Creating Job for unique reference number
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3003" text to username text area at index 1
     Then I enter "" text to password text area at index 1
@@ -45,8 +43,8 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
   #Then I enter "Note is entered!" text to transaction note text area
   # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button at index 1
-    And I wait return to inquiry button element 30 seconds at index 1
-    When I click element: return to inquiry button at index 1
+     And I wait return to inquiry button element 30 seconds at index 1
+     When I click element: return to inquiry button at index 1
 
   @Finco
   Scenario: TC002 - Taking Over Pending Processes in the User's List - Unit Officer
@@ -103,7 +101,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3004" text to username text area at index 1
     Then I enter "" text to password text area at index 1
@@ -140,7 +138,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3004" text to username text area at index 1
     Then I enter "" text to password text area at index 1
@@ -177,7 +175,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
-    Given Open the http://orion-finance-finco-adtest.apps.mbt.vodafone.local/ URL
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3004" text to username text area at index 1
     Then I enter "" text to password text area at index 1

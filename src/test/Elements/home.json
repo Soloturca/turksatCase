@@ -23,7 +23,10 @@
           "loan button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/a"
         },
         {
-          "close system button": "//img[@alt='Orion Logout']"
+          "credit button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/a"
+        },
+        {
+          "close system button": "//li[@id='logout_button']"
         },
         {
           "close button": "//button[@class='btn btn-sm btn-info']"
@@ -71,7 +74,7 @@
           "query button": "//button[@orionid='orion-id-008']"
         },
         {
-          "return to inquiry button": "//button[@orionid='orion-id-011']"
+          "return to inquiry button": "//button[@orionid='orion-id-013']"
         },
         {
           "pricing no area": "//*[@id=\"modal-body-text\"]/b"
