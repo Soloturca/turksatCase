@@ -420,11 +420,19 @@
         },
         {
           "calculate button for consolidated": "//button[@orionid='btnFinancialInfoCalculateConsolidated']"
+        },
+        {
+          "signature area 1": "//select[@orionid='signatories1']"
+        },
+        {
+          "signature area 2": "//select[@orionid='signatories2']"
+        },
+        {
+          "signature area 3": "//select[@orionid='signatories3']"
+        },
+        {
+          "signature area 4": "//select[@orionid='signatories4']"
         }
-
-
-
-
       ]
     }
   ]

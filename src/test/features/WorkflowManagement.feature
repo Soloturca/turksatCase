@@ -161,7 +161,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait warning popup element 30 seconds at index 1
     When I click element: yes button at index 1
     And I wait assign to pool button element 30 seconds at index 1
-    When I click element: approve button at index 1
+    When I click element: assign to pool button at index 1
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
       #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
