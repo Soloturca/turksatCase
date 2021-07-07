@@ -11,11 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-
-
 @CucumberOptions(
-
         features = "src/test/features/CreditApplicationEvaluation.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags="@Finco",
