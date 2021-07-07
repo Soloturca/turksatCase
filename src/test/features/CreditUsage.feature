@@ -183,6 +183,23 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     Then I see home page
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #para transferi başlangıç adamında olan kredi
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait sender bank button element 30 seconds at index 1
+    When I click element: sender bank button at index 1
+    When I select element: "T.C MERKEZ BANKASI A.S." under bank code selection at index 1
+    Then I enter "" text to account no text area at index 1
+    And I wait inquire button for account information element 30 seconds at index 1
+    When I click element: inquire button for account information at index 1
+
 
   @Finco
   Scenario: TC008 - GKT MÜŞTERİ - PARA TRANSFER ONAY
@@ -196,6 +213,15 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     Then I see home page
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #para transferi başlangıç adamında olan kredi
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
 
   @Finco
   Scenario: TC009 - TÜZEL MÜŞTERİ -SÖZLEŞME GİRİŞ
@@ -210,6 +236,21 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
 
+    When I click element: pending jobs button at index 1
+   #Kredi başvurusu onaylanmış tüzel müşteri için kredi no
+    Then I enter "" text to reference number area at index 1
+    When I click element: query button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+
+    Then I see loan page
+    Then I wait customer information tab area element 30 seconds at index 1
+    When I click element: customer information tab continue button at index 1
+    Then I wait external agency inquiry tab area element 30 seconds at index 1
+    When I click element: external agency inquiry tab continue button at index 1
   @Finco
   Scenario: TC0010 - TÜZEL MÜŞTERİ -DİJİTAL EVRAK ONAY
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
@@ -222,6 +263,22 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     Then I see home page
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri dijital evrak onay
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
 
   @Finco
@@ -234,9 +291,25 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri fiziksel evrak bekliyor
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
 
 
   @Finco
@@ -249,9 +322,25 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
 
 
   @Finco
@@ -264,9 +353,25 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
 
 
   @Finco
@@ -305,9 +410,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #para transferi başlangıç adamında olan kredi
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait sender bank button element 30 seconds at index 1
+    When I click element: sender bank button at index 1
+    When I select element: "T.C MERKEZ BANKASI A.S." under bank code selection at index 1
+    Then I enter "" text to account no text area at index 1
+    And I wait inquire button for account information element 30 seconds at index 1
+    When I click element: inquire button for account information at index 1
 
 
   @Finco
@@ -320,9 +440,17 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
 
 
   @Finco
@@ -335,9 +463,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+
+    When I click element: pending jobs button at index 1
+   #Kredi başvurusu onaylanmış tüzel müşteri için kredi no
+    Then I enter "" text to reference number area at index 1
+    When I click element: query button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+
+    Then I see loan page
+    Then I wait customer information tab area element 30 seconds at index 1
+    When I click element: customer information tab continue button at index 1
+    Then I wait external agency inquiry tab area element 30 seconds at index 1
+    When I click element: external agency inquiry tab continue button at index 1
 
 
   @Finco
@@ -350,9 +493,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #bireysel müşteri dijital evrak onay
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
 
   @Finco
@@ -365,9 +523,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #bireysel müşteri fiziksel evrak bekliyor
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
 
   @Finco
@@ -380,9 +553,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #bireysel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
 
   @Finco
@@ -395,9 +583,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #bireysel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I wait approve button element 30 seconds at index 1
+    When I click element: approve button at index 1
+    And I wait yes button element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
 
 
   @Finco
@@ -434,9 +637,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #para transferi başlangıç adamında olan kredi
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1
+    And I need to just wait
+    And I wait sender bank button element 30 seconds at index 1
+    When I click element: sender bank button at index 1
+    When I select element: "AKBANK" under bank code selection at index 1
+    Then I enter "" text to account no text area at index 1
+    And I wait inquire button for account information element 30 seconds at index 1
+    When I click element: inquire button for account information at index 1
 
 
   @Finco
@@ -449,6 +667,14 @@ Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
+    And I wait jobs pending on my list button element 30 seconds at index 1
+    When I click element: jobs pending on my list button at index 1
+   #tüzel müşteri fiziksel evrak kontrol
+    Then I enter "" text to reference number area at index 1
+    And I wait inquire button element 30 seconds at index 1
+    When I click element: inquire button at index 1
+    When I click element: row button at index 1
+    And I wait warning popup element 30 seconds at index 1
+    When I click element: yes button at index 1

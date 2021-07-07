@@ -1,9 +1,9 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
-
+#
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
-    Then I enter "1001" text to username text area at index 1
+    Then I enter "3005" text to username text area at index 1
     Then I enter "" text to password text area at index 1
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
@@ -11,24 +11,24 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 
   @Finco
   Scenario: TC001 - Financial Item Identification Screen - Save Button Control
-    And I wait loan button element 30 seconds at index 1
-    When I click element: loan button at index 1
+    And I wait loan button for 3005 element 30 seconds at index 1
+    When I click element: loan button for 3005 at index 1
     Then I see loan page
     And I wait administrative button element 30 seconds at index 1
     When I click element: administrative button at index 1
     And I wait financial item identification button element 30 seconds at index 1
     When I click element: financial item identification button at index 1
-    # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
+   # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
     And I wait pen type selection element 30 seconds at index 1
     When I select element: "MİKRO İŞLETME" under pen type selection at index 1
     And I wait window element 30 seconds at index 1
     When I click element: sailors button at index 1
     Then I clear text to item ID text area at index 1
-    Then I enter "420X" text to item ID text area at index 1    
-    Then I clear text to pen name text area at index 1    
-    Then I enter "7. SATICILAR TEST" text to pen name text area at index 1    
-    Then I clear text to explanation text area at index 1    
-    Then I enter "420X-SATICILAR TEST" text to explanation text area at index 1    
+    Then I enter "420X" text to item ID text area at index 1
+    Then I clear text to pen name text area at index 1
+    Then I enter "7. SATICILAR TEST" text to pen name text area at index 1
+    Then I clear text to explanation text area at index 1
+    Then I enter "420X-SATICILAR TEST" text to explanation text area at index 1
     And I wait item value selection element 30 seconds at index 1
     When I get the item value: item value selection
     When The item value is changed to "opposite item value" under item value selection
@@ -39,14 +39,14 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 
   @Finco
   Scenario: TC002 - Financial Item Identification Screen - Delete Button Control
-    And I wait loan button element 30 seconds at index 1
-    When I click element: loan button at index 1
+    And I wait loan button for 3005 element 30 seconds at index 1
+    When I click element: loan button for 3005 at index 1
     Then I see loan page
     And I wait administrative button element 30 seconds at index 1
     When I click element: administrative button at index 1
     And I wait financial item identification button element 30 seconds at index 1
     When I click element: financial item identification button at index 1
-    # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
+   # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
     And I wait pen type selection element 30 seconds at index 1
     When I select element: "MİKRO İŞLETME" under pen type selection at index 1
     And I wait window element 30 seconds at index 1
@@ -57,15 +57,22 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     When I click element: delete button at index 1
     When I click element: save button at index 1
     And I wait shut down button element 30 seconds at index 1
-    When I click element: shut down button at index 1    
+    When I click element: shut down button at index 1
 
   @Finco
   Scenario: TC005 - Rejection identify, update and cancel button - Add
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "3009" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
     Then I see loan page
-    And I wait administrative button element 30 seconds at index 1
-    When I click element: administrative button at index 1
+    And I wait administrative button for 3009 element 30 seconds at index 1
+    When I click element: administrative button for 3009 at index 1
     And I wait reasons for rejection identify update and cancel button element 30 seconds at index 1
     When I click element: reasons for rejection identify update and cancel button at index 1
     And I wait reasons for rejection text area element 30 seconds at index 1
@@ -76,11 +83,18 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 
   @Finco
   Scenario: TC007 -Administrative Menu - Parameter Management Control 1
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "3009" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
     Then I see loan page
-    And I wait administrative button element 30 seconds at index 1
-    When I click element: administrative button at index 1
+    And I wait administrative button for 3009 element 30 seconds at index 1
+    When I click element: administrative button for 3009 at index 1
 
     And I wait parameter management button element 30 seconds at index 1
     When I click element: parameter management button at index 1
@@ -94,11 +108,18 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 
   @Finco
   Scenario: TC008 -Administrative Menu - Parameter Management Control 2
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "3009" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
     Then I see loan page
-    And I wait administrative button element 30 seconds at index 1
-    When I click element: administrative button at index 1
+    And I wait administrative button for 3009 element 30 seconds at index 1
+    When I click element: administrative button for 3009 at index 1
 
     And I wait parameter management button element 30 seconds at index 1
     When I click element: parameter management button at index 1

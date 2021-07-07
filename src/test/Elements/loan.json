@@ -8,7 +8,9 @@
       },
       "elements": [
         {
-          "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
+          "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[6]/a"
+        },    {
+          "administrative button for 3009": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
         },
         {
           "pricing button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[4]/a"
@@ -152,6 +154,9 @@
         },
         {
           "inquire button for financial observation": "//button[@orionid='orion-id-057']"
+        },
+        {
+          "inquire button for account information": "//button[@orionid='orion-id-037']"
         },
         {
           "update button": "//button[@orionid='btnSaveAsPricing']"
@@ -403,7 +408,23 @@
         },
         {
           "credit application observation and report transaction reference number text area": "//*/div[1]/div/div/div/table/tbody/tr[2]/td[8]"
+        },
+        {
+          "sender bank button": "//input[@orionid='senderBankCode']"
+        },
+        {
+          "account no text area": " //input[@orionid='accountNo']"
+        },
+        {
+          "calculate button for financial info": "//button[@orionid='btnFinancialInfoCalculate']"
+        },
+        {
+          "calculate button for consolidated": "//button[@orionid='btnFinancialInfoCalculateConsolidated']"
         }
+
+
+
+
       ]
     }
   ]
