@@ -157,7 +157,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Application Evaluation - BA
 #   And I wait jobs pending on my list button element 30 seconds at index 1
 #   When I click element: jobs pending on my list button at index 1
 ##Değerlendirme onayına gönderilen Kredi Başvuru işleminin referans numarasıdır : 450.000 TL ve altındaki tutarlı Kredinin Başvuru
-#   Then I enter my reference: "reference number" text to reference number area at index 1
+#   Then I enter my reference: "" text to reference number area at index 1
 #   And I wait inquire button element 30 seconds at index 1
 #   When I click element: inquire button at index 1
 #   When I click element: row button at index 1
