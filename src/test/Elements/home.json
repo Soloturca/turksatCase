@@ -90,7 +90,11 @@
         },
         {
           "save button for consolidated": "//button[@orionid='btnSaveconsolidated']"
+        },
+        {
+          "save button for payment plan": "//button[@orionid='popupSaveBtn']"
         }
+
       ]
     }
   ]

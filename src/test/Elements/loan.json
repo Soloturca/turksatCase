@@ -432,6 +432,30 @@
         },
         {
           "signature area 4": "//select[@orionid='signatories4']"
+        },
+        {
+          "approved due date text area": "//*/div[1]/div/div/div/table/tbody/tr[1]/td[7]"
+        },
+        {
+          "approved amount text area": "//*/div[1]/div/div/div/table/tbody/tr[1]/td[8]"
+        },
+        {
+          "create payment plan button": "//button[@orionid='btnCreatePaymentPlan']"
+        },
+        {
+          "create payment plan section button": "//li[@data-title='Ödeme Planı']"
+        },
+        {
+          "transaction confirmation note text area": "//input[@orionid='owfNote']"
+        },
+        {
+          "comment detail add button": "//button[@orionid='btnAddComment']"
+        },
+        {
+          "send approve button": "//button[@orionid='btnSendApprove']"
+        },
+        {
+          "transaction description text area": "//textarea[@orionid='commentDetail']"
         }
       ]
     }
