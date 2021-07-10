@@ -1,5 +1,7 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Usage - KULLANDIRIM
 
+  #Bu feature'a artık gerek kalmadı. Bkz: AllCredit- Kurumsal
+
   @Finco
   Scenario: TC001 - GKT MÜŞTERİ - SÖZLEŞME GİRİŞ
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL

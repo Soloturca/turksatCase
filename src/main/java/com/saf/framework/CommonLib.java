@@ -29,6 +29,7 @@ public class CommonLib extends MyTestNGBaseClass
 	public static String pricingNo;
 	public static String positiveornegative;
 	public static String itemValue;
+	public static double creditAmount;
 	int timeout = 30;
 	Parser parser = new Parser();
 	Actions actions = new Actions(oDriver);
@@ -41,6 +42,13 @@ public class CommonLib extends MyTestNGBaseClass
 		this.referenceNumber=elementText;
 		System.out.println(elementText);
 		return elementText;
+	}
+	public double getTheElementInformationForCreditAmount(String elem, int index){
+		System.out.println(findElement(elem,index).getText());
+		double elementText = Double.parseDouble(findElement(elem,index).getText());
+		System.out.println(elementText);
+		return elementText;
+
 	}
 	public String readTheElementInformation(String elem, int index){
 		System.out.println(findElement(elem,index).getText());

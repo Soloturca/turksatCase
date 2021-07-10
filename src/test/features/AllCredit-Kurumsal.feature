@@ -1,21 +1,111 @@
-Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases
+Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (Kurumsal) Müşteri
 
+  #This feature includes these steps:
+  #1.) Kredi Basvuru - TC001
+  # 2.) Basvuru Degerlendirme - TC001
+  # 3.) Basvuru Degerlendirme - TC003
+  # 4.) Basvuru Degerlendirme - TC004
+  # 5.) Basvuru Degerlendirme - TC005
+  # 6.) Kullandırım - TC009
+  # 7.) Kullandırım - TC010
+  # 8) Kullandırım - TC011
+  # 9.) Kullandırım - TC012
+  #10.) Kullandırım - TC013
+  #11.) Kullandırım - TC014
+  #12.) Kullandırım - TC015
+  #13.) Kullandırım - TC016
+  #14) Kredi Basvuru - TC008
+
+    #Bir senaryoyu bir akış gibi düşünün. İçerisinde birden fazla test case'i handle ediyor. Bu iş akış sürecini, case'leri ancak böyle handle edebiliriz.
+
+  #************************************* basvuru degerlendirme under 450.000tl cases ***********************
   @Finco:
-
-  Scenario: Basvuru - TC001- Creation of a New E2E Credit Application for Tuzel Customer - Under 450.000 TL
+  Scenario: Creation - Evaluation - Approve - Cancellation of a New E2E Credit Application for Tuzel Customer - Under 450.000 TL
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
-    Then I have to create a credit by credit amount:"5000"
+    Then I have to create a credit by credit amount:"5000" for customer:"5427"
 
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to evaluate for the credit
 
-  Scenario: Basvuru Degerlendirme - TC001- Creation of a E2E Credit Application for Tuzel (Kurumsal) Customer - Under 450.000 TL
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to approve for the credit of under 450.000TL
 
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to do usage control for the credit
 
-  Scenario: Basvuru Degerlendirme - TC003- Approve of a E2E Credit Application for  Tuzel (Kurumsal) Customer - Under 450.000 TL
-
-
-  Scenario: Kullandırım - TC009 - E2E Usage control for Tuzel (Kurumsal) Customer - Under 450.000 TL
-
-
-  Scenario: Basvuru - TC008 - E2E Credit Application Cancellation
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
     Then I have to cancel the credit
+
+      #************************************* basvuru degerlendirme 4500.000 - 1.000.000 tl cases****************************
+
+  @Finco:
+  Scenario: Creation - Evaluation - Approve - Cancellation of a New E2E Credit Application for Tuzel Customer - Between 450.000 - 1.000.000 TL
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to create a credit by credit amount:"470000" for customer:"5427"
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to evaluate for the credit
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:""
+    Then I have to approve for the credit of between 450.000 - 1.000.000 TL
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to do usage control for the credit
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to cancel the credit
+
+
+     #************************************* basvuru degerlendirme above 1.000.000 tl cases****************************
+
+  @Finco:
+  Scenario: Creation - Evaluation - Approve - Cancellation of a New E2E Credit Application for Tuzel Customer - Above 1.000.000 TL
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to create a credit by credit amount:"2000000" for customer:"5427"
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to evaluate for the credit
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:""
+    Then I have to approve for the credit of above 1.000.000 TL
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:""
+    Then I have to do usage control for the credit
+
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to cancel the credit
+
+         #************************************* Kullandırım Cases****************************
+  @Finco:
+  Scenario: Usage cases of a New E2E Credit Application for Tuzel Customer
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to create a credit by credit amount:"5000" for customer:"5427"
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
+    Then I have to evaluate for the credit
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:""
+    Then I have to approve for the credit of under 450.000TL
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:""
+    Then I have to do usage control for the credit
+      #tc010:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3007" and this password:""
+    Then I have to do usage control for the document
+    #tc011:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to do usage control for the document
+    #tc012:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3007" and this password:""
+    Then I have to do usage control for the document
+    #tc013:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3007" and this password:""
+    Then I have to do usage control for the document
+     #tc014:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:""
+    Then I have to do usage control and observation for the document
+    #tc015:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3001" and this password:""
+    Then I have to do usage control money transfer
+    #tc016:
+    Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3008" and this password:""
+    Then I have to do usage control money transfer approve
+
+

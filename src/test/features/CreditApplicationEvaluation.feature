@@ -1,9 +1,10 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Application Evaluation - BAŞVURU DEĞERLENDİRME
 
+  #Bu feature'a artık gerek kalmadı. Bkz: AllCredit- Kurumsal
+
   @Finco
   Scenario: TC001 - E2E - Credit Application Evaluation - Corporate Customer Application Evaluation Process - KURUMSAL MÜŞTERİ
 
-    When My website is close
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:""
 
     When I click element: workflow management button at index 1

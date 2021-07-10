@@ -142,6 +142,12 @@ public class StepDefs extends MyTestNGBaseClass {
         String object = commonLib.getTheElementInformation(element, index);
     }
 
+    @Then("^(?:I )?get the credit amount information: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void getTheElementInformationForCreditAmount(String element, int index) {
+        double object = commonLib.getTheElementInformationForCreditAmount(element, index);
+
+    }
+
     @Then("^(?:I )?read the information: (\\w+(?: \\w+)*) at index (\\d+)")
     public void readTheReferenceNumber(String element, int index) {
         String object = commonLib.readTheElementInformation(element, index);
@@ -272,8 +278,41 @@ public class StepDefs extends MyTestNGBaseClass {
     //elseif(450.000<tutar<1.000.000)){test0004>>ilgili adımlar}
     //else{test0005>>ilgili adımları)
 
-    @Then("I have to create a credit by credit amount:\"([^\"]*)\"")
-    public void createCredit(String amount) throws InterruptedException {
+    @Given("I go to \"([^\"]*)\" with this username: \"([^\"]*)\" and this password:\"([^\"]*)\"")
+    public void loginSystem(String URL, String username, String password) throws InterruptedException {
+        checkURLControl(URL);
+        seePage("login");
+        enterText(username, "username text area", 1);
+        enterText(password, "password text area", 1);
+        waitElement("login button", timeout, 1);
+        clickElement("login button", 1);
+        seePage("home");
+    }
+
+
+    @When("My website is close")
+    public void checkURLControl(String URL) throws InterruptedException {
+        //eğer URL kapalı ise git URL'i ayağa kaldır.
+        if (checkLoginControl = false) {
+            openUrl(URL);
+            checkLoginControl = true;
+        }
+        //eğer URL açık ise (checkLoginControl = true)  hata bas.
+        else {
+            throw new InterruptedException("Your page is already opened. You cannot open the URL one more time.");
+        }
+    }
+
+    //******************************* FINCO TEST STEPS ********************************//
+    //Aşağıdaki metotlar, kredi test case'leri için pre-condition niteliği taşıyan ve sürekli kullanımı elzem olan metotlardır. Aşağıdaki metotlar yer alır:
+
+    //1. Kredi oluşturma - TC001
+    //2. Kredi iptal etme -TC008
+    //3. Kredi değerlendirme - TC001
+    //43. Kredi Kullandırım - TC001
+
+    @Then("I have to create a credit by credit amount:\"([^\"]*)\" for customer:\"([^\"]*)\"")
+    public void createCredit(String amount,String customerNo) throws InterruptedException {
         waitElement("loan button", timeout, 1);
         clickElement("loan button", 1);
         seePage("loan");
@@ -281,7 +320,7 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("application button", 1);
         waitElement("credit application introduction button", timeout, 1);
         clickElement("credit application introduction button", 1);
-        enterText("5427", "customer no-new application text area", 1);
+        enterText(customerNo, "customer no-new application text area", 1);
         clickElement("closeview", 1);
         waitElement("row button", timeout, 27);
         clickElement("row button", 27);
@@ -409,7 +448,7 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("I have to cancel the credit")
-    public void cancelCredit() throws InterruptedException {
+    public void cancelCredit(String text) throws InterruptedException {
         waitElement("loan button", timeout, 1);
         clickElement("loan button", 1);
         seePage("loan");
@@ -449,8 +488,7 @@ public class StepDefs extends MyTestNGBaseClass {
         seePage("workflowManagement");
         waitElement("jobs pending on my list button", timeout, 1);
         clickElement("jobs pending on my list button", 1);
-        //BURADA KALDIN!
-        //dynamicReferenceNumberText(text, "reference number area", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
         waitElement("inquire button", timeout, 1);
         clickElement("inquire button", 1);
         clickElement("row button", 1);
@@ -479,8 +517,7 @@ public class StepDefs extends MyTestNGBaseClass {
         seePage("workflowManagement");
         waitElement("jobs pending on my list button", timeout, 1);
         clickElement("jobs pending on my list button", 1);
-        //BURADA KALDIN!
-       // dynamicReferenceNumberText(text, "reference number area", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
         waitElement("inquire button", timeout, 1);
         clickElement("inquire button", 1);
         clickElement("row button", 1);
@@ -499,31 +536,382 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("warning popup", timeout, 1);
         clickElement(" yes button", 1);
 
+    }
+
+
+    @Then("I have to evaluate for the credit")
+    public void evaulateCredit(String text, String amount) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        seePage("loan");
+        waitElement("customer information tab area", timeout, 1);
+        clickElement("customer information tab continue button", 1);
+        waitElement("external agency inquiry tab area ", timeout, 1);
+        clickElement("external agency inquiry tab continue button", 1);
+        waitElement("FINCO observation tab area", timeout, 1);
+        //BURADA AMOUNT KONTROLÜ!
+        getTheElementInformationForCreditAmount("credit amount text area", 1);
+
+        clickElement("FINCO observation tab continue button", 1);
+        waitElement("Financial information tab area", timeout, 1);
+        clickElement("FINCO observation tab continue button", 1);
+        clickElement("calculate button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("save button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+
+        waitElement("calculate button for consolidated", timeout, 1);
+        clickElement("calculate button for consolidated", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("save button for consolidated", timeout, 1);
+        clickElement("save button for consolidated", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        selectElement("YMM", "signature area 1", 1);
+        selectElement("YMM", "signature area 2", 1);
+        selectElement("YMM", "signature area 3", 1);
+        selectElement("YMM", "signature area 4", 1);
+
+        clickElement("calculate button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+
+        waitElement("financial information tab continue button", timeout, 1);
+        clickElement("financial information tab continue button", 1);
+        waitElement("evaluation tab area", timeout, 1);
+        clickElement("evaluation tab continue button", 1);
+
+        waitElement("documents tab area", timeout, 1);
+        clickElement("documents tab continue button", 1);
+        waitElement("opinion and decision tab area", timeout, 1);
+        clearText("approved due date text area", 1);
+        enterText("1", "approved due date text area", 1);
+        clearText("approved amount text area", 1);
+        enterText("1", "approved amount text area", 1);
+
+        waitElement("create payment plan button", timeout, 1);
+        clickElement("create payment plan button", 1);
+        waitElement("create payment plan section button", timeout, 1);
+        clickElement("create payment plan section button", 1);
+        waitElement("create payment plan button", timeout, 1);
+        clickElement("create payment plan button", 1);
+        waitElement("save button for payment plan", timeout, 1);
+        clickElement("save button for payment plan", 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("save button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        enterText("TEST", "transaction confirmation note text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+
+        /*    if (commonLib.creditAmount < 450000) {
+           approveCreditUnder();
+        } else if (450000< commonLib.creditAmount &&  commonLib.creditAmount<1000000) {
+            approveCreditBetween();
+        } else {
+            approveCreditAbove();
+        }*/
+
 
     }
 
-    @Given("I go to \"([^\"]*)\" with this username: \"([^\"]*)\" and this password:\"([^\"]*)\"")
-    public void loginSystem(String URL, String username, String password) throws InterruptedException {
-        checkURLControl(URL);
+    @Then("I have to approve for the credit of under 450.000TL")
+    public void approveCreditUnder(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        enterText("TEST", "transaction confirmation note text area", 1);
+        enterText("TEST", "transaction description text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
+
+        //Kullanıcı değişti -> Kredi komitesi (user name: 3005)
         seePage("login");
-        enterText(username, "username text area", 1);
-        enterText(password, "password text area", 1);
-        waitElement("login button", timeout, 1);
+        waitElement("username text area", timeout, 1);
+        enterText("3005", "username text area", 1);
+        waitElement("login button ", timeout, 1);
         clickElement("login button", 1);
         seePage("home");
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        enterText("TEST", "transaction confirmation note text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
+
+        //Kullanıcı değişti -> Yönetim Kurulu (user name: 3005)
+        seePage("login");
+        waitElement("username text area", timeout, 1);
+        enterText("3005", "username text area", 1);
+        waitElement("login button ", timeout, 1);
+        clickElement("login button", 1);
+        seePage("home");
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        enterText("TEST", "transaction confirmation note text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
     }
 
 
-    @When("My website is close")
-    public void checkURLControl(String URL) throws InterruptedException {
-        //eğer URL kapalı ise git URL'i ayağa kaldır.
-        if (checkLoginControl = false) {
-            openUrl(URL);
-            checkLoginControl = true;
-        }
-        //eğer URL açık ise (checkLoginControl = true)  hata bas.
-        else {
-            throw new InterruptedException("Your page is already opened. You cannot open the URL one more time.");
-        }
+    @Then("I have to approve for the credit of between 450.000 - 1.000.000 TL")
+    public void approveCreditBetween(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        enterText("TEST","transaction confirmation note text area",1);
+        enterText("TEST","transaction description text area",1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
+
+
+        //Kullanıcı değişti -> Yönetim Kurulu (user name: 3005)
+        seePage("login");
+        waitElement("username text area", timeout, 1);
+        enterText("3005", "username text area", 1);
+        waitElement("login button ", timeout, 1);
+        clickElement("login button", 1);
+        seePage("home");
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        enterText("TEST", "transaction confirmation note text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
+
+    }
+
+
+    @Then("I have to approve for the credit of above 1.000.000 TL")
+    public void approveCreditAbove(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        enterText("TEST","transaction confirmation note text area",1);
+        enterText("TEST","transaction description text area",1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+        waitElement("close system button", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("warning popup ", timeout, 1);
+        clickElement("yes button", 1);
+
+
+    }
+
+    @Then("I have to do usage control for the credit")
+    public void creditUsage(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("pending jobs button", timeout, 1);
+        clickElement("pending jobs button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        seePage("loan");
+    }
+
+    @Then("I have to do usage control for the document")
+    public void creditUsageControlDigital(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("pending jobs button", timeout, 1);
+        clickElement("pending jobs button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+
+    }
+    @Then("I have to do usage control and observation for the document")
+    public void creditUsageControlObservation(String text) throws InterruptedException {
+        waitElement("credit button", timeout, 1);
+        clickElement("credit button", 1);
+        seePage("loan");
+        waitElement("credit application button", timeout, 1);
+        clickElement("credit application button", 1);
+        waitElement("credit application observation and report button", timeout, 1);
+        clickElement("credit application observation and report button", 1);
+        waitElement("credit application observation and report customer no button", timeout, 1);
+        enterText("5426", "credit application observation and report customer no button", 1);
+        waitElement("credit application observation and report search and list button", timeout, 1);
+        clickElement("credit application observation and report search and list button", 1);
+        readTheReferenceNumber(" credit application observation and report transaction reference number text area",1);
+    }
+    @Then("I have to do usage control money transfer")
+    public void creditUsageControlMoneyTransfer(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        waitElement("sender bank button", timeout, 1);
+        clickElement("sender bank button", 1);
+        selectElement("T.C MERKEZ BANKASI A.S.","bank code selection",1);
+        dynamicReferenceNumberText(text, "account no text area", 1);
+        waitElement("inquire button for account information", timeout, 1);
+        clickElement("inquire button for account information", 1);
+
+    }
+    @Then("I have to do usage control money transfer approve")
+    public void creditUsageControlMoneyTransferApprove(String text) throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+        dynamicReferenceNumberText(text, "reference number area", 1);
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+
     }
 }
+
+

@@ -1,5 +1,7 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Application
 
+#Bu feature dosyasında senaryo 1 - TC001 ve TC002 için step defs'te kodlandı. Gherkin cümlesi var.
+
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page

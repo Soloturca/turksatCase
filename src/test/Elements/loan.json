@@ -456,6 +456,9 @@
         },
         {
           "transaction description text area": "//textarea[@orionid='commentDetail']"
+        },
+        {
+          "credit amount text area": "//input[@orionid='demandAmount']"
         }
       ]
     }

@@ -1,4 +1,8 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
+    #This feature includes these steps:
+  #1.) E2E Pricing - TC001
+  # 2.) E2E Pricing -TC002
+  # 3.) E2E Pricing - TC003
 
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL

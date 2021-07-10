@@ -1,5 +1,11 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
-#
+#  This feature includes these steps:
+#1.) E2E Credit Management - TC001
+#2.) E2E Work Flow - TC002
+# 3.) E2E Work Flow - TC005
+# 4.) E2E Work Flow - TC007
+# 5.) E2E Work Flow - TC008
+
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page

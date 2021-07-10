@@ -1,4 +1,13 @@
 Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
+
+    #This feature includes these steps:
+  #1.) E2E Work Flow - TC001
+  # 2.) E2E Work Flow - TC002
+  # 3.) E2E Work Flow - TC003
+  # 4.) E2E Work Flow - TC004
+  # 5.) E2E Work Flow - TC005
+  # 6.) E2E Work Flow - TC006
+
   Background: System Login & Creating Job for unique reference number
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
