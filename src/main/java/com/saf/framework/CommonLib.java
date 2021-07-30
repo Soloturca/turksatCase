@@ -24,7 +24,6 @@ public class CommonLib extends MyTestNGBaseClass
 {
 	public static WebDriver oDriver;
 	public String page = "common";
-	//hashmap ya da dic.
 	public static String referenceNumber;
 	public static String pricingNo;
 	public static String positiveornegative;
@@ -101,7 +100,6 @@ public class CommonLib extends MyTestNGBaseClass
 					object = oDriver.findElements(By.id(element)).get(index-1);
 					System.out.println("Element found : " + elem);
 				}
-				//reportResult("PASS", "I see " + elem + " element.(element found)", false);
 			}
 			else if(element==null)
 			{
@@ -110,19 +108,22 @@ public class CommonLib extends MyTestNGBaseClass
 
 			if (object==null){
 				System.out.println("Element not found: "+elem);
-				//reportResult("FAIL", "I do not see " + elem + " element.(element not found)", true);
-				Assert.fail("Element not found: "+elem);
+				Assert.fail("Element not found : "+elem);
 			}
-
-			return  object;
+			return object;
 		}
 		catch (Exception e)
 		{
-			System.out.println("Element not found : "+elem);
+			System.out.println("Element not found: "+elem);
+			reportResult("FAIL", "Element could not find: " +elem, true);
 			Assert.fail("Element not found : "+elem);
+
 			return null;
+
 		}
 	}
+
+
 	public String getTheItemValue(String elem, int index){
 		System.out.println(findElement(elem,index).getText());
 		String elementText =(findElement(elem,index).getText());
@@ -166,10 +167,9 @@ public class CommonLib extends MyTestNGBaseClass
 					Thread.sleep(2000);
 				}
 			}
-			//reportResult("PASS", "I see " + element + " element.(element found)", false);
 		} catch (Exception e) {
-			//reportResult("FAIL", "I do not see " + element + " element.(element not found)", true);
 			Assert.fail("Waiting element is not found!");
+			reportResult("FAIL", "Element could not find. ", true);
 		}
 		return null;
 	}

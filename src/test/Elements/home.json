@@ -26,6 +26,9 @@
           "loan button for 3005": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
         },
         {
+          "loan button for 4000": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/a"
+        },
+        {
           "credit button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/a"
         },
         {
@@ -45,6 +48,9 @@
         },
         {
           "reference number text area": "//*[@id=\"modal-title-text\"]/b"
+        },
+        {
+          "job first date area": "//*[@id=\"content\"]/div/div/div/div[2]/div/div[1]/div[1]/div[1]/div[4]/div/input[1]"
         },
         {
           "save button": "//button[@orionid='saveMainGroup']"

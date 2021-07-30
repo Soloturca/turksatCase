@@ -11,6 +11,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 
 import java.util.UUID;
@@ -37,60 +38,74 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @When("^(?:I )?click element: (\\w+(?: \\w+)*) at index (\\d+)")
-    public void clickElement(String element, int index) {
+    public boolean clickElement(String element, int index) {
         WebElement object = commonLib.findElement(element, index);
-
+        boolean flag = false;
         try {
             if (object != null) {
                 object.click();
                 System.out.println("Clicked on object-->" + element);
-                reportResult("PASS", "I click " + element + " element.(element found)", false);
-            } else {
-                System.out.println("Could not click on object-->" + element);
+                reportResult("PASS", "I clicked the element: " + element, true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not click " + element + " element.(element not found)", true);
+            reportResult("FAIL", "I cannot clicked the element: " + element, true);
+            Assert.fail("Could not clicked the element:" + element);
+            flag = false;
         }
+        return flag;
     }
 
+
     @Then("^I enter \"([^\"]*)\" text to (.*) at index (\\d+)")
-    public void enterText(String text, String element, int index) throws InterruptedException {
-        //mouseHover(element);
+    public boolean enterText(String text, String element, int index) throws InterruptedException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
-
+        boolean flag = false;
         try {
             if (object != null) {
                 object.sendKeys(text);
-                System.out.println("The text has been entered.");
-                reportResult("PASS", "I entered the text ", false);
+                System.out.println("The text has been entered:" + text);
+                reportResult("PASS", "I entered the text: " + text, true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not entered the text ", true);
+            reportResult("FAIL", "I cannot entered the element: " + text, true);
+            Assert.fail("Could not entered the text:" + text);
+            flag = false;
         }
+        return flag;
     }
 
+
     @Then("^I enter unique text to (.*) at index (\\d+)")
-    public void uniqueText(String element, int index) throws InterruptedException {
+    public boolean uniqueText(String element, int index) throws InterruptedException {
         //mouseHover(element);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
         String text = "automation" + uuid;
+        boolean flag = false;
         try {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The text has been entered.");
-                reportResult("PASS", "I entered the text ", false);
+                reportResult("PASS", "I entered the text: " + text, true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not entered the text ", true);
+            reportResult("FAIL", "I cannot entered the element: " + text, true);
+            Assert.fail("Could not entered the text:" + text);
+            flag = false;
         }
+        return flag;
     }
 
+
     @Then("^I clear text to (.*) at index (\\d+)")
-    public void clearText(String element, int index) throws InterruptedException {
+    public boolean clearText(String element, int index) throws InterruptedException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
         try {
             if (object != null) {
                 object.click();
@@ -99,38 +114,46 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.DELETE);
                 Thread.sleep(1000);
                 System.out.println("The text has been deleted.");
-                reportResult("PASS", "I deleted the text ", false);
+                reportResult("PASS", "The text has been deleted.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not deleted the text ", true);
+            System.out.println("The text has not been deleted.");
+            reportResult("FAIL", "The text has not been deleted", true);
+            Assert.fail("Waiting element is not found!");
+            flag = false;
         }
-
+        return flag;
     }
 
     @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
+
     }
 
     @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*) at index (\\d+)")
-    public void selectElement(String text, String element, int index) {
+    public boolean selectElement(String text, String element, int index) {
         WebElement object = commonLib.findElement(element, index);
+        boolean flag = false;
         try {
             if (object != null) {
                 object.click();
                 System.out.println("Select the object type-->" + text + element);
-                reportResult("PASS", "I selected " + element + " element.(element selected)", false);
-
                 Select select = new Select(object);
                 select.selectByVisibleText(text);
-
-            } else {
-                System.out.println("Could not select the object type-->" + element);
+                reportResult("PASS", "The selection is done.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not select " + element + " element.(element not selected)", true);
+            System.out.println("The selection cannot be done.");
+            reportResult("FAIL", "The selection cannot be done.", true);
+            Assert.fail("The selection cannot be done!");
+            flag = false;
         }
+        return flag;
     }
+
 
     @And("^I need to just wait")
     public void justWait() throws InterruptedException {
@@ -160,9 +183,10 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("^(?:I )?get the information by copying the value from: (\\w+(?: \\w+)*) at index (\\d+)")
-    public void copyElement(String element, int index) throws InterruptedException {
+    public boolean copyElement(String element, int index) throws InterruptedException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
         try {
             if (object != null) {
                 object.click();
@@ -170,17 +194,25 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.CONTROL, "c");
                 Thread.sleep(1000);
                 System.out.println("The text has been copied.");
-                reportResult("PASS", "I copied the text ", false);
+                reportResult("PASS", "The text has been copied.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not copied the text ", true);
+            System.out.println("The copy action cannot be done.");
+            reportResult("FAIL", "The copy action cannot be done.", true);
+            Assert.fail("The copy action cannot be done!");
+            flag = false;
+
         }
+        return flag;
     }
 
+
     @Then("^(?:I )?copy the information by copying the value to: (\\w+(?: \\w+)*) at index (\\d+)")
-    public void pasteElement(String element, int index) throws InterruptedException {
+    public boolean pasteElement(String element, int index) throws InterruptedException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
         try {
             if (object != null) {
                 object.click();
@@ -188,11 +220,17 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.CONTROL, "v");
                 Thread.sleep(1000);
                 System.out.println("The text has been pasted.");
-                reportResult("PASS", "I pasted the text ", false);
+                reportResult("PASS", "The text has been pasted.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not pasted the text ", true);
+            System.out.println("The paste action cannot be done.");
+            reportResult("FAIL", "The paste action cannot be done.", true);
+            Assert.fail("The paste action cannot be done!");
+            flag = false;
+
         }
+        return flag;
     }
 
 
@@ -204,39 +242,52 @@ public class StepDefs extends MyTestNGBaseClass {
 
 
     @Then("^I enter my reference: \"([^\"]*)\" text to (.*) at index (\\d+)")
-    public void dynamicReferenceNumberText(String text, String element, int index) throws InterruptedException {
+    public boolean dynamicReferenceNumberText(String text, String element, int index) throws InterruptedException {
         text = commonLib.referenceNumber;
         System.out.println(text);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
 
         try {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The reference number:" + text + " " + "has been entered.");
-                reportResult("PASS", "I entered the text ", false);
+                reportResult("PASS", "The reference number:" + text + " " + "has not been entered.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not entered the text ", true);
+            System.out.println("The reference number:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The reference number:" + text + " " + "has not been entered.", true);
+            Assert.fail("The reference number has not been entered!");
+            flag = false;
+
         }
+        return flag;
     }
 
     @Then("^I enter my pricing no: \"([^\"]*)\" text to (.*) at index (\\d+)")
-    public void dynamicPricingNoText(String text, String element, int index) throws InterruptedException {
+    public boolean dynamicPricingNoText(String text, String element, int index) throws InterruptedException {
         text = commonLib.pricingNo;
         System.out.println(text);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
-
+        boolean flag = false;
         try {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The Pricing No number:" + text + " " + "has been entered.");
-                reportResult("PASS", "I entered the text ", false);
+                reportResult("PASS", "The Pricing No:" + text + " " + "has not been entered.", true);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not entered the text ", true);
+            System.out.println("The Pricing No number:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The Pricing No number:" + text + " " + "has not been entered.", true);
+            Assert.fail("The Pricing No has not been entered!");
+            flag = false;
+
         }
+        return flag;
     }
 
     @Then("^(?:I )?get the item value: (\\w+(?: \\w+)*)")
@@ -246,12 +297,13 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("^The item value is changed to \"([^\"]*)\" under (.*)$")
-    public void oppositeOption(String text, String element) throws InterruptedException {
+    public boolean oppositeOption(String text, String element) throws InterruptedException {
 
         text = commonLib.itemValue;
         System.out.println(text);
         WebElement object;
         object = commonLib.waitElement(element, timeout, 1);
+        boolean flag = false;
 
         Select select = new Select(object);
         object.click();
@@ -267,20 +319,19 @@ public class StepDefs extends MyTestNGBaseClass {
                 }
 
                 reportResult("PASS", "I changed the option ", false);
+                return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I do not change the option ", true);
+            Assert.fail("Could not change the option!");
+            reportResult("FAIL", "Could not change the option", true);
+            flag = false;
         }
+        return flag;
     }
-    //oluşan krediyi tutmamız lazım.
-    //hashmap
-    // if(tutar<450.000){test 0003>ilgili adımlar}
-    //elseif(450.000<tutar<1.000.000)){test0004>>ilgili adımlar}
-    //else{test0005>>ilgili adımları)
 
     @Given("I go to \"([^\"]*)\" with this username: \"([^\"]*)\" and this password:\"([^\"]*)\"")
     public void loginSystem(String URL, String username, String password) throws InterruptedException {
-        checkURLControl(URL);
+        openUrl(URL);
         seePage("login");
         enterText(username, "username text area", 1);
         enterText(password, "password text area", 1);
@@ -312,15 +363,16 @@ public class StepDefs extends MyTestNGBaseClass {
     //43. Kredi Kullandırım - TC001
 
     @Then("I have to create a credit by credit amount:\"([^\"]*)\" for customer:\"([^\"]*)\"")
-    public void createCredit(String amount,String customerNo) throws InterruptedException {
-        waitElement("loan button", timeout, 1);
-        clickElement("loan button", 1);
+    public void createCredit(String amount, String customerNo) throws InterruptedException {
+        waitElement("loan button for 4000", timeout, 1);
+        clickElement("loan button for 4000", 1);
         seePage("loan");
         waitElement("application button", timeout, 1);
         clickElement("application button", 1);
         waitElement("credit application introduction button", timeout, 1);
         clickElement("credit application introduction button", 1);
         enterText(customerNo, "customer no-new application text area", 1);
+
         clickElement("closeview", 1);
         waitElement("row button", timeout, 27);
         clickElement("row button", 27);
@@ -538,39 +590,33 @@ public class StepDefs extends MyTestNGBaseClass {
 
     }
 
-
-    @Then("I have to evaluate for the credit")
-    public void evaulateCredit(String text, String amount) throws InterruptedException {
+    @Then("I have to evaluate for the credit for kurumsal")
+    public void evaulateCreditForKurumsal() throws InterruptedException {
         clickElement("workflow management button", 1);
         seePage("workflowManagement");
         waitElement("jobs pending on my list button", timeout, 1);
         clickElement("jobs pending on my list button", 1);
-        dynamicReferenceNumberText(text, "reference number area", 1);
+
+        enterText("20210713-00042", "reference number area", 1);
+        //dynamicReferenceNumberText(text, "reference number area", 1);
+
         waitElement("inquire button", timeout, 1);
         clickElement("inquire button", 1);
         clickElement("row button", 1);
         waitElement("warning popup", timeout, 1);
         clickElement("yes button", 1);
-        waitElement("approve button", timeout, 1);
-        clickElement("approve button", 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
         justWait();
-        waitElement("close button", timeout, 1);
-        clickElement("close button", 1);
         seePage("loan");
-        waitElement("customer information tab area", timeout, 1);
+        waitElement("customer information tab continue button", timeout, 1);
         clickElement("customer information tab continue button", 1);
-        waitElement("external agency inquiry tab area ", timeout, 1);
+        waitElement("external agency inquiry tab continue button", timeout, 1);
         clickElement("external agency inquiry tab continue button", 1);
-        waitElement("FINCO observation tab area", timeout, 1);
-        //BURADA AMOUNT KONTROLÜ!
-        getTheElementInformationForCreditAmount("credit amount text area", 1);
+        waitElement("FINCO observation tab continue button", timeout, 1);
+        clickElement("FINCO observation tab continue button", 1);
 
-        clickElement("FINCO observation tab continue button", 1);
-        waitElement("Financial information tab area", timeout, 1);
-        clickElement("FINCO observation tab continue button", 1);
+        waitElement("calculate button for financial info", timeout, 1);
         clickElement("calculate button for financial info", 1);
+
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
         waitElement("save button for financial info", timeout, 1);
@@ -578,14 +624,14 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
 
-        waitElement("calculate button for consolidated", timeout, 1);
-        clickElement("calculate button for consolidated", 1);
-        waitElement("close button for financial info", timeout, 1);
-        clickElement("close button for financial info", 1);
-        waitElement("save button for consolidated", timeout, 1);
-        clickElement("save button for consolidated", 1);
-        waitElement("close button for financial info", timeout, 1);
-        clickElement("close button for financial info", 1);
+        //waitElement("calculate button for consolidated", timeout, 1);
+        //clickElement("calculate button for consolidated", 1);
+        //waitElement("close button for financial info", timeout, 1);
+        // clickElement("close button for financial info", 1);
+        //waitElement("save button for consolidated", timeout, 1);
+        //clickElement("save button for consolidated", 1);
+        //waitElement("close button for financial info", timeout, 1);
+        //clickElement("close button for financial info", 1);
         selectElement("YMM", "signature area 1", 1);
         selectElement("YMM", "signature area 2", 1);
         selectElement("YMM", "signature area 3", 1);
@@ -639,6 +685,105 @@ public class StepDefs extends MyTestNGBaseClass {
 
 
     }
+
+    @Then("I have to evaluate for the credit for GKT")
+    public void evaulateCreditForGKT() throws InterruptedException {
+        clickElement("workflow management button", 1);
+        seePage("workflowManagement");
+        waitElement("jobs pending on my list button", timeout, 1);
+        clickElement("jobs pending on my list button", 1);
+
+        enterText("20210713-00023", "reference number area", 1);
+        clickElement("job first date area", 1);
+        enterText("01", "job first date area", 1);
+        //dynamicReferenceNumberText(text, "reference number area", 1);
+
+        waitElement("inquire button", timeout, 1);
+        clickElement("inquire button", 1);
+        clickElement("row button", 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("yes button", 1);
+        justWait();
+        seePage("loan");
+        waitElement("customer information tab continue button", timeout, 1);
+        clickElement("customer information tab continue button", 1);
+        waitElement("external agency inquiry tab continue button", timeout, 1);
+        clickElement("external agency inquiry tab continue button", 1);
+        waitElement("FINCO observation tab continue button", timeout, 1);
+        clickElement("FINCO observation tab continue button", 1);
+
+        waitElement("calculate button for financial info", timeout, 1);
+        clickElement("calculate button for financial info", 1);
+
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("save button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+
+        //waitElement("calculate button for consolidated", timeout, 1);
+        //clickElement("calculate button for consolidated", 1);
+        //waitElement("close button for financial info", timeout, 1);
+        // clickElement("close button for financial info", 1);
+        //waitElement("save button for consolidated", timeout, 1);
+        //clickElement("save button for consolidated", 1);
+        //waitElement("close button for financial info", timeout, 1);
+        //clickElement("close button for financial info", 1);
+        selectElement("YMM", "signature area 1", 1);
+        selectElement("YMM", "signature area 2", 1);
+        selectElement("YMM", "signature area 3", 1);
+        selectElement("YMM", "signature area 4", 1);
+
+        clickElement("calculate button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+
+        waitElement("financial information tab continue button", timeout, 1);
+        clickElement("financial information tab continue button", 1);
+        waitElement("evaluation tab area", timeout, 1);
+        clickElement("evaluation tab continue button", 1);
+
+        waitElement("documents tab area", timeout, 1);
+        clickElement("documents tab continue button", 1);
+        waitElement("opinion and decision tab area", timeout, 1);
+        clearText("approved due date text area", 1);
+        enterText("1", "approved due date text area", 1);
+        clearText("approved amount text area", 1);
+        enterText("1", "approved amount text area", 1);
+
+        waitElement("create payment plan button", timeout, 1);
+        clickElement("create payment plan button", 1);
+        waitElement("create payment plan section button", timeout, 1);
+        clickElement("create payment plan section button", 1);
+        waitElement("create payment plan button", timeout, 1);
+        clickElement("create payment plan button", 1);
+        waitElement("save button for payment plan", timeout, 1);
+        clickElement("save button for payment plan", 1);
+        waitElement("save button for financial info", timeout, 1);
+        clickElement("save button for financial info", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("approve button", timeout, 1);
+        clickElement("approve button", 1);
+        enterText("TEST", "transaction confirmation note text area", 1);
+        waitElement("send approve button", timeout, 1);
+        clickElement("send approve button", 1);
+        waitElement("close button", timeout, 1);
+        clickElement("close button", 1);
+
+        /*    if (commonLib.creditAmount < 450000) {
+           approveCreditUnder();
+        } else if (450000< commonLib.creditAmount &&  commonLib.creditAmount<1000000) {
+            approveCreditBetween();
+        } else {
+            approveCreditAbove();
+        }*/
+
+
+    }
+
 
     @Then("I have to approve for the credit of under 450.000TL")
     public void approveCreditUnder(String text) throws InterruptedException {
@@ -745,8 +890,8 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("yes button", 1);
         waitElement("approve button", timeout, 1);
         clickElement("approve button", 1);
-        enterText("TEST","transaction confirmation note text area",1);
-        enterText("TEST","transaction description text area",1);
+        enterText("TEST", "transaction confirmation note text area", 1);
+        enterText("TEST", "transaction description text area", 1);
         waitElement("send approve button", timeout, 1);
         clickElement("send approve button", 1);
         waitElement("close button", timeout, 1);
@@ -806,8 +951,8 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("yes button", 1);
         waitElement("approve button", timeout, 1);
         clickElement("approve button", 1);
-        enterText("TEST","transaction confirmation note text area",1);
-        enterText("TEST","transaction description text area",1);
+        enterText("TEST", "transaction confirmation note text area", 1);
+        enterText("TEST", "transaction description text area", 1);
         waitElement("send approve button", timeout, 1);
         clickElement("send approve button", 1);
         waitElement("close button", timeout, 1);
@@ -816,8 +961,6 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("close system button", 1);
         waitElement("warning popup ", timeout, 1);
         clickElement("yes button", 1);
-
-
     }
 
     @Then("I have to do usage control for the credit")
@@ -858,6 +1001,7 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("close button", 1);
 
     }
+
     @Then("I have to do usage control and observation for the document")
     public void creditUsageControlObservation(String text) throws InterruptedException {
         waitElement("credit button", timeout, 1);
@@ -871,8 +1015,9 @@ public class StepDefs extends MyTestNGBaseClass {
         enterText("5426", "credit application observation and report customer no button", 1);
         waitElement("credit application observation and report search and list button", timeout, 1);
         clickElement("credit application observation and report search and list button", 1);
-        readTheReferenceNumber(" credit application observation and report transaction reference number text area",1);
+        readTheReferenceNumber(" credit application observation and report transaction reference number text area", 1);
     }
+
     @Then("I have to do usage control money transfer")
     public void creditUsageControlMoneyTransfer(String text) throws InterruptedException {
         clickElement("workflow management button", 1);
@@ -892,12 +1037,13 @@ public class StepDefs extends MyTestNGBaseClass {
         justWait();
         waitElement("sender bank button", timeout, 1);
         clickElement("sender bank button", 1);
-        selectElement("T.C MERKEZ BANKASI A.S.","bank code selection",1);
+        selectElement("T.C MERKEZ BANKASI A.S.", "bank code selection", 1);
         dynamicReferenceNumberText(text, "account no text area", 1);
         waitElement("inquire button for account information", timeout, 1);
         clickElement("inquire button for account information", 1);
 
     }
+
     @Then("I have to do usage control money transfer approve")
     public void creditUsageControlMoneyTransferApprove(String text) throws InterruptedException {
         clickElement("workflow management button", 1);

@@ -1,7 +1,5 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAHSİLAT
 
-  #Haftaiçi bitireceğim.
-
   @Finco
   Scenario: TC001 -E2E Collection Transactions controls - PAID ON DATE
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL

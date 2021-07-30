@@ -6,7 +6,7 @@
 		<protocol>https</protocol>
 		<theme>dark</theme>
 		<documentTitle>Automation Report</documentTitle>
-		<reportName>Amdocs Automation | Test Automation Report</reportName>
+		<reportName>Finco Team Automation | Test Automation Report</reportName>
 		<reportHeadline></reportHeadline>
 		<dateFormat>yyyy-MM-dd</dateFormat>
 		<timeFormat>HH:mm:ss</timeFormat>

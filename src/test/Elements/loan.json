@@ -227,7 +227,7 @@
         },
 
         {
-          "application button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[1]/a"
+          "application button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[1]/a"
         },
         {
           "credit application introduction button": "//a[contains(@data-href,'/finance/creditapplication/js/creditApplication.js')]"
