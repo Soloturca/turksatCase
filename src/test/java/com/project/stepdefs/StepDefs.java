@@ -12,11 +12,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import utils.excelutils.ExcelUtils;
 
 
 import java.util.UUID;
 
 public class StepDefs extends MyTestNGBaseClass {
+    ExcelUtils excelUtils = new ExcelUtils();
     CommonLib commonLib = new CommonLib();
     int timeout = 30;
     public String uuid = UUID.randomUUID().toString();
@@ -352,6 +354,80 @@ public class StepDefs extends MyTestNGBaseClass {
         else {
             throw new InterruptedException("Your page is already opened. You cannot open the URL one more time.");
         }
+    }
+
+
+    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean getExcelValue(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
+        String text = excelUtils.ReadCellData(4, 0);
+        boolean flag = false;
+
+        try {
+            if (object != null) {
+                object.sendKeys(text);
+                System.out.println("The excel value:" + text + " " + "has been entered.");
+                reportResult("PASS", "The excel value:" + text + " " + "has not been entered.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("The reference number:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
+            Assert.fail("The excel value has not been entered!");
+            flag = false;
+
+        }
+        return flag;
+    }
+
+    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
+    public boolean verifyClientDataForTCKN (String element, int index) {
+        String TCKNExcel = excelUtils.ReadCellData(4, 1);
+        System.out.println(TCKNExcel);
+
+        String TCKN = commonLib.getTheItemValueFromAttribute(element,index);
+        System.out.println(TCKN);
+        boolean flag = false;
+
+        try {
+
+            if(TCKN.equals(TCKNExcel)) {
+                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
+                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
+            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
+            Assert.fail("The values are not match with each other!");
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
+    public boolean verifyClientDataForTitle (String element, int index) {
+        String TCKNExcel = excelUtils.ReadCellData(4, 0);
+        System.out.println(TCKNExcel);
+
+        String Name = commonLib.getTheItemValue(element,index);
+        System.out.println(Name);
+        boolean flag = false;
+
+        try {
+
+            if(Name.equals(TCKNExcel)) {
+                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
+                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
+            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
+            Assert.fail("The values are not match with each other!");
+            flag = false;
+        }
+        return flag;
     }
 
     //******************************* FINCO TEST STEPS ********************************//
@@ -730,15 +806,17 @@ public class StepDefs extends MyTestNGBaseClass {
         //clickElement("save button for consolidated", 1);
         //waitElement("close button for financial info", timeout, 1);
         //clickElement("close button for financial info", 1);
-        selectElement("YMM", "signature area 1", 1);
-        selectElement("YMM", "signature area 2", 1);
-        selectElement("YMM", "signature area 3", 1);
-        selectElement("YMM", "signature area 4", 1);
 
-        clickElement("calculate button for financial info", 1);
-        waitElement("close button for financial info", timeout, 1);
-        waitElement("save button for financial info", timeout, 1);
-        clickElement("close button for financial info", 1);
+        //selectElement("YMM", "signature area 1", 1);
+        //selectElement("YMM", "signature area 2", 1);
+        //selectElement("YMM", "signature area 3", 1);
+        //selectElement("YMM", "signature area 4", 1);
+        //
+        //clickElement("calculate button for financial info", 1);
+        //waitElement("close button for financial info", timeout, 1);
+        //waitElement("save button for financial info", timeout, 1);
+        //clickElement("save button for financial info", 1);
+        //clickElement("close button for financial info", 1);
 
         waitElement("financial information tab continue button", timeout, 1);
         clickElement("financial information tab continue button", 1);
@@ -748,10 +826,12 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("documents tab area", timeout, 1);
         clickElement("documents tab continue button", 1);
         waitElement("opinion and decision tab area", timeout, 1);
-        clearText("approved due date text area", 1);
-        enterText("1", "approved due date text area", 1);
+        clickElement("approved maturity text area", 1);
+        clearText("approved maturity text area", 1);
+        enterText("2", "approved maturity text area", 1);
+        clickElement("approved amount text area",1);
         clearText("approved amount text area", 1);
-        enterText("1", "approved amount text area", 1);
+        enterText("20000", "approved amount text area", 1);
 
         waitElement("create payment plan button", timeout, 1);
         clickElement("create payment plan button", 1);
@@ -768,18 +848,19 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("approve button", timeout, 1);
         clickElement("approve button", 1);
         enterText("TEST", "transaction confirmation note text area", 1);
-        waitElement("send approve button", timeout, 1);
-        clickElement("send approve button", 1);
-        waitElement("close button", timeout, 1);
-        clickElement("close button", 1);
+        //waitElement("send approve button", timeout, 1);
+        //clickElement("send approve button", 1);
+        //waitElement("close button", timeout, 1);
+        //clickElement("close button", 1);
 
-        /*    if (commonLib.creditAmount < 450000) {
-           approveCreditUnder();
-        } else if (450000< commonLib.creditAmount &&  commonLib.creditAmount<1000000) {
-            approveCreditBetween();
-        } else {
-            approveCreditAbove();
-        }*/
+    /*    if (commonLib.creditAmount < 450000) {
+       approveCreditUnder();
+    } else if (450000< commonLib.creditAmount &&  commonLib.creditAmount<1000000) {
+        approveCreditBetween();
+    } else {
+        approveCreditAbove();
+    }*/
+
 
 
     }

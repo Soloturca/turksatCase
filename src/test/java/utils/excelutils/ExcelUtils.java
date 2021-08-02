@@ -1,7 +1,9 @@
-package com.saf.framework;//reading value of a particular cell
+package utils.excelutils;//reading value of a particular cell
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import com.saf.framework.MyTestNGBaseClass;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel. * ;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -15,7 +17,7 @@ public class ExcelUtils extends MyTestNGBaseClass {
         Workbook wbook = null; //initialize Workbook null
         try {
             //reading data from a file in the form of bytes
-            FileInputStream fis = new FileInputStream("V:\\Test_Servis_Yonetimi_Mudurlugu_II\\FINCO \\Otomasyon.xlsx");
+            FileInputStream fis = new FileInputStream("src/test/java/resources/Müşteri Numaraları.xlsx");
             //creates an XSSFWorkbook object by buffering the whole stream into the memory
             wbook = new XSSFWorkbook(fis);
         }
@@ -32,16 +34,34 @@ public class ExcelUtils extends MyTestNGBaseClass {
         Cell cell = row.getCell(vColumn);
         //getting the cell representing the given column
         value = String.valueOf(cell.getNumericCellValue());
+
+        DataFormatter formatter = new DataFormatter();
+        value = formatter.formatCellValue(cell);
+        return value;
+
+        //String value2=value.replace(".0","");
+        //return value2;
+
+
+        //DataFormatter formatter = new DataFormatter();
+       //value = formatter.formatCellValue(cell);
+
+        /*        value = String.valueOf(cell.getNumericCellValue());
+        if(value.contains(".0")){
+            value.s
+        }
         //getting cell value
         return value;
-        //returns the cell value
+        //returns the cell value*/
+
+
     }
     public String ReadCellDataString(int vRow, int vColumn) {
         String value = null; //variable for storing the cell value
         Workbook wbook = null; //initialize Workbook null
         try {
             //reading data from a file in the form of bytes
-            FileInputStream fis = new FileInputStream("V:\\Test_Servis_Yonetimi_Mudurlugu_II\\FINCO \\Otomasyon.xlsx");
+            FileInputStream fis = new FileInputStream("src/test/java/resources/Müşteri Numaraları.xlsx");
             //creates an XSSFWorkbook object by buffering the whole stream into the memory
             wbook = new XSSFWorkbook(fis);
         }

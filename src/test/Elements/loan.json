@@ -122,6 +122,15 @@
         {
           "maturity range second area": "//input[@orionid='maxMaturity']"
         },
+
+        {
+          "approved amount text area": "//*/div[1]/div/div/div/table/tbody/tr[1]/td[9]"
+        },
+        {
+          "approved maturity text area" : "//*/div[1]/div/div/div/table/tbody/tr[1]/td[6]"
+        },
+
+
         {
           "amount range first area": "//input[@orionid='minAmount']"
         },

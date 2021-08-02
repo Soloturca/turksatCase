@@ -124,13 +124,21 @@ public class CommonLib extends MyTestNGBaseClass
 	}
 
 
-	public String getTheItemValue(String elem, int index){
-		System.out.println(findElement(elem,index).getText());
-		String elementText =(findElement(elem,index).getText());
-		this.itemValue=elementText;
+	public String getTheItemValueFromAttribute(String elem, int index){
+		String elementText =(findElement(elem,index).getAttribute("value"));
 		System.out.println(elementText);
+		this.itemValue=elementText;
+		System.out.println(itemValue);
 		return elementText;
 	}
+	public String getTheItemValue(String elem, int index){
+	String elementText =(findElement(elem,index).getText());
+	System.out.println(elementText);
+	this.itemValue=elementText;
+	System.out.println(itemValue);
+	return elementText;
+}
+
 
 	public String seePage(String page) {
 		List<String> returnValue = parser.isPageExist(page);

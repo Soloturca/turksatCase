@@ -11,6 +11,9 @@
           "customer group management button": "//a[contains(@data-href,'/finance/customer/js/customerGroupManagementPage.js')]"
         },
         {
+          "customer management button": "//a[contains(@data-href,'/finance/customer/js/customerManagementPage.js')]"
+        },
+        {
           "add new main group button": "//button[@orionid='addMainGroup']"
         },
         {
@@ -18,6 +21,42 @@
         },
         {
           "subgroup name text area": "//input[@orionid='firstSubGroupName']"
+        },
+        {
+          "customer code text area": "//input[@orionid='customerCode']"
+        },
+        {
+          "search button": "//button[@orionid='btnSearchStep1']"
+        },
+        {
+          "TCKN text area": "//input[@orionid='tcNo']"
+        },
+        {
+          "VKN text area": "//input[@orionid='taxNo']"
+        },
+        {
+          "name title text area": "//legend[@orionid='lgdNameTitle']"
+        },
+        {
+          "next button": "//button[@orionid='btnNextStep_1']"
+        },
+        {
+          "contact information section area": "//li[@data-title='İletişim Bilgileri']"
+        },
+        {
+          "telephone information area": "//*[@id=\"step3\"]/div/div/div/div[1]/div/div[2]/h5"
+        },
+        {
+          "new button": "//button[@orionid='new']"
+        },
+        {
+          "telephone number text area": "//input[@orionid='phoneNumberTR']"
+        },
+        {
+          "add button": "//button[@orionid='add']"
+        },
+        {
+          "city value text area": "//*/div[1]/div/div/div/table/tbody/tr[2]/td[5]"
         }
       ]
     }
