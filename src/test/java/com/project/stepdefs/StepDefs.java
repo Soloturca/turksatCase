@@ -11,10 +11,13 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.sikuli.script.FindFailed;
 import org.testng.Assert;
 import utils.excelutils.ExcelUtils;
 
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.UUID;
 
 public class StepDefs extends MyTestNGBaseClass {
@@ -381,17 +384,17 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
-    public boolean verifyClientDataForTCKN (String element, int index) {
+    public boolean verifyClientDataForTCKN(String element, int index) {
         String TCKNExcel = excelUtils.ReadCellData(4, 1);
         System.out.println(TCKNExcel);
 
-        String TCKN = commonLib.getTheItemValueFromAttribute(element,index);
+        String TCKN = commonLib.getTheItemValueFromAttribute(element, index);
         System.out.println(TCKN);
         boolean flag = false;
 
         try {
 
-            if(TCKN.equals(TCKNExcel)) {
+            if (TCKN.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
             }
@@ -406,17 +409,17 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
-    public boolean verifyClientDataForTitle (String element, int index) {
+    public boolean verifyClientDataForTitle(String element, int index) {
         String TCKNExcel = excelUtils.ReadCellData(4, 0);
         System.out.println(TCKNExcel);
 
-        String Name = commonLib.getTheItemValue(element,index);
+        String Name = commonLib.getTheItemValue(element, index);
         System.out.println(Name);
         boolean flag = false;
 
         try {
 
-            if(Name.equals(TCKNExcel)) {
+            if (Name.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
             }
@@ -428,6 +431,40 @@ public class StepDefs extends MyTestNGBaseClass {
             flag = false;
         }
         return flag;
+    }
+
+    @Then("^(?:I )?I need to checkbox verify for (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean verifyCheckbox(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
+        boolean flag = false;
+        try {
+            if (object.isSelected()) {
+                System.out.println("The checkbox is selection state is - " + object.isSelected());
+                reportResult("PASS", "I selected the checkbox: " + element, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I cannot selected the checkbox: " + element, true);
+            Assert.fail("Could not selected the checkbox:" + element);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^(?:I )?upload the file \"([^\"]*)\" using the: (\\w+(?: \\w+)*) at index (\\d+)")
+    public void uploadFile(String text, String element, int index) throws IOException, InterruptedException, FindFailed, AWTException, IOException {
+
+        WebElement object;
+        object = commonLib.findElement(element, index);
+        object.click();
+        Thread.sleep(5000);
+
+        System.out.println("aa.txt is uploading.");
+        String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
+        Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+        Thread.sleep(5000);
+
+
     }
 
     //******************************* FINCO TEST STEPS ********************************//
@@ -829,7 +866,7 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("approved maturity text area", 1);
         clearText("approved maturity text area", 1);
         enterText("2", "approved maturity text area", 1);
-        clickElement("approved amount text area",1);
+        clickElement("approved amount text area", 1);
         clearText("approved amount text area", 1);
         enterText("20000", "approved amount text area", 1);
 
@@ -860,7 +897,6 @@ public class StepDefs extends MyTestNGBaseClass {
     } else {
         approveCreditAbove();
     }*/
-
 
 
     }

@@ -53,10 +53,124 @@
           "telephone number text area": "//input[@orionid='phoneNumberTR']"
         },
         {
-          "add button": "//button[@orionid='add']"
+          "address new button": "//button[@orionid='orion-id-061']"
+        },
+        {
+          "telephone new button": "//button[@orionid='new']"
+        },
+        {
+          "telephone add button": "//button[@orionid='add']"
         },
         {
           "city value text area": "//*/div[1]/div/div/div/table/tbody/tr[2]/td[5]"
+        },
+        {
+          "address type selection": "//select[@orionid='type']"
+        },
+        {
+          "country selection": "//select[@orionid='country']"
+        },
+        {
+          "city selection": "//select[@orionid='cityCode']"
+        },
+        {
+          "town selection": "//select[@orionid='countyCode']"
+        },
+        {
+          "district selection": "//select[@orionid='districtCode']"
+        },
+        {
+          "CSBM selection": "//select[@orionid='csbmCode']"
+        },
+        {
+          "building selection": "//select[@orionid='buildingCode']"
+        },
+        {
+          "department selection": "//select[@orionid='departmantCode']"
+        },
+        {
+          "priority address button": "//label[@class='orion-switch']"
+        },
+        {
+          "priority address checkbox": "//input[@class='htCheckboxRendererInput']"
+        },
+        {
+          "address add button": "//button[@orionid='orion-id-063']"
+        },
+        {
+          "priority telephone button": "//label[@for='phoneDefault']"
+        },
+        {
+          "priority telephone checkbox": "//input[@class='htCheckboxRendererInput']"
+        },
+        {
+          "detail information section area": "//li[@data-title='Detay Bilgiler']"
+        },
+        {
+          "telephone type selection": "//select[@orionid='type']"
+        },
+        {
+          "telephone warning close button": "//button[@class='btn btn-sm btn-warning']"
+        },
+        {
+          "reason for not verification selection": "//select[@orionid='drdUnConfirmationReason']"
+        },
+        {
+          "reason add button": "//button[@orionid='btnVerify']"
+        },
+        {
+          "permission marketing area": "//*[contains(text(),'İzinli Pazarlama')]"
+        },
+        {
+          "permission marketing no permission button": "//*[contains(text(),'Hayır')]"
+        },
+        {
+          "permission marketing yes permission button": "//*[contains(text(),'Evet')]"
+        },
+        {
+          "financial information area": "//*[contains(text(),'Mali Bilgiler')]"
+        },
+        {
+          "number of employees text area": "//input[@orionid='numberOfEmployees']"
+        },
+        {
+          "declaration endorsement text area": "//input[@orionid='declarationEndorsement']"
+        },
+        {
+          "email information area": "//*[contains(text(),'E-mail Bilgileri')]"
+        },
+        {
+          "email new button": "//button[@orionid='orion-id-096']"
+        },
+        {
+          "email text area": "//input[@orionid='edEmailAddress']"
+        },
+        {
+          "priority email button": "//label[@for='swcDefaulMailAdress']"
+        },
+        {
+          "priority email checkbox": "//input[@class='htCheckboxRendererInput']"
+        },
+        {
+          "email add button": "//button[@orionid='orion-id-098']"
+        },
+        {
+          "email verification close button": "//*[contains(text(),'Kapat')]"
+        },
+        {
+          "documents section area": "//*[contains(text(),'Döküman')]"
+        },
+        {
+          "save section area": "//li[@link='wzCustomerSave']"
+        },
+        {
+          "save button": "//button[@orionid='btnSaveButton']"
+        },
+        {
+          "close button": "//*[contains(text(),'Kapat')]"
+        },
+        {
+          "warning yes button": "//button[@class='btn btn-sm btn-warning']"
         }
       ]
     }
