@@ -8,6 +8,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -77,6 +78,49 @@ public class StepDefs extends MyTestNGBaseClass {
         } catch (Exception e) {
             reportResult("FAIL", "I cannot entered the element: " + text, true);
             Assert.fail("Could not entered the text:" + text);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I enter a telephone number to (.*) at index (\\d+)")
+    public boolean enterTelephoneNumber(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        String randomNumbers = RandomStringUtils.randomNumeric(7);
+        String phNo = 111 + randomNumbers;
+        try {
+            if (object != null) {
+                object.sendKeys(phNo);
+                System.out.println("The telephone number has been entered:" + phNo);
+                reportResult("PASS", "I entered the telephone number: " + phNo, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I cannot entered the element: " + phNo, true);
+            Assert.fail("Could not entered the telephone number:" + phNo);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I enter a email to (.*) at index (\\d+)")
+    public boolean enterEmail(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        String email = commonLib.getRandomString() + "@example.com";
+        try {
+            if (object != null) {
+                object.sendKeys(email);
+                System.out.println("The email has been entered:" + email);
+                reportResult("PASS", "I entered the email: " + email, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I cannot entered the element: " + email, true);
+            Assert.fail("Could not entered the email:" + email);
             flag = false;
         }
         return flag;
@@ -168,6 +212,26 @@ public class StepDefs extends MyTestNGBaseClass {
     @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) at index (\\d+)")
     public void getTheReferenceNumber(String element, int index) {
         String object = commonLib.getTheElementInformation(element, index);
+    }
+
+    @Then("^(?:I )?get the text area information: (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean getTextFromAttribute(String element, int index) {
+        String object = commonLib.getTheItemValueFromAttribute(element, index);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                System.out.println(object);
+                reportResult("PASS", "I got the information:"+object, true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Could not got the information.");
+            reportResult("FAIL", "Could not got the information.", true);
+            Assert.fail("Could not got the information.");
+            flag = false;
+
+        }
+        return flag;
     }
 
     @Then("^(?:I )?get the credit amount information: (\\w+(?: \\w+)*) at index (\\d+)")

@@ -158,7 +158,10 @@
           "email verification close button": "//*[contains(text(),'Kapat')]"
         },
         {
-          "documents section area": "//*[contains(text(),'Döküman')]"
+          "documents section area": "//li[@data-title='Doküman']"
+        },
+        {
+          "address document upload button": "//i[@class='fa fa-upload htOrionIcon pull-right']"
         },
         {
           "save section area": "//li[@link='wzCustomerSave']"
@@ -171,6 +174,48 @@
         },
         {
           "warning yes button": "//button[@class='btn btn-sm btn-warning']"
+        },
+        {
+          "general information section area": "//li[@data-title='Genel Bilgiler']"
+        },
+        {
+          "created user area": "//input[@orionid='createUserTitle']"
+        },
+        {
+          "created date area": "//input[@orionid='createDate']"
+        },
+        {
+          "tax id no area": "//input[@orionid='vkn']"
+        },
+        {
+          "tax department code area": "//input[@orionid='taxOfficeCode']"
+        },
+        {
+          "tax department name area": "//input[@orionid='taxOfficeName']"
+        },
+        {
+          "company type area": "//input[@orionid='companyType']"
+        },
+        {
+          "title area": "//input[@orionid='title']"
+        },
+        {
+          "GIB start date area": "//input[@orionid='workStartDate']"
+        },
+        {
+          "GIB finish date area": "//input[@orionid='workEndDate']"
+        },
+        {
+          "active abandoned status area": "//input[@orionid='workStatusDescription']"
+        },
+        {
+          "potantial information area": "//input[@orionid='potential']"
+        },
+        {
+          "sector information area": "//input[@orionid='sector']"
+        },
+        {
+          "activity name area": "//input[@orionid='naceCode']"
         }
       ]
     }

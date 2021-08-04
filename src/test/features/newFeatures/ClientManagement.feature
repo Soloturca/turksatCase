@@ -26,9 +26,21 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to TCKN verify for TCKN text area match from Excel file at index 1
     Then I need to Title verify for name title text area match from Excel file at index 1
     When I click element: next button at index 1
+    And I wait general information section area element 30 seconds at index 1
+
+    Then I get the text area information: created user area at index 1
+    Then I get the text area information: created date area at index 1
+    Then I get the text area information: tax id no area at index 1
+    Then I get the text area information: tax department code area at index 1
+    Then I get the text area information: tax department name area at index 1
+    Then I get the text area information: title area at index 1
+    Then I get the text area information: GIB start date area at index 1
+    Then I get the text area information: GIB finish date area at index 1
+
+
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
-    When I get the information: city value text area at index 1
+    Then I get the information: city value text area at index 1
 
     And I wait address new button element 30 seconds at index 1
     When I click element: address new button at index 1
@@ -58,7 +70,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait telephone new button element 30 seconds at index 1
     When I click element: telephone new button at index 1
     When I select element: "CEP TELEFONU" under telephone type selection at index 2
-    Then I enter "1211111111" text to telephone number text area at index 1
+    Then I enter a telephone number to telephone number text area at index 1
     When I click element: priority telephone button at index 1
     When I click element: telephone add button at index 1
     And I wait telephone warning close button element 30 seconds at index 1
@@ -72,7 +84,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I click element: email information area at index 1
     And I wait email new button element 30 seconds at index 1
     When I click element: email new button at index 1
-    Then I enter "exxample@example.com" text to email text area at index 1
+    Then I enter a email to email text area at index 1
     When I click element: priority email button at index 1
     When I click element: email add button at index 1
     Then I need to checkbox verify for priority email checkbox at index 7
@@ -94,6 +106,11 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I clear text to declaration endorsement text area at index 1
     Then I enter "100000" text to declaration endorsement text area at index 1
 
+    And I wait documents section area element 30 seconds at index 1
+    When I click element: documents section area at index 1
+    And I wait address document upload button element 30 seconds at index 3
+    Then I upload the file "aa.txt" using the: address document upload button at index 3
+
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
     And I wait save button element 30 seconds at index 1
@@ -101,3 +118,47 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
 
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+    #5430
+    Then I get the data from Excel file to element: customer code text area at index 1
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1
+    Then I need to Title verify for name title text area match from Excel file at index 1
+    When I click element: next button at index 1
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
+
+    #verify adımları gelecek:
+
+  @Finco
+  Scenario: TC260 - E2E - Client Management - Legal Client Creation
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+    #5430
+    Then I get the data from Excel file to element: customer code text area at index 1
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1
+    Then I need to Title verify for name title text area match from Excel file at index 1
+    When I click element: next button at index 1
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
