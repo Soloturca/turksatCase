@@ -194,7 +194,7 @@
           "tax department name area": "//input[@orionid='taxOfficeName']"
         },
         {
-          "company type area": "//input[@orionid='companyType']"
+          "company type area": "//select[@orionid='companyType']"
         },
         {
           "title area": "//input[@orionid='title']"
@@ -206,16 +206,19 @@
           "GIB finish date area": "//input[@orionid='workEndDate']"
         },
         {
-          "active abandoned status area": "//input[@orionid='workStatusDescription']"
+          "active abandoned status area": "//select[@orionid='workStatusDescription']"
         },
         {
-          "potantial information area": "//input[@orionid='potential']"
+          "potential information area": "//select[@orionid='potential']"
         },
         {
-          "sector information area": "//input[@orionid='sector']"
+          "sector information area": "//select[@orionid='sector']"
         },
         {
-          "activity name area": "//input[@orionid='naceCode']"
+          "activity name area": "//select[@orionid='naceCode']"
+        },
+        {
+          "segment area": "//select[@orionid='segment']"
         }
       ]
     }

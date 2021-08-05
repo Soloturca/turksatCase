@@ -149,6 +149,74 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("^I verify the area (.*) by read only at index (\\d+)")
+    public boolean readOnlyAreaCheck(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+
+        try {
+            if (object != null) {
+                if (!object.isEnabled()) {
+                    System.out.println("The area is a read only area. Cannot be editable.");
+                    reportResult("PASS", "The area is a read only area. Cannot be editable.", true);
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "The area is not a read only area. Can be editable. ", true);
+            Assert.fail("The area is not a read only area. Can be editable.");
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I verify the area (.*) by (.*) by segmentation at index (\\d+)")
+    public boolean segmentationCheck(String element1, String element2, int index) throws InterruptedException {
+        WebElement object1;
+        WebElement object2;
+
+        object1 = commonLib.waitElement(element1, timeout, index);
+        object2 = commonLib.waitElement(element2, timeout, index);
+        boolean flag = false;
+
+        String segmentCode = commonLib.getTheItemValueFromAttribute(element1, index);
+        String ciroInfo = commonLib.getTheItemValueFromAttribute(element2, index);
+        long ciroInfoNum = Long.parseLong(ciroInfo);
+
+        try {
+            if (object1 != null & object2 != null) {
+                if (ciroInfoNum == 0) {
+                    segmentCode.equals("BELİRTİLMEDİ");
+                    System.out.println("Segment Code: NOK");
+                    reportResult("PASS", "Segment Code: NOK", true);
+                } else if (0 < ciroInfoNum & ciroInfoNum < 2000000) {
+                    segmentCode.equals("MİKRO İŞLETME");
+                    System.out.println("Segment Code: Micro Bussiness");
+                    reportResult("PASS", "Segment Code: Micro Company", true);
+                } else if (2000000 < ciroInfoNum & ciroInfoNum <= 10000000) {
+                    segmentCode.equals("KÜÇÜK İŞLETME");
+                    System.out.println("Segment Code: Small Bussiness");
+                    reportResult("PASS", "Segment Code: Small Company", true);
+                } else if (10000000 < ciroInfoNum & ciroInfoNum <= 75000000) {
+                    segmentCode.equals("TİCARİ İŞLETME");
+                    System.out.println("Segment Code: Commercial Company");
+                    reportResult("PASS", "Segment Code: Commercial Company", true);
+                } else {
+                    segmentCode.equals("KURUMSAL İŞLETME");
+                    System.out.println("Segment Code: Corparate Company");
+                    reportResult("PASS", "Segment Code: Corparate Company", true);
+                }
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "Unknown Company. Error. ", true);
+            Assert.fail("Unknown Company. Error.");
+            flag = false;
+        }
+        return flag;
+    }
+
 
     @Then("^I clear text to (.*) at index (\\d+)")
     public boolean clearText(String element, int index) throws InterruptedException {
@@ -221,7 +289,7 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (object != null) {
                 System.out.println(object);
-                reportResult("PASS", "I got the information:"+object, true);
+                reportResult("PASS", "I got the information:" + object, true);
                 return true;
             }
         } catch (Exception e) {
@@ -233,6 +301,7 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
+
 
     @Then("^(?:I )?get the credit amount information: (\\w+(?: \\w+)*) at index (\\d+)")
     public void getTheElementInformationForCreditAmount(String element, int index) {
