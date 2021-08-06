@@ -161,7 +161,22 @@
           "documents section area": "//li[@data-title='Doküman']"
         },
         {
+          "check address area": "//*[contains(text(),'txt') or contains(text(),'PNG')]"
+        },
+        {
+          "address area": "(//*/div[1]/div/div/div/table/tbody/tr[3]/td[3])[2]"
+        },
+        {
           "address document upload button": "//i[@class='fa fa-upload htOrionIcon pull-right']"
+        },
+        {
+          "address document remove button": "//i[@class='fa fa-remove htOrionIcon pull-right']"
+        },
+        {
+          " address document remove yes button": "//button[@class='btn btn-sm btn-warning']"
+        },
+        {
+          " address document remove close button": "//button[@class='btn btn-sm btn-info']"
         },
         {
           "save section area": "//li[@link='wzCustomerSave']"
@@ -220,6 +235,7 @@
         {
           "segment area": "//select[@orionid='segment']"
         }
+
       ]
     }
   ]

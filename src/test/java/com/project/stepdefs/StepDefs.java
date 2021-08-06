@@ -19,6 +19,7 @@ import utils.excelutils.ExcelUtils;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Random;
 import java.util.UUID;
 
 public class StepDefs extends MyTestNGBaseClass {
@@ -126,6 +127,69 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("^I enter a random declaration endorsement to (.*) at index (\\d+)")
+    public boolean randomCiro(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        Random rnd = new Random();
+        int randomCiro = rnd.nextInt(9999999);
+        String randomCiroString=String.valueOf(randomCiro);
+        try {
+            if (object != null) {
+                object.sendKeys(randomCiroString);
+                System.out.println("The random declaration endorsement has been entered :" + randomCiroString);
+                reportResult("PASS", "The random declaration endorsement has been entered: " + randomCiroString, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I cannot entered a random declaration endorsement: " + randomCiroString, true);
+            Assert.fail("Could not entered a random declaration endorsement:" + randomCiroString);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+)")
+    public boolean checkUploadFile(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+       object.click();
+        String addressText = object.getText();
+        System.out.println(addressText);
+        boolean flag = false;
+        try {
+            if(object != null){
+            if (addressText==null) {
+                seePage("customerTransactions");
+                waitElement("address document upload button",30,3);
+                uploadFile("aa.txt","address document upload button",3);
+                System.out.println("Uploaded the txt file.");
+                reportResult("PASS", "I upload the txt file. " , true);
+                return true;
+            }
+            else{
+                seePage("customerTransactions");
+                waitElement("address document remove button",30,3);
+                clickElement("address document remove button",3);
+                waitElement("address document remove yes button",30,3);
+                clickElement("address document remove yes button",3);
+                waitElement("address document remove close button",30,3);
+                clickElement("address document remove close button",3);
+                waitElement("address document upload button",30,3);
+                uploadFile("aa.txt","address document upload button",3);
+                System.out.println("Uploaded the txt file.");
+                reportResult("PASS", "I upload the txt file. " , true);
+                return true;
+            }
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "An error during the upload process. Please check.", true);
+            Assert.fail("An error during the upload process.");
+            flag = false;
+        }
+        return flag;
+    }
 
     @Then("^I enter unique text to (.*) at index (\\d+)")
     public boolean uniqueText(String element, int index) throws InterruptedException {
@@ -182,30 +246,35 @@ public class StepDefs extends MyTestNGBaseClass {
 
         String segmentCode = commonLib.getTheItemValueFromAttribute(element1, index);
         String ciroInfo = commonLib.getTheItemValueFromAttribute(element2, index);
-        long ciroInfoNum = Long.parseLong(ciroInfo);
+        String ciroInfos=ciroInfo.replace(".","");
+        System.out.println(ciroInfos);
+        String ciroLast= ciroInfos.substring(0, ciroInfos.indexOf(","));
+        System.out.println(ciroLast);
+        int ciroInfoNum = Integer.parseInt(ciroLast);
+        System.out.println(ciroInfoNum);
 
         try {
             if (object1 != null & object2 != null) {
                 if (ciroInfoNum == 0) {
                     segmentCode.equals("BELİRTİLMEDİ");
-                    System.out.println("Segment Code: NOK");
-                    reportResult("PASS", "Segment Code: NOK", true);
+                    System.out.println("Matched. Segment Code: NOK");
+                    reportResult("PASS", "Matched. Segment Code: NOK", true);
                 } else if (0 < ciroInfoNum & ciroInfoNum < 2000000) {
                     segmentCode.equals("MİKRO İŞLETME");
-                    System.out.println("Segment Code: Micro Bussiness");
-                    reportResult("PASS", "Segment Code: Micro Company", true);
+                    System.out.println("Matched. Segment Code: Micro Company");
+                    reportResult("PASS", "Matched. Segment Code: Micro Company", true);
                 } else if (2000000 < ciroInfoNum & ciroInfoNum <= 10000000) {
                     segmentCode.equals("KÜÇÜK İŞLETME");
-                    System.out.println("Segment Code: Small Bussiness");
-                    reportResult("PASS", "Segment Code: Small Company", true);
+                    System.out.println("Matched. Segment Code: Small Bussiness");
+                    reportResult("PASS", "Matched. Segment Code: Small Company", true);
                 } else if (10000000 < ciroInfoNum & ciroInfoNum <= 75000000) {
                     segmentCode.equals("TİCARİ İŞLETME");
-                    System.out.println("Segment Code: Commercial Company");
-                    reportResult("PASS", "Segment Code: Commercial Company", true);
+                    System.out.println("Matched. Segment Code: Commercial Company");
+                    reportResult("PASS", "Matched. Segment Code: Commercial Company", true);
                 } else {
                     segmentCode.equals("KURUMSAL İŞLETME");
-                    System.out.println("Segment Code: Corparate Company");
-                    reportResult("PASS", "Segment Code: Corparate Company", true);
+                    System.out.println("Matched. Segment Code: Corparate Company");
+                    reportResult("PASS", "Matched. Segment Code: Corparate Company", true);
                 }
                 return true;
             }
