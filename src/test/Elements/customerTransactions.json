@@ -104,6 +104,9 @@
           "priority telephone checkbox": "//input[@class='htCheckboxRendererInput']"
         },
         {
+          "telephone verify area": "//*[contains(text(),'+90')]"
+        },
+        {
           "detail information section area": "//li[@data-title='Detay Bilgiler']"
         },
         {

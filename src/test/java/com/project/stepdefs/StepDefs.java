@@ -29,6 +29,9 @@ public class StepDefs extends MyTestNGBaseClass {
     int timeout = 30;
     public String uuid = UUID.randomUUID().toString();
     public boolean checkLoginControl = false;
+    public String phNo;
+    public String randomEmployees;
+    public String randomCiroString;
 
 
     @Before
@@ -92,7 +95,9 @@ public class StepDefs extends MyTestNGBaseClass {
         object = commonLib.waitElement(element, timeout, index);
         boolean flag = false;
         String randomNumbers = RandomStringUtils.randomNumeric(7);
-        String phNo = 111 + randomNumbers;
+        phNo = 111 + randomNumbers;
+
+
         try {
             if (object != null) {
                 object.sendKeys(phNo);
@@ -108,6 +113,77 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("^I verify the telephone number to (.*)")
+    public boolean verifyTelephoneNumber(String element) throws InterruptedException {
+        int index = 3;
+        System.out.println("phNo: " + " " +phNo);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        object.click();
+        String phNo2 = commonLib.getTheElementInformation(element, index);
+        System.out.println("phNo2: " + " " +phNo2);
+        boolean flag = false;
+
+        try {
+                if (phNo2.equals(phNo)) {
+                    System.out.println("Matched.Telephone No is Updated.");
+                    reportResult("PASS", "Matched. Matched.Telephone No is Updated.", true);
+                    return true;
+                }
+        } catch (Exception e) {
+            reportResult("FAIL", "Not matched. Telephone No Is Not Updated. " + phNo, true);
+            Assert.fail("Not matched. An error during the update." + phNo);
+            flag = false;
+        }
+        return flag;
+    }
+    @Then("^I verify the number of employees number to (.*) at index (\\d+)")
+    public boolean verifyNumberOfEmployees(String element,int index) throws InterruptedException {
+        System.out.println("Number of Employees: " + " " +randomEmployees);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        object.click();
+        String randomEmployees2 = commonLib.getTheItemValueFromAttribute(element, index);
+        System.out.println("Number of Employees: " + " " +randomEmployees2);
+        boolean flag = false;
+
+        try {
+            if (randomEmployees2.equals(randomEmployees)) {
+                System.out.println("Matched. Number of Employees are Updated.");
+                reportResult("PASS", "Matched. Number of Employees are Updated.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "Not matched. Number of Employees are not Updated. " + phNo, true);
+            Assert.fail("Not matched. An error during the update." + phNo);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I verify the declaration endorsement to (.*) at index (\\d+)")
+    public boolean verifyDeclarationEndorsement(String element,int index) throws InterruptedException {
+        System.out.println("Declaration Endorsement: " + " " +randomCiroString);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        object.click();
+        String randomCiroString2 = commonLib.getTheItemValueFromAttribute(element, index);
+        System.out.println("Declaration Endorsement: " + " " +randomCiroString2);
+        boolean flag = false;
+
+        try {
+            if (randomCiroString2.equals(randomCiroString)) {
+                System.out.println("Matched. Declaration Endorsement is Updated.");
+                reportResult("PASS", "Matched. Declaration Endorsement is Updated.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "Not matched. Declaration Endorsement is not Updated. " + phNo, true);
+            Assert.fail("Not matched. An error during the update." + phNo);
+            flag = false;
+        }
+        return flag;
+    }
     @Then("^I enter a email to (.*) at index (\\d+)")
     public boolean enterEmail(String element, int index) throws InterruptedException {
         WebElement object;
@@ -136,7 +212,7 @@ public class StepDefs extends MyTestNGBaseClass {
         boolean flag = false;
         Random rnd = new Random();
         int randomCiro = rnd.nextInt(9999999);
-        String randomCiroString=String.valueOf(randomCiro);
+        randomCiroString = String.valueOf(randomCiro);
         try {
             if (object != null) {
                 object.sendKeys(randomCiroString);
@@ -152,33 +228,55 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("^I enter a random number of employees to (.*) at index (\\d+)")
+    public boolean randomEmployees(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        Random rnd = new Random();
+        int randomEmp = rnd.nextInt(999);
+        randomEmployees = String.valueOf(randomEmp);
+        try {
+            if (object != null) {
+                object.sendKeys(randomEmployees);
+                System.out.println("The random number of employees has been entered :" + randomEmployees);
+                reportResult("PASS", "The random number of employees has been entered: " + randomEmployees, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I cannot entered a random number of employees: " + randomEmployees, true);
+            Assert.fail("Could not entered a random number of employees:" + randomEmployees);
+            flag = false;
+        }
+        return flag;
+    }
+
     @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+)")
     public boolean checkUploadFile(String element, int index) throws InterruptedException, AWTException, FindFailed, IOException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
         boolean flag = false;
         try {
-            if(object != null){
+            if (object != null) {
                 seePage("customerTransactions");
                 waitElement("address document upload button", 30, 3);
                 clickElement("address document upload button", 3);
                 if (oDriver.findElements(By.xpath("//*[contains(text(),'Dosya Yükleme')]")).size() > 0) {
                     seePage("customerTransactions");
-                    waitElement("address document already popup",30,1);
-                    clickElement("address document already popup",1);
-                    waitElement("address document remove button",30,3);
-                    clickElement("address document remove button",3);
-                    waitElement("address document remove yes button",30,1);
-                    clickElement("address document remove yes button",1);
-                    waitElement("address document remove close button",30,1);
-                    clickElement("address document remove close button",1);
-                    waitElement("address document upload button",30,3);
-                    uploadFile("aa.txt","address document upload button",3);
+                    waitElement("address document already popup", 30, 1);
+                    clickElement("address document already popup", 1);
+                    waitElement("address document remove button", 30, 3);
+                    clickElement("address document remove button", 3);
+                    waitElement("address document remove yes button", 30, 1);
+                    clickElement("address document remove yes button", 1);
+                    waitElement("address document remove close button", 30, 1);
+                    clickElement("address document remove close button", 1);
+                    waitElement("address document upload button", 30, 3);
+                    uploadFile("aa.txt", "address document upload button", 3);
                     System.out.println("Uploaded the txt file.");
-                    reportResult("PASS", "I upload the txt file. " , true);
+                    reportResult("PASS", "I upload the txt file. ", true);
                     return true;
-            }
-            else{
+                } else {
                     Thread.sleep(5000);
                     System.out.println("aa.txt is uploading.");
                     String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
@@ -187,7 +285,7 @@ public class StepDefs extends MyTestNGBaseClass {
                     System.out.println("Uploaded the txt file.");
                     reportResult("PASS", "I upload the txt file. ", true);
                     return true;
-            }
+                }
             }
         } catch (Exception e) {
             reportResult("FAIL", "An error during the uploading process. ", true);
@@ -252,9 +350,9 @@ public class StepDefs extends MyTestNGBaseClass {
 
         String segmentCode = commonLib.getTheItemValueFromAttribute(element1, index);
         String ciroInfo = commonLib.getTheItemValueFromAttribute(element2, index);
-        String ciroInfos=ciroInfo.replace(".","");
+        String ciroInfos = ciroInfo.replace(".", "");
         System.out.println(ciroInfos);
-        String ciroLast= ciroInfos.substring(0, ciroInfos.indexOf(","));
+        String ciroLast = ciroInfos.substring(0, ciroInfos.indexOf(","));
         System.out.println(ciroLast);
         int ciroInfoNum = Integer.parseInt(ciroLast);
         System.out.println(ciroInfoNum);
@@ -664,7 +762,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
         WebElement object;
         object = commonLib.findElement(element, index);
-        //object.click();
+        object.click();
         Thread.sleep(5000);
 
         System.out.println("aa.txt is uploading.");

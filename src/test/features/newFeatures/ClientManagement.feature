@@ -113,7 +113,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait financial information area element 30 seconds at index 1
     When I click element: financial information area at index 1
     When I clear text to number of employees text area at index 1
-    Then I enter "20" text to number of employees text area at index 1
+    Then I enter a random number of employees to number of employees text area at index 1
     When I clear text to declaration endorsement text area at index 1
     Then I enter a random declaration endorsement to declaration endorsement text area at index 1
 
@@ -159,6 +159,21 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I click element: contact information section area at index 1
 
     #verify adımları gelecek:
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
+    And I wait telephone information area element 30 seconds at index 1
+    When I click element: telephone information area at index 1
+    Then I verify the telephone number to telephone verify area
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+
+    Then I verify the number of employees number to number of employees text area at index 1
+    Then I verify the declaration endorsement to declaration endorsement text area at index 1
+
+
 
 
 # @Finco
