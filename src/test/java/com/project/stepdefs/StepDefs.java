@@ -9,6 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -28,6 +29,7 @@ public class StepDefs extends MyTestNGBaseClass {
     int timeout = 30;
     public String uuid = UUID.randomUUID().toString();
     public boolean checkLoginControl = false;
+
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -151,41 +153,45 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+)")
-    public boolean checkUploadFile(String element, int index) throws InterruptedException {
+    public boolean checkUploadFile(String element, int index) throws InterruptedException, AWTException, FindFailed, IOException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
-       object.click();
-        String addressText = object.getText();
-        System.out.println(addressText);
         boolean flag = false;
         try {
             if(object != null){
-            if (addressText==null) {
                 seePage("customerTransactions");
-                waitElement("address document upload button",30,3);
-                uploadFile("aa.txt","address document upload button",3);
-                System.out.println("Uploaded the txt file.");
-                reportResult("PASS", "I upload the txt file. " , true);
-                return true;
+                waitElement("address document upload button", 30, 3);
+                clickElement("address document upload button", 3);
+                if (oDriver.findElements(By.xpath("//*[contains(text(),'Dosya Yükleme')]")).size() > 0) {
+                    seePage("customerTransactions");
+                    waitElement("address document already popup",30,1);
+                    clickElement("address document already popup",1);
+                    waitElement("address document remove button",30,3);
+                    clickElement("address document remove button",3);
+                    waitElement("address document remove yes button",30,1);
+                    clickElement("address document remove yes button",1);
+                    waitElement("address document remove close button",30,1);
+                    clickElement("address document remove close button",1);
+                    waitElement("address document upload button",30,3);
+                    uploadFile("aa.txt","address document upload button",3);
+                    System.out.println("Uploaded the txt file.");
+                    reportResult("PASS", "I upload the txt file. " , true);
+                    return true;
             }
             else{
-                seePage("customerTransactions");
-                waitElement("address document remove button",30,3);
-                clickElement("address document remove button",3);
-                waitElement("address document remove yes button",30,3);
-                clickElement("address document remove yes button",3);
-                waitElement("address document remove close button",30,3);
-                clickElement("address document remove close button",3);
-                waitElement("address document upload button",30,3);
-                uploadFile("aa.txt","address document upload button",3);
-                System.out.println("Uploaded the txt file.");
-                reportResult("PASS", "I upload the txt file. " , true);
-                return true;
+                    Thread.sleep(5000);
+                    System.out.println("aa.txt is uploading.");
+                    String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
+                    Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+                    Thread.sleep(5000);
+                    System.out.println("Uploaded the txt file.");
+                    reportResult("PASS", "I upload the txt file. ", true);
+                    return true;
             }
             }
         } catch (Exception e) {
-            reportResult("FAIL", "An error during the upload process. Please check.", true);
-            Assert.fail("An error during the upload process.");
+            reportResult("FAIL", "An error during the uploading process. ", true);
+            Assert.fail("An error during the uploading process.");
             flag = false;
         }
         return flag;
@@ -658,7 +664,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
         WebElement object;
         object = commonLib.findElement(element, index);
-        object.click();
+        //object.click();
         Thread.sleep(5000);
 
         System.out.println("aa.txt is uploading.");

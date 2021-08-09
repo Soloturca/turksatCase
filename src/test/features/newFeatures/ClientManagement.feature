@@ -83,6 +83,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I enter a telephone number to telephone number text area at index 1
     When I click element: priority telephone button at index 1
     When I click element: telephone add button at index 1
+    Then I need to just wait
     And I wait telephone warning close button element 30 seconds at index 1
     When I click element: telephone warning close button at index 1
     When I select element: "MÜŞTERİNİN CEP TELEFONU YANINDA VEYA AÇIK DEĞİL" under reason for not verification selection at index 1
@@ -123,7 +124,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait documents section area element 30 seconds at index 1
     When I click element: documents section area at index 1
 
-    Then I have to check is there any document is uploaded on the check address area at index 3
+    Then I have to check is there any document is uploaded on the address area at index 1
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
     And I wait save button element 30 seconds at index 1
@@ -158,11 +159,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I click element: contact information section area at index 1
 
     #verify adımları gelecek:
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
 
 # @Finco
 # Scenario: TC260 - E2E - Client Management - Legal Client Creation
