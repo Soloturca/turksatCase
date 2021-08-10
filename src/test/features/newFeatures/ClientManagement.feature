@@ -5,6 +5,16 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
 #3.) E2E Client Management - TC097
 #4.) E2E Client Management - TC116
 # 5.) E2E Client Management - TC119
+#6) E2E Client Management - TC121
+#7.) E2E Client Management - TC156
+#8.) E2E Client Management - TC157
+#9.) E2E Client Management - TC158
+#10.) E2E Client Management - TC168
+#11.) E2E Client Management - TC182
+#12.) E2E Client Management - TC183
+#13.) E2E Client Management - TC184
+#14.) E2E Client Management - TC185
+#15.) E2E Client Management - TC159
 
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
