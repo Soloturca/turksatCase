@@ -666,10 +666,33 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
 
-    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+)")
-    public boolean getExcelValue(String element, int index) {
+    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+) for 5430")
+    public boolean getExcelValue5430(String element, int index) {
         WebElement object = commonLib.findElement(element, index);
         String text = excelUtils.ReadCellData(4, 0);
+        boolean flag = false;
+
+        try {
+            if (object != null) {
+                object.sendKeys(text);
+                System.out.println("The excel value:" + text + " " + "has been entered.");
+                reportResult("PASS", "The excel value:" + text + " " + "has not been entered.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("The reference number:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
+            Assert.fail("The excel value has not been entered!");
+            flag = false;
+
+        }
+        return flag;
+    }
+
+    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+) for 5426")
+    public boolean getExcelValue5426(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
+        String text = excelUtils.ReadCellData(1, 0);
         boolean flag = false;
 
         try {

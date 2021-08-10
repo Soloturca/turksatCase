@@ -113,7 +113,16 @@
           "telephone type selection": "//select[@orionid='type']"
         },
         {
+          "telephone country selection": "//select[@orionid='country']"
+        },
+        {
           "telephone warning close button": "//button[@class='btn btn-sm btn-warning']"
+        },
+        {
+          "verification code text area": "//input[@orionid='edVerifyCode']"
+        },
+        {
+          "warning close button": "//button[@type='button']"
         },
         {
           "reason for not verification selection": "//select[@orionid='drdUnConfirmationReason']"
