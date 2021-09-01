@@ -251,7 +251,7 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
-    @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+)")
+    @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+) for address")
     public boolean checkUploadFile(String element, int index) throws InterruptedException, AWTException, FindFailed, IOException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
@@ -270,9 +270,51 @@ public class StepDefs extends MyTestNGBaseClass {
                     waitElement("address document remove yes button", 30, 1);
                     clickElement("address document remove yes button", 1);
                     waitElement("address document remove close button", 30, 1);
-                    clickElement("address document remove close button", 1);
+                    clickElement("address document remove close bu tton", 1);
                     waitElement("address document upload button", 30, 3);
                     uploadFile("aa.txt", "address document upload button", 3);
+                    System.out.println("Uploaded the txt file.");
+                    reportResult("PASS", "I upload the txt file. ", true);
+                    return true;
+                } else {
+                    Thread.sleep(5000);
+                    System.out.println("aa.txt is uploading.");
+                    String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
+                    Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+                    Thread.sleep(5000);
+                    System.out.println("Uploaded the txt file.");
+                    reportResult("PASS", "I upload the txt file. ", true);
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "An error during the uploading process. ", true);
+            Assert.fail("An error during the uploading process.");
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+) for telephone")
+    public boolean checkUploadFileForTelephone(String element, int index) throws InterruptedException, AWTException, FindFailed, IOException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                seePage("customerTransactions");
+                waitElement("address document upload button", 30, 4);
+                clickElement("address document upload button", 4);
+                if (oDriver.findElements(By.xpath("//*[contains(text(),'Dosya Yükleme')]")).size() > 0) {
+                    seePage("customerTransactions");
+                    waitElement("address document already popup", 30, 1);
+                    clickElement("address document already popup", 1);
+                    waitElement("address document remove button", 30, 4);
+                    clickElement("address document remove button", 4);
+                    waitElement("address document remove yes button", 30, 1);
+                    clickElement("address document remove yes button", 1);
+                    waitElement("address document upload button", 30, 4);
+                    uploadFile("aa.txt", "address document upload button", 4);
                     System.out.println("Uploaded the txt file.");
                     reportResult("PASS", "I upload the txt file. ", true);
                     return true;
@@ -712,7 +754,7 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
-    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
+    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5430")
     public boolean verifyClientDataForTCKN(String element, int index) {
         String TCKNExcel = excelUtils.ReadCellData(4, 1);
         System.out.println(TCKNExcel);
@@ -737,9 +779,58 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
-    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+)")
+    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5426")
+    public boolean verifyClientDataForTCKN5426(String element, int index) {
+        String TCKNExcel = excelUtils.ReadCellData(1, 1);
+        System.out.println(TCKNExcel);
+
+        String TCKN = commonLib.getTheItemValueFromAttribute(element, index);
+        System.out.println(TCKN);
+        boolean flag = false;
+
+        try {
+
+            if (TCKN.equals(TCKNExcel)) {
+                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
+                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
+            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
+            Assert.fail("The values are not match with each other!");
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5430")
     public boolean verifyClientDataForTitle(String element, int index) {
         String TCKNExcel = excelUtils.ReadCellData(4, 0);
+        System.out.println(TCKNExcel);
+
+        String Name = commonLib.getTheItemValue(element, index);
+        System.out.println(Name);
+        boolean flag = false;
+
+        try {
+
+            if (Name.equals(TCKNExcel)) {
+                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
+                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
+            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
+            Assert.fail("The values are not match with each other!");
+            flag = false;
+        }
+        return flag;
+    }
+    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5426")
+    public boolean verifyClientDataForTitle5426(String element, int index) {
+        String TCKNExcel = excelUtils.ReadCellData(1, 0);
         System.out.println(TCKNExcel);
 
         String Name = commonLib.getTheItemValue(element, index);
@@ -764,17 +855,18 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @Then("^(?:I )?I need to checkbox verify for (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyCheckbox(String element, int index) {
-        WebElement object = commonLib.findElement(element, index);
+        String value = commonLib.getTheItemValueFromAttribute(element, index);
+
         boolean flag = false;
         try {
-            if (object.isSelected()) {
-                System.out.println("The checkbox is selection state is - " + object.isSelected());
-                reportResult("PASS", "I selected the checkbox: " + element, true);
+            if (value.equals("on")) {
+                System.out.println("The checkbox is selection state is : on");
+                reportResult("PASS", "The checkbox is selection state is : on" + element, true);
                 return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "I cannot selected the checkbox: " + element, true);
-            Assert.fail("Could not selected the checkbox:" + element);
+            reportResult("FAIL", "The checkbox is selection state is : off" + element, true);
+            Assert.fail("The checkbox is selection state is : off:" + element);
             flag = false;
         }
         return flag;

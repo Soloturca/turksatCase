@@ -134,10 +134,13 @@
           "permission marketing area": "//*[contains(text(),'İzinli Pazarlama')]"
         },
         {
-          "permission marketing no permission button": "//*[contains(text(),'Hayır')]"
+          "permission marketing no permission button": "//label[@for='orion-id-132']"
         },
         {
-          "permission marketing yes permission button": "//*[contains(text(),'Evet')]"
+          "permission marketing yes permission button": "//label[@for='orion-id-131']"
+        },
+        {
+          "permission marketing button": "//input[@name='permissionMarketing']"
         },
         {
           "financial information area": "//*[contains(text(),'Mali Bilgiler')]"
@@ -197,7 +200,10 @@
           "save section area": "//li[@link='wzCustomerSave']"
         },
         {
-          "save button": "//button[@orionid='btnSaveButton']"
+          "save button": "//button[@orionid='saveMainGroup']"
+        },
+        {
+          "save button for customer information": "//button[@orionid='btnSaveButton']"
         },
         {
           "close button": "//*[contains(text(),'Kapat')]"

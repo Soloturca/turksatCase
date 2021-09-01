@@ -215,38 +215,38 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
 
-  @Finco
-  Scenario: TC007 - E2E Edit - Unit Manager
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "3004" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-   #And I wait workflow management button element 30 seconds
-    When I click element: workflow management button at index 1
-    Then I see workflowManagement page
-
-
-    And I wait jobs pending on my list button element 30 seconds at index 1
-    When I click element: jobs pending on my list button at index 1
-    Then I enter my reference: "reference number" text to reference number area at index 1
-    And I wait inquire button element 30 seconds at index 1
-    When I click element: inquire button at index 1
-
-    When I click element: row button at index 1
-    And I wait warning popup element 30 seconds at index 1
-    When I click element: yes button at index 1
-    And I wait cancel button element 30 seconds at index 1
-    When I click element: cancel button at index 1
-    And I wait yes button element 30 seconds at index 1
-    When I click element: yes button at index 1
-      #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
-    And I need to just wait
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
+# @Finco
+# Scenario: TC007 - E2E Edit - Unit Manager
+#   And I wait close system button element 30 seconds at index 1
+#   When I click element: close system button at index 1
+#
+#   Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+#   Then I see login page
+#   Then I enter "3004" text to username text area at index 1
+#   Then I enter "" text to password text area at index 1
+#   And I wait login button element 30 seconds at index 1
+#   When I click element: login button at index 1
+#   Then I see home page
+#
+#  #And I wait workflow management button element 30 seconds
+#   When I click element: workflow management button at index 1
+#   Then I see workflowManagement page
+#
+#
+#   And I wait jobs pending on my list button element 30 seconds at index 1
+#   When I click element: jobs pending on my list button at index 1
+#   Then I enter my reference: "reference number" text to reference number area at index 1
+#   And I wait inquire button element 30 seconds at index 1
+#   When I click element: inquire button at index 1
+#
+#   When I click element: row button at index 1
+#   And I wait warning popup element 30 seconds at index 1
+#   When I click element: yes button at index 1
+#   And I wait cancel button element 30 seconds at index 1
+#   When I click element: cancel button at index 1
+#   And I wait yes button element 30 seconds at index 1
+#   When I click element: yes button at index 1
+#     #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
+#   And I need to just wait
+#   And I wait close button element 30 seconds at index 1
+#   When I click element: close button at index 1
