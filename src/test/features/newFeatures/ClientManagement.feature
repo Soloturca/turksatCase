@@ -137,7 +137,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait documents section area element 30 seconds at index 1
     When I click element: documents section area at index 1
 
-    Then I have to check is there any document is uploaded on the address area at index 1
+    #Then I have to check is there any document is uploaded on the address area at index 1
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
     And I wait save button element 30 seconds at index 1
@@ -267,7 +267,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait documents section area element 30 seconds at index 1
     When I click element: documents section area at index 1
 
-    Then I have to check is there any document is uploaded on the address area at index 1
+    #Then I have to check is there any document is uploaded on the address area at index 1
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
     And I wait save button element 30 seconds at index 1
@@ -317,7 +317,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the declaration endorsement to declaration endorsement text area at index 1
 
   @Finco
-#Scenario: TC097 -E2E Customer Management - Contact information - Phone Information
+Scenario: TC097 -E2E Customer Management - Contact information - Phone Information
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
