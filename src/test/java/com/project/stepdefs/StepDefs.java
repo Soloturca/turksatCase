@@ -1,6 +1,7 @@
 package com.project.stepdefs;
 
 import com.saf.framework.CommonLib;
+import com.saf.framework.HashMaps;
 import com.saf.framework.MyTestNGBaseClass;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
@@ -20,6 +21,8 @@ import utils.excelutils.ExcelUtils;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
@@ -32,7 +35,9 @@ public class StepDefs extends MyTestNGBaseClass {
     public String phNo;
     public String randomEmployees;
     public String randomCiroString;
-
+    public static HashMap<String, String> strings = new HashMap<String, String>();
+    InputStream stringsis;
+    HashMaps hashMaps;
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -62,6 +67,33 @@ public class StepDefs extends MyTestNGBaseClass {
             }
         } catch (Exception e) {
             reportResult("FAIL", "I cannot clicked the element: " + element, true);
+            Assert.fail("Could not clicked the element:" + element);
+            flag = false;
+        }
+        return flag;
+    }
+
+
+    @When("^(?:I )?have to verify the text for: (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean verifyText(String element, int index) throws Exception {
+        String xmlFileName="/strings.xml";
+        stringsis=getClass().getClassLoader().getResourceAsStream(xmlFileName);
+        hashMaps= new HashMaps();
+        hashMaps.parseStringXML(stringsis);
+        WebElement object = commonLib.findElement(element, index);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                object.click();
+                String actualErrTxt = object.getText();
+                String expectedErrText =strings.get("Approve Popup");
+                System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
+                Assert.assertEquals(actualErrTxt, expectedErrText);
+                reportResult("PASS", "Assertion is true." + element, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "An error during assertion. " + element, true);
             Assert.fail("Could not clicked the element:" + element);
             flag = false;
         }
@@ -116,20 +148,20 @@ public class StepDefs extends MyTestNGBaseClass {
     @Then("^I verify the telephone number to (.*)")
     public boolean verifyTelephoneNumber(String element) throws InterruptedException {
         int index = 3;
-        System.out.println("phNo: " + " " +phNo);
+        System.out.println("phNo: " + " " + phNo);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
         object.click();
         String phNo2 = commonLib.getTheElementInformation(element, index);
-        System.out.println("phNo2: " + " " +phNo2);
+        System.out.println("phNo2: " + " " + phNo2);
         boolean flag = false;
 
         try {
-                if (phNo2.equals(phNo)) {
-                    System.out.println("Matched.Telephone No is Updated.");
-                    reportResult("PASS", "Matched. Matched.Telephone No is Updated.", true);
-                    return true;
-                }
+            if (phNo2.equals(phNo)) {
+                System.out.println("Matched.Telephone No is Updated.");
+                reportResult("PASS", "Matched. Matched.Telephone No is Updated.", true);
+                return true;
+            }
         } catch (Exception e) {
             reportResult("FAIL", "Not matched. Telephone No Is Not Updated. " + phNo, true);
             Assert.fail("Not matched. An error during the update." + phNo);
@@ -137,14 +169,15 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
+
     @Then("^I verify the number of employees number to (.*) at index (\\d+)")
-    public boolean verifyNumberOfEmployees(String element,int index) throws InterruptedException {
-        System.out.println("Number of Employees: " + " " +randomEmployees);
+    public boolean verifyNumberOfEmployees(String element, int index) throws InterruptedException {
+        System.out.println("Number of Employees: " + " " + randomEmployees);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
         object.click();
         String randomEmployees2 = commonLib.getTheItemValueFromAttribute(element, index);
-        System.out.println("Number of Employees: " + " " +randomEmployees2);
+        System.out.println("Number of Employees: " + " " + randomEmployees2);
         boolean flag = false;
 
         try {
@@ -162,13 +195,13 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("^I verify the declaration endorsement to (.*) at index (\\d+)")
-    public boolean verifyDeclarationEndorsement(String element,int index) throws InterruptedException {
-        System.out.println("Declaration Endorsement: " + " " +randomCiroString);
+    public boolean verifyDeclarationEndorsement(String element, int index) throws InterruptedException {
+        System.out.println("Declaration Endorsement: " + " " + randomCiroString);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
         object.click();
         String randomCiroString2 = commonLib.getTheItemValueFromAttribute(element, index);
-        System.out.println("Declaration Endorsement: " + " " +randomCiroString2);
+        System.out.println("Declaration Endorsement: " + " " + randomCiroString2);
         boolean flag = false;
 
         try {
@@ -184,6 +217,7 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
+
     @Then("^I enter a email to (.*) at index (\\d+)")
     public boolean enterEmail(String element, int index) throws InterruptedException {
         WebElement object;
@@ -828,6 +862,7 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
+
     @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5426")
     public boolean verifyClientDataForTitle5426(String element, int index) {
         String TCKNExcel = excelUtils.ReadCellData(1, 0);

@@ -80,6 +80,9 @@
           "approve button": "//button[@owf_type='approve']"
         },
         {
+          "approve popup": "//p[@id='modal-body-text']"
+        },
+        {
           "cancel button": "//button[@owf_type='reject']"
         },
         {

@@ -102,7 +102,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     And I wait administrative button for 3009 element 30 seconds at index 1
     When I click element: administrative button for 3009 at index 1
 
-    And I wait parameter management button element 30 seconds at index 1
+    And I wait parameter management button element 60 seconds at index 1
     When I click element: parameter management button at index 1
     Then I clear text to kkdf area at index 1
     Then I enter "10" text to kkdf area at index 1
@@ -127,7 +127,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     And I wait administrative button for 3009 element 30 seconds at index 1
     When I click element: administrative button for 3009 at index 1
 
-    And I wait parameter management button element 30 seconds at index 1
+    And I wait parameter management button element 60 seconds at index 1
     When I click element: parameter management button at index 1
     Then I clear text to invoice validity days area at index 1
     Then I enter "25" text to invoice validity days area at index 1
