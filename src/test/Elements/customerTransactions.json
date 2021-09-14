@@ -109,6 +109,7 @@
         {
           "detail information section area": "//li[@data-title='Detay Bilgiler']"
         },
+
         {
           "telephone type selection": "//select[@orionid='type']"
         },
@@ -132,6 +133,12 @@
         },
         {
           "permission marketing area": "//*[contains(text(),'İzinli Pazarlama')]"
+        },
+        {
+          "detail information area": "//*[contains(text(),'Detay Bilgileri')]"
+        },
+        {
+          "job type selection area": "//select[@orionid='jobType']"
         },
         {
           "permission marketing no permission button": "//label[@for='orion-id-132']"
@@ -206,6 +213,9 @@
           "save button for customer information": "//button[@orionid='btnSaveButton']"
         },
         {
+          "save button for save section": "//button[@orionid='btnSaveButton']"
+        },
+        {
           "close button": "//*[contains(text(),'Kapat')]"
         },
         {
@@ -255,8 +265,13 @@
         },
         {
           "segment area": "//select[@orionid='segment']"
+        },
+        {
+          "fourth row": "//div[3]/div/div/div/table/tbody/tr[4]/th"
+        },
+        {
+          "unconfirmation reason code": "//select[@orionid='unConfirmationReasonCode']"
         }
-
       ]
     }
   ]

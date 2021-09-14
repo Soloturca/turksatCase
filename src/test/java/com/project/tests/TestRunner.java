@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 @CucumberOptions(
-        features = "src/test/features/newFeatures/",
+        features = "src/test/features/newFeatures/ClientManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags="@Finco",
         glue = {"com.project.stepdefs"})

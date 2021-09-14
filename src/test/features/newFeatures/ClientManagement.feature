@@ -1,20 +1,24 @@
 Feature: Orion Finance Finco Test Scenarios / Client Management
 #  This feature includes these steps:
-#1.) E2E Client Management - TC258
-#2.) E2E Client Management - TC260
-#3.) E2E Client Management - TC097
-#4.) E2E Client Management - TC116
-# 5.) E2E Client Management - TC119
-#6) E2E Client Management - TC121
-#7.) E2E Client Management - TC156
-#8.) E2E Client Management - TC157
-#9.) E2E Client Management - TC158
-#10.) E2E Client Management - TC168
-#11.) E2E Client Management - TC182
-#12.) E2E Client Management - TC183
-#13.) E2E Client Management - TC184
-#14.) E2E Client Management - TC185
-#15.) E2E Client Management - TC159
+#1.) E2E Client Management - TC258 -- 13 eylül maintaince alındı.
+#2.) E2E Client Management - TC260 -- 13 eylül maintaince alındı. Yeni adres eklemelisiniz diye uyarı gelmekte.
+#3.) E2E Client Management - TC097 -- 14 eylül maintaince alındı.
+#4.) E2E Client Management - TC116 -- 14 eylül maintaince alındı.
+# 5.) E2E Client Management - TC119 -- 14 eylül maintaince alındı.
+#6) E2E Client Management - TC121  -- 14 eylül maintaince alındı.            
+#7.) E2E Client Management - TC156  -- 14 eylül maintaince alındı.
+#8.) E2E Client Management - TC157  -- 14 eylül maintaince alındı.
+#9.) E2E Client Management - TC158  -- 14 eylül maintaince alındı.
+# 10.) E2E Client Management - TC159  -- 14 eylül maintaince alındı.
+#11.) E2E Client Management - TC168  -- 14 eylül maintaince alındı.
+#12.) E2E Client Management - TC182  -- 14 eylül maintaince alındı.
+#13.) E2E Client Management - TC183  -- 14 eylül maintaince alındı.
+#14.) E2E Client Management - TC184  -- 14 eylül maintaince alındı.
+#15.) E2E Client Management - TC185  -- 14 eylül maintaince alındı.
+#16.) E2E Client Management - TC212
+# 17.) E2E Client Management - TC213
+# 18.) E2E Client Management - TC221
+# 19.) E2E Client Management - TC222
 
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
@@ -32,7 +36,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
-    #5430
+   #5430
     Then I get the data from Excel file to element: customer code text area at index 1 for 5430
     When I click element: search button at index 1
     Then I need to just wait
@@ -112,16 +116,17 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I click element: priority email button at index 1
     When I click element: email add button at index 1
     Then I need to checkbox verify for priority email checkbox at index 7
+    Then I need to just wait
     And I wait email verification close button element 30 seconds at index 1
     When I click element: email verification close button at index 1
-
+    Then I go to top of the site
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
 
     And I wait permission marketing area element 30 seconds at index 1
     When I click element: permission marketing area at index 1
-    And I wait permission marketing no permission button element 30 seconds at index 3
-    When I click element: permission marketing no permission button at index 3
+    And I wait permission marketing no permission button element 60 seconds at index 1
+    When I click element: permission marketing no permission button at index 1
 
     And I wait financial information area element 30 seconds at index 1
     When I click element: financial information area at index 1
@@ -130,18 +135,19 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I clear text to declaration endorsement text area at index 1
     Then I enter a random declaration endorsement to declaration endorsement text area at index 1
 
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
+    And I wait detail information area element 30 seconds at index 1
+    When I click element: detail information area at index 1
+
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    When I select element: "ASKER" under job type selection area at index 1
 
     And I wait documents section area element 30 seconds at index 1
     When I click element: documents section area at index 1
-
-    #Then I have to check is there any document is uploaded on the address area at index 1
+    Then I have to check is there any document is uploaded on the address area at index 3 for address
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
 
@@ -161,7 +167,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
-  #5430
+ #5430
     Then I get the data from Excel file to element: customer code text area at index 1 for 5430
     When I click element: search button at index 1
     Then I need to just wait
@@ -171,7 +177,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
 
-  #verify adımları gelecek:
+ #verify adımları gelecek:
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
     And I wait telephone information area element 30 seconds at index 1
@@ -188,18 +194,17 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
 
 
   @Finco
-  Scenario: TC260 - E2E - Client Management - Legal Client Creation
+  Scenario: TC260 - E2E - Client Management - Legal Client Creation 5426
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
- #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+  #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
     When I click element: search button at index 1
     Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
     When I click element: next button at index 1
 
     And I wait general information section area element 30 seconds at index 1
@@ -243,13 +248,12 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
 
     And I wait priority address button element 30 seconds at index 1
     When I click element: priority address button at index 2
-    And I wait warning yes button element 30 seconds at index 1
-    When I click element: warning yes button at index 1
+
 
     And I wait address add button element 30 seconds at index 1
     When I click element: address add button at index 1
     Then I need to checkbox verify for priority address checkbox at index 4
-
+    Then I go to top of the site
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
 
@@ -260,20 +264,21 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I clear text to declaration endorsement text area at index 1
     Then I enter a random declaration endorsement to declaration endorsement text area at index 1
 
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
+    And I wait detail information area element 30 seconds at index 1
+    When I click element: detail information area at index 1
+
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
     And I wait documents section area element 30 seconds at index 1
     When I click element: documents section area at index 1
 
-    #Then I have to check is there any document is uploaded on the address area at index 1
     And I wait save section area element 30 seconds at index 1
     When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
+
 
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
@@ -291,23 +296,22 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+ #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
     When I click element: search button at index 1
     Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
     When I click element: next button at index 1
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
 
-  #verify adımları gelecek:
+ #verify adımları gelecek:
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
     And I wait telephone information area element 30 seconds at index 1
     When I click element: telephone information area at index 1
     Then I verify the telephone number to telephone verify area
-
+    Then I go to top of the site
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
     And I wait financial information area element 30 seconds at index 1
@@ -317,7 +321,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the declaration endorsement to declaration endorsement text area at index 1
 
   @Finco
-Scenario: TC097 -E2E Customer Management - Contact information - Phone Information
+  Scenario: TC097 -E2E Customer Management - Contact information - Phone Information
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -356,7 +360,7 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
-  #5430
+ #5430
     Then I get the data from Excel file to element: customer code text area at index 1 for 5430
     When I click element: search button at index 1
     Then I need to just wait
@@ -390,7 +394,7 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
-  #5430
+ #5430
     Then I get the data from Excel file to element: customer code text area at index 1 for 5430
     When I click element: search button at index 1
     Then I need to just wait
@@ -423,6 +427,452 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     Then I see customerTransactions page
     And I wait customer management button element 30 seconds at index 1
     When I click element: customer management button at index 1
+#5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
+    And I wait telephone information area element 30 seconds at index 1
+    When I click element: telephone information area at index 1
+    And I wait fourth row element 30 seconds at index 3
+    When I click element: fourth row at index 3
+    Then I get the text area information: unconfirmation reason code at index 1
+
+  @Finco
+  Scenario: TC156 -E2E Customer Management - Micro Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "2000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+  #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Small Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "10000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+  #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC158 - TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Commercial Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "75000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+  #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC159 -E2E : Customer Management - Detailed Information - Legal Customer - Corparate Company
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "80000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+  #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC168 -E2E Customer Management - Verifying that up-to-date data is displayed
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter a random declaration endorsement to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+   #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC182 -E2E : Customer Management - Detailed Information - Merchant Customer - Small Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "2000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC183 -E2E : Customer Management - Detailed Information - Merchant Customer - Micro Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "10000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC184 -E2E : Customer Management - Detailed Information - Merchant Customer - Commercial Bussiness
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
   #5430
     Then I get the data from Excel file to element: customer code text area at index 1 for 5430
     When I click element: search button at index 1
@@ -430,6 +880,169 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
     Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
     When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "75000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+  @Finco
+  Scenario: TC185 -E2E : Customer Management - Detailed Information - Merchant Customer - Corparate Company
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+  #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    When I clear text to declaration endorsement text area at index 1
+    Then I enter "80000000" text to declaration endorsement text area at index 1
+
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for save section element 30 seconds at index 1
+    When I click element: save button for save section at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5430
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
+    When I click element: next button at index 1
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait financial information area element 30 seconds at index 1
+    When I click element: financial information area at index 1
+    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
+
+#TC212 'den alınması gereken diğer testlerde düzeltilmesi gereken kısımlar var. #   Then I have to check is there any document is uploaded on the address area at index 1 for telephone
+  #check button at index 3 değil de 1
+
+  @Finco
+  Scenario: TC212 -E2E - Customer Management - Detailed Information - Merchant Customer
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+#5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing no permission button element 30 seconds at index 1
+    When I click element: permission marketing no permission button at index 1
+    And I wait documents section area element 30 seconds at index 1
+    When I click element: documents section area at index 1
+    Then I have to check is there any document is uploaded on the address area at index 1 for telephone
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for customer information element 30 seconds at index 1
+    When I click element: save button for customer information at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+#5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
     And I wait telephone information area element 30 seconds at index 1
@@ -448,562 +1061,18 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     And I wait reason add button element 30 seconds at index 1
     When I click element: reason add button at index 1
     Then I need to checkbox verify for priority telephone checkbox at index 5
+    Then I go to top of the site
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing button element 30 seconds at index 1
+    Then I need to checkbox verify for permission marketing yes button at index 1
+
 
   @Finco
-  Scenario: TC156 -E2E Customer Management - Micro Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "300000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Small Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "3000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC158 - TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Commercial Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "60000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC159 -E2E : Customer Management - Detailed Information - Legal Customer - Corparate Company
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "80000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC168 -E2E Customer Management - Verifying that up-to-date data is displayed
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter a random declaration endorsement to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5430
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5430
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to TCKN verify for TCKN text area match from Excel file at index 1 for 5430
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5430
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC182 -E2E : Customer Management - Detailed Information - Merchant Customer - Small Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "3000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC183 -E2E : Customer Management - Detailed Information - Merchant Customer - Micro Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "300000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC184 -E2E : Customer Management - Detailed Information - Merchant Customer - Commercial Bussiness
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "60000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-  @Finco
-  Scenario: TC185 -E2E : Customer Management - Detailed Information - Merchant Customer - Corparate Company
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-   #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    When I clear text to declaration endorsement text area at index 1
-    Then I enter "80000000" text to declaration endorsement text area at index 1
-
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-    And I wait save section area element 30 seconds at index 1
-    When I click element: save section area at index 1
-    And I wait save button element 30 seconds at index 1
-    When I click element: save button at index 1
-    And I wait close button element 30 seconds at index 1
-    When I click element: close button at index 1
-
-    And I wait close system button element 30 seconds at index 1
-    When I click element: close system button at index 1
-
-    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
-    Then I see login page
-    Then I enter "40000" text to username text area at index 1
-    Then I enter "" text to password text area at index 1
-    And I wait login button element 30 seconds at index 1
-    When I click element: login button at index 1
-    Then I see home page
-
-    And I wait customer transactions for 40000 element 30 seconds at index 1
-    When I click element: customer transactions for 40000 at index 1
-    Then I see customerTransactions page
-    And I wait customer management button element 30 seconds at index 1
-    When I click element: customer management button at index 1
-  #5426
-    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
-    When I click element: search button at index 1
-    Then I need to just wait
-    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
-    When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
-    When I click element: detail information section area at index 1
-
-    And I wait financial information area element 30 seconds at index 1
-    When I click element: financial information area at index 1
-    Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
-
-#TC212 'den alınması gereken diğer testlerde düzeltilmesi gereken kısımlar var. #   Then I have to check is there any document is uploaded on the address area at index 1 for telephone
-  #check button at index 3 değil de 1
-
-  @Finco
-  Scenario: TC212 -E2E - Customer Management - Detailed Information - Merchant Customer
+  Scenario: TC213 -E2E - Customer Management - Detailed Information - Legal Customer
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -1055,6 +1124,80 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
 
     And I wait contact information section area element 30 seconds at index 1
     When I click element: contact information section area at index 1
+
+    And I wait email information area element 30 seconds at index 1
+    When I click element: email information area at index 1
+    And I wait email new button element 30 seconds at index 1
+    When I click element: email new button at index 1
+    Then I enter a email to email text area at index 1
+    When I click element: priority email button at index 1
+    When I click element: email add button at index 1
+    Then I need to checkbox verify for priority email checkbox at index 7
+    And I wait warning close button element 30 seconds at index 2
+    When I click element: warning close button at index 2
+
+    Then I go to top of the site
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing button element 30 seconds at index 1
+    Then I need to checkbox verify for permission marketing yes button at index 1
+
+   # @Finco
+  Scenario: TC221 -E2E - Customer Management - Detailed Information - Merchant Customer
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+#5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing no permission button element 30 seconds at index 1
+    When I click element: permission marketing no permission button at index 1
+    And I wait documents section area element 30 seconds at index 1
+    When I click element: documents section area at index 1
+    Then I have to check is there any document is uploaded on the address area at index 1 for telephone
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for customer information element 30 seconds at index 1
+    When I click element: save button for customer information at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+#5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
     And I wait telephone information area element 30 seconds at index 1
     When I click element: telephone information area at index 1
     And I wait telephone new button element 30 seconds at index 1
@@ -1071,7 +1214,81 @@ Scenario: TC097 -E2E Customer Management - Contact information - Phone Informati
     And I wait reason add button element 30 seconds at index 1
     When I click element: reason add button at index 1
     Then I need to checkbox verify for priority telephone checkbox at index 5
+    Then I go to top of the site
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
 
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing button element 30 seconds at index 1
+    Then I need to checkbox verify for permission marketing yes button at index 1
+
+ #  @Finco
+  Scenario: TC222 -E2E - Customer Management - Detailed Information - Legal Customer
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+    And I wait detail information section area element 30 seconds at index 1
+    When I click element: detail information section area at index 1
+
+    And I wait permission marketing area element 30 seconds at index 1
+    When I click element: permission marketing area at index 1
+    And I wait permission marketing no permission button element 30 seconds at index 1
+    When I click element: permission marketing no permission button at index 1
+    And I wait documents section area element 30 seconds at index 1
+    When I click element: documents section area at index 1
+    Then I have to check is there any document is uploaded on the address area at index 1 for telephone
+    And I wait save section area element 30 seconds at index 1
+    When I click element: save section area at index 1
+    And I wait save button for customer information element 30 seconds at index 1
+    When I click element: save button for customer information at index 1
+    And I wait close button element 30 seconds at index 1
+    When I click element: close button at index 1
+
+    And I wait close system button element 30 seconds at index 1
+    When I click element: close system button at index 1
+
+    Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
+    Then I see login page
+    Then I enter "40000" text to username text area at index 1
+    Then I enter "" text to password text area at index 1
+    And I wait login button element 30 seconds at index 1
+    When I click element: login button at index 1
+    Then I see home page
+
+    And I wait customer transactions for 40000 element 30 seconds at index 1
+    When I click element: customer transactions for 40000 at index 1
+    Then I see customerTransactions page
+    And I wait customer management button element 30 seconds at index 1
+    When I click element: customer management button at index 1
+ #5426
+    Then I get the data from Excel file to element: customer code text area at index 1 for 5426
+    When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
+
+    And I wait contact information section area element 30 seconds at index 1
+    When I click element: contact information section area at index 1
+
+    And I wait email information area element 30 seconds at index 1
+    When I click element: email information area at index 1
+    And I wait email new button element 30 seconds at index 1
+    When I click element: email new button at index 1
+    Then I enter a email to email text area at index 1
+    When I click element: priority email button at index 1
+    When I click element: email add button at index 1
+    Then I need to checkbox verify for priority email checkbox at index 7
+    And I wait warning close button element 30 seconds at index 2
+    When I click element: warning close button at index 2
+
+    Then I go to top of the site
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
 

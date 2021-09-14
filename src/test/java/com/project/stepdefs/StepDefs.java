@@ -11,6 +11,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -329,6 +330,11 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("I go to top of the site")
+    public void topOfWebsite(){
+        ((JavascriptExecutor) oDriver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
+    }
+
     @Then("^I have to check is there any document is uploaded on the (.*) at index (\\d+) for telephone")
     public boolean checkUploadFileForTelephone(String element, int index) throws InterruptedException, AWTException, FindFailed, IOException {
         WebElement object;
@@ -347,6 +353,8 @@ public class StepDefs extends MyTestNGBaseClass {
                     clickElement("address document remove button", 4);
                     waitElement("address document remove yes button", 30, 1);
                     clickElement("address document remove yes button", 1);
+                    waitElement("address document remove close button", 30, 1);
+                    clickElement("address document remove close button", 1);
                     waitElement("address document upload button", 30, 4);
                     uploadFile("aa.txt", "address document upload button", 4);
                     System.out.println("Uploaded the txt file.");
@@ -439,7 +447,7 @@ public class StepDefs extends MyTestNGBaseClass {
                     segmentCode.equals("BELİRTİLMEDİ");
                     System.out.println("Matched. Segment Code: NOK");
                     reportResult("PASS", "Matched. Segment Code: NOK", true);
-                } else if (0 < ciroInfoNum & ciroInfoNum < 2000000) {
+                } else if (0 < ciroInfoNum & ciroInfoNum <= 2000000) {
                     segmentCode.equals("MİKRO İŞLETME");
                     System.out.println("Matched. Segment Code: Micro Company");
                     reportResult("PASS", "Matched. Segment Code: Micro Company", true);
@@ -915,10 +923,59 @@ public class StepDefs extends MyTestNGBaseClass {
         object.click();
         Thread.sleep(5000);
 
-        System.out.println("aa.txt is uploading.");
-        String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
-        Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
-        Thread.sleep(5000);
+        if (text.contains("2017.pdf")){
+
+            System.out.println("2017.pdf is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\2017.pdf";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+
+            System.out.println("2017.pdf is uploaded.");
+        }
+
+        else if (text.contains("2018.pdf")){
+
+            System.out.println("2018.pdf is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\2018.pdf";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+            System.out.println("2018.pdf is uploaded.");
+        }
+
+        else if (text.contains("2019.pdf")){
+
+            System.out.println("2019.pdf is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\2019.pdf";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+            System.out.println("2019.pdf is uploaded.");
+        }
+
+        else if (text.contains("2020.pdf")){
+
+            System.out.println("2020.pdf is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\2020.pdf";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+            System.out.println("2020.pdf is uploaded.");
+        }
+
+        else if (text.contains("AllowButton.PNG")){
+
+            System.out.println("AllowButton.PNG is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\AllowButton.PNG";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+            System.out.println("AllowButton.PNG is uploaded.");
+        }
+        else if (text.contains("aa.txt")){
+
+            System.out.println("AllowButton.PNG is uploading.");
+            String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
+            Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
+            Thread.sleep(5000);
+            System.out.println("aa.txt is uploaded.");
+        }
 
 
     }
@@ -932,7 +989,7 @@ public class StepDefs extends MyTestNGBaseClass {
     //43. Kredi Kullandırım - TC001
 
     @Then("I have to create a credit by credit amount:\"([^\"]*)\" for customer:\"([^\"]*)\"")
-    public void createCredit(String amount, String customerNo) throws InterruptedException {
+    public void createCredit(String amount, String customerNo) throws InterruptedException, AWTException, FindFailed, IOException {
         waitElement("loan button for 4000", timeout, 1);
         clickElement("loan button for 4000", 1);
         seePage("loan");
@@ -940,132 +997,141 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("application button", 1);
         waitElement("credit application introduction button", timeout, 1);
         clickElement("credit application introduction button", 1);
-        enterText(customerNo, "customer no-new application text area", 1);
-
+//'string' olarak bıraktığım bölgeye, tüzel müşteri numarası girilecek.
+// AM test ortamı için '5427' müşteri numarasını kullanıyorum. (Tüzel)
+        enterText("5427","customer no-new application text area",1);
+//closeview -> büyüteç -> büyüteçlerin xpath'ini sadece @class ile aldım, aynı sayfada birden fazla olduklarında index ile değiştireceğim.
         clickElement("closeview", 1);
         waitElement("row button", timeout, 27);
         clickElement("row button", 27);
         waitElement("trade registration no text area", timeout, 1);
-        enterText("4600", "trade registration no text area", 1);
+        enterText("4600","trade registration no text area",1);
         waitElement("parties row", timeout, 1);
         clickElement("parties row", 1);
         waitElement("row button", timeout, 1);
         clickElement("row button", 1);
+//checkbox tik'lendiğinde kefil seçilmiş oluyor, tekrar run ettiğimizde seçili olursa doğru ilerlemeyecektir.
         waitElement("checkbox", timeout, 1);
         clickElement("checkbox", 1);
         waitElement("update the guarantor button", timeout, 1);
         clickElement("update the guarantor button", 1);
         justWait();
         clickElement("continue to Reference Information button", 1);
-        waitElement("shut down button", timeout, 1);
-        clickElement("shut down button", 1);
-        //# Başvuru Bilgileri sekmesine geçtim.
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        //Başvuru Bilgileri sekmesine geçtim.
+        topOfWebsite();
         waitElement("product name selection", timeout, 1);
-        selectElement("DONANIM - YILLIK", "product name selection", 1);
         justWait();
-        selectElement("136 - 30062021 FINCO", "pricing selection", 1);
+        selectElement("DONANIM - YILLIK","product name selection",1);
         justWait();
-        //Credit price
-        enterText(amount, "invoice amount/product quantity text area", 1);
+        selectElement("146 - 07072021 FİYATLAMA","pricing selection",1);
+        justWait();
+        enterText("3000","invoice amount/product quantity text area",1);
+        enterText("2","invoice amount/product quantity piece text area",1);
         justWait();
         clickElement("application calender button", 1);
-        enterText("2", "maturity text area", 1);
+        enterText("5","maturity text area",1);
         clickElement("update product button", 1);
-        waitElement("shut down button", timeout, 1);
-        clickElement("shut down button", 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
         waitElement("row pick input", timeout, 1);
         clickElement("row pick input", 1);
         clickElement("create payment plan button", 1);
         waitElement("go on button", timeout, 1);
         clickElement("go on button", 1);
         waitElement("payment month selection", timeout, 1);
-        selectElement("MART", "payment month selection", 1);
-        clickElement("create payment plan button", 1);
+        selectElement("PAZARTESİ","payment month selection",1);
+        clickElement("create payment template button", 1);
+        waitElement("calculate button", timeout, 1);
+        clickElement("calculate button", 1);
         waitElement("pop up save button", timeout, 1);
         clickElement("pop up save button", 1);
+//  İlerlemek için -> save button (daha önce oluşturmuşuz.) -> 'Continue to Collateral Information button' olarak düşünebiliriz.
         waitElement("save button", timeout, 1);
         clickElement("save button", 1);
-        //# Teminat bilgileri sekmesine geldim.
+        //    Teminat bilgileri sekmesine geldim.
         waitElement("collateral type selection", timeout, 1);
-        selectElement("KEFALET", "collateral type selection", 1);
-        selectElement("5278 - Sibel Eratak", "guarantor selection", 1);
-        enterText("30", "collateral margin ratio text area", 1);
+        selectElement("KEFALET","collateral type selection",1);
+        selectElement("5278 - Sibel Eratak","guarantor selection",1);
+        enterText("30","collateral margin ratio text area",1);
         clickElement("add collateral button", 1);
-        waitElement("shut down button ", timeout, 1);
-        clickElement("shut down button", 1);
-        waitElement("continue to Finco Observation button ", timeout, 1);
+        waitElement("close button for financial info", timeout, 1);
+        clickElement("close button for financial info", 1);
+        waitElement("continue to Finco Observation button", timeout, 1);
         clickElement("continue to Finco Observation button", 1);
-        //# Finco Gözlem sekmesine geldim.
-        waitElement("continue to Financial Information button ", timeout, 1);
+        //Finco Gözlem sekmesine geldim.
+        waitElement("continue to Financial Information button", timeout, 1);
         clickElement("continue to Financial Information button", 1);
-        //#Mali Bilgiler sekmesine geldim.
-        //#Batu -> Buradan sonrasına upload methodu ekliyoruz. Daha düzenlediğim için karışık.
-        waitElement("upload1 button ", timeout, 1);
-        clickElement("upload1 button", 1);
-        justWait();
-        //uploadTheFile();
-        justWait();
-        clickElement("load 1st year button", 1);
-        /*
-        *waitElement("upload2 button ", timeout, 1);
-        //Then I upload the "2018.pdf" file to upload2 button at index 1
+//Mali Bilgiler sekmesine geldim.
+        waitElement("upload1 button", timeout, 1);
+uploadFile("2017.pdf","upload1 button",1);
+justWait();
+        clickElement("load 1st year button", 1); //popup ekranı gelecek secuirty.
+        waitElement("upload2 button", timeout, 1);
+        uploadFile("2018.pdf","upload2 button",1);
         justWait();
         clickElement("load 2nd year button", 1);
-        waitElement("upload3 button ", timeout, 1);
-        //Then I upload the "2019.pdf" file to upload3 button at index 1
-       justWait();
-        clickElement("load 3rd year button", 1);
-       waitElement("upload4 button ", timeout, 1);
-       // Then I upload the "2020.pdf" file to upload4 button at index 1
+        waitElement("upload3 button", timeout, 1);
+        uploadFile("2019.pdf","upload3 button",1);
         justWait();
-        clickElement("load 4th year button", 1);*/
-        selectElement("YMM", "1st year signing officer selection", 1);
-        //Burada kaydetmemiz gereken butonu daha önceden oluşturmuşuz. (Buton ismi biraz yersiz kaldı.)
+        clickElement("load 3rd year button", 1);
+        waitElement("upload4 button", timeout, 1);
+        uploadFile("2020.pdf","upload4 button",1);
+        justWait();
+        clickElement(" load 4th year button", 1);
+        selectElement("YMM","1st year signing officer selection",1);
+        selectElement("YMM","2nd year signing officer selection",1);
+        selectElement("YMM","3rd year signing officer selection",1);
+        selectElement("YMM","4th year signing officer selection",1);
+
+//Burada kaydetmemiz gereken butonu daha önceden oluşturmuşuz. (Buton ismi biraz yersiz kaldı.)
+
         clickElement("save button for parameter management", 1);
-        waitElement("warning popup ", timeout, 1);
-        clickElement("shut down button", 1);
-        waitElement("continue to Documents button ", timeout, 1);
+        waitElement("warning popup", timeout, 1);
+        clickElement("close system button", 1);
+        waitElement("continue to Documents button", timeout, 1);
         clickElement("continue to Documents button", 1);
-        //Evraklar sekmesine geldim. Evrak olarak herhangi bir PDF,excel,word dosyası yükleyebiliriz. Ben 2017.pdf'i yükledim.
-        waitElement("upload to excel button ", timeout, 1);
+//Evraklar sekmesine geldim. Evrak olarak herhangi bir PDF,excel,word dosyası yükleyebiliriz. Ben 2017.pdf'i yükledim.
+        waitElement("upload to excel button", timeout, 1);
         clickElement("upload to excel button", 1);
-        // Then I upload the "2017.pdf" file to upload4 button at index 1
-        waitElement("upload to excel button ", timeout, 2);
+        uploadFile("AllowButton.PNG","upload to excel button",1);
+        waitElement("upload to excel button", timeout, 2);
         clickElement("upload to excel button", 2);
-        // Then I upload the "2017.pdf" file to upload4 button at index 2
-        waitElement("upload to excel button ", timeout, 3);
+        uploadFile("AllowButton.PNG","upload to excel button",2);
+        waitElement("upload to excel button", timeout, 3);
         clickElement("upload to excel button", 3);
-        // Then I upload the "2017.pdf" file to upload4 button at index 3
-        waitElement("side selection ", timeout, 1);
-        selectElement("TR - 5278 - Sibel Eratak", "side selection", 1);
-        waitElement("upload to excel button ", timeout, 1);
+        uploadFile("AllowButton.PNG","upload to excel button",3);
+        waitElement("side selection", timeout, 1);
+        selectElement("TR - 5278 - Sibel Eratak","side selection",1);
+        waitElement("upload to excel button", timeout, 2);
+        waitElement("upload to excel button", timeout, 1);
         clickElement("upload to excel button", 1);
-        // Then I upload the "2017.pdf" file to upload4 button at index 1
-        waitElement("upload to excel button ", timeout, 2);
+        uploadFile("AllowButton.PNG","upload to excel button",1);
+        waitElement("upload to excel button", timeout, 2);
         clickElement("upload to excel button", 2);
-        // Then I upload the "2017.pdf" file to upload4 button at index 2
-        waitElement("upload to excel button ", timeout, 3);
+        uploadFile("AllowButton.PNG","upload to excel button",2);
+        waitElement("upload to excel button", timeout, 3);
         clickElement("upload to excel button", 3);
-        // Then I upload the "2017.pdf" file to upload4 button at index 3
-        waitElement("continue to Summary button ", timeout, 1);
+        uploadFile("AllowButton.PNG","upload to excel button",3);
+        waitElement("continue to Summary button", timeout, 1);
         clickElement("continue to Summary button", 1);
-        //Özet sekmesine geldim.
-        waitElement("continue to the Registration button ", timeout, 1);
+//Özet sekmesine geldim.
+        waitElement("continue to the Registration button", timeout, 1);
         clickElement("continue to the Registration button", 1);
-        //Kayıt sekmesine geldim.
-        waitElement("sending to approval button ", timeout, 1);
+//Kayıt sekmesine geldim BUNDAN SONRASI COMMENT
+        waitElement("sending to approval button", timeout, 1);
         clickElement("sending to approval button", 1);
-        waitElement("warning popup  ", timeout, 1);
-        enterText("Test islem onayina sunulmustur.", "explanation text area", 1);
+        waitElement("warning popup", timeout, 1);
+        enterText("Test islem onayina sunulmustur.","explanation text area",1);
         clickElement("add comment button", 1);
-        enterText("Test", "note text area", 1);
+        enterText("Test","note text area",1);
         clickElement("approve the registration button", 1);
-        getTheReferenceNumber("approve the registration button", 1);
-        //Burada oluşturulan referans numarasını alarak da devam edebiliriz, fakat müşteri numarasını da biliyoruz.
-        waitElement("warning popup  ", timeout, 1);
+//Burada oluşturulan referans numarasını alarak da devam edebiliriz, fakat müşteri numarasını da biliyoruz.
+        waitElement("warning popup", timeout, 1);
         clickElement("close button", 1);
-        waitElement("customer no-new application text area  ", timeout, 1);
-        //Yeni müşteri sayfasını gördükten sonra sistem kapanıyor, OKEY.
+        waitElement("customer no-new application text area", timeout, 1);
+//Yeni müşteri sayfasını gördükten sonra sistem kapanıyor, OKEY.
     }
 
     @Then("I have to cancel the credit")
