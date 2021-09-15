@@ -1,0 +1,54 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "gateway",
+        "parent": "login",
+        "waitelement": "test data actions"
+      },
+      "elements": [
+        {
+          "test data actions": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[8]/ul/li[2]/a"
+        },
+        {
+          "test data insert": "//a[contains(@data-href,'/finance/gateway/js/testDataInsert')]"
+        },
+        {
+          "test data template name": "//select[@orionid='template']"
+        },
+        {
+          "test data version name": "//select[@orionid='version']"
+        },
+        {
+          "load template button": "//button[@orionid='load']"
+        },
+        {
+          "tax no template area": "//b[contains(@class,'orion-bound') and text()='Vergi No']"
+        },
+        {
+          "general area": "//input[@orionid='value']"
+        },
+        {
+          "save button for test data input": "//button[@orionid='btnSave']"
+        },
+        {
+          "title template area": "//b[contains(@class,'orion-bound') and text()='Ünvan']"
+        },
+        {
+          "tckn template area": "//b[contains(@class,'orion-bound') and text()='TC Kimlik No']"
+        },
+        {
+          "company type template area": "//b[contains(@class,'orion-bound') and contains(.,'Şirket Türü')]"
+        },
+        {
+          "action code template area": "//b[contains(@class,'orion-bound') and contains(.,'Faaliyet Kodu')]"
+        },
+        {
+          "save data button": "//button[@orionid='complete']"
+        }
+      ]
+    }
+  ]
+}
+
+

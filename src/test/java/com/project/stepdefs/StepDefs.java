@@ -3,6 +3,7 @@ package com.project.stepdefs;
 import com.saf.framework.CommonLib;
 import com.saf.framework.HashMaps;
 import com.saf.framework.MyTestNGBaseClass;
+import com.saf.framework.TCKN;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -30,6 +31,7 @@ import java.util.UUID;
 public class StepDefs extends MyTestNGBaseClass {
     ExcelUtils excelUtils = new ExcelUtils();
     CommonLib commonLib = new CommonLib();
+    TCKN tckn = new TCKN();
     int timeout = 30;
     public String uuid = UUID.randomUUID().toString();
     public boolean checkLoginControl = false;
@@ -499,6 +501,37 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
+
+
+    @Then("^I enter random but valid tckn to (.*) element at index (\\d+)")
+    public boolean randomTCKN(String element, int index) throws InterruptedException {
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        String mytckn = tckn.getSaltString();
+        System.out.println(mytckn);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                object.click();
+                Thread.sleep(1000);
+                object.sendKeys(mytckn);
+                System.out.println("The tckn has been entered.");
+                reportResult("PASS", "The tckn has been entered.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("The tckn has not been entered.");
+            reportResult("FAIL", "The tckn has not been entered.", true);
+            Assert.fail("An error during the entering tckn");
+            flag = false;
+        }
+        return flag;
+    }
+
+
+
+
+
 
     @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
