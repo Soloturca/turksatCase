@@ -38,6 +38,7 @@ public class StepDefs extends MyTestNGBaseClass {
     public String phNo;
     public String randomEmployees;
     public String randomCiroString;
+    public String mytckn;
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     HashMaps hashMaps;
@@ -507,7 +508,7 @@ public class StepDefs extends MyTestNGBaseClass {
     public boolean randomTCKN(String element, int index) throws InterruptedException {
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
-        String mytckn = tckn.getSaltString();
+        mytckn = tckn.getSaltString();
         System.out.println(mytckn);
         boolean flag = false;
         try {
@@ -681,13 +682,38 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The reference number:" + text + " " + "has been entered.");
-                reportResult("PASS", "The reference number:" + text + " " + "has not been entered.", true);
+                reportResult("PASS", "The reference number:" + text + " " + "has been entered.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The reference number:" + text + " " + "has not been entered.");
             reportResult("FAIL", "The reference number:" + text + " " + "has not been entered.", true);
             Assert.fail("The reference number has not been entered!");
+            flag = false;
+
+        }
+        return flag;
+    }
+
+    @Then("^I enter my tckn text to (.*) at index (\\d+)")
+    public boolean dynamicTCKNNumberText(String element, int index) throws InterruptedException {
+        String text = mytckn;
+        System.out.println(text);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+
+        try {
+            if (object != null) {
+                object.sendKeys(text);
+                System.out.println("The tckn:" + text + " " + "has been entered.");
+                reportResult("PASS", "The tckn:" + text + " " + "has been entered.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("The tckn:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The tckn:" + text + " " + "has not been entered.", true);
+            Assert.fail("The tckn has not been entered!");
             flag = false;
 
         }

@@ -3,7 +3,7 @@
     {
       "pageInfo": {
         "pageName": "gateway",
-        "parent": "login",
+        "parent": "home",
         "waitelement": "test data actions"
       },
       "elements": [
@@ -26,6 +26,9 @@
           "tax no template area": "//b[contains(@class,'orion-bound') and text()='Vergi No']"
         },
         {
+          "name template area": "//b[contains(@class,'orion-bound') and text()='Adı Soyadı']"
+        },
+        {
           "general area": "//input[@orionid='value']"
         },
         {
@@ -35,7 +38,7 @@
           "title template area": "//b[contains(@class,'orion-bound') and text()='Ünvan']"
         },
         {
-          "tckn template area": "//b[contains(@class,'orion-bound') and text()='TC Kimlik No']"
+          "tckn template area": "//b[contains(@class,'orion-bound') and text()='TC Kimlik No' or text()='Tc Kimlik No']"
         },
         {
           "company type template area": "//b[contains(@class,'orion-bound') and contains(.,'Şirket Türü')]"
@@ -45,6 +48,15 @@
         },
         {
           "save data button": "//button[@orionid='complete']"
+        },
+        {
+          "clear data button": "//button[@orionid='clear']"
+        },
+        {
+          "warning popup for template": "//p[contains(@id,'modal-body-text') and text()='Test şablonunu kaydedilecektir. Devam etmek istiyor musunuz?']"
+        },
+        {
+          "close button for template popup": "//button[@class='btn btn-sm btn-success']"
         }
       ]
     }
