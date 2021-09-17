@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 public class HashMaps {
     public HashMap<String, String> parseStringXML(InputStream file) throws Exception{
+
+
         HashMap<String, String> stringMap = new HashMap<String, String>();
         //Get Document Builder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

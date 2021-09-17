@@ -57,6 +57,9 @@
         },
         {
           "close button for template popup": "//button[@class='btn btn-sm btn-success']"
+        },
+        {
+          "template name warning area": "//small[contains(@id,'template-helper') and text()='Alan boş bırakılamaz.']"
         }
       ]
     }

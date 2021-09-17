@@ -43,6 +43,7 @@ public class CommonLib extends MyTestNGBaseClass {
         return elementText;
     }
 
+
     public double getTheElementInformationForCreditAmount(String elem, int index) {
         System.out.println(findElement(elem, index).getText());
         double elementText = Double.parseDouble(findElement(elem, index).getText());
@@ -118,11 +119,12 @@ public class CommonLib extends MyTestNGBaseClass {
 
     public String getTheItemValueFromAttribute(String elem, int index) {
         String elementText = (findElement(elem, index).getAttribute("value"));
-       System.out.println(elementText);
+        System.out.println(elementText);
         this.itemValue = elementText;
         //System.out.println(itemValue);
         return elementText;
     }
+
     public String getTheItemTextFromAttribute(String elem, int index) {
 
         String elementText = (findElement(elem, index).getAttribute("text"));
@@ -290,7 +292,7 @@ public class CommonLib extends MyTestNGBaseClass {
                 break;
 
             case 3:
-                //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
+                  //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
                 WebDriverManager.chromedriver().setup();
                 oDriver = new ChromeDriver(getChromeOptions());
                 break;

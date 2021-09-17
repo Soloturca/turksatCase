@@ -2,9 +2,22 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
 #  This feature includes these steps:
 #1.) E2E Client Management - TC256 - E2E -  Müşteri Yönetimi -  Gerçek Yeni müşteri oluşturma
 #2.) E2E Client Management - TC257  - E2E -  Müşteri Yönetimi -  Tacir Yeni Müşteri Oluşturma
-#3.) E2E Client Management - TC259 - E2E -  Müşteri Yönetimi -  Tüzel  Müşteri Oluşturma
+#3.) E2E Client Management - TC259 - E2E -  Müşteri Yönetimi -  Tüzel (Kurumsal) Müşteri Oluşturma
+# 4.) E2E Client Management - TC - E2E -  Müşteri Yönetimi -  Empty Buttons Test Case
 
   Background: System Login
+
+    Given Open the https://www.simlict.com/ URL
+    Then I see simlict page
+    And I wait generate tckn button element 30 seconds at index 1
+    When I click element: generate tckn button at index 1
+    Then I get the information: generated tckn area at index 1
+    And I wait go to tax no button element 30 seconds at index 2
+    When I click element: go to tax no button at index 2
+    And I wait generate tax no button element 30 seconds at index 1
+    When I click element: generate tax no button at index 1
+    Then I get the information: generated tax area at index 1
+
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "30060" text to username text area at index 1
@@ -34,7 +47,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     And I wait tckn template area element 30 seconds at index 1
     When I click element: tckn template area at index 1
     And I wait general area element 30 seconds at index 1
-    Then I enter random but valid tckn to general area element at index 1
+    Then I enter my tckn text to general area at index 1
     And I wait save button for test data input element 30 seconds at index 1
     When I click element: save button for test data input at index 1
 
@@ -71,7 +84,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     And I wait tckn template area element 30 seconds at index 1
     When I click element: tckn template area at index 1
     And I wait general area element 30 seconds at index 1
-    Then I enter random but valid tckn to general area element at index 1
+    Then I enter my tckn text to general area at index 1
     And I wait save button for test data input element 30 seconds at index 1
     When I click element: save button for test data input at index 1
 
@@ -79,7 +92,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     And I wait tax no template area element 30 seconds at index 1
     When I click element: tax no template area at index 1
     And I wait general area element 30 seconds at index 1
-    Then I enter "123" text to general area at index 1
+    Then I enter my tax text to general area at index 1
     And I wait save button for test data input element 30 seconds at index 1
     When I click element: save button for test data input at index 1
 
@@ -133,7 +146,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     And I wait tckn template area element 30 seconds at index 1
     When I click element: tckn template area at index 1
     And I wait general area element 30 seconds at index 1
-    Then I enter random but valid tckn to general area element at index 1
+    Then I enter my tckn text to general area at index 1
     And I wait save button for test data input element 30 seconds at index 1
     When I click element: save button for test data input at index 1
     #Burada top page yapmamız lazım yoksa test patlıyor.
@@ -154,3 +167,20 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     When I click element: customer management button at index 1
     Then I enter my tckn text to TCKN text area at index 1
     When I click element: search button at index 1
+    Then I need to just wait
+    Then I need to new client title verify by name title text area at index 1
+
+#  @Finco
+#  Scenario:E2E Client Management - TC - E2E -  Müşteri Yönetimi -  Empty Buttons Test Case
+#    And I wait gateway button element 30 seconds at index 1
+#    When I click element: gateway button at index 1
+#    Then I see gateway page
+#    And I wait test data actions element 30 seconds at index 1
+#    When I click element: test data actions at index 1
+#    And I wait test data insert element 30 seconds at index 1
+#    When I click element: test data insert at index 1
+#
+#    And I wait test data template name element 30 seconds at index 1
+#    And I wait load template button element 30 seconds at index 1
+#    When I click element: load template button at index 1
+#    Then I have to verify the text for: template name warning area at index 1

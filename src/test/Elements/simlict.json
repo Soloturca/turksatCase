@@ -1,0 +1,30 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "simlict",
+        "parent": "home",
+        "waitelement": "generate tckn button"
+      },
+      "elements": [
+        {
+          "generate tckn button": "//button[@id='tcButton']"
+        },
+        {
+          "generated tckn area": "//span[@id='tcDiv']"
+        },
+        {
+          "go to tax no button": "//a[contains(@href,'VergiNo.html') and text()='Vergi Numarası Üretici']"
+        },
+        {
+          "generate tax no button": "//button[@id='vergiButton']"
+        },
+        {
+          "generated tax area": "//span[@id='vergiDiv']"
+        }
+      ]
+    }
+  ]
+}
+
+

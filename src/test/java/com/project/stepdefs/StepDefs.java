@@ -39,6 +39,8 @@ public class StepDefs extends MyTestNGBaseClass {
     public String randomEmployees;
     public String randomCiroString;
     public String mytckn;
+    public String object;
+    public String tax;
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     HashMaps hashMaps;
@@ -80,9 +82,8 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @When("^(?:I )?have to verify the text for: (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyText(String element, int index) throws Exception {
-        String xmlFileName="/strings.xml";
-        stringsis=getClass().getClassLoader().getResourceAsStream(xmlFileName);
-        hashMaps= new HashMaps();
+        String xmlFileName = "strings.xml";
+        stringsis = getClass().getClassLoader().getResourceAsStream(xmlFileName);
         hashMaps.parseStringXML(stringsis);
         WebElement object = commonLib.findElement(element, index);
         boolean flag = false;
@@ -90,7 +91,7 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.click();
                 String actualErrTxt = object.getText();
-                String expectedErrText =strings.get("Approve Popup");
+                String expectedErrText = strings.get("Approve Popup");
                 System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
                 Assert.assertEquals(actualErrTxt, expectedErrText);
                 reportResult("PASS", "Assertion is true." + element, true);
@@ -334,7 +335,7 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("I go to top of the site")
-    public void topOfWebsite(){
+    public void topOfWebsite() {
         ((JavascriptExecutor) oDriver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
     }
 
@@ -530,10 +531,6 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
 
-
-
-
-
     @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
         commonLib.waitElement(element, timeout, index);
@@ -570,7 +567,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @Then("^(?:I )?get the information: (\\w+(?: \\w+)*) at index (\\d+)")
     public void getTheReferenceNumber(String element, int index) {
-        String object = commonLib.getTheElementInformation(element, index);
+        if (element.contains("tckn")) {
+            object = commonLib.getTheElementInformation(element, index);
+        } else if (element.contains("tax")) {
+            tax = commonLib.getTheElementInformation(element, index);
+        } else {
+            object = commonLib.getTheElementInformation(element, index);
+        }
     }
 
     @Then("^(?:I )?get the text area information: (\\w+(?: \\w+)*) at index (\\d+)")
@@ -697,7 +700,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @Then("^I enter my tckn text to (.*) at index (\\d+)")
     public boolean dynamicTCKNNumberText(String element, int index) throws InterruptedException {
-        String text = mytckn;
+        String text = object;
         System.out.println(text);
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
@@ -714,6 +717,31 @@ public class StepDefs extends MyTestNGBaseClass {
             System.out.println("The tckn:" + text + " " + "has not been entered.");
             reportResult("FAIL", "The tckn:" + text + " " + "has not been entered.", true);
             Assert.fail("The tckn has not been entered!");
+            flag = false;
+
+        }
+        return flag;
+    }
+
+    @Then("^I enter my tax text to (.*) at index (\\d+)")
+    public boolean dynamicTaxNumberText(String element, int index) throws InterruptedException {
+        String text = tax;
+        System.out.println(text);
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+
+        try {
+            if (object != null) {
+                object.sendKeys(text);
+                System.out.println("The tax:" + text + " " + "has been entered.");
+                reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("The tax:" + text + " " + "has not been entered.");
+            reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
+            Assert.fail("The tax has not been entered!");
             flag = false;
 
         }
@@ -955,6 +983,26 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
+    @Then("I need to new client title verify by (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean verifyNewAccountTitle(String element, int index)  {
+        String title = commonLib.getTheElementInformation(element, index);
+        System.out.println("Title: " + " " + title);
+        boolean flag=false;
+
+        try {
+            if (title.contains("Yeni")) {
+                System.out.println("Matched .The client is created new!");
+                reportResult("PASS", "Matched. Matched .The client is created new!", true);
+            }
+            return true;
+        } catch (Exception e) {
+            reportResult("FAIL", "Not matched! " + phNo, true);
+            Assert.fail("Not matched. An error during the update!" + phNo);
+            flag = false;
+        }
+        return flag;
+    }
+
     @Then("^(?:I )?I need to checkbox verify for (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyCheckbox(String element, int index) {
         String value = commonLib.getTheItemValueFromAttribute(element, index);
@@ -982,7 +1030,7 @@ public class StepDefs extends MyTestNGBaseClass {
         object.click();
         Thread.sleep(5000);
 
-        if (text.contains("2017.pdf")){
+        if (text.contains("2017.pdf")) {
 
             System.out.println("2017.pdf is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\2017.pdf";
@@ -990,44 +1038,35 @@ public class StepDefs extends MyTestNGBaseClass {
             Thread.sleep(5000);
 
             System.out.println("2017.pdf is uploaded.");
-        }
-
-        else if (text.contains("2018.pdf")){
+        } else if (text.contains("2018.pdf")) {
 
             System.out.println("2018.pdf is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\2018.pdf";
             Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
             Thread.sleep(5000);
             System.out.println("2018.pdf is uploaded.");
-        }
-
-        else if (text.contains("2019.pdf")){
+        } else if (text.contains("2019.pdf")) {
 
             System.out.println("2019.pdf is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\2019.pdf";
             Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
             Thread.sleep(5000);
             System.out.println("2019.pdf is uploaded.");
-        }
-
-        else if (text.contains("2020.pdf")){
+        } else if (text.contains("2020.pdf")) {
 
             System.out.println("2020.pdf is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\2020.pdf";
             Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
             Thread.sleep(5000);
             System.out.println("2020.pdf is uploaded.");
-        }
-
-        else if (text.contains("AllowButton.PNG")){
+        } else if (text.contains("AllowButton.PNG")) {
 
             System.out.println("AllowButton.PNG is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\AllowButton.PNG";
             Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
             Thread.sleep(5000);
             System.out.println("AllowButton.PNG is uploaded.");
-        }
-        else if (text.contains("aa.txt")){
+        } else if (text.contains("aa.txt")) {
 
             System.out.println("AllowButton.PNG is uploading.");
             String fileName = System.getProperty("user.dir") + "\\Library\\aa.txt";
@@ -1058,13 +1097,13 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("credit application introduction button", 1);
 //'string' olarak bıraktığım bölgeye, tüzel müşteri numarası girilecek.
 // AM test ortamı için '5427' müşteri numarasını kullanıyorum. (Tüzel)
-        enterText("5427","customer no-new application text area",1);
+        enterText("5427", "customer no-new application text area", 1);
 //closeview -> büyüteç -> büyüteçlerin xpath'ini sadece @class ile aldım, aynı sayfada birden fazla olduklarında index ile değiştireceğim.
         clickElement("closeview", 1);
         waitElement("row button", timeout, 27);
         clickElement("row button", 27);
         waitElement("trade registration no text area", timeout, 1);
-        enterText("4600","trade registration no text area",1);
+        enterText("4600", "trade registration no text area", 1);
         waitElement("parties row", timeout, 1);
         clickElement("parties row", 1);
         waitElement("row button", timeout, 1);
@@ -1082,15 +1121,15 @@ public class StepDefs extends MyTestNGBaseClass {
         topOfWebsite();
         waitElement("product name selection", timeout, 1);
         justWait();
-        selectElement("DONANIM - YILLIK","product name selection",1);
+        selectElement("DONANIM - YILLIK", "product name selection", 1);
         justWait();
-        selectElement("146 - 07072021 FİYATLAMA","pricing selection",1);
+        selectElement("146 - 07072021 FİYATLAMA", "pricing selection", 1);
         justWait();
-        enterText("3000","invoice amount/product quantity text area",1);
-        enterText("2","invoice amount/product quantity piece text area",1);
+        enterText("3000", "invoice amount/product quantity text area", 1);
+        enterText("2", "invoice amount/product quantity piece text area", 1);
         justWait();
         clickElement("application calender button", 1);
-        enterText("5","maturity text area",1);
+        enterText("5", "maturity text area", 1);
         clickElement("update product button", 1);
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
@@ -1100,7 +1139,7 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("go on button", timeout, 1);
         clickElement("go on button", 1);
         waitElement("payment month selection", timeout, 1);
-        selectElement("PAZARTESİ","payment month selection",1);
+        selectElement("PAZARTESİ", "payment month selection", 1);
         clickElement("create payment template button", 1);
         waitElement("calculate button", timeout, 1);
         clickElement("calculate button", 1);
@@ -1111,9 +1150,9 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("save button", 1);
         //    Teminat bilgileri sekmesine geldim.
         waitElement("collateral type selection", timeout, 1);
-        selectElement("KEFALET","collateral type selection",1);
-        selectElement("5278 - Sibel Eratak","guarantor selection",1);
-        enterText("30","collateral margin ratio text area",1);
+        selectElement("KEFALET", "collateral type selection", 1);
+        selectElement("5278 - Sibel Eratak", "guarantor selection", 1);
+        enterText("30", "collateral margin ratio text area", 1);
         clickElement("add collateral button", 1);
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
@@ -1124,25 +1163,25 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("continue to Financial Information button", 1);
 //Mali Bilgiler sekmesine geldim.
         waitElement("upload1 button", timeout, 1);
-uploadFile("2017.pdf","upload1 button",1);
-justWait();
+        uploadFile("2017.pdf", "upload1 button", 1);
+        justWait();
         clickElement("load 1st year button", 1); //popup ekranı gelecek secuirty.
         waitElement("upload2 button", timeout, 1);
-        uploadFile("2018.pdf","upload2 button",1);
+        uploadFile("2018.pdf", "upload2 button", 1);
         justWait();
         clickElement("load 2nd year button", 1);
         waitElement("upload3 button", timeout, 1);
-        uploadFile("2019.pdf","upload3 button",1);
+        uploadFile("2019.pdf", "upload3 button", 1);
         justWait();
         clickElement("load 3rd year button", 1);
         waitElement("upload4 button", timeout, 1);
-        uploadFile("2020.pdf","upload4 button",1);
+        uploadFile("2020.pdf", "upload4 button", 1);
         justWait();
         clickElement(" load 4th year button", 1);
-        selectElement("YMM","1st year signing officer selection",1);
-        selectElement("YMM","2nd year signing officer selection",1);
-        selectElement("YMM","3rd year signing officer selection",1);
-        selectElement("YMM","4th year signing officer selection",1);
+        selectElement("YMM", "1st year signing officer selection", 1);
+        selectElement("YMM", "2nd year signing officer selection", 1);
+        selectElement("YMM", "3rd year signing officer selection", 1);
+        selectElement("YMM", "4th year signing officer selection", 1);
 
 //Burada kaydetmemiz gereken butonu daha önceden oluşturmuşuz. (Buton ismi biraz yersiz kaldı.)
 
@@ -1154,25 +1193,25 @@ justWait();
 //Evraklar sekmesine geldim. Evrak olarak herhangi bir PDF,excel,word dosyası yükleyebiliriz. Ben 2017.pdf'i yükledim.
         waitElement("upload to excel button", timeout, 1);
         clickElement("upload to excel button", 1);
-        uploadFile("AllowButton.PNG","upload to excel button",1);
+        uploadFile("AllowButton.PNG", "upload to excel button", 1);
         waitElement("upload to excel button", timeout, 2);
         clickElement("upload to excel button", 2);
-        uploadFile("AllowButton.PNG","upload to excel button",2);
+        uploadFile("AllowButton.PNG", "upload to excel button", 2);
         waitElement("upload to excel button", timeout, 3);
         clickElement("upload to excel button", 3);
-        uploadFile("AllowButton.PNG","upload to excel button",3);
+        uploadFile("AllowButton.PNG", "upload to excel button", 3);
         waitElement("side selection", timeout, 1);
-        selectElement("TR - 5278 - Sibel Eratak","side selection",1);
+        selectElement("TR - 5278 - Sibel Eratak", "side selection", 1);
         waitElement("upload to excel button", timeout, 2);
         waitElement("upload to excel button", timeout, 1);
         clickElement("upload to excel button", 1);
-        uploadFile("AllowButton.PNG","upload to excel button",1);
+        uploadFile("AllowButton.PNG", "upload to excel button", 1);
         waitElement("upload to excel button", timeout, 2);
         clickElement("upload to excel button", 2);
-        uploadFile("AllowButton.PNG","upload to excel button",2);
+        uploadFile("AllowButton.PNG", "upload to excel button", 2);
         waitElement("upload to excel button", timeout, 3);
         clickElement("upload to excel button", 3);
-        uploadFile("AllowButton.PNG","upload to excel button",3);
+        uploadFile("AllowButton.PNG", "upload to excel button", 3);
         waitElement("continue to Summary button", timeout, 1);
         clickElement("continue to Summary button", 1);
 //Özet sekmesine geldim.
@@ -1182,9 +1221,9 @@ justWait();
         waitElement("sending to approval button", timeout, 1);
         clickElement("sending to approval button", 1);
         waitElement("warning popup", timeout, 1);
-        enterText("Test islem onayina sunulmustur.","explanation text area",1);
+        enterText("Test islem onayina sunulmustur.", "explanation text area", 1);
         clickElement("add comment button", 1);
-        enterText("Test","note text area",1);
+        enterText("Test", "note text area", 1);
         clickElement("approve the registration button", 1);
 //Burada oluşturulan referans numarasını alarak da devam edebiliriz, fakat müşteri numarasını da biliyoruz.
         waitElement("warning popup", timeout, 1);
