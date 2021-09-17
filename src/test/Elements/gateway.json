@@ -60,6 +60,15 @@
         },
         {
           "template name warning area": "//small[contains(@id,'template-helper') and text()='Alan boş bırakılamaz.']"
+        },
+        {
+          "mersis data creation": "//a[contains(@data-href,'/finance/gateway/js/testData.js')]"
+        },
+        {
+          "mersis tckn area": "//input[@orionid='tcKimlikNoMersisNo']"
+        },
+        {
+          "mersis data add button": "//button[@orionid='btnPartnerAdd']"
         }
       ]
     }
