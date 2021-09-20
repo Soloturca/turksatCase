@@ -41,6 +41,7 @@ public class StepDefs extends MyTestNGBaseClass {
     public String mytckn;
     public String object;
     public String tax;
+    public String realCustomerTax;
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     HashMaps hashMaps;
@@ -571,6 +572,7 @@ public class StepDefs extends MyTestNGBaseClass {
             object = commonLib.getTheElementInformation(element, index);
         } else if (element.contains("tax")) {
             tax = commonLib.getTheElementInformation(element, index);
+
         } else {
             object = commonLib.getTheElementInformation(element, index);
         }
@@ -725,28 +727,55 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @Then("^I enter my tax text to (.*) at index (\\d+)")
     public boolean dynamicTaxNumberText(String element, int index) throws InterruptedException {
-        String text = tax;
-        System.out.println(text);
-        WebElement object;
-        object = commonLib.waitElement(element, timeout, index);
-        boolean flag = false;
+        if (element.contains("co-op")) {
+            String text = realCustomerTax;
+            System.out.println(text);
+            WebElement object;
+            object = commonLib.waitElement(element, timeout, index);
+            boolean flag = false;
 
-        try {
-            if (object != null) {
-                object.sendKeys(text);
-                System.out.println("The tax:" + text + " " + "has been entered.");
-                reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
-                return true;
+            try {
+                if (object != null) {
+                    object.sendKeys(text);
+                    System.out.println("The tax:" + text + " " + "has been entered.");
+                    reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println("The tax:" + text + " " + "has not been entered.");
+                reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
+                Assert.fail("The tax has not been entered!");
+                flag = false;
+
             }
-        } catch (Exception e) {
-            System.out.println("The tax:" + text + " " + "has not been entered.");
-            reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
-            Assert.fail("The tax has not been entered!");
-            flag = false;
+            return flag;
 
+
+        } else {
+            String text = tax;
+            System.out.println(text);
+            WebElement object;
+            object = commonLib.waitElement(element, timeout, index);
+            boolean flag = false;
+
+            try {
+                if (object != null) {
+                    object.sendKeys(text);
+                    System.out.println("The tax:" + text + " " + "has been entered.");
+                    reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println("The tax:" + text + " " + "has not been entered.");
+                reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
+                Assert.fail("The tax has not been entered!");
+                flag = false;
+
+            }
+            return flag;
         }
-        return flag;
     }
+
 
     @Then("^I enter my pricing no: \"([^\"]*)\" text to (.*) at index (\\d+)")
     public boolean dynamicPricingNoText(String text, String element, int index) throws InterruptedException {
@@ -984,10 +1013,10 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Then("I need to new client title verify by (\\w+(?: \\w+)*) at index (\\d+)")
-    public boolean verifyNewAccountTitle(String element, int index)  {
+    public boolean verifyNewAccountTitle(String element, int index) {
         String title = commonLib.getTheElementInformation(element, index);
         System.out.println("Title: " + " " + title);
-        boolean flag=false;
+        boolean flag = false;
 
         try {
             if (title.contains("Yeni")) {
@@ -1077,6 +1106,15 @@ public class StepDefs extends MyTestNGBaseClass {
 
 
     }
+
+
+    @Then("^I need to store the information for real customer vkn")
+    public String storeInformationVKN() {
+        realCustomerTax = tax;
+        System.out.println("Real customer tax is: " + realCustomerTax);
+        return realCustomerTax;
+    }
+
 
     //******************************* FINCO TEST STEPS ********************************//
     //Aşağıdaki metotlar, kredi test case'leri için pre-condition niteliği taşıyan ve sürekli kullanımı elzem olan metotlardır. Aşağıdaki metotlar yer alır:
@@ -1793,6 +1831,299 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("row button", 1);
         waitElement("warning popup", timeout, 1);
         clickElement("yes button", 1);
+
+    }
+
+    @Then("I have to create a real customer")
+    public void createRealCustomer() throws InterruptedException {
+        openUrl("https://www.simlict.com/");
+        seePage("simlict");
+        waitElement("generate tckn button", timeout, 1);
+        clickElement("generate tckn button", 1);
+        getTheReferenceNumber("generated tckn area", 1);
+        waitElement("go to tax no button", timeout, 2);
+        clickElement("go to tax no button", 2);
+        waitElement("generate tax no button", timeout, 1);
+        clickElement("generate tax no button", 1);
+        getTheReferenceNumber("generated tax area", 1);
+        openUrl("https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/");
+        seePage("login");
+        enterText("30060", "username text area", 1);
+        enterText("1", "password text area", 1);
+        waitElement("login button", timeout, 1);
+        clickElement("login button", 1);
+        seePage("home");
+        waitElement("gateway button", timeout, 1);
+        clickElement("gateway button", 1);
+        seePage("gateway");
+        waitElement("test data actions", timeout, 1);
+        clickElement("test data actions", 1);
+        waitElement("test data insert", timeout, 1);
+        clickElement("test data insert", 1);
+        waitElement("test data template name", timeout, 1);
+        //#***************************KPS**********************************
+        selectElement("KPS", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //  #Name&Surname - KPS
+        waitElement("name template area", timeout, 1);
+        clickElement("name template area", 1);
+        waitElement("general area", timeout, 1);
+        enterText("AutomationTest", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+        waitElement("clear data button", timeout, 1);
+        clickElement("clear data button", 1);
+        waitElement("test data template name", timeout, 1);
+        //************************************GIB******************************************
+        selectElement("GIB", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //VergiNo
+        waitElement("tax no template area", timeout, 1);
+        clickElement("tax no template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTaxNumberText("general area", 1);
+        storeInformationVKN();
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+
+        //Ünvan
+        waitElement("title template area", timeout, 1);
+        clickElement("title template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("Gercek Kisi", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+        //Şirket Türü
+        waitElement("company type template area", timeout, 1);
+        clickElement("company type template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("01", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+        //Faaliyet Kodu
+        waitElement("action code template area", timeout, 1);
+        clickElement("action code template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("009000", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+        waitElement("clear data button", timeout, 1);
+        clickElement("clear data button", 1);
+        waitElement("test data template name", timeout, 1);
+
+        //#***************************APS**********************************
+        selectElement("APS", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+
+
+    }
+    @Then("I have to create a real customer -Tacir")
+    public void createRealCustomerTacir() throws InterruptedException {
+        openUrl("https://www.simlict.com/");
+        seePage("simlict");
+        waitElement("generate tckn button", timeout, 1);
+        clickElement("generate tckn button", 1);
+        getTheReferenceNumber("generated tckn area", 1);
+        waitElement("go to tax no button", timeout, 2);
+        clickElement("go to tax no button", 2);
+        waitElement("generate tax no button", timeout, 1);
+        clickElement("generate tax no button", 1);
+        getTheReferenceNumber("generated tax area", 1);
+        openUrl("https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/");
+        seePage("login");
+        enterText("30060", "username text area", 1);
+        enterText("1", "password text area", 1);
+        waitElement("login button", timeout, 1);
+        clickElement("login button", 1);
+        seePage("home");
+        waitElement("gateway button", timeout, 1);
+        clickElement("gateway button", 1);
+        seePage("gateway");
+        waitElement("test data actions", timeout, 1);
+        clickElement("test data actions", 1);
+        waitElement("test data insert", timeout, 1);
+        clickElement("test data insert", 1);
+        waitElement("test data template name", timeout, 1);
+        //#***************************KPS**********************************
+        selectElement("KPS", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //  #Name&Surname - KPS
+        waitElement("name template area", timeout, 1);
+        clickElement("name template area", 1);
+        waitElement("general area", timeout, 1);
+        enterText("AutomationTest", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+        waitElement("clear data button", timeout, 1);
+        clickElement("clear data button", 1);
+        waitElement("test data template name", timeout, 1);
+        //************************************GIB******************************************
+        selectElement("GIB", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //VergiNo
+        waitElement("tax no template area", timeout, 1);
+        clickElement("tax no template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTaxNumberText("general area", 1);
+        storeInformationVKN();
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+
+        //Ünvan
+        waitElement("title template area", timeout, 1);
+        clickElement("title template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("Gercek Kisi", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+        //Şirket Türü
+        waitElement("company type template area", timeout, 1);
+        clickElement("company type template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("01", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+
+        //Faaliyet Kodu
+        waitElement("action code template area", timeout, 1);
+        clickElement("action code template area", 1);
+        waitElement("general area", timeout, 1);
+        clearText("general area", 1);
+        enterText("561008", "general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+        waitElement("clear data button", timeout, 1);
+        clickElement("clear data button", 1);
+        waitElement("test data template name", timeout, 1);
+
+        //#***************************APS**********************************
+        selectElement("APS", "test data template name", 1);
+        waitElement("test data version name", timeout, 1);
+        selectElement("1.0.0", "test data version name", 1);
+        waitElement("load template button", timeout, 1);
+        clickElement("load template button", 1);
+        //TCKN
+        waitElement("tckn template area", timeout, 1);
+        clickElement("tckn template area", 1);
+        waitElement("general area", timeout, 1);
+        dynamicTCKNNumberText("general area", 1);
+        waitElement("save button for test data input", timeout, 1);
+        clickElement("save button for test data input", 1);
+        //#Burada top page yapmamız lazım yoksa test patlıyor.
+        topOfWebsite();
+        waitElement("save data button", timeout, 1);
+        clickElement("save data button", 1);
+        waitElement("warning popup for template", timeout, 1);
+        waitElement("yes button", timeout, 1);
+        clickElement("yes button", 1);
+        waitElement("close button for template popup", timeout, 1);
+        clickElement("close button for template popup", 1);
+
 
     }
 }

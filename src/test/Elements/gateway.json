@@ -68,7 +68,25 @@
           "mersis tckn area": "//input[@orionid='tcKimlikNoMersisNo']"
         },
         {
+          "mersis vkn area": "//input[@orionid='vkn']"
+        },
+        {
+          "mersis co-op vkn area": "//input[@orionid='vergiNo']"
+        },
+        {
           "mersis data add button": "//button[@orionid='btnPartnerAdd']"
+        },
+        {
+          "mersis save button": "//button[@orionid='btnMersis']"
+        },
+        {
+          "mersis name-surname area": "//input[@orionid='adiSoyadi']"
+        },
+        {
+          "mersis partner's total capital area": "//input[@orionid='ortaginToplamSermayesi']"
+        },
+        {
+          "mersis total capital of the company area": "//input[@orionid='sirketinToplamSermayesi']"
         }
       ]
     }
