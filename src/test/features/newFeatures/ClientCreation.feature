@@ -107,7 +107,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     When I click element: mersis save button at index 1
 
   @Finco
-  Scenario: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Tacir
+  Scenario: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Taciri
     Then I have to create a real customer -Tacir
     And I wait customer transactions for 30060 element 30 seconds at index 1
     When I click element: customer transactions for 30060 at index 1
