@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<resources>
-<!-- Error Text -->
-    <string name="Approve Popup">İşlem Başarılı Olarak Tamamlandı.</string>
-    <string name="Assign to Pool Popup">İşlem Başarılı Olarak Tamamlandı.</string>
-    <string name="template name warning area">Alan boş bırakılamaz.</string>
-</resources>
-

@@ -23,6 +23,9 @@
           "loan button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/a"
         },
         {
+          "loan button for 3003": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[6]/a"
+        },
+        {
           "loan button for 3005": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/a"
         },
         {
@@ -81,6 +84,9 @@
         },
         {
           "approve popup": "//p[@id='modal-body-text']"
+        },
+        {
+          "assign to pool popup": "//p[@id='modal-body-text']"
         },
         {
           "cancel button": "//button[@owf_type='reject']"

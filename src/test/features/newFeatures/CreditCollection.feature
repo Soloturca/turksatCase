@@ -1,17 +1,17 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAHSİLAT
 
   @Finco
-  Scenario: TC001 -E2E Collection Transactions controls - PAID ON DATE
+  Scenario: Tahsilat: TC001 -E2E Collection Transactions controls - PAID ON DATE
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
-    Then I enter "admin" text to username text area at index 1
+    Then I enter "3003" text to username text area at index 1
     Then I enter "1" text to password text area at index 1
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-    And I wait loan button element 30 seconds at index 1
-    When I click element: loan button at index 1
+    And I wait loan button for 3003 element 30 seconds at index 1
+    When I click element: loan button for 3003 at index 1
     Then I see loan page
     And I wait test button element 30 seconds at index 1
     When I click element: test button at index 1
@@ -56,7 +56,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
 
   @Finco
-  Scenario: TC002 -E2E Collection Transactions controls - PAID ON DATE
+  Scenario: Tahsilat: TC002 -E2E Collection Transactions controls - PAID ON DATE
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
@@ -117,7 +117,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
 
   @Finco
-  Scenario: TC003 -E2E Collection Process controls - PARTIAL PAID
+  Scenario: Tahsilat: TC003 -E2E Collection Process controls - PARTIAL PAID
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
@@ -178,7 +178,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
 
   @Finco
-  Scenario: TC004 -E2E Collection Process controls - PAID DELAY
+  Scenario: Tahsilat: TC004 -E2E Collection Process controls - PAID DELAY
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
@@ -233,7 +233,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
 
 
   @Finco
-  Scenario: TC005 -E2E Collection Process controls - IN DELAY
+  Scenario: Tahsilat: TC005 -E2E Collection Process controls - IN DELAY
 
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
@@ -271,7 +271,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
     When I click element: credit monitoring inquire button at index 1
 
   @Finco
-  Scenario: TC006 -E2E Collection Transactions controls - DELAYED PARTIAL PAID
+  Scenario: Tahsilat: TC006 -E2E Collection Transactions controls - DELAYED PARTIAL PAID
 
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
@@ -332,7 +332,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
     When I click element: credit monitoring inquire button at index 1
 
   @Finco
-  Scenario: TC007 -E2E Collection Process controls - EARLY CLOSING
+  Scenario: Tahsilat: TC007 -E2E Collection Process controls - EARLY CLOSING
 
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
@@ -393,7 +393,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
     When I click element: credit monitoring inquire button at index 1
 
   @Finco
-  Scenario: TC008 -E2E Collection Process checks - PAYMENT PENDING
+  Scenario: Tahsilat: TC008 -E2E Collection Process checks - PAYMENT PENDING
 
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page

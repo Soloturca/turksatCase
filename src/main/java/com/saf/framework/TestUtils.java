@@ -11,7 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class HashMaps {
+public class TestUtils {
     public HashMap<String, String> parseStringXML(InputStream file) throws Exception{
 
 

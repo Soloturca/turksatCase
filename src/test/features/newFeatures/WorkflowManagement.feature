@@ -41,7 +41,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     Then I see home page
 
   @Finco
-  Scenario: TC001 - User Resumes Work that Started - Unit Officer
+  Scenario: İş Akış: TC001 - User Resumes Work that Started - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
@@ -49,22 +49,22 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
 
-  #Then I enter "Note is entered!" text to transaction note text area
-  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+ #Then I enter "Note is entered!" text to transaction note text area
+ # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button at index 1
     And I wait return to inquiry button element 30 seconds at index 1
     When I click element: return to inquiry button at index 1
 
   @Finco
-  Scenario: TC002 - Taking Over Pending Processes in the User's List - Unit Officer
+  Scenario: İş Akış: TC002 - Taking Over Pending Processes in the User's List - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
     When I click element: pending jobs button at index 1
     Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
-    # Then I enter "Note is entered!" text to transaction note text area
- # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+   # Then I enter "Note is entered!" text to transaction note text area
+# Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button at index 1
     When I click element: row button at index 1
     And I wait warning popup element 30 seconds at index 1
@@ -72,15 +72,15 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: yes button at index 1
     And I wait approve button element 30 seconds at index 1
 
-  #Unit Manager account should be login after this step:
+ #Unit Manager account should be login after this step:
 
 
     And I wait jobs pending on my list button element 30 seconds at index 1
     When I click element: jobs pending on my list button at index 1
     Then I enter my reference: "reference number" text to reference number area at index 1
     When I select element: "Grup Kaydetme" under operation type selection at index 1
-  #  Then I enter my "Note is entered!" text to transaction note text area
-  # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
+ #  Then I enter my "Note is entered!" text to transaction note text area
+ # Selection Method sadece 'Grup Kaydetme' için çalışıyor.
     When I click element: query button at index 1
     And I wait return to inquiry button element 30 seconds at index 1
     When I click element: row button at index 1
@@ -88,7 +88,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: TC003 - Pending Jobs - [PRECONDITION FOR TC0004 - TC0005 - TC0006] - Unit Officer
+  Scenario: İş Akış: TC003 - Pending Jobs - [PRECONDITION FOR TC0004 - TC0005 - TC0006] - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
@@ -97,16 +97,16 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     Then I enter my reference: "reference number" text to reference number area at index 1
     And I wait inquire button element 30 seconds at index 1
     When I click element: inquire button at index 1
-  #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
+ #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
 
-  #And I wait row button element 30 seconds
-  #When I click element: row button
-  #And I wait warning popup element 30 seconds
-  #When I click element: yes button
+ #And I wait row button element 30 seconds
+ #When I click element: row button
+ #And I wait warning popup element 30 seconds
+ #When I click element: yes button
 
   @Finco
-  Scenario: TC004 - Jobs Pending on My List - E2E Approving - Unit Manager
+  Scenario: İş Akış: TC004 - Jobs Pending on My List - E2E Approving - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -138,8 +138,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
       #Assertion method
-    #And I need to just wait
-   # Then I have to verify the text for: approve popup at index 1
+    Then I have to verify the text for: approve popup at index 1
     #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
     And I wait close button element 30 seconds at index 1
@@ -147,7 +146,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: TC005 - E2E Assign to Pool - Unit Manager
+  Scenario: İş Akış: TC005 - E2E Assign to Pool - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -177,6 +176,8 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: assign to pool button at index 1
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
+       #Assertion method
+    Then I have to verify the text for: assign to pool popup at index 1
    #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
     And I wait close button element 30 seconds at index 1
@@ -184,7 +185,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: TC006 - E2E Cancel - Unit Manager
+  Scenario: İş Akış: TC006 - E2E Cancel - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -196,7 +197,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: login button at index 1
     Then I see home page
 
- #And I wait workflow management button element 30 seconds
+    And I wait workflow management button element 30 seconds
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
 
@@ -214,13 +215,13 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: cancel button at index 1
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
-    #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
+  #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1
 
   @Finco
-  Scenario: TC007 - E2E Edit - Unit Manager
+  Scenario: İş Akış: TC007 - E2E Edit - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -232,7 +233,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: login button at index 1
     Then I see home page
 
- #And I wait workflow management button element 30 seconds
+#And I wait workflow management button element 30 seconds
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
 
@@ -250,7 +251,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: cancel button at index 1
     And I wait yes button element 30 seconds at index 1
     When I click element: yes button at index 1
-    #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
+   #burada thread (hard) sleep kullanmazsak sistem patlıyor hata veriyor hızdan ötürü. Elementi beklemesine rağmen.
     And I need to just wait
     And I wait close button element 30 seconds at index 1
     When I click element: close button at index 1

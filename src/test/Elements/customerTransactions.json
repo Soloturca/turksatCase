@@ -41,7 +41,7 @@
           "next button": "//button[@orionid='btnNextStep_1']"
         },
         {
-          "contact information section area": "//li[@data-title='İletişim Bilgileri']"
+          "contact information section area": "//a[@href='#step3']"
         },
         {
           "telephone information area": "//*[@id=\"step3\"]/div/div/div/div[1]/div/div[2]/h5"
@@ -107,7 +107,7 @@
           "telephone verify area": "//*[contains(text(),'+90')]"
         },
         {
-          "detail information section area": "//li[@data-title='Detay Bilgiler']"
+          "detail information section area": "//a[@href='#step3']"
         },
 
         {
@@ -132,10 +132,10 @@
           "reason add button": "//button[@orionid='btnVerify']"
         },
         {
-          "permission marketing area": "//*[contains(text(),'İzinli Pazarlama')]"
+          "permission marketing area": "//*[@id=\"step4\"]/div/div/div[2]/div/div/div[4]/h5"
         },
         {
-          "detail information area": "//*[contains(text(),'Detay Bilgileri')]"
+          "detail information area": "//*[@id=\"step4\"]/div/div/div[2]/div/div/div[1]/h5"
         },
         {
           "job type selection area": "//select[@orionid='jobType']"

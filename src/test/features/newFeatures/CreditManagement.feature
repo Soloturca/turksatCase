@@ -1,10 +1,10 @@
 Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 #  This feature includes these steps:
 #1.) E2E Credit Management - TC001
-#2.) E2E Work Flow - TC002
-# 3.) E2E Work Flow - TC005
-# 4.) E2E Work Flow - TC007
-# 5.) E2E Work Flow - TC008
+#2.) E2E Credit Management - TC002
+# 3.) E2E Credit Management - TC005
+# 4.) E2E Credit Management - TC007
+# 5.) E2E Credit Management - TC008
 
   Background: System Login
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
@@ -16,7 +16,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     Then I see home page
 
   @Finco
-  Scenario: TC001 - Financial Item Identification Screen - Save Button Control
+  Scenario: Yönetsel: TC001 - Financial Item Identification Screen - Save Button Control
     And I wait loan button for 3005 element 30 seconds at index 1
     When I click element: loan button for 3005 at index 1
     Then I see loan page
@@ -44,7 +44,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     When I click element: shut down button at index 1
 
   @Finco
-  Scenario: TC002 - Financial Item Identification Screen - Delete Button Control
+  Scenario: Yönetsel: TC002 - Financial Item Identification Screen - Delete Button Control
     And I wait loan button for 3005 element 30 seconds at index 1
     When I click element: loan button for 3005 at index 1
     Then I see loan page
@@ -66,7 +66,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     When I click element: shut down button at index 1
 
   @Finco
-  Scenario: TC005 - Rejection identify, update and cancel button - Add
+  Scenario: Yönetsel: TC005 - Rejection identify, update and cancel button - Add
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3009" text to username text area at index 1
@@ -88,7 +88,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
 #   Değişken anahtarı bulunamadı gibi bir pop-up çıkıyor?
 
   @Finco
-  Scenario: TC007 -Administrative Menu - Parameter Management Control 1
+  Scenario: Yönetsel: TC007 -Administrative Menu - Parameter Management Control 1
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3009" text to username text area at index 1
@@ -113,7 +113,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YÖNETSEL
     #Başvuru içerisine güncel oranların yansıdığı görülür kısmı eksik. Önce kredi başvuru oluşturmamız lazım
 
   @Finco
-  Scenario: TC008 -Administrative Menu - Parameter Management Control 2
+  Scenario: Yönetsel: TC008 -Administrative Menu - Parameter Management Control 2
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
     Then I enter "3009" text to username text area at index 1

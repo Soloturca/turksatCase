@@ -1,7 +1,7 @@
 package com.project.stepdefs;
 
 import com.saf.framework.CommonLib;
-import com.saf.framework.HashMaps;
+import com.saf.framework.TestUtils;
 import com.saf.framework.MyTestNGBaseClass;
 import com.saf.framework.TCKN;
 import cucumber.api.Scenario;
@@ -44,7 +44,7 @@ public class StepDefs extends MyTestNGBaseClass {
     public String realCustomerTax;
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
-    HashMaps hashMaps;
+    TestUtils utils;
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -83,25 +83,49 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @When("^(?:I )?have to verify the text for: (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyText(String element, int index) throws Exception {
-        String xmlFileName = "strings.xml";
-        stringsis = getClass().getClassLoader().getResourceAsStream(xmlFileName);
-        hashMaps.parseStringXML(stringsis);
         WebElement object = commonLib.findElement(element, index);
         boolean flag = false;
         try {
             if (object != null) {
+                String xmlFileName = "strings.xml";
+                stringsis = this.getClass().getClassLoader().getResourceAsStream(xmlFileName);
+                utils= new TestUtils();
+                strings=utils.parseStringXML(stringsis);
+
                 object.click();
                 String actualErrTxt = object.getText();
-                String expectedErrText = strings.get("Approve Popup");
-                System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
-                Assert.assertEquals(actualErrTxt, expectedErrText);
-                reportResult("PASS", "Assertion is true." + element, true);
-                return true;
+                if(element.contains("approve popup")){
+                    String expectedErrText = strings.get("approve popup");
+                    System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
+                    Assert.assertEquals(actualErrTxt, expectedErrText);
+                    reportResult("PASS", "Assertion is true." + element, true);
+                    return true;
+                }
+                else if (element.contains("assign to pool popup")){
+                    String expectedErrText = strings.get("assign to pool popup");
+                    System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
+                    Assert.assertEquals(actualErrTxt, expectedErrText);
+                    reportResult("PASS", "Assertion is true." + element, true);
+                    return true;
+                }
+                else if (element.contains("cancel popup")){
+                    String expectedErrText = strings.get("cancel popup");
+                    System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
+                    Assert.assertEquals(actualErrTxt, expectedErrText);
+                    reportResult("PASS", "Assertion is true." + element, true);
+                    return true;
             }
-        } catch (Exception e) {
+        }
+    }
+        catch (Exception e) {
             reportResult("FAIL", "An error during assertion. " + element, true);
             Assert.fail("Could not clicked the element:" + element);
             flag = false;
+        }
+        finally {
+            if(stringsis!=null){
+                stringsis.close();
+            }
         }
         return flag;
     }

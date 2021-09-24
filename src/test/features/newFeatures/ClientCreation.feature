@@ -5,7 +5,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
 #3.) E2E Client Management - TC259 - E2E -  Müşteri Yönetimi -  Tüzel (Kurumsal) Müşteri Oluşturma
 
   @Finco
-  Scenario: TC256 - E2E - Customer Management - Real New customer creation - Gercek Musteri - GKT
+  Scenario: Müşteri Yönetimi: TC256 - E2E - Customer Management - Real New customer creation - Gercek Musteri - GKT
     Then I have to create a real customer
     And I wait customer transactions for 30060 element 30 seconds at index 1
     When I click element: customer transactions for 30060 at index 1
@@ -18,7 +18,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     Then I need to new client title verify by name title text area at index 1
 
   @Finco
-  Scenario: E2E Client Management - TC259- Customer Management - Community customer creation  -Tüzel (Kurumsal)
+  Scenario: Müşteri Yönetimi: E2E Client Management - TC259- Customer Management - Community customer creation  -Tüzel (Kurumsal)
     Then I have to create a real customer
 
     Given Open the https://www.simlict.com/ URL
@@ -107,7 +107,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     When I click element: mersis save button at index 1
 
   @Finco
-  Scenario: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Taciri
+  Scenario: Müşteri Yönetimi: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Tacir
     Then I have to create a real customer -Tacir
     And I wait customer transactions for 30060 element 30 seconds at index 1
     When I click element: customer transactions for 30060 at index 1
