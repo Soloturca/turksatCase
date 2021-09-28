@@ -30,7 +30,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I see home page
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC258 - E2E - Customer Management - Merchant Customer Update and Registration
+  Scenario: Müsteri Yonetimi: TC258 - E2E - Customer Management - Merchant Customer Update and Registration
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page  
@@ -194,7 +194,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
 
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC260 - E2E - Client Management - Legal Client Creation 5426
+  Scenario: Müsteri Yonetimi: TC260 - E2E - Client Management - Legal Client Creation 5426
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -321,7 +321,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the declaration endorsement to declaration endorsement text area at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC097 -E2E Customer Management - Contact information - Phone Information
+  Scenario: Müsteri Yonetimi: TC097 -E2E Customer Management - Contact information - Phone Information
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -354,7 +354,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to checkbox verify for priority telephone checkbox at index 5
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC116 -E2E Customer Management - Confirmation of failure to continue by entering wrong verification Code
+  Scenario: Müsteri Yonetimi: TC116 -E2E Customer Management - Confirmation of failure to continue by entering wrong verification Code
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -388,7 +388,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     When I click element: warning close button at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC119 -E2E Customer Management - Unverified phone number after verification
+  Scenario: Müsteri Yonetimi: TC119 -E2E Customer Management - Unverified phone number after verification
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -421,7 +421,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to checkbox verify for priority telephone checkbox at index 5
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC121 -E2E Customer Management - Merchant customer contact information with unverified mobile number
+  Scenario: Müsteri Yonetimi: TC121 -E2E Customer Management - Merchant customer contact information with unverified mobile number
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -443,7 +443,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I get the text area information: unconfirmation reason code at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC156 -E2E Customer Management - Micro Bussiness
+  Scenario: Müsteri Yonetimi: TC156 -E2E Customer Management - Micro Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -503,7 +503,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Small Bussiness
+  Scenario: Müsteri Yonetimi: TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Small Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -563,7 +563,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC158 - TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Commercial Bussiness
+  Scenario: Müsteri Yonetimi: TC158 - TC157 -E2E : Customer Management - Detailed Information - Legal Customer - Commercial Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -623,7 +623,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC159 -E2E : Customer Management - Detailed Information - Legal Customer - Corparate Company
+  Scenario: Müsteri Yonetimi: TC159 -E2E : Customer Management - Detailed Information - Legal Customer - Corparate Company
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -683,7 +683,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC168 -E2E Customer Management - Verifying that up-to-date data is displayed
+  Scenario: Müsteri Yonetimi: TC168 -E2E Customer Management - Verifying that up-to-date data is displayed
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -742,7 +742,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC182 -E2E : Customer Management - Detailed Information - Merchant Customer - Small Bussiness
+  Scenario: Müsteri Yonetimi: TC182 -E2E : Customer Management - Detailed Information - Merchant Customer - Small Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -804,7 +804,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC183 -E2E : Customer Management - Detailed Information - Merchant Customer - Micro Bussiness
+  Scenario: Müsteri Yonetimi: TC183 -E2E : Customer Management - Detailed Information - Merchant Customer - Micro Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -866,7 +866,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC184 -E2E : Customer Management - Detailed Information - Merchant Customer - Commercial Bussiness
+  Scenario: Müsteri Yonetimi: TC184 -E2E : Customer Management - Detailed Information - Merchant Customer - Commercial Bussiness
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -928,7 +928,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC185 -E2E : Customer Management - Detailed Information - Merchant Customer - Corparate Company
+  Scenario: Müsteri Yonetimi: TC185 -E2E : Customer Management - Detailed Information - Merchant Customer - Corparate Company
 
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
@@ -993,7 +993,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
   #check button at index 3 değil de 1
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC212 -E2E - Customer Management - Detailed Information - Merchant Customer
+  Scenario: Müsteri Yonetimi: TC212 -E2E - Customer Management - Detailed Information - Merchant Customer
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -1072,7 +1072,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
 
 
   @Finco
-  Scenario: Müşteri Yönetimi: TC213 -E2E - Customer Management - Detailed Information - Legal Customer
+  Scenario: Müsteri Yonetimi: TC213 -E2E - Customer Management - Detailed Information - Legal Customer
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -1146,7 +1146,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to checkbox verify for permission marketing yes button at index 1
 
    # @Finco
-  Scenario: Müşteri Yönetimi: TC221 -E2E - Customer Management - Detailed Information - Merchant Customer
+  Scenario: Müsteri Yonetimi: TC221 -E2E - Customer Management - Detailed Information - Merchant Customer
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page
@@ -1224,7 +1224,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to checkbox verify for permission marketing yes button at index 1
 
  #  @Finco
-  Scenario: Müşteri Yönetimi: TC222 -E2E - Customer Management - Detailed Information - Legal Customer
+  Scenario: Müsteri Yonetimi: TC222 -E2E - Customer Management - Detailed Information - Legal Customer
     And I wait customer transactions for 40000 element 30 seconds at index 1
     When I click element: customer transactions for 40000 at index 1
     Then I see customerTransactions page

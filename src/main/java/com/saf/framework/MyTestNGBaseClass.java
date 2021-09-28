@@ -232,7 +232,8 @@ public class MyTestNGBaseClass {
 				ssNumber++;
 				TakesScreenshot ts = (TakesScreenshot)oDriver;
 				File source = ts.getScreenshotAs(OutputType.FILE);
-				dest = System.getProperty("user.dir") + "/Reports/" + reportPath + "/Screenshots/" + ssNumber + ".png";
+	//dest = System.getProperty("user.dir") + "/Reports/" + reportPath + "/Screenshots/" + ssNumber + ".png";
+				dest = System.getProperty("user.dir") + "\\Reports\\" + reportPath + "\\Screenshots\\" + ssNumber + ".png";
 				File destination = new File(dest);
 				FileUtils.copyFile(source, destination);
 			}

@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (Kurumsal) Müşteri
+Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (Kurumsal) Müsteri
 
   #This feature includes these steps:
   #1.) Kredi Basvuru - TC001
@@ -20,31 +20,31 @@ Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (
 
   #************************************* basvuru degerlendirme under 450.000tl cases ***********************
   @Finco
-  Scenario: Kredi Basvuru: Creation a Credit for Kurumsal Müşteri - Under 450.000 TL - TC001
+  Scenario: Kredi Basvuru: Creation a Credit for Kurumsal Müsteri - Under 450.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to create a credit by credit amount:"5000" for customer:"5427"
 
   @Finco
-  Scenario: Basvuru Degerlendirme: Evaluation a Credit for Kurumsal Müşteri - Under 450.000 TL - TC001
+  Scenario: Basvuru Degerlendirme: Evaluation a Credit for Kurumsal Müsteri - Under 450.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"
     Then I have to evaluate for the credit for kurumsal
 
   @Finco
-  Scenario: Basvuru Degerlendirme: Approve a Credit for Kurumsal Müşteri - Under 450.000 TL - TC003
+  Scenario: Basvuru Degerlendirme: Approve a Credit for Kurumsal Müsteri - Under 450.000 TL - TC003
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"
     Then I have to approve for the credit of under 450.000TL
 
   @Finco
-  Scenario: Kullandırım: Usage a Credit for Kurumsal Müşteri - Under 450.000 TL - TC009
+  Scenario: Kullandirim: Usage a Credit for Kurumsal Müsteri - Under 450.000 TL - TC009
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"
     Then I have to do usage control for the credit
 
   @Finco
-  Scenario: Kredi Başvuru: Cancel a Credit for Kurumsal Müşteri - Under 450.000 TL - TC008
+  Scenario: Kredi Basvuru: Cancel a Credit for Kurumsal Müsteri - Under 450.000 TL - TC008
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to cancel the credit
@@ -52,31 +52,31 @@ Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (
      #************************************* basvuru degerlendirme 4500.000 - 1.000.000 tl cases****************************
 
   @Finco
-  Scenario: Kredi Başvuru: Creation a Credit for Kurumsal Müşteri - Between 450.000 TL - 1.000.000 TL - TC001
+  Scenario: Kredi Basvuru: Creation a Credit for Kurumsal Müsteri - Between 450.000 TL - 1.000.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to create a credit by credit amount:"470000" for customer:"5427"
 
   @Finco
-  Scenario: Başvuru Değerlendirme: Evaluate a Credit for Kurumsal Müşteri - Between 450.000 TL - 1.000.000 TL - TC001
+  Scenario: Basvuru Degerlendirme: Evaluate a Credit for Kurumsal Müsteri - Between 450.000 TL - 1.000.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"
     Then I have to evaluate for the credit for kurumsal
 
   @Finco
-  Scenario: Başvuru Değerlendirme: Approve a Credit for Kurumsal Müşteri - Between 450.000 TL - 1.000.000 TL - TC004
+  Scenario: Basvuru Degerlendirme: Approve a Credit for Kurumsal Müsteri - Between 450.000 TL - 1.000.000 TL - TC004
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:"1"
     Then I have to approve for the credit of between 450.000 - 1.000.000 TL
 
   @Finco
-  Scenario: Kullandırım: Usage a Credit for Kurumsal Müşteri - Between 450.000 TL - 1.000.000 TL - TC009
+  Scenario: Kullandirim: Usage a Credit for Kurumsal Müsteri - Between 450.000 TL - 1.000.000 TL - TC009
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to do usage control for the credit
 
   @Finco
-  Scenario: Kredi Başvuru: Cancel a Credit for Kurumsal Müşteri - Between 450.000 TL - 1.000.000 TL - TC008
+  Scenario: Kredi Basvuru: Cancel a Credit for Kurumsal Müsteri - Between 450.000 TL - 1.000.000 TL - TC008
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to cancel the credit
@@ -85,38 +85,38 @@ Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (
     #************************************* basvuru degerlendirme above 1.000.000 tl cases****************************
 
   @Finco
-  Scenario: Kredi Başvuru: Creation a Credit for Kurumsal Müşteri -Above 1.000.000 TL - TC001
+  Scenario: Kredi Basvuru: Creation a Credit for Kurumsal Müsteri -Above 1.000.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to create a credit by credit amount:"2000000" for customer:"5427"
 
   @Finco
-  Scenario: Başvuru Değerlendirme: Evaluate a Credit for Kurumsal Müşteri -Above 1.000.000 TL - TC001
+  Scenario: Basvuru Degerlendirme: Evaluate a Credit for Kurumsal Müsteri -Above 1.000.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"
     Then I have to evaluate for the credit for kurumsal
 
   @Finco
-  Scenario: Başvuru Değerlendirme: Approve a Credit for Kurumsal Müşteri -Above 1.000.000 TL - TC005
+  Scenario: Basvuru Degerlendirme: Approve a Credit for Kurumsal Müsteri -Above 1.000.000 TL - TC005
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:"1"
     Then I have to approve for the credit of above 1.000.000 TL
 
   @Finco
-  Scenario: Kullandırım: Usage a Credit for Kurumsal Müşteri -Above 1.000.000 TL - TC009
+  Scenario: Kullandirim: Usage a Credit for Kurumsal Müsteri -Above 1.000.000 TL - TC009
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3005" and this password:"1"
     Then I have to do usage control for the credit
 
   @Finco
-  Scenario: Kredi Başvuru: Cancel a Credit for Kurumsal Müşteri -Above 1.000.000 TL - TC008
+  Scenario: Kredi Basvuru: Cancel a Credit for Kurumsal Müsteri -Above 1.000.000 TL - TC008
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to cancel the credit
 
         #************************************* Kullandırım Cases****************************
   @Finco
-  Scenario: Kullandırım: Usage cases of a New E2E Credit Application for Tuzel Customer
+  Scenario: Kullandirim: Usage cases of a New E2E Credit Application for Tuzel Customer
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     Then I have to create a credit by credit amount:"5000" for customer:"5427"
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "3003" and this password:"1"

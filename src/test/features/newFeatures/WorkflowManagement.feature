@@ -41,7 +41,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     Then I see home page
 
   @Finco
-  Scenario: İş Akış: TC001 - User Resumes Work that Started - Unit Officer
+  Scenario: Is Akis: TC001 - User Resumes Work that Started - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
@@ -56,7 +56,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: return to inquiry button at index 1
 
   @Finco
-  Scenario: İş Akış: TC002 - Taking Over Pending Processes in the User's List - Unit Officer
+  Scenario: Is Akis: TC002 - Taking Over Pending Processes in the User's List - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
@@ -88,7 +88,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: İş Akış: TC003 - Pending Jobs - [PRECONDITION FOR TC0004 - TC0005 - TC0006] - Unit Officer
+  Scenario: Is Akis: TC003 - Pending Jobs - [PRECONDITION FOR TC0004 - TC0005 - TC0006] - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
@@ -106,7 +106,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
  #When I click element: yes button
 
   @Finco
-  Scenario: İş Akış: TC004 - Jobs Pending on My List - E2E Approving - Unit Manager
+  Scenario: Is Akis: TC004 - Jobs Pending on My List - E2E Approving - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -146,7 +146,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: İş Akış: TC005 - E2E Assign to Pool - Unit Manager
+  Scenario: Is Akis: TC005 - E2E Assign to Pool - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -185,7 +185,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
 
 
   @Finco
-  Scenario: İş Akış: TC006 - E2E Cancel - Unit Manager
+  Scenario: Is Akis: TC006 - E2E Cancel - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 
@@ -221,7 +221,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: close button at index 1
 
   @Finco
-  Scenario: İş Akış: TC007 - E2E Edit - Unit Manager
+  Scenario: Is Akis: TC007 - E2E Edit - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
 

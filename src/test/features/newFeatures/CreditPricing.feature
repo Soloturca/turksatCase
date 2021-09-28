@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
+Feature: Orion Finance Finco Test Scenarios / Credit Financing - FIYATLANDIRMA
     #This feature includes these steps:
   #1.) E2E Pricing - TC001
   # 2.) E2E Pricing -TC002
@@ -14,7 +14,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
     Then I see home page
 
   @Finco
-  Scenario: Fiyatlandırma: TC001 - E2E Credit Pricing - New pricing control
+  Scenario: Fiyatlandirma: TC001 - E2E Credit Pricing - New pricing control
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
     Then I see loan page
@@ -106,7 +106,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
     When I click element: close button at index 1
 
   @Finco
-  Scenario: Fiyatlandırma: TC002 - E2E Credit Pricing - Current Pricing check
+  Scenario: Fiyatlandirma: TC002 - E2E Credit Pricing - Current Pricing check
 
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1
@@ -189,7 +189,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Financing - FİYATLANDIRMA
 
 
   @Finco
-  Scenario: Fiyatlandırma: TC003 - E2E Credit Pricing - pricing monitoring control
+  Scenario: Fiyatlandirma: TC003 - E2E Credit Pricing - pricing monitoring control
 
     And I wait loan button element 30 seconds at index 1
     When I click element: loan button at index 1

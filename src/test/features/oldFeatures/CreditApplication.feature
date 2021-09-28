@@ -6,7 +6,7 @@ Feature: Orion Finance Finco Test Scenarios / Credit Application
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
-#    user name: 40001 -> Satış Temsilcisi
+#    user name: 4000 -> Satış Temsilcisi
     Then I enter "4000" text to username text area at index 1
     Then I enter "" text to password text area at index 1
     And I wait login button element 30 seconds at index 1

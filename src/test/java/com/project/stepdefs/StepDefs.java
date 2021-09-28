@@ -2004,7 +2004,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
 
     }
-    @Then("I have to create a real customer -Tacir")
+    @Then("I have to create a real tacir customer")
     public void createRealCustomerTacir() throws InterruptedException {
         openUrl("https://www.simlict.com/");
         seePage("simlict");

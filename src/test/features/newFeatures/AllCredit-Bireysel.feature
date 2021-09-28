@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Bireysel Müşteri
+Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Bireysel Müsteri
 
   #This feature includes these steps:
   #1.) Kredi Basvuru - TC003 - Bireysel Müşterinin E2E Yeni Bir Kredi Başvuru Oluşturamaması

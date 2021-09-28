@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 @CucumberOptions(
-        features = "src/test/features/newFeatures/",
+        features = "src/test/features/newFeatures/ClientCreation.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags="@Finco",
+        tags="@Test",
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
