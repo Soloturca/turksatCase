@@ -398,17 +398,17 @@ Feature: Orion Finance Finco Test Scenarios / Credit Collection Evaluation - TAH
     Given Open the https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/ URL
     Then I see login page
 
-    Then I enter "admin" text to username text area at index 1
+    Then I enter "3005" text to username text area at index 1
     Then I enter "1" text to password text area at index 1
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-    And I wait loan button element 30 seconds at index 1
-    When I click element: loan button at index 1
+    And I wait loan button for 3005 element 30 seconds at index 1
+    When I click element: loan button for 3005 at index 1
     Then I see loan page
 
-    And I wait credit usage button element 30 seconds at index 1
-    When I click element: credit usage button at index 1
+    And I wait credit usage button for 3005 element 30 seconds at index 1
+    When I click element: credit usage button for 3005 at index 1
     And I wait loan disbursement monitoring element 30 seconds at index 1
     When I click element: loan disbursement monitoring at index 1
  #kredi no alanına aktif/kullandırılmış bir kredi no yazılır:

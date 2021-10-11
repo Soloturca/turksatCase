@@ -20,8 +20,8 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YONETSEL
     And I wait loan button for 3005 element 30 seconds at index 1
     When I click element: loan button for 3005 at index 1
     Then I see loan page
-    And I wait administrative button element 30 seconds at index 1
-    When I click element: administrative button at index 1
+    And I wait administrative button for 3005 element 30 seconds at index 1
+    When I click element: administrative button for 3005 at index 1
     And I wait financial item identification button element 30 seconds at index 1
     When I click element: financial item identification button at index 1
    # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
@@ -40,16 +40,16 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YONETSEL
     When The item value is changed to "opposite item value" under item value selection
     When I click element: add button at index 1
     When I click element: save button at index 1
-    And I wait shut down button element 30 seconds at index 1
-    When I click element: shut down button at index 1
+    And I wait closed button element 30 seconds at index 1
+    When I click element: closed button at index 1
 
   @Finco
   Scenario: Yonetsel: TC002 - Financial Item Identification Screen - Delete Button Control
     And I wait loan button for 3005 element 30 seconds at index 1
     When I click element: loan button for 3005 at index 1
     Then I see loan page
-    And I wait administrative button element 30 seconds at index 1
-    When I click element: administrative button at index 1
+    And I wait administrative button for 3005 element 30 seconds at index 1
+    When I click element: administrative button for 3005 at index 1
     And I wait financial item identification button element 30 seconds at index 1
     When I click element: financial item identification button at index 1
    # Bir alt satırda kullanılan methodu değiştirdim, sistem Türkçe açıldığı zaman çalışıyor. (ex. Ticari İşletme)
@@ -62,8 +62,9 @@ Feature: Orion Finance Finco Test Scenarios / Credit Management - YONETSEL
     When The item value is changed to "opposite item value" under item value selection
     When I click element: delete button at index 1
     When I click element: save button at index 1
-    And I wait shut down button element 30 seconds at index 1
-    When I click element: shut down button at index 1
+
+    And I wait closed button element 30 seconds at index 1
+    When I click element: closed button at index 1
 
   @Finco
   Scenario: Yonetsel: TC005 - Rejection identify, update and cancel button - Add

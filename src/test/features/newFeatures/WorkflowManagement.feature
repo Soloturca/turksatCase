@@ -197,7 +197,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: login button at index 1
     Then I see home page
 
-    And I wait workflow management button element 30 seconds
+    And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
     Then I see workflowManagement page
 

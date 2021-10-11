@@ -10,18 +10,18 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.qameta.allure.Allure;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import utils.excelutils.ExcelUtils;
 
 
 import java.awt.*;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -69,11 +69,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.click();
                 System.out.println("Clicked on object-->" + element);
+                Allure.addAttachment("Element is clicked.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I clicked the element: " + element, true);
                 return true;
             }
         } catch (Exception e) {
             reportResult("FAIL", "I cannot clicked the element: " + element, true);
+            Allure.addAttachment("Element is not clicked.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             Assert.fail("Could not clicked the element:" + element);
             flag = false;
         }
@@ -89,41 +91,41 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 String xmlFileName = "strings.xml";
                 stringsis = this.getClass().getClassLoader().getResourceAsStream(xmlFileName);
-                utils= new TestUtils();
-                strings=utils.parseStringXML(stringsis);
+                utils = new TestUtils();
+                strings = utils.parseStringXML(stringsis);
 
                 object.click();
                 String actualErrTxt = object.getText();
-                if(element.contains("approve popup")){
+                if (element.contains("approve popup")) {
                     String expectedErrText = strings.get("approve popup");
                     System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
                     Assert.assertEquals(actualErrTxt, expectedErrText);
+                    Allure.addAttachment("Verification completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Assertion is true." + element, true);
                     return true;
-                }
-                else if (element.contains("assign to pool popup")){
+                } else if (element.contains("assign to pool popup")) {
                     String expectedErrText = strings.get("assign to pool popup");
                     System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
                     Assert.assertEquals(actualErrTxt, expectedErrText);
+                    Allure.addAttachment("Verification completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Assertion is true." + element, true);
                     return true;
-                }
-                else if (element.contains("cancel popup")){
+                } else if (element.contains("cancel popup")) {
                     String expectedErrText = strings.get("cancel popup");
                     System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
                     Assert.assertEquals(actualErrTxt, expectedErrText);
+                    Allure.addAttachment("Verification completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Assertion is true." + element, true);
                     return true;
+                }
             }
-        }
-    }
-        catch (Exception e) {
+        } catch (Exception e) {
+            Allure.addAttachment("Verification does not completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "An error during assertion. " + element, true);
             Assert.fail("Could not clicked the element:" + element);
             flag = false;
-        }
-        finally {
-            if(stringsis!=null){
+        } finally {
+            if (stringsis != null) {
                 stringsis.close();
             }
         }
@@ -140,10 +142,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The text has been entered:" + text);
+                Allure.addAttachment("The text has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I entered the text: " + text, true);
+
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The text has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered the element: " + text, true);
             Assert.fail("Could not entered the text:" + text);
             flag = false;
@@ -164,10 +169,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(phNo);
                 System.out.println("The telephone number has been entered:" + phNo);
+                Allure.addAttachment("The telephone number has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I entered the telephone number: " + phNo, true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The telephone number has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered the element: " + phNo, true);
             Assert.fail("Could not entered the telephone number:" + phNo);
             flag = false;
@@ -189,11 +196,13 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (phNo2.equals(phNo)) {
                 System.out.println("Matched.Telephone No is Updated.");
+                Allure.addAttachment("Matched. Telephone No is Updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "Matched. Matched.Telephone No is Updated.", true);
                 return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "Not matched. Telephone No Is Not Updated. " + phNo, true);
+            Allure.addAttachment("Not matched. Telephone No is not updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            reportResult("FAIL", "Not matched. Telephone No Is not Updated. " + phNo, true);
             Assert.fail("Not matched. An error during the update." + phNo);
             flag = false;
         }
@@ -213,10 +222,12 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (randomEmployees2.equals(randomEmployees)) {
                 System.out.println("Matched. Number of Employees are Updated.");
+                Allure.addAttachment("Matched. Number of Employees are Updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "Matched. Number of Employees are Updated.", true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("Not matched. Number of Employees are not Updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "Not matched. Number of Employees are not Updated. " + phNo, true);
             Assert.fail("Not matched. An error during the update." + phNo);
             flag = false;
@@ -237,11 +248,13 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (randomCiroString2.equals(randomCiroString)) {
                 System.out.println("Matched. Declaration Endorsement is Updated.");
+                Allure.addAttachment("Matched. Declaration Endorsement is Updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "Matched. Declaration Endorsement is Updated.", true);
                 return true;
             }
         } catch (Exception e) {
-            reportResult("FAIL", "Not matched. Declaration Endorsement is not Updated. " + phNo, true);
+            Allure.addAttachment("Not matched. Declaration Endorsement is not Updated.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            reportResult("FAIL", "Not matched. Declaration Endorsement is not Updated." + phNo, true);
             Assert.fail("Not matched. An error during the update." + phNo);
             flag = false;
         }
@@ -258,10 +271,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(email);
                 System.out.println("The email has been entered:" + email);
+                Allure.addAttachment("The email has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I entered the email: " + email, true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The email has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered the element: " + email, true);
             Assert.fail("Could not entered the email:" + email);
             flag = false;
@@ -281,10 +296,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(randomCiroString);
                 System.out.println("The random declaration endorsement has been entered :" + randomCiroString);
+                Allure.addAttachment("The random declaration endorsement has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The random declaration endorsement has been entered: " + randomCiroString, true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The random declaration endorsement has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered a random declaration endorsement: " + randomCiroString, true);
             Assert.fail("Could not entered a random declaration endorsement:" + randomCiroString);
             flag = false;
@@ -304,10 +321,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(randomEmployees);
                 System.out.println("The random number of employees has been entered :" + randomEmployees);
+                Allure.addAttachment("The random number of employees has been entered", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The random number of employees has been entered: " + randomEmployees, true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("I cannot entered a random number of employees.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered a random number of employees: " + randomEmployees, true);
             Assert.fail("Could not entered a random number of employees:" + randomEmployees);
             flag = false;
@@ -347,11 +366,13 @@ public class StepDefs extends MyTestNGBaseClass {
                     Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
                     Thread.sleep(5000);
                     System.out.println("Uploaded the txt file.");
+                    Allure.addAttachment("txt file is uploaded.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "I upload the txt file. ", true);
                     return true;
                 }
             }
         } catch (Exception e) {
+            Allure.addAttachment("txt file is not uploaded.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "An error during the uploading process. ", true);
             Assert.fail("An error during the uploading process.");
             flag = false;
@@ -387,6 +408,7 @@ public class StepDefs extends MyTestNGBaseClass {
                     waitElement("address document upload button", 30, 4);
                     uploadFile("aa.txt", "address document upload button", 4);
                     System.out.println("Uploaded the txt file.");
+                    Allure.addAttachment("txt file is uploaded.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "I upload the txt file. ", true);
                     return true;
                 } else {
@@ -396,11 +418,13 @@ public class StepDefs extends MyTestNGBaseClass {
                     Runtime.getRuntime().exec(System.getProperty("user.dir") + "\\Exes\\seleniumFolderUpload.exe " + fileName);
                     Thread.sleep(5000);
                     System.out.println("Uploaded the txt file.");
+                    Allure.addAttachment("txt file is uploaded.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "I upload the txt file. ", true);
                     return true;
                 }
             }
         } catch (Exception e) {
+            Allure.addAttachment("txt file is not uploaded.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "An error during the uploading process. ", true);
             Assert.fail("An error during the uploading process.");
             flag = false;
@@ -419,10 +443,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The text has been entered.");
+                Allure.addAttachment("The text has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I entered the text: " + text, true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The text has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered the element: " + text, true);
             Assert.fail("Could not entered the text:" + text);
             flag = false;
@@ -440,12 +466,14 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 if (!object.isEnabled()) {
                     System.out.println("The area is a read only area. Cannot be editable.");
+                    Allure.addAttachment("The area is a read only area. Cannot be editable.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "The area is a read only area. Cannot be editable.", true);
                     return true;
                 }
             }
         } catch (Exception e) {
-            reportResult("FAIL", "The area is not a read only area. Can be editable. ", true);
+            Allure.addAttachment("The area is not a read only area. Can be editable.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            reportResult("FAIL", "The area is not a read only area. Can be editable.", true);
             Assert.fail("The area is not a read only area. Can be editable.");
             flag = false;
         }
@@ -475,27 +503,33 @@ public class StepDefs extends MyTestNGBaseClass {
                 if (ciroInfoNum == 0) {
                     segmentCode.equals("BELİRTİLMEDİ");
                     System.out.println("Matched. Segment Code: NOK");
+                    Allure.addAttachment("Matched. Segment Code: NOK.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Matched. Segment Code: NOK", true);
                 } else if (0 < ciroInfoNum & ciroInfoNum <= 2000000) {
                     segmentCode.equals("MİKRO İŞLETME");
                     System.out.println("Matched. Segment Code: Micro Company");
+                    Allure.addAttachment("Matched. Segment Code: Micro Company.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Matched. Segment Code: Micro Company", true);
                 } else if (2000000 < ciroInfoNum & ciroInfoNum <= 10000000) {
                     segmentCode.equals("KÜÇÜK İŞLETME");
                     System.out.println("Matched. Segment Code: Small Bussiness");
+                    Allure.addAttachment("Matched. Segment Code: Small Bussiness.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Matched. Segment Code: Small Company", true);
                 } else if (10000000 < ciroInfoNum & ciroInfoNum <= 75000000) {
                     segmentCode.equals("TİCARİ İŞLETME");
                     System.out.println("Matched. Segment Code: Commercial Company");
+                    Allure.addAttachment("Matched. Segment Code: Commercial Company.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Matched. Segment Code: Commercial Company", true);
                 } else {
                     segmentCode.equals("KURUMSAL İŞLETME");
                     System.out.println("Matched. Segment Code: Corparate Company");
+                    Allure.addAttachment("Matched. Segment Code: Corparate Company.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Matched. Segment Code: Corparate Company", true);
                 }
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("Unknown Company. Error.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "Unknown Company. Error. ", true);
             Assert.fail("Unknown Company. Error.");
             flag = false;
@@ -517,11 +551,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.DELETE);
                 Thread.sleep(1000);
                 System.out.println("The text has been deleted.");
+                Allure.addAttachment("The text has been deleted.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The text has been deleted.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The text has not been deleted.");
+            Allure.addAttachment("The text has not been deleted.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The text has not been deleted", true);
             Assert.fail("Waiting element is not found!");
             flag = false;
@@ -543,10 +579,12 @@ public class StepDefs extends MyTestNGBaseClass {
                 Thread.sleep(1000);
                 object.sendKeys(mytckn);
                 System.out.println("The tckn has been entered.");
+                Allure.addAttachment("The tckn has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The tckn has been entered.", true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The tckn has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             System.out.println("The tckn has not been entered.");
             reportResult("FAIL", "The tckn has not been entered.", true);
             Assert.fail("An error during the entering tckn");
@@ -572,11 +610,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 System.out.println("Select the object type-->" + text + element);
                 Select select = new Select(object);
                 select.selectByVisibleText(text);
+                Allure.addAttachment("The selection is done.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The selection is done.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The selection cannot be done.");
+            Allure.addAttachment("The selection cannot be done.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The selection cannot be done.", true);
             Assert.fail("The selection cannot be done!");
             flag = false;
@@ -609,11 +649,13 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (object != null) {
                 System.out.println(object);
+                Allure.addAttachment("Information gathered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I got the information:" + object, true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("Could not got the information.");
+            Allure.addAttachment("Information could not be gathered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "Could not got the information.", true);
             Assert.fail("Could not got the information.");
             flag = false;
@@ -652,11 +694,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.CONTROL, "c");
                 Thread.sleep(1000);
                 System.out.println("The text has been copied.");
+                Allure.addAttachment("The text has been copied.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The text has been copied.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The copy action cannot be done.");
+            Allure.addAttachment("The copy action cannot be done.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The copy action cannot be done.", true);
             Assert.fail("The copy action cannot be done!");
             flag = false;
@@ -678,11 +722,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.sendKeys(Keys.CONTROL, "v");
                 Thread.sleep(1000);
                 System.out.println("The text has been pasted.");
+                Allure.addAttachment("The text has been pasted.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The text has been pasted.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The paste action cannot be done.");
+            Allure.addAttachment("The paste action cannot be done.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The paste action cannot be done.", true);
             Assert.fail("The paste action cannot be done!");
             flag = false;
@@ -711,10 +757,12 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The reference number:" + text + " " + "has been entered.");
+                Allure.addAttachment("The reference number has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The reference number:" + text + " " + "has been entered.", true);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("The reference number has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             System.out.println("The reference number:" + text + " " + "has not been entered.");
             reportResult("FAIL", "The reference number:" + text + " " + "has not been entered.", true);
             Assert.fail("The reference number has not been entered!");
@@ -736,11 +784,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The tckn:" + text + " " + "has been entered.");
+                Allure.addAttachment("The tckn has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The tckn:" + text + " " + "has been entered.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The tckn:" + text + " " + "has not been entered.");
+            Allure.addAttachment("The tckn has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The tckn:" + text + " " + "has not been entered.", true);
             Assert.fail("The tckn has not been entered!");
             flag = false;
@@ -762,11 +812,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 if (object != null) {
                     object.sendKeys(text);
                     System.out.println("The tax:" + text + " " + "has been entered.");
+                    Allure.addAttachment("The tax has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
                     return true;
                 }
             } catch (Exception e) {
                 System.out.println("The tax:" + text + " " + "has not been entered.");
+                Allure.addAttachment("The tax has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
                 Assert.fail("The tax has not been entered!");
                 flag = false;
@@ -786,11 +838,13 @@ public class StepDefs extends MyTestNGBaseClass {
                 if (object != null) {
                     object.sendKeys(text);
                     System.out.println("The tax:" + text + " " + "has been entered.");
+                    Allure.addAttachment("The tax has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "The tax:" + text + " " + "has been entered.", true);
                     return true;
                 }
             } catch (Exception e) {
                 System.out.println("The tax:" + text + " " + "has not been entered.");
+                Allure.addAttachment("The tax has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("FAIL", "The tax:" + text + " " + "has not been entered.", true);
                 Assert.fail("The tax has not been entered!");
                 flag = false;
@@ -812,11 +866,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The Pricing No number:" + text + " " + "has been entered.");
+                Allure.addAttachment("The pricing no has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The Pricing No:" + text + " " + "has not been entered.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The Pricing No number:" + text + " " + "has not been entered.");
+            Allure.addAttachment("The pricing no has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The Pricing No number:" + text + " " + "has not been entered.", true);
             Assert.fail("The Pricing No has not been entered!");
             flag = false;
@@ -852,11 +908,12 @@ public class StepDefs extends MyTestNGBaseClass {
                     select.selectByVisibleText(text = "POZİTİF");
                     System.out.println("The opposite option:" + text + " " + "is entered.");
                 }
-
+                Allure.addAttachment("Changed the option.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "I changed the option ", false);
                 return true;
             }
         } catch (Exception e) {
+            Allure.addAttachment("Could not change the option.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             Assert.fail("Could not change the option!");
             reportResult("FAIL", "Could not change the option", true);
             flag = false;
@@ -900,11 +957,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The excel value:" + text + " " + "has been entered.");
+                Allure.addAttachment("Excel value has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The excel value:" + text + " " + "has not been entered.", true);
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("The reference number:" + text + " " + "has not been entered.");
+            System.out.println("The excel value:" + text + " " + "has not been entered.");
+            Allure.addAttachment("Excel value has not been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
             Assert.fail("The excel value has not been entered!");
             flag = false;
@@ -923,11 +982,13 @@ public class StepDefs extends MyTestNGBaseClass {
             if (object != null) {
                 object.sendKeys(text);
                 System.out.println("The excel value:" + text + " " + "has been entered.");
-                reportResult("PASS", "The excel value:" + text + " " + "has not been entered.", true);
+                Allure.addAttachment("Excel value has been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                reportResult("PASS", "The excel value:" + text + " " + "has been entered.", true);
                 return true;
             }
         } catch (Exception e) {
             System.out.println("The reference number:" + text + " " + "has not been entered.");
+            Allure.addAttachment("Excel value has not been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
             Assert.fail("The excel value has not been entered!");
             flag = false;
@@ -949,11 +1010,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
             if (TCKN.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
+                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
             }
             return true;
         } catch (Exception e) {
             System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
+            Allure.addAttachment("Excel value is not match with the element text", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
             Assert.fail("The values are not match with each other!");
             flag = false;
@@ -974,11 +1037,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
             if (TCKN.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
+                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
             }
             return true;
         } catch (Exception e) {
             System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
+            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
             Assert.fail("The values are not match with each other!");
             flag = false;
@@ -999,11 +1064,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
             if (Name.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
+                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
             }
             return true;
         } catch (Exception e) {
             System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
+            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
             Assert.fail("The values are not match with each other!");
             flag = false;
@@ -1024,11 +1091,13 @@ public class StepDefs extends MyTestNGBaseClass {
 
             if (Name.equals(TCKNExcel)) {
                 System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
+                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
             }
             return true;
         } catch (Exception e) {
             System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
+            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
             Assert.fail("The values are not match with each other!");
             flag = false;
@@ -1045,10 +1114,13 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (title.contains("Yeni")) {
                 System.out.println("Matched .The client is created new!");
-                reportResult("PASS", "Matched. Matched .The client is created new!", true);
+                Allure.addAttachment("Matched. The client is created new.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                reportResult("PASS", "Matched. The client is created new!", true);
             }
             return true;
         } catch (Exception e) {
+            System.out.println("Not matched. An error during the update.");
+            Allure.addAttachment("Not matched. An error during the update.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "Not matched! " + phNo, true);
             Assert.fail("Not matched. An error during the update!" + phNo);
             flag = false;
@@ -1064,10 +1136,13 @@ public class StepDefs extends MyTestNGBaseClass {
         try {
             if (value.equals("on")) {
                 System.out.println("The checkbox is selection state is : on");
+                Allure.addAttachment("The checkbox is selection state is : on", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 reportResult("PASS", "The checkbox is selection state is : on" + element, true);
                 return true;
             }
         } catch (Exception e) {
+            System.out.println("The checkbox is selection state is : off");
+            Allure.addAttachment("The checkbox is selection state is : off", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "The checkbox is selection state is : off" + element, true);
             Assert.fail("The checkbox is selection state is : off:" + element);
             flag = false;
@@ -2004,6 +2079,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
 
     }
+
     @Then("I have to create a real tacir customer")
     public void createRealCustomerTacir() throws InterruptedException {
         openUrl("https://www.simlict.com/");

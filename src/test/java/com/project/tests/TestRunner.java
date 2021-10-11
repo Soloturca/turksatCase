@@ -3,42 +3,80 @@ package com.project.tests;
 
 //extends AbstractTestNGCucumberTests
 
+import com.google.common.io.Files;
+import com.saf.framework.CommonLib;
 import com.saf.framework.MyTestNGBaseClass;
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.CucumberFeatureWrapper;
-import cucumber.api.testng.TestNGCucumberRunner;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.testng.*;
+
+
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
+
+import org.apiguardian.api.API;
+import org.apiguardian.api.API.Status;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
+
 @CucumberOptions(
         features = "src/test/features/newFeatures/",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags="@Finco",
+        tags = "@Finco",
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
-    private TestNGCucumberRunner testNGCucumberRunner;
 
-    //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-    @BeforeClass(alwaysRun = true)
+    @API(
+            status = Status.STABLE
+    )
+    private io.cucumber.testng.TestNGCucumberRunner testNGCucumberRunner;
+
+    @BeforeClass(
+            alwaysRun = true
+    )
     public void setUpClass() {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+        this.testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-    public void feature(CucumberFeatureWrapper cucumberFeature) {
+    @Test(
 
-        testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
+            description = "Runs Cucumber Scenarios",
+            dataProvider = "scenarios"
+    )
+    public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
+        this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
+
+    }
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshot(WebDriver oDriver) {
+        return ((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES);
     }
 
     @DataProvider
-    public Object[][] features() {
-        return testNGCucumberRunner.provideFeatures();
+    public Object[][] scenarios() {
+        return this.testNGCucumberRunner == null ? new Object[0][0] : this.testNGCucumberRunner.provideScenarios();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(
+            alwaysRun = true
+
+    )
     public void tearDownClass() {
-        testNGCucumberRunner.finish();
+
+        if (this.testNGCucumberRunner != null) {
+            this.testNGCucumberRunner.finish();
+        }
     }
+
 }

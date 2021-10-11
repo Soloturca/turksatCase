@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Client Creation
+Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
 #  This feature includes these steps:
 #1.) E2E Client Management - TC256 - E2E -  Müşteri Yönetimi -  Gerçek Yeni müşteri oluşturma -GKT
 #2.) E2E Client Management - TC257  - E2E -  Müşteri Yönetimi -  Gerçek Yeni müşteri oluşturma  -Tacir
@@ -106,7 +106,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation
     And I wait mersis save button element 30 seconds at index 1
     When I click element: mersis save button at index 1
 
-  @Test
+  @Finco
   Scenario: Müsteri Yonetimi: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Tacir
     Then I have to create a real tacir customer
     And I wait customer transactions for 30060 element 30 seconds at index 1

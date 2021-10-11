@@ -1,4 +1,4 @@
-Feature: Orion Finance Finco Test Scenarios / Client Management
+Feature: Orion Finance Finco Test Scenarios / Client Management - MUSTERI YONETIMI
 #  This feature includes these steps:
 #1.) E2E Client Management - TC258 -- 13 eylül maintaince alındı.  Yeni adres eklemelisiniz diye uyarı gelmekte.
 #2.) E2E Client Management - TC260 -- 13 eylül maintaince alındı. Yeni adres eklemelisiniz diye uyarı gelmekte.
@@ -456,7 +456,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management
     Then I need to just wait
     Then I need to Title verify for name title text area match from Excel file at index 1 for 5426
     When I click element: next button at index 1
-    And I wait detail information section area element 30 seconds at index 1
+      And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
     And I wait financial information area element 30 seconds at index 1
     When I click element: financial information area at index 1

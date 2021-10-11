@@ -1,6 +1,7 @@
 package com.saf.framework;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Random;
@@ -108,7 +110,8 @@ public class CommonLib extends MyTestNGBaseClass {
             return object;
         } catch (Exception e) {
             System.out.println("Element not found: " + elem);
-            reportResult("FAIL", "Element could not find: " + elem, true);
+            Allure.addAttachment("There is no such element.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            reportResult("FAIL", "There is no such element. " + elem, true);
             Assert.fail("Element not found : " + elem);
 
             return null;

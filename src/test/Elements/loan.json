@@ -11,6 +11,9 @@
           "administrative button for 3009": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
         },
         {
+          "administrative button for 3005": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[6]/a"
+        },
+        {
           "pricing button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[4]/a"
         },
         {
@@ -311,6 +314,9 @@
           "credit usage button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[2]/a"
         },
         {
+          "credit usage button for 3005": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[2]/a"
+        },
+        {
           "credit application button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[3]/ul/li[1]/a"
         },
         {
@@ -458,7 +464,7 @@
           "credit amount text area": "//input[@orionid='demandAmount']"
         },
         {
-          "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[5]/ul/li[5]/a"
+          "administrative button": "//*[@id=\"sidebar\"]/div/div[1]/ul[2]/ul/li[4]/ul/li[6]/a"
         },
         {
           "financial identification button": "//a[contains(@data-href,'/finance/pricing/js/pricingDefinition.js')]"

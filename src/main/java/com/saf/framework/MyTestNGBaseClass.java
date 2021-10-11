@@ -4,6 +4,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.screenrecording.CanRecordScreen;
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.net.util.Base64;
 import org.openqa.selenium.OutputType;
@@ -13,6 +14,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;

@@ -107,9 +107,8 @@
           "telephone verify area": "//*[contains(text(),'+90')]"
         },
         {
-          "detail information section area": "//a[@href='#step3']"
+          "detail information section area": "//a[@href='#step4']"
         },
-
         {
           "telephone type selection": "//select[@orionid='type']"
         },
