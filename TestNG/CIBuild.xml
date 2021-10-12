@@ -7,35 +7,6 @@
 	<parameter name="CalendarName" value="Calendar.xlsx"></parameter>
 	<parameter name="browserName" value="chrome"></parameter>
 
-
-		<!--
-        <parameter name="appPackage" value="com.bigbasket.mobileapp"></parameter>
-        <parameter name="appActivity" value=".activity.SplashActivity"></parameter>
-        <parameter name="appWaitPackage" value="com.bigbasket.mobileapp"></parameter>
-        <parameter name="appWaitActivity" value="com.bigbasket.mobileapp.activity.HomeActivity"></parameter>
-         -->
-	
-	<!-- <test name="Nexus5_3" enabled="false">
-		<classes>
-			<class name="com.project.tests.testBrowserScenario"></class>
-			<parameter name="TestName" value="Nexus5_3"></parameter>
-		</classes>
-	</test>
-	
-	<test name="Name5_2" enabled="false">
-		<classes>
-			<class name="com.project.tests.testViewDataUsage"></class>
-			<parameter name="TestName" value="Nexus5_2"></parameter>
-		</classes>
-	</test>
-	
-	<test name="Nexus5_1" enabled="false">
-		<classes>
-			<class name="com.project.tests.testViewBillUsage"></class>
-			<parameter name="TestName" value="Nexus5_1"></parameter>
-		</classes>
-	</test> -->
-	
 	<!-- Cucumber Test -->
 	<test name="Test" enabled="true">
 		<classes>
@@ -43,12 +14,5 @@
 		</classes>
 	</test>
 	<!-- Cucumber Test -->
-	
-	<!-- <test name="Login to TfL" enabled="false">
-		<classes>
-			<class name="com.project.tests.LoginToMobileApp"></class>
-			<parameter name="TestName" value="Login To TfL"></parameter>
-		</classes>
-	</test>
- -->	
+
 	</suite> 

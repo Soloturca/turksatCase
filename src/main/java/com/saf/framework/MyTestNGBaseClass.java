@@ -29,7 +29,7 @@ public class MyTestNGBaseClass {
 	public static String reportPath;
 	public static boolean dbFlag;
 	public static int testCaseId = 0;
-	public static String sDriverName = "";
+	public static String sDriverName = "chrome";
 	DataDriver oDataDriver = new DataDriver();
 	HashMap<String, HashMap<String, String>> myMap = new HashMap<String, HashMap<String,String>>();
 	protected static HashMapNew dataMap = new HashMapNew();
@@ -68,7 +68,7 @@ public class MyTestNGBaseClass {
 		}
 		else{
 			throw new Exception("Unknown driver name = " + sDriverName +
-					"  Valid names are: ie,firefox,chrome,htmlunit");
+					"Valid names are: ie,firefox,chrome,htmlunit");
 		}
 
 		oDriver = CommonLib.getDriver(sDriverName);
