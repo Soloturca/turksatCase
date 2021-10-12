@@ -35,7 +35,7 @@ public class MyTestNGBaseClass {
 	protected static HashMapNew dataMap = new HashMapNew();
 	static HashMapNew keysMap = new HashMapNew();
 
-	@Parameters({ "browserName"})
+	//@Parameters({ "browserName"})
 	@BeforeSuite
 	//@BeforeTest
 	public void BeforeSuite(@Optional("")String browserName) throws Throwable{
