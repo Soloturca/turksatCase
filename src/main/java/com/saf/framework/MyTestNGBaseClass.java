@@ -38,7 +38,8 @@ public class MyTestNGBaseClass {
 	//@Parameters({ "browserName"})
 	@BeforeSuite
 	//@BeforeTest
-	public void BeforeSuite(@Optional("")String browserName) throws Throwable{
+	public void BeforeSuite() throws Throwable{
+		String browserName="chrome";
 		//public void BeforeSuite() throws Throwable{
 		reportPath = "Report_" + new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getHours() + "-" + new Date().getMinutes() + "-" + new Date().getSeconds();
 		File f = new File("Reports/" + reportPath);

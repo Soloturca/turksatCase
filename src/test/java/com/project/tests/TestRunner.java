@@ -29,7 +29,7 @@ import java.io.IOException;
 
 
 @CucumberOptions(
-        features = "src/test/features/newFeatures/AllCredit-Kurumsal.feature",
+        features = "src/test/features/newFeatures/",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@Test",
         glue = {"com.project.stepdefs"})
