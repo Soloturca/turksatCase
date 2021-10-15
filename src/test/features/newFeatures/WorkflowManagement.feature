@@ -105,7 +105,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
  #And I wait warning popup element 30 seconds
  #When I click element: yes button
 
-  @Finco
+  @Test
   Scenario: Is Akis: TC004 - Jobs Pending on My List - E2E Approving - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
