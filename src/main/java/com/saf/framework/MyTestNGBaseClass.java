@@ -29,17 +29,16 @@ public class MyTestNGBaseClass {
 	public static String reportPath;
 	public static boolean dbFlag;
 	public static int testCaseId = 0;
-	public static String sDriverName = "chrome"; //test
+	public static String sDriverName = "";
 	DataDriver oDataDriver = new DataDriver();
 	HashMap<String, HashMap<String, String>> myMap = new HashMap<String, HashMap<String,String>>();
 	protected static HashMapNew dataMap = new HashMapNew();
 	static HashMapNew keysMap = new HashMapNew();
 
-	//@Parameters({ "browserName"})
+	@Parameters({ "browserName"})
 	@BeforeSuite
 	//@BeforeTest
-	public void BeforeSuite() throws Throwable{
-		String browserName="chrome";
+	public void BeforeSuite(@Optional("")String browserName) throws Throwable{
 		//public void BeforeSuite() throws Throwable{
 		reportPath = "Report_" + new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getHours() + "-" + new Date().getMinutes() + "-" + new Date().getSeconds();
 		File f = new File("Reports/" + reportPath);
