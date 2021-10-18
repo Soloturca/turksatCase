@@ -29,9 +29,9 @@ import java.io.IOException;
 
 
 @CucumberOptions(
-        features = "src/test/features/newFeatures/",
+        features = "src/test/features/newFeatures/WorkflowManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags = "@Finco",
+        tags = "@Test",
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
