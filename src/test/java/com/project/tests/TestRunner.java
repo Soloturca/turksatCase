@@ -35,48 +35,28 @@ import java.io.IOException;
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
-
-    @API(
-            status = Status.STABLE
-    )
     private io.cucumber.testng.TestNGCucumberRunner testNGCucumberRunner;
 
-    @BeforeClass(
-            alwaysRun = true
-    )
+    //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+    @BeforeClass(alwaysRun = true)
     public void setUpClass() {
-        this.testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(
-
-            description = "Runs Cucumber Scenarios",
-            dataProvider = "scenarios"
-    )
+    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
 
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot(WebDriver oDriver) {
-        return ((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES);
-    }
-
     @DataProvider
-    public Object[][] scenarios() {
-        return this.testNGCucumberRunner == null ? new Object[0][0] : this.testNGCucumberRunner.provideScenarios();
+    public Object[][] features() {
+        return testNGCucumberRunner.provideScenarios();
     }
 
-    @AfterClass(
-            alwaysRun = true
-
-    )
+    @AfterClass(alwaysRun = true)
     public void tearDownClass() {
-
-        if (this.testNGCucumberRunner != null) {
-            this.testNGCucumberRunner.finish();
-        }
+        testNGCucumberRunner.finish();
     }
 
 }
