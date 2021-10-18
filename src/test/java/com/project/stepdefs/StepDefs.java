@@ -1288,7 +1288,7 @@ public class StepDefs extends MyTestNGBaseClass {
         //    Teminat bilgileri sekmesine geldim.
         waitElement("collateral type selection", timeout, 1);
         selectElement("KEFALET", "collateral type selection", 1);
-        selectElement("5278 - Sibel Eratak", "guarantor selection", 1);
+        selectElement("5282 - Mustafa Kandamar", "guarantor selection", 1);
         enterText("30", "collateral margin ratio text area", 1);
         clickElement("add collateral button", 1);
         waitElement("close button for financial info", timeout, 1);

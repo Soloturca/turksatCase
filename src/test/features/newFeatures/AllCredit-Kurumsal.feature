@@ -19,7 +19,7 @@ Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Tüzel (
     #Bir senaryoyu bir akış gibi düşünün. İçerisinde birden fazla test case'i handle ediyor. Bu iş akış sürecini, case'leri ancak böyle handle edebiliriz.
 
   #************************************* basvuru degerlendirme under 450.000tl cases ***********************
-  @Test
+  @Finco
   Scenario: Kredi Basvuru: Creation a Credit for Kurumsal Müsteri - Under 450.000 TL - TC001
 
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
