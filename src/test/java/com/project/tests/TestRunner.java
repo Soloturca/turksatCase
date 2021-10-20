@@ -32,6 +32,7 @@ import java.io.IOException;
         features = "src/test/features/newFeatures/WorkflowManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@Test",
+        plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         glue = {"com.project.stepdefs"})
 
 public class TestRunner extends MyTestNGBaseClass {
