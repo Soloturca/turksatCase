@@ -29,7 +29,7 @@ import java.io.IOException;
 
 
 @CucumberOptions(
-        features = "src/test/features/newFeatures/WorkflowManagement.feature",
+        features = "src/test/features/newFeatures/",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@Finco",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},

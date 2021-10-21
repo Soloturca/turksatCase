@@ -1,20 +1,20 @@
 Feature: Orion Finance Finco Test Scenarios / Client Management - MUSTERI YONETIMI
 #  This feature includes these steps:
-#1.) E2E Client Management - TC258 -- 13 eylül maintaince alındı.  Yeni adres eklemelisiniz diye uyarı gelmekte.
-#2.) E2E Client Management - TC260 -- 13 eylül maintaince alındı. Yeni adres eklemelisiniz diye uyarı gelmekte.
-#3.) E2E Client Management - TC097 -- 14 eylül maintaince alındı.
-#4.) E2E Client Management - TC116 -- 14 eylül maintaince alındı.
-# 5.) E2E Client Management - TC119 -- 14 eylül maintaince alındı.
-#6) E2E Client Management - TC121  -- 14 eylül maintaince alındı.            
-#7.) E2E Client Management - TC156  -- 14 eylül maintaince alındı.
-#8.) E2E Client Management - TC157  -- 14 eylül maintaince alındı.
-#9.) E2E Client Management - TC158  -- 14 eylül maintaince alındı.
-# 10.) E2E Client Management - TC159  -- 14 eylül maintaince alındı.
-#11.) E2E Client Management - TC168  -- 14 eylül maintaince alındı.
-#12.) E2E Client Management - TC182  -- 14 eylül maintaince alındı.
-#13.) E2E Client Management - TC183  -- 14 eylül maintaince alındı.
-#14.) E2E Client Management - TC184  -- 14 eylül maintaince alındı.
-#15.) E2E Client Management - TC185  -- 14 eylül maintaince alındı.
+#1.) E2E Client Management - TC258
+#2.) E2E Client Management - TC260
+#3.) E2E Client Management - TC097
+#4.) E2E Client Management - TC116
+# 5.) E2E Client Management - TC119
+#6) E2E Client Management - TC121
+#7.) E2E Client Management - TC156
+#8.) E2E Client Management - TC157
+#9.) E2E Client Management - TC158
+# 10.) E2E Client Management - TC159
+#11.) E2E Client Management - TC168
+#12.) E2E Client Management - TC182
+#13.) E2E Client Management - TC183
+#14.) E2E Client Management - TC184
+#15.) E2E Client Management - TC185
 #16.) E2E Client Management - TC212
 # 17.) E2E Client Management - TC213
 # 18.) E2E Client Management - TC221
