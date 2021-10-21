@@ -145,7 +145,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: close button at index 1
 
 
-  @Test
+  @Finco
   Scenario: Is Akis: TC005 - E2E Assign to Pool - Unit Manager
     And I wait close system button element 30 seconds at index 1
     When I click element: close system button at index 1
