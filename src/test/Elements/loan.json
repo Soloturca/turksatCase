@@ -338,7 +338,7 @@
           "credit detail button": "//button[@orionid='btnShowCreditDisbursement']"
         },
         {
-          "payment plan button": "//li[@data-title='Ödeme Planı']"
+          "payment plan button": "//a[@href='#step2']"
         },
         {
           "bank code selection": "//select[@orionid='bankCode']"
