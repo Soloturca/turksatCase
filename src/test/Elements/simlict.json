@@ -14,7 +14,7 @@
           "generated tckn area": "//span[@id='tcDiv']"
         },
         {
-          "go to tax no button": "//a[contains(@href,'#') and text()='Vergi Numarası Üretici']"
+          "go to tax no button": "//a[contains(@href,'VergiNo.html') or text()='Vergi Numarası Üretici']"
         },
         {
           "generate tax no button": "//button[@id='vergiButton']"
