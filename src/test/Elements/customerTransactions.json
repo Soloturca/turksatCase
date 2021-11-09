@@ -4,7 +4,7 @@
       "pageInfo": {
         "pageName": "customerTransactions",
         "parent": "home",
-        "waitelement": "customer group management button"
+        "waitelement": ""
       },
       "elements": [
         {
