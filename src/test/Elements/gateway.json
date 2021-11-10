@@ -26,7 +26,7 @@
           "tax no template area": "//b[contains(@class,'orion-bound') and text()='Vergi No']"
         },
         {
-          "name template area": "//b[contains(@class,'orion-bound') and text()='Adı Soyadı']"
+          "name template area": "//*[@id=\"nameSurname\"]/span/b"
         },
         {
           "general area": "//input[@orionid='value']"
