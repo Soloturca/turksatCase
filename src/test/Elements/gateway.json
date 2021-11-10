@@ -35,16 +35,16 @@
           "save button for test data input": "//button[@orionid='btnSave']"
         },
         {
-          "title template area": "//b[contains(@class,'orion-bound') and text()='Ünvan']"
+          "title template area": "//*[@id=\"title\"]/span/b"
         },
         {
           "tckn template area": "//b[contains(@class,'orion-bound') and text()='TC Kimlik No' or text()='Tc Kimlik No']"
         },
         {
-          "company type template area": "//b[contains(@class,'orion-bound') and contains(.,'Şirket Türü')]"
+          "company type template area": "//*[@id=\"companyType\"]/span/b"
         },
         {
-          "action code template area": "//b[contains(@class,'orion-bound') and contains(.,'Faaliyet Kodu')]"
+          "action code template area": "//*[@id=\"faaliyetKodu\"]/span/b"
         },
         {
           "save data button": "//button[@orionid='complete']"
