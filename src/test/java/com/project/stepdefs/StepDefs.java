@@ -2122,6 +2122,7 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("save button for test data input", timeout, 1);
         clickElement("save button for test data input", 1);
         //  #Name&Surname - KPS
+        topOfWebsite();
         waitElement("name template area", timeout, 1);
         clickElement("name template area", 1);
         waitElement("general area", timeout, 1);
