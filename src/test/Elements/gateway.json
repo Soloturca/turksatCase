@@ -53,7 +53,7 @@
           "clear data button": "//button[@orionid='clear']"
         },
         {
-          "warning popup for template": "//p[contains(@id,'modal-body-text') and text()='Test şablonunu kaydedilecektir. Devam etmek istiyor musunuz?']"
+          "warning popup for template": "//p[contains(@id,'modal-body-text')]"
         },
         {
           "close button for template popup": "//button[@class='btn btn-sm btn-success']"
