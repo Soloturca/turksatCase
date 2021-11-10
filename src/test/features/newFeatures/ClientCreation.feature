@@ -4,7 +4,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
 #2.) E2E Client Management - TC257  - E2E -  Müşteri Yönetimi -  Gerçek Yeni müşteri oluşturma  -Tacir
 #3.) E2E Client Management - TC259 - E2E -  Müşteri Yönetimi -  Tüzel (Kurumsal) Müşteri Oluşturma
 
-  @Finco
+  @Test
   Scenario: Müsteri Yonetimi: TC256 - E2E - Customer Management - Real New customer creation - Gercek Musteri - GKT
     Then I have to create a real customer
     And I wait customer transactions for 30060 element 30 seconds at index 1
