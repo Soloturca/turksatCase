@@ -44,7 +44,7 @@ public class TestRunner extends MyTestNGBaseClass {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
+    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features", invocationCount = 30)
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
 

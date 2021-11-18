@@ -2086,7 +2086,8 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("close button for template popup", timeout, 1);
         clickElement("close button for template popup", 1);
         System.out.println("*********************************************************");
-
+        System.out.println("I created a real customer.");
+        System.out.println("*********************************************************");
 
     }
 
