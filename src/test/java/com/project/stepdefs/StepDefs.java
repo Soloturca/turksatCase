@@ -1243,14 +1243,21 @@ public class StepDefs extends MyTestNGBaseClass {
         enterText("4600", "trade registration no text area", 1);
         waitElement("parties row", timeout, 1);
         clickElement("parties row", 1);
-        waitElement("row button", timeout, 1);
-        clickElement("row button", 1);
+        clickElement("new side customer button", 1);
+        waitElement("customer no-new application text area", timeout, 1);
+        enterText("5282", "customer no-new application text area", 1);
+        clickElement("closeview for side customer", 1);
+        waitElement("row button", timeout, 27);
+        clickElement("row button", 27);
+        clickElement("add side customer button", 1);
+       // waitElement("row button", timeout, 1);
+        //clickElement("row button", 1);
 //checkbox tik'lendiğinde kefil seçilmiş oluyor, tekrar run ettiğimizde seçili olursa doğru ilerlemeyecektir.
-        waitElement("checkbox", timeout, 1);
-        clickElement("checkbox", 1);
-        waitElement("update the guarantor button", timeout, 1);
-        clickElement("update the guarantor button", 1);
-        justWait();
+        //waitElement("checkbox", timeout, 1);
+        //clickElement("checkbox", 1);
+       // waitElement("update the guarantor button", timeout, 1);
+     //  clickElement("update the guarantor button", 1);
+      justWait();
         clickElement("continue to Reference Information button", 1);
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
@@ -2078,6 +2085,7 @@ public class StepDefs extends MyTestNGBaseClass {
         clickElement("yes button", 1);
         waitElement("close button for template popup", timeout, 1);
         clickElement("close button for template popup", 1);
+        System.out.println("*********************************************************");
 
 
     }
