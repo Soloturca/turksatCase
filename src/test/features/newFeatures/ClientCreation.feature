@@ -17,7 +17,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
     Then I need to just wait
     Then I need to new client title verify by name title text area at index 1
 
-  @Test
+  @Finco
   Scenario: Müsteri Yonetimi: E2E Client Management - TC259- Customer Management - Community customer creation  -Tüzel (Kurumsal)
     Then I have to create a real customer
 
