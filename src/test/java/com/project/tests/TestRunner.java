@@ -29,7 +29,7 @@ import java.io.IOException;
 
 
 @CucumberOptions(
-        features = "src/test/features/newFeatures/ClientCreation.feature",
+        features = "src/test/features/newFeatures/WorkflowManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@Test",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
@@ -44,7 +44,7 @@ public class TestRunner extends MyTestNGBaseClass {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features", invocationCount = 30)
+    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features", invocationCount =1)
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
 
