@@ -29,9 +29,9 @@ import java.io.IOException;
 
 
 @CucumberOptions(
-        features = "src/test/features/newFeatures/",
+        features = "src/test/features/newFeatures/WorkflowManagement.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags = "@Finco",
+        tags = "@Test",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         glue = {"com.project.stepdefs"})
 
@@ -44,7 +44,7 @@ public class TestRunner extends MyTestNGBaseClass {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
+    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features", invocationCount =1)
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
 

@@ -842,7 +842,19 @@
           "customer no-new application text area": "//input[@orionid='customerCode']"
         },
         {
+          "side customer no-new application text area": "//input[@orionid='sideCustomerCode']"
+        },
+        {
+          "new side customer button": "//button[@orionid='btnNewSide']"
+        },
+        {
+          "add side customer button": "//button[@orionid='btnSideAdd']"
+        },
+        {
           "closeview": "//i[@class='fa fa-search fa-fw']"
+        },
+        {
+          "closeview for side customer": "//*[@id=\"step1\"]/div/div[1]/div[4]/div[5]/div/div/div/div[1]/div[1]/div[4]/div/i"
         },
         {
           "continue to Reference Information button": "//button[@orionid='btnContinue']"

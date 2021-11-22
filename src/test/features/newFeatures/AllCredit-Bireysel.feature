@@ -5,7 +5,7 @@ Feature: Orion Finance Finco Test Scenarios / All Credit Test Cases for Bireysel
 
   @Finco
   Scenario: Kredi Basvuru: Retail Customer's Failure to Create a New E2E Loan Application - TC003
-   #Kredi Basvuru - TC003
+   #Kredi Basvuru - TC003-test
     Given I go to "https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/" with this username: "4000" and this password:"1"
     And I wait loan button for 4000 element 30 seconds at index 1
     When I click element: loan button for 4000 at index 1

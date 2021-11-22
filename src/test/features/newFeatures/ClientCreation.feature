@@ -17,7 +17,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
     Then I need to just wait
     Then I need to new client title verify by name title text area at index 1
 
-  @Finco
+  @Test
   Scenario: Müsteri Yonetimi: E2E Client Management - TC259- Customer Management - Community customer creation  -Tüzel (Kurumsal)
     Then I have to create a real customer
 
@@ -39,7 +39,6 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
     And I wait login button element 30 seconds at index 1
     When I click element: login button at index 1
     Then I see home page
-
 
     And I wait gateway button element 30 seconds at index 1
     When I click element: gateway button at index 1
@@ -105,6 +104,8 @@ Feature: Orion Finance Finco Test Scenarios / Client Creation - MUSTERI YONETIMI
     When I click element: mersis data add button at index 1
     And I wait mersis save button element 30 seconds at index 1
     When I click element: mersis save button at index 1
+    Then I need to just wait
+
 
   @Finco
   Scenario: Müsteri Yonetimi: TC257 - E2E - Customer Management - Real New customer creation - Gercek Musteri - Tacir
