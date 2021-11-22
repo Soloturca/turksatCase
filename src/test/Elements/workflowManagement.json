@@ -14,7 +14,7 @@
           "jobs I started button": "//a[contains(@data-href,'/orion/workflow/js/define_startedbyme_list.js')]"
         },
         {
-          "jobs pending on my list button": "//aa[contains(@data-href,'/orion/workflow/js/define_waiting_list.js')]"
+          "jobs pending on my list button": "//a[contains(@data-href,'/orion/workflow/js/define_waiting_list.js')]"
         },
         {
           "pending jobs button": "//a[contains(@data-href,'/orion/workflow/js/define_waitingall_list.js')]"
