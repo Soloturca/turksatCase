@@ -58,9 +58,6 @@ Feature: Orion Finance Finco Test Scenarios / Client Management - MUSTERI YONETI
     Then I get the text area information: potential information area at index 1
     Then I get the text area information: sector information area at index 1
     Then I get the text area information: activity name area at index 1
-    #Then I get the text area information: activity name area at index 1
-    #Then I get the text area information: activity name area at index 1
-
 
     Then I verify the area company type area by read only at index 1
     Then I verify the area active abandoned status area by read only at index 1
