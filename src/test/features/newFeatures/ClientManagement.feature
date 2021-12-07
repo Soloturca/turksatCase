@@ -497,11 +497,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management - MUSTERI YONETI
     When I click element: next button at index 1
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
-    soner
-    elif
-    semih
-    fulya
-    baturay
+
 
     And I wait financial information area element 30 seconds at index 1
     When I click element: financial information area at index 1
