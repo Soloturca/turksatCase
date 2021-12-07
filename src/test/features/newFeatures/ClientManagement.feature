@@ -498,6 +498,7 @@ Feature: Orion Finance Finco Test Scenarios / Client Management - MUSTERI YONETI
     And I wait detail information section area element 30 seconds at index 1
     When I click element: detail information section area at index 1
 
+
     And I wait financial information area element 30 seconds at index 1
     When I click element: financial information area at index 1
     Then I verify the area segment area by declaration endorsement text area by segmentation at index 1
