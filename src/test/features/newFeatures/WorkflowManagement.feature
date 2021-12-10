@@ -41,7 +41,7 @@ Feature: Orion Finance Finco Test Scenarios - İŞ AKIŞ
     When I click element: close button at index 1
     Then I see home page
 
-  @Test
+  @Finco
   Scenario: Is Akis: TC001 - User Resumes Work that Started - Unit Officer
     And I wait workflow management button element 30 seconds at index 1
     When I click element: workflow management button at index 1
