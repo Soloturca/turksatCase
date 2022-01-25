@@ -600,6 +600,10 @@ public class StepDefs extends MyTestNGBaseClass {
 
     }
 
+    ali
+    veli
+    soner
+
     @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean selectElement(String text, String element, int index) {
         WebElement object = commonLib.findElement(element, index);
