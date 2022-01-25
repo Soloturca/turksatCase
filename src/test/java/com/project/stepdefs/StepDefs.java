@@ -601,7 +601,14 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     ali
+    @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
+    public void waitElement(String element, int timeout, int index) throws InterruptedException {
+        commonLib.waitElement(element, timeout, index);
+
+    }
     veli
+    soner
+    ali
     soner
 
     @When("^(?:I )?select element: \"([^\"]*)\" under (\\w+(?: \\w+)*) at index (\\d+)")
