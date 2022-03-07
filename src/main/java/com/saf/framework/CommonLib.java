@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -239,6 +241,18 @@ public class CommonLib extends MyTestNGBaseClass {
     }
 
     //-----------------------------------------------
+    //set Microsoft Edge options by merging the Desired Capability
+    //-----------------------------------------------
+    public static EdgeOptions getEdgeOptions() throws Exception {
+        EdgeOptions oEdgeOptions = new EdgeOptions();
+        oEdgeOptions.merge(getCapability());
+        //oEdgeOptions.ignoreZoomSettings();
+        //oEdgeOptions.introduceFlakinessByIgnoringSecurityDomains();
+
+        return oEdgeOptions;
+    }
+
+    //-----------------------------------------------
     //set ChromeOptions by merging the Desired Capability
     //-----------------------------------------------
     public static ChromeOptions getChromeOptions() throws Exception {
@@ -272,7 +286,8 @@ public class CommonLib extends MyTestNGBaseClass {
         if (sBrowserName.equalsIgnoreCase("ie")) return 1;
         if (sBrowserName.equalsIgnoreCase("firefox")) return 2;
         if (sBrowserName.equalsIgnoreCase("chrome")) return 3;
-        if (sBrowserName.equalsIgnoreCase("htmlunit")) return 4;
+        //if (sBrowserName.equalsIgnoreCase("htmlunit")) return 4;
+        if (sBrowserName.equalsIgnoreCase("edge")) return 4;
 
         return -1;
     }
@@ -299,10 +314,16 @@ public class CommonLib extends MyTestNGBaseClass {
                 WebDriverManager.chromedriver().setup();
                 oDriver = new ChromeDriver(getChromeOptions());
                 break;
+            case 4:
+                System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + AutomationConstants.sEdgeDriverPath);
+                WebDriverManager.edgedriver().setup();
+                //System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + AutomationConstants.sEdgeDriverPath);
+                oDriver = new EdgeDriver(getEdgeOptions());
+                break;
 
             default:
                 throw new Exception("Unknown browsername =" + sBrowserName +
-                        " valid names are: ie,firefox,chrome,htmlunit");
+                        " valid names are: ie,firefox,chrome,htmlunit,edge");
         }
 
         oDriver.manage().deleteAllCookies();
@@ -334,11 +355,11 @@ public class CommonLib extends MyTestNGBaseClass {
                 break;
 
             case 4:
-                oCapability.setBrowserName("htmlunit");
+                oCapability.setBrowserName("edge");
 
             default:
                 throw new Exception("Unknown browsername = " + sBrowserName +
-                        "  Valid names are: ie,firefox,chrome,htmlunit");
+                        "  Valid names are: ie,firefox,chrome,htmlunit,edge");
         }
 
         oCapability.setPlatform(Platform.WINDOWS);

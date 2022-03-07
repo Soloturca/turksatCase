@@ -5,7 +5,7 @@
 		</listeners> -->
 	<parameter name="VIDEO_RECORDING" value="false"/>
 	<parameter name="CalendarName" value="Calendar.xlsx"/>
-	<parameter name="browserName" value="chrome"/>
+	<parameter name="browserName" value="ie"/>
 
 	<!-- Cucumber Test -->
 	<test name="Test" enabled="true">

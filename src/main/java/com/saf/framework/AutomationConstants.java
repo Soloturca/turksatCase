@@ -7,6 +7,7 @@ public class AutomationConstants
 	public static String sIEDriverPath      	= "/Exes/IEDriverServer.exe";
 	public static String sChromeDriverPath  	= "/Exes/chromedriver.exe";
 	public static String sGeckoDriverPath   	= "/Exes/geckodriver.exe";
+	public static String sEdgeDriverPath      	= "/Exes/msedgedriver.exe";
 	
 	public static String sProxyHostName 		= "genproxy.amdocs.com";
 	public static int iProxyPort 				= 8080;

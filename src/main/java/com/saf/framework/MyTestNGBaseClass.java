@@ -66,9 +66,12 @@ public class MyTestNGBaseClass {
 		else if (browserName.equalsIgnoreCase("htmlunit")) {
 			sDriverName = "htmlunit";
 		}
+		else if (browserName.equalsIgnoreCase("edge")) {
+			sDriverName = "edge";
+		}
 		else{
 			throw new Exception("Unknown driver name = " + sDriverName +
-					"Valid names are: ie,firefox,chrome,htmlunit");
+					"Valid names are: ie,firefox,chrome,htmlunit,edge");
 		}
 
 		oDriver = CommonLib.getDriver(sDriverName);

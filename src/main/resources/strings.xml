@@ -3,5 +3,6 @@
 <!-- Error Text -->
     <string name="approve popup">İşlem Başarılı Olarak Tamamlandı.</string>
     <string name="assign to pool popup">Bekleyenler listesine geri atanmıştır.</string>
+    <string name="system menu button">Click this button to begin</string>
 </resources>
 

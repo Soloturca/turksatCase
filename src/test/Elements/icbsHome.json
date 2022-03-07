@@ -1,0 +1,20 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "icbsHome",
+        "parent": "loginPage",
+        "waitelement": "system menu button"
+      },
+      "elements": [
+        {
+          "system menu button": "//*[@id=\"systemMenu\"]"
+        },
+        {
+          "product menu": "//*[@title=\"Product\"]"
+        }
+
+      ]
+    }
+  ]
+}

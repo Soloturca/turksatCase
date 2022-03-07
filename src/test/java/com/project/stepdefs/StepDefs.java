@@ -24,9 +24,7 @@ import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class StepDefs extends MyTestNGBaseClass {
     ExcelUtils excelUtils = new ExcelUtils();
@@ -117,7 +115,15 @@ public class StepDefs extends MyTestNGBaseClass {
                     Allure.addAttachment("Verification completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                     reportResult("PASS", "Assertion is true." + element, true);
                     return true;
+                } else if (element.contains("system menu button")) {
+                    String expectedErrText = strings.get("system menu button");
+                    System.out.println("actual popup text - " + actualErrTxt + "\n" + "expected popup text - " + expectedErrText);
+                    Assert.assertEquals(actualErrTxt, expectedErrText);
+                    Allure.addAttachment("Verification completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                    reportResult("PASS", "Assertion is true." + element, true);
+                    return true;
                 }
+
             }
         } catch (Exception e) {
             Allure.addAttachment("Verification does not completed.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
@@ -2091,153 +2097,63 @@ public class StepDefs extends MyTestNGBaseClass {
 
     }
 
-    @Then("I have to create a real tacir customer")
-    public void createRealCustomerTacir() throws InterruptedException {
-        openUrl("https://www.simlict.com/");
-        seePage("simlict");
-        waitElement("generate tckn button", timeout, 1);
-        clickElement("generate tckn button", 1);
-        getTheReferenceNumber("generated tckn area", 1);
-        waitElement("go to tax no button", timeout, 2);
-        clickElement("go to tax no button", 2);
-        waitElement("generate tax no button", timeout, 1);
-        clickElement("generate tax no button", 1);
-        getTheReferenceNumber("generated tax area", 1);
-        openUrl("https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/");
-        seePage("login");
-        enterText("30060", "username text area", 1);
-        enterText("1", "password text area", 1);
-        waitElement("login button", timeout, 1);
-        clickElement("login button", 1);
-        seePage("home");
-        waitElement("gateway button", timeout, 1);
-        clickElement("gateway button", 1);
-        seePage("gateway");
-        waitElement("test data actions", timeout, 1);
-        clickElement("test data actions", 1);
-        waitElement("test data insert", timeout, 1);
-        clickElement("test data insert", 1);
-        waitElement("test data template name", timeout, 1);
-        //#***************************KPS**********************************
-        selectElement("KPS", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //  #Name&Surname - KPS
-        topOfWebsite();
-        waitElement("name template area", timeout, 1);
-        clickElement("name template area", 1);
-        waitElement("general area", timeout, 1);
-        enterText("AutomationTest", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-        waitElement("clear data button", timeout, 1);
-        clickElement("clear data button", 1);
-        waitElement("test data template name", timeout, 1);
-        //************************************GIB******************************************
-        selectElement("GIB", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //VergiNo
-        waitElement("tax no template area", timeout, 1);
-        clickElement("tax no template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTaxNumberText("general area", 1);
-        storeInformationVKN();
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-
-
-        //Ünvan
-        waitElement("title template area", timeout, 1);
-        clickElement("title template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("Gercek Kisi", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-
-        //Şirket Türü
-        waitElement("company type template area", timeout, 1);
-        clickElement("company type template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("01", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-
-        //Faaliyet Kodu
-        waitElement("action code template area", timeout, 1);
-        clickElement("action code template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("561008", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-        waitElement("clear data button", timeout, 1);
-        clickElement("clear data button", 1);
-        waitElement("test data template name", timeout, 1);
-
-        //#***************************APS**********************************
-        selectElement("APS", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-
-
+    @When("^I wait for (\\d+) seconds")
+    public void waitForSeconds(int time) throws InterruptedException {
+        Thread.sleep(time*1000);
     }
+
+    @When("^(?:I )?see element: (\\w+(?: \\w+)*) at index (\\d+)")
+    public boolean seeElement(String element, int index) {
+        WebElement object = commonLib.findElement(element, index);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                System.out.println(element + " element seen");
+                Allure.addAttachment("Element seen.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                reportResult("PASS", "I have seen the element: " + element, true);
+                return true;
+            }
+        } catch (Exception e) {
+            reportResult("FAIL", "I can not see the element: " + element, true);
+            Allure.addAttachment("Element is not seen.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            Assert.fail("Could not see the element:" + element);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @When("^(?:I )?switch to child window")
+    public void switchToChildWindow() throws InterruptedException {
+        String MainWindow=oDriver.getWindowHandle();
+        int timeCount = 1;
+        do
+        {
+            oDriver.getWindowHandles();
+            Thread.sleep(200);
+            timeCount++;
+            if ( timeCount > 50 )
+            {
+                break;
+            }
+        }
+        while ( oDriver.getWindowHandles().size() == 1 );
+        Set<String> s1=oDriver.getWindowHandles();
+        Iterator<String> i1=s1.iterator();
+
+        while(i1.hasNext()) {
+            String ChildWindow=i1.next();
+            //System.out.println(ChildWindow + "******" + driver.getTitle());
+            if(!MainWindow.equalsIgnoreCase(ChildWindow))
+            {
+                // Switching to Child window
+                oDriver.switchTo().window(ChildWindow);
+                Thread.sleep(3000);
+                System.out.println("Switched to child window ID : " + ChildWindow);
+                break;
+            }
+        }
+    }
+
 }
 
 
