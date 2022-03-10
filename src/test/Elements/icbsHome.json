@@ -12,8 +12,16 @@
         },
         {
           "product menu": "//*[@title=\"Product\"]"
+        },
+        {
+          "offer management sub product menu": "//*[@id=\"6500004\"]"
+        },
+        {
+          "offer catalog": "//*[@title=\"Offer Catalog\"]"
+        },
+        {
+          "search box area" : "//*[@id=\"po_name\"]"
         }
-
       ]
     }
   ]

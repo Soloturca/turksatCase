@@ -13,6 +13,7 @@ import cucumber.api.java.en.When;
 import io.qameta.allure.Allure;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
@@ -2122,7 +2123,7 @@ public class StepDefs extends MyTestNGBaseClass {
         return flag;
     }
 
-    @When("^(?:I )?switch to child window")
+    @When("^(?:I )?switch to window")
     public void switchToChildWindow() throws InterruptedException {
         String MainWindow=oDriver.getWindowHandle();
         int timeCount = 1;
@@ -2148,10 +2149,34 @@ public class StepDefs extends MyTestNGBaseClass {
                 // Switching to Child window
                 oDriver.switchTo().window(ChildWindow);
                 Thread.sleep(3000);
-                System.out.println("Switched to child window ID : " + ChildWindow);
+                System.out.println("Switched to window ID : " + ChildWindow);
                 break;
             }
         }
+    }
+
+    @When("I hover click {string} sub element at {string}")
+    public void hoverFunction(String subElement, String mainElement){
+        Actions actions = new Actions(oDriver);
+        //WebElement mainMenu = commonLib.findElement(mainElement,1);
+        WebElement mainMenu = oDriver.findElement(By.linkText("Product"));
+        actions.moveToElement(mainMenu);
+
+        //WebElement subMenu = commonLib.findElement(subElement,1);
+        WebElement subMenu = oDriver.findElement(By.linkText("Offer Management"));
+        actions.moveToElement(subMenu);
+        actions.click().build().perform();
+        System.out.println("Hover clicked " + subElement + " of " + mainElement);
+    }
+
+    @Given("^I switch to frame:([^\"]*) frame type:(name|id)$")
+    public void switchToFrame(String myFrame,String locatorType) throws InterruptedException {
+        commonLib.switchToFrame(myFrame,locatorType);
+    }
+
+    @Given("^I switch to default content$")
+    public void switchToDefault() throws InterruptedException {
+        commonLib.switchToDefault();
     }
 
 }

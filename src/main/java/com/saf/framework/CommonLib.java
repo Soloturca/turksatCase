@@ -484,4 +484,23 @@ public class CommonLib extends MyTestNGBaseClass {
             e.printStackTrace();
         }
     }
+
+    public void switchToFrame(String myFrame,String locatorType){
+        System.out.println("Switching to " + myFrame + " frame, type: " + locatorType);
+        if(locatorType.equalsIgnoreCase("name")) {
+            // oDriver.findElement(By.name(myFrame));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(myFrame)));
+            oDriver.switchTo().frame(myFrame);
+        }
+        else if(locatorType.equalsIgnoreCase("id")){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(myFrame)));
+            oDriver.switchTo().frame(myFrame);
+        }
+        System.out.println("Switched to " + myFrame + " frame, type: " + locatorType);
+    }
+
+    public void switchToDefault(){
+        oDriver.switchTo().defaultContent();
+        System.out.println("Switched to default frame.");
+    }
 }
