@@ -20,7 +20,16 @@
           "offer catalog": "//*[@title=\"Offer Catalog\"]"
         },
         {
-          "search box area" : "//*[@id=\"po_name\"]"
+          "search box area": "//*[@id=\"po_name\"]"
+        },
+        {
+          "search tab": "//*[@id=\"po_adv_search\" and @type=\"button\"]"
+        },
+        {
+          "offer name input area": "//*[@id=\"dlg_adv_name\"]"
+        },
+        {
+          "search button": "//*[@id=\"adv_search_button\"]"
         }
       ]
     }

@@ -1,5 +1,5 @@
 Feature: Credit Application
-  
+
   @Test
   Scenario: Open URL Test
     Given Open the http://10.144.15.143:7782/frameset/login.action URL
@@ -24,4 +24,8 @@ Feature: Credit Application
 
     When I switch to frame:tabPageIfra1 frame type:name
     Then I switch to frame:tabItemProdBuildIn_Frame frame type:id
-    And I enter "offer" text to search box area at index 1
+    And I click element: search tab at index 1
+
+    When I enter "RED0170" text to offer name input area at index 1
+    Then I click element: search button at index 1
+    And I need to just wait
