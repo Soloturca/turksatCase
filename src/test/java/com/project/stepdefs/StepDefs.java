@@ -42,6 +42,9 @@ public class StepDefs extends MyTestNGBaseClass {
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     TestUtils utils;
+    public static ArrayList<String> msisdnList = new ArrayList<>();
+    public static ArrayList<String> messageList = new ArrayList<>();;
+    static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -2176,7 +2179,6 @@ public class StepDefs extends MyTestNGBaseClass {
     public void switchToDefault() throws InterruptedException {
         commonLib.switchToDefault();
     }
-
 }
 
 

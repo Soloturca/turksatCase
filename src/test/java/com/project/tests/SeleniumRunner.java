@@ -3,6 +3,7 @@ package com.project.tests;
 
 //extends AbstractTestNGCucumberTests
 
+import com.saf.framework.MyTestNGBaseClass;
 import io.cucumber.testng.CucumberFeatureWrapper;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.PickleEventWrapper;
@@ -14,14 +15,14 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/features/oldFeatures/CreditApplicationEvaluation.feature",
+        features = "src/test/features/oldFeatures/CreditApplication.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags = "@usakgun",
+        tags = "@Test",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
-        glue = {"com.project.stepdef2"})
+        glue = {"com.project.stepdefs"})
 
-public class TestRunner {
-    private TestNGCucumberRunner testNGCucumberRunner;
+public class SeleniumRunner extends MyTestNGBaseClass {
+    private io.cucumber.testng.TestNGCucumberRunner testNGCucumberRunner;
 
     //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
     @BeforeClass(alwaysRun = true)

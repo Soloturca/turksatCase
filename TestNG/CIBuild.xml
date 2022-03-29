@@ -13,6 +13,10 @@
 			<class name="com.project.tests.TestRunner"/>
 		</classes>
 	</test>
+	<test name="SeleniumTest" enabled="true">
+		<classes>
+			<class name="com.project.tests.SeleniumRunner"/>
+		</classes>
+	</test>
 	<!-- Cucumber Test -->
-
 	</suite> 

@@ -16,16 +16,13 @@ import java.util.Properties;
 
 public class SSH2 {
 
-    public static ArrayList<String> msisdnList;
-    public static ArrayList<String> messageList;
+    public static ArrayList<String> msisdnList = new ArrayList<>();
+    public static ArrayList<String> messageList = new ArrayList<>();;
     static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
 
     public static void main(String[]args) throws IOException {
         File dirPath = new File(filePath);
         String selectedFile=findTemplateFile(dirPath);
-        int y=0;
-        msisdnList=new ArrayList<>();
-        messageList=new ArrayList<>();
         readCheckSms(filePath+selectedFile);
         createAndWriteToExcel(msisdnList,messageList,selectedFile);
         moveTemplateFile(selectedFile);
