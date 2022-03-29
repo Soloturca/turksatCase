@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 import java.io.File;
 import java.io.IOException;
 
-public class definitions {
+public class shDefinitions {
     static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
     SSH2 ssh2;
     @Before

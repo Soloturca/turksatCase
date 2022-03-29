@@ -17,7 +17,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
-import utils.excelutils.ExcelUtils;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
@@ -26,7 +25,6 @@ import java.io.InputStream;
 import java.util.*;
 
 public class StepDefs extends MyTestNGBaseClass {
-    ExcelUtils excelUtils = new ExcelUtils();
     CommonLib commonLib = new CommonLib();
     TCKN tckn = new TCKN();
     int timeout = 30;
@@ -42,9 +40,6 @@ public class StepDefs extends MyTestNGBaseClass {
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     TestUtils utils;
-    public static ArrayList<String> msisdnList = new ArrayList<>();
-    public static ArrayList<String> messageList = new ArrayList<>();;
-    static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -955,163 +950,6 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
 
-    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+) for 5430")
-    public boolean getExcelValue5430(String element, int index) {
-        WebElement object = commonLib.findElement(element, index);
-        String text = excelUtils.ReadCellData(4, 0);
-        boolean flag = false;
-
-        try {
-            if (object != null) {
-                object.sendKeys(text);
-                System.out.println("The excel value:" + text + " " + "has been entered.");
-                Allure.addAttachment("Excel value has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + text + " " + "has not been entered.", true);
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("The excel value:" + text + " " + "has not been entered.");
-            Allure.addAttachment("Excel value has not been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
-            Assert.fail("The excel value has not been entered!");
-            flag = false;
-
-        }
-        return flag;
-    }
-
-    @Then("^(?:I )?get the data from Excel file to element: (\\w+(?: \\w+)*) at index (\\d+) for 5426")
-    public boolean getExcelValue5426(String element, int index) {
-        WebElement object = commonLib.findElement(element, index);
-        String text = excelUtils.ReadCellData(1, 0);
-        boolean flag = false;
-
-        try {
-            if (object != null) {
-                object.sendKeys(text);
-                System.out.println("The excel value:" + text + " " + "has been entered.");
-                Allure.addAttachment("Excel value has been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + text + " " + "has been entered.", true);
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("The reference number:" + text + " " + "has not been entered.");
-            Allure.addAttachment("Excel value has not been entered..", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + text + " " + "has not been entered.", true);
-            Assert.fail("The excel value has not been entered!");
-            flag = false;
-
-        }
-        return flag;
-    }
-
-    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5430")
-    public boolean verifyClientDataForTCKN(String element, int index) {
-        String TCKNExcel = excelUtils.ReadCellData(4, 1);
-        System.out.println(TCKNExcel);
-
-        String TCKN = commonLib.getTheItemValueFromAttribute(element, index);
-        System.out.println(TCKN);
-        boolean flag = false;
-
-        try {
-
-            if (TCKN.equals(TCKNExcel)) {
-                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
-                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
-            }
-            return true;
-        } catch (Exception e) {
-            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
-            Allure.addAttachment("Excel value is not match with the element text", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
-            Assert.fail("The values are not match with each other!");
-            flag = false;
-        }
-        return flag;
-    }
-
-    @Then("I need to TCKN verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5426")
-    public boolean verifyClientDataForTCKN5426(String element, int index) {
-        String TCKNExcel = excelUtils.ReadCellData(1, 1);
-        System.out.println(TCKNExcel);
-
-        String TCKN = commonLib.getTheItemValueFromAttribute(element, index);
-        System.out.println(TCKN);
-        boolean flag = false;
-
-        try {
-
-            if (TCKN.equals(TCKNExcel)) {
-                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + TCKN);
-                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + TCKN, true);
-            }
-            return true;
-        } catch (Exception e) {
-            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + TCKN);
-            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + TCKN, true);
-            Assert.fail("The values are not match with each other!");
-            flag = false;
-        }
-        return flag;
-    }
-
-    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5430")
-    public boolean verifyClientDataForTitle(String element, int index) {
-        String TCKNExcel = excelUtils.ReadCellData(4, 0);
-        System.out.println(TCKNExcel);
-
-        String Name = commonLib.getTheItemValue(element, index);
-        System.out.println(Name);
-        boolean flag = false;
-
-        try {
-
-            if (Name.equals(TCKNExcel)) {
-                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
-                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
-            }
-            return true;
-        } catch (Exception e) {
-            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
-            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
-            Assert.fail("The values are not match with each other!");
-            flag = false;
-        }
-        return flag;
-    }
-
-    @Then("I need to Title verify for (\\w+(?: \\w+)*) match from Excel file at index (\\d+) for 5426")
-    public boolean verifyClientDataForTitle5426(String element, int index) {
-        String TCKNExcel = excelUtils.ReadCellData(1, 0);
-        System.out.println(TCKNExcel);
-
-        String Name = commonLib.getTheItemValue(element, index);
-        System.out.println(Name);
-        boolean flag = false;
-
-        try {
-
-            if (Name.equals(TCKNExcel)) {
-                System.out.println("The excel value:" + TCKNExcel + "is match with the element text " + Name);
-                Allure.addAttachment("Excel value is match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The excel value:" + TCKNExcel + "is match with the element text " + Name, true);
-            }
-            return true;
-        } catch (Exception e) {
-            System.out.println("The excel value:" + TCKNExcel + "is not match with the element text " + Name);
-            Allure.addAttachment("Excel value is not match with the element text.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            reportResult("FAIL", "The excel value:" + TCKNExcel + "is not match with the element text " + Name, true);
-            Assert.fail("The values are not match with each other!");
-            flag = false;
-        }
-        return flag;
-    }
 
     @Then("I need to new client title verify by (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyNewAccountTitle(String element, int index) {
