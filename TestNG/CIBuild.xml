@@ -13,7 +13,7 @@
 			<class name="com.project.tests.TestRunner"/>
 		</classes>
 	</test>
-	<test name="SeleniumTest" enabled="true">
+	<test name="SeleniumTest" enabled="false">
 		<classes>
 			<class name="com.project.tests.SeleniumRunner"/>
 		</classes>
