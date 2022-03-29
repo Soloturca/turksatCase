@@ -1,9 +1,9 @@
 package com.project.stepdefs;
 
 import com.saf.framework.CommonLib;
-import com.saf.framework.TestUtils;
 import com.saf.framework.MyTestNGBaseClass;
 import com.saf.framework.TCKN;
+import com.saf.framework.TestUtils;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -17,9 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import utils.excelutils.ExcelUtils;
-
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
@@ -1257,14 +1255,14 @@ public class StepDefs extends MyTestNGBaseClass {
         waitElement("row button", timeout, 27);
         clickElement("row button", 27);
         clickElement("add side customer button", 1);
-       // waitElement("row button", timeout, 1);
+        // waitElement("row button", timeout, 1);
         //clickElement("row button", 1);
 //checkbox tik'lendiğinde kefil seçilmiş oluyor, tekrar run ettiğimizde seçili olursa doğru ilerlemeyecektir.
         //waitElement("checkbox", timeout, 1);
         //clickElement("checkbox", 1);
-       // waitElement("update the guarantor button", timeout, 1);
-     //  clickElement("update the guarantor button", 1);
-      justWait();
+        // waitElement("update the guarantor button", timeout, 1);
+        //  clickElement("update the guarantor button", 1);
+        justWait();
         clickElement("continue to Reference Information button", 1);
         waitElement("close button for financial info", timeout, 1);
         clickElement("close button for financial info", 1);
