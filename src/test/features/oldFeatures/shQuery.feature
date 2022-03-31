@@ -3,6 +3,5 @@ Feature: SH
   #Bu feature'a artık gerek kalmadı. Bkz: AllCredit- Kurumsal
 
   @usakgun
-  Scenario: TC001
-
+  Scenario: SH QUERIES FOR CCS USAGE TESTS
     When I run sh query for sms check

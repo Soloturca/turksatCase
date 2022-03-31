@@ -20,8 +20,7 @@ public class shDefinitions {
         File dirPath = new File(filePath);
         String selectedFile=ssh2.findTemplateFile(dirPath);
         ssh2.readCheckSms(filePath+selectedFile);
-        ssh2.createAndWriteToExcel(ssh2.msisdnList,ssh2.messageList,selectedFile);
+        ssh2.createAndWriteToExcel(selectedFile);
         ssh2.moveTemplateFile(selectedFile);
     }
-
 }

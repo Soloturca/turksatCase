@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/features/oldFeatures/CreditApplicationEvaluation.feature",
+        features = "src/test/features/oldFeatures/shQuery.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@usakgun",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},

@@ -17,18 +17,38 @@ import java.util.Properties;
 public class SSH2 {
 
     public static ArrayList<String> msisdnList = new ArrayList<>();
-    public static ArrayList<String> messageList = new ArrayList<>();;
+    public static ArrayList<String> messageList = new ArrayList<>();
+    public static ArrayList<String> omonList = new ArrayList<>();
+    public static ArrayList<String> omonMsisdnList = new ArrayList<>();
     static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
 
     public static void main(String[]args) throws IOException {
         File dirPath = new File(filePath);
         String selectedFile=findTemplateFile(dirPath);
         readCheckSms(filePath+selectedFile);
-        createAndWriteToExcel(msisdnList,messageList,selectedFile);
+        createAndWriteToExcel(selectedFile);
         moveTemplateFile(selectedFile);
     }
 
-    public static void openAndRun(String command,String host, String user, String password,String msisdn){ // None, SMS,
+    public static void openAndRun(String shType,String host, String user, String password,String msisdn, String offerKey){
+        String shCommand;
+        String newMsiSdn = null;
+        if (shType == "checkSMS"){
+            shCommand = "cd /home/gfep/fep/SMSC/; ./check_sms.sh " + msisdn;
+        }
+        else{
+            if(msisdn.length()==12){
+                newMsiSdn = msisdn.substring(2);
+            }
+            else if(msisdn.length()==11){
+                newMsiSdn = msisdn.substring(1);
+            }
+            else{
+                newMsiSdn = msisdn;
+            }
+            System.out.println(newMsiSdn);
+            shCommand = "cd ismail/awk/script/filter/; ./filtered.sh " + newMsiSdn + " " + offerKey + " " + shType;
+        }
         String SMS = "";
         try {
             JSch jsch = new JSch();
@@ -40,7 +60,7 @@ public class SSH2 {
             session.setPassword(password);
             session.connect();
             Channel channel = session.openChannel("exec");
-            ((ChannelExec)channel).setCommand(command);
+            ((ChannelExec)channel).setCommand(shCommand);
 
             channel.setInputStream(null);
             ((ChannelExec)channel).setErrStream(System.err);
@@ -48,39 +68,58 @@ public class SSH2 {
             InputStream input = channel.getInputStream();
             channel.connect();
             try{
-                InputStreamReader inputReader = new InputStreamReader(input);
-                BufferedReader bufferedReader = new BufferedReader(inputReader);
-                String line = null;
+                if(shType.equals("checkSMS")){
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
 
-                while((line = bufferedReader.readLine()) != null){
-                       msisdnList.add(msisdn);
-                       messageList.add(line);
+                    while((line = bufferedReader.readLine()) != null){
+                        msisdnList.add(msisdn);
+                        messageList.add(line);
                         SMS += line + "\n";
-                }
-                bufferedReader.close();
-                inputReader.close();
-                try {
-                    while (channel.getExitStatus() == -1){
-                        try{Thread.sleep(1000);}
-                        catch(Exception e){System.out.println(e);}
                     }
-                    channel.disconnect();
-                    session.disconnect();
-                }catch (Exception e){e.printStackTrace();}
+                    bufferedReader.close();
+                    inputReader.close();
+                }
 
+                else if(shType.equals("omon")){
+                    String omonCDRPath = "sshpass -p \"Cbp_0001\" scp" + " -r " + "cbp" + "@" +
+                            "10.144.15.141" + ":" + "/enip/enipapp/cbp/ismail/awk/script/filter/filtered_cdr.txt " + "\"" + filePath + "TestBook\\omonCDR" + newMsiSdn + ".txt" + "\"";
+                    omonCDRPath ="dir";
+                    ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", omonCDRPath);
+                    builder.redirectErrorStream(true);
+                    Process p = builder.start();
+                    BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        line = r.readLine();
+                        if (line == null) {break;}
+                        System.out.println("line is " + line );
+                        omonMsisdnList.add(newMsiSdn);
+                        omonList.add(line);
+                    }
+                    r.close();
+                }
+                System.out.println("sessionlar bitti");
+                channel.disconnect();
+                session.disconnect();
             }catch(IOException ex){
                 ex.printStackTrace();
+                System.out.println(ex);
             }
         } catch (JSchException ex) {
             ex.printStackTrace();
+            System.out.println(ex);
         } catch (IOException ex) {
             ex.printStackTrace();
+            System.out.println(ex);
         }
     }
 
     public static void readCheckSms(String path) {
         boolean firstRow = true;
-        String value = null; //variable for storing the cell value
+        String tmpMsiSdn = null; //variable for storing the cell 0 value
+        String tmpOfferKey = null; //variable for storing the cell 3 value
         Workbook wbook = null; //initialize Workbook null
         try {
             //reading data from a file in the form of bytes
@@ -109,19 +148,30 @@ public class SSH2 {
                 Cell celldata = (Cell) cellitr.next();
                 switch(celldata.getColumnIndex()) {
                     case 0	: //MSISDN
-                        value=celldata.getStringCellValue().trim();
+                        tmpMsiSdn=celldata.getStringCellValue().trim();
+                        break;
+                    case 3	: //OfferKey
+                        try
+                        {
+                            tmpOfferKey=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            tmpOfferKey=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
                         break;
                 }
-                if (value == null || value == "")
+                if (tmpMsiSdn == null || tmpMsiSdn == "")
                 {
                     break;
                 }
-                openAndRun("cd /home/gfep/fep/SMSC/; ./check_sms.sh " + value, "10.144.11.99", "gfep", "Huawei123", value);
             }
+            openAndRun("checkSMS", "10.144.11.99", "gfep", "Huawei123", tmpMsiSdn,"0");
+            openAndRun("omon", "10.144.15.141", "cbp", "Cbp_0001", tmpMsiSdn,tmpOfferKey);
         }
     }
 
-    public static void createAndWriteToExcel(ArrayList<String> msisdnList, ArrayList<String> messageList,String newFileName) throws IOException {
+    public static void createAndWriteToExcel(String newFileName) throws IOException {
         try {
             newFileName=newFileName.replace("Test", "Testbook");
             String fileName = filePath + "TestBook\\" + newFileName;
@@ -145,8 +195,34 @@ public class SSH2 {
                     temp=msisdnList.get(rowCount-1);
                     cell.setCellValue(msisdnList.get(rowCount-1));
                 }
+
                 cell = row.createCell(1);
                 cell.setCellValue(message);
+            }
+
+            //Omon sheet aktarımı
+            XSSFSheet omonSheet = workbook.createSheet("omon_cdr");
+
+            int omonRowCount = 0;
+            int omonListElement = 0;
+            Row omonRow = omonSheet.createRow(omonRowCount);
+            Cell omonCell = omonRow.createCell(0);
+            omonCell.setCellValue("MSISDN");
+            omonCell = omonRow.createCell(1);
+            omonCell.setCellValue("CDR");
+
+            String omonTemp="";
+            int omonTemplate = 0;
+            for (String omon : omonList) {
+                omonRow = omonSheet.createRow(++omonRowCount);
+                omonCell = omonRow.createCell(0);
+                if(!(omonTemp.equalsIgnoreCase(omonMsisdnList.get(omonRowCount-1)))){
+                    omonTemp=omonMsisdnList.get(omonRowCount-1);
+                    omonCell.setCellValue(omonMsisdnList.get(omonRowCount-1));
+                }
+
+                omonCell = omonRow.createCell(1);
+                omonCell.setCellValue(omon);
             }
             FileOutputStream outputStream = new FileOutputStream(fileName);
             workbook.write(outputStream);
