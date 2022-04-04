@@ -28,4 +28,5 @@ Feature: Credit Application
 
     When I enter "RED0170" text to offer name input area at index 1
     Then I click element: search button at index 1
+    #And I need to verify "RED0170" element at index 1 matches from Excel
     And I need to just wait
