@@ -1631,6 +1631,8 @@ public class SSH2 {
             }
 
             //natVoice100Bundle sheet aktarımı
+
+            /*
             XSSFSheet natVoice100BundleSheet = workbook.createSheet("nat_voice_100_Bundle_cdr");
             int natVoice100BundleRowCount = 0;
             int natVoice100BundleListElement = 0;
@@ -1732,7 +1734,7 @@ public class SSH2 {
                     natRG100BundleCell.setCellValue(natRG100Bundle);
                 }
 
-            }
+            } */
 
             FileOutputStream outputStream = new FileOutputStream(fileName);
             workbook.write(outputStream);
