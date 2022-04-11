@@ -18,29 +18,99 @@ public class SSH2 {
 
     public static ArrayList<String> msisdnList = new ArrayList<>();
     public static ArrayList<String> messageList = new ArrayList<>();
+
     public static ArrayList<String> omonList = new ArrayList<>();
     public static ArrayList<String> omonMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> voiceList = new ArrayList<>();
     public static ArrayList<String> voiceMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> dataList = new ArrayList<>();
     public static ArrayList<String> dataMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> smsList = new ArrayList<>();
     public static ArrayList<String> smsMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> intVoiceDataList = new ArrayList<>();
     public static ArrayList<String> intVoiceDataMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> intSmsList = new ArrayList<>();
     public static ArrayList<String> intSmsMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> intMmsList = new ArrayList<>();
     public static ArrayList<String> intMmsMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> roamVoiceList = new ArrayList<>();
     public static ArrayList<String> roamVoiceMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> roamSmsList = new ArrayList<>();
     public static ArrayList<String> roamSmsMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> roamMTVoiceList = new ArrayList<>();
     public static ArrayList<String> roamMTVoiceMsisdnList = new ArrayList<>();
+
     public static ArrayList<String> roamDataList = new ArrayList<>();
     public static ArrayList<String> roamDataMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natRGList = new ArrayList<>();
+    public static ArrayList<String> natRGMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natVoiceVodafoneList = new ArrayList<>();
+    public static ArrayList<String> natVoiceVodafoneMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natVoiceFixedLineList = new ArrayList<>();
+    public static ArrayList<String> natVoiceFixedLineMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natVoiceBundleList = new ArrayList<>();
+    public static ArrayList<String> natVoiceBundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natDataBundleList = new ArrayList<>();
+    public static ArrayList<String> natDataBundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natSmsBundleList = new ArrayList<>();
+    public static ArrayList<String> natSmsBundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natRGBundleList = new ArrayList<>();
+    public static ArrayList<String> natRGBundleMsisdnList = new ArrayList<>();
+
     static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
+    static String natVoiceCalledMSISDN = " ";
+    static String natVoiceUsage = " ";
+    static String natDataUsage = " ";
+    static String natDataRg = " ";
+    static String natSmsUsage = " ";
+
+    static String intVoiceCalledMSISDN = " ";
+    static String intVoiceUsage = " ";
+    static String intSmsCalledMSISDN = " ";
+    static String intSmsUsage = " ";
+    static String intMmsCalledMSISDN = " ";
+    static String intMmsUsage = " ";
+
+    static String roamVoiceCalledMSISDN = " ";
+    static String roamVoiceUsage = " ";
+    static String roamVoiceOperator = " ";
+    static String roamSmsCalledMSISDN = " ";
+    static String roamSmsUsage = " ";
+    static String roamSmsOperator = " ";
+    static String roamMTVoiceCalledMSISDN = " ";
+    static String roamMTVoiceUsage = " ";
+    static String roamMTVoiceOperator = " ";
+    static String roamDataUsage = " ";
+    static String roamDataOperator = " ";
+
+    static String natRatingGroupUsage = " ";
+    static String natRatingGroupRg = " ";
+
+    static String natVoiceVodafoneCalledMSISDN = " ";
+    static String natVoiceVodafoneUsage = " ";
+    static String natVoiceFixedLineCalledMSISDN = " ";
+    static String natVoiceFixedLineUsage = " ";
+
+    static double natVoiceBundle = 0;
+    static String natDataBundle = null;
+    static double natSmsBundle = 0;
+    static double natRatingGroupBundle = 0;
 
     public static void main(String[] args) throws IOException {
         File dirPath = new File(filePath);
@@ -54,10 +124,6 @@ public class SSH2 {
     public static void openAndRun(String shType, String host, String user, String password, String msisdn, String offerKey) {
         String shCommand = null;
         String newMsiSdn = null;
-        String destMsiSdn = "905490006024";
-        String usage = "45000";
-        String rg= "1;";
-        String operator = null;
         if (shType == "checkSMS") {
             shCommand = "cd /home/gfep/fep/SMSC/; ./check_sms.sh " + msisdn;
         } else if (shType == "omon"){
@@ -77,7 +143,7 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + destMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceCalledMSISDN + " " + natVoiceUsage;
         } else if(shType == "nat_data") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -86,8 +152,7 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            usage="1047552";
-            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + usage + " " + rg;
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natDataUsage + " " + natDataRg;
         } else if(shType == "nat_sms") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -96,12 +161,9 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            usage="245";
-            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + natSmsUsage;
         } else if(shType == "int_voice_data") {
-            destMsiSdn = "33625520140";
-            usage="50";
-            shCommand = "cd ismail/awk/script/send_v3/; ./internationalcall.sh " + msisdn + " " + destMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/send_v3/; ./internationalcall.sh " + msisdn + " " + intVoiceCalledMSISDN + " " + intVoiceUsage;
         } else if(shType == "int_sms") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -110,9 +172,7 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "1202343";
-            usage="1";
-            shCommand = "cd ismail/awk/script/send_v3/; ./international_sms.sh " + newMsiSdn + " " + destMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/send_v3/; ./international_sms.sh " + newMsiSdn + " " + intSmsCalledMSISDN + " " + intSmsUsage;
         } else if(shType == "int_mms") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -121,9 +181,8 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "455300506711";
-            usage="1";
-            shCommand = "cd ismail/awk/script/send_v3/; ./international_mms.sh " + newMsiSdn + " " + destMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/send_v3/; ./international_mms.sh " + newMsiSdn + " " + intMmsCalledMSISDN + " " + intMmsUsage;
+            System.out.println("INT MMS SH = " + shCommand);
         } else if(shType == "roam_voice") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -132,10 +191,7 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "905459698046";
-            usage="60";
-            operator = "124289";
-            shCommand = "cd ismail/awk/script/roaming/; ./call_roaming.sh " + newMsiSdn + " " + destMsiSdn + " " + usage + " " + operator;
+            shCommand = "cd ismail/awk/script/roaming/; ./call_roaming.sh " + newMsiSdn + " " + roamVoiceCalledMSISDN + " " + roamVoiceUsage + " " + roamVoiceOperator;
         } else if(shType == "roam_sms") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -144,10 +200,7 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "5459698046";
-            usage="1";
-            operator = "38343";
-            shCommand = "cd ismail/awk/script/roaming/; ./sms_roaming.sh " + operator + " 90 " + msisdn + " " + destMsiSdn + " " + usage;
+            shCommand = "cd ismail/awk/script/roaming/; ./sms_roaming.sh " + roamSmsOperator + " 90 " + msisdn + " " + roamSmsCalledMSISDN + " " + roamSmsUsage;
         } else if(shType == "roam_mt_voice") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -156,10 +209,8 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "905544910223";
-            usage="60";
-            operator = "277";
-            shCommand = "cd ismail/awk/script/roaming/; ./call_mt_roaming.sh  " + newMsiSdn + " " + destMsiSdn + " " + usage + " " + operator;
+            shCommand = "cd ismail/awk/script/roaming/; ./call_mt_roaming.sh " + newMsiSdn + " " + roamMTVoiceCalledMSISDN + " " + roamMTVoiceUsage + " " + roamMTVoiceOperator;
+            System.out.println("ROAM MT VOICE SH = " + shCommand);
         } else if(shType == "roam_data") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
@@ -168,10 +219,77 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            destMsiSdn = "905544910223";
-            usage="1048576 ";
-            operator = "21603";
-            shCommand = "cd ismail/awk/script/roaming/; ./gprs_roaming.sh   " + newMsiSdn + " " + usage + " " + operator;
+            shCommand = "cd ismail/awk/script/roaming/; ./gprs_roaming.sh " + newMsiSdn + " " + roamDataUsage + " " + roamDataOperator + " 0";
+        } else if(shType == "nat_rg") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natRatingGroupUsage + " " + natRatingGroupRg;
+        } else if(shType == "nat_voice_vodafone") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceVodafoneCalledMSISDN + " " + natVoiceVodafoneUsage;
+        } else if(shType == "nat_voice_fixed_line") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceFixedLineCalledMSISDN + " " + natVoiceFixedLineUsage;
+        } else if(shType == "nat_voice_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceCalledMSISDN + " " + (natVoiceBundle * 0.85);
+        } else if(shType == "nat_data_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            int dataBundleTemplate = Integer.parseInt(natDataBundle);
+            String natData80Bundle = Double.toString(dataBundleTemplate * 0.85);
+            System.out.println("DATA BUNDLE IS " + natDataBundle);
+            System.out.println("NAT DATA BUNDLE IS " + natData80Bundle + " NAT DATA RG IS " + natDataRg);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natData80Bundle + " " + natDataRg;
+        } else if(shType == "nat_sms_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            String natSms80Bundle = Double.toString(natSmsBundle * 0.85);
+            System.out.println("NAT SMS BUNDLE IS " + natSms80Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + natSms80Bundle;
+        } else if(shType == "nat_rg_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            System.out.println("NAT RG BUNDLE IS " + natRatingGroupBundle + " NAT RG RG IS " + natRatingGroupRg);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natRatingGroupBundle + " " + natRatingGroupRg;
         }
 
         String SMS = "";
@@ -368,6 +486,118 @@ public class SSH2 {
                     bufferedReader.close();
                     inputReader.close();
 
+                } else if (shType.equals("nat_rg")) {
+
+                    String natRG = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natRGMsisdnList.add(msisdn);
+                        natRGList.add(line);
+                        natRG += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_voice_vodafone")) {
+
+                    String VOICE = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natVoiceVodafoneMsisdnList.add(msisdn);
+                        natVoiceVodafoneList.add(line);
+                        VOICE += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_voice_fixed_line")) {
+
+                    String VOICE = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natVoiceFixedLineMsisdnList.add(msisdn);
+                        natVoiceFixedLineList.add(line);
+                        VOICE += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_voice_bundle")) {
+
+                    String VOICE = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natVoiceBundleMsisdnList.add(msisdn);
+                        natVoiceBundleList.add(line);
+                        VOICE += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_data_bundle")) {
+
+                    String DATA = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natDataBundleMsisdnList.add(msisdn);
+                        natDataBundleList.add(line);
+                        DATA += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_sms_bundle")) {
+
+                    String natSms = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natSmsBundleMsisdnList.add(msisdn);
+                        natSmsBundleList.add(line);
+                        natSms += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_rg_bundle")) {
+
+                    String natRG = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natRGBundleMsisdnList.add(msisdn);
+                        natRGBundleList.add(line);
+                        natRG += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
                 }
 
                 channel.disconnect();
@@ -393,6 +623,7 @@ public class SSH2 {
         String tmpOfferKey = null; //variable for storing the cell 3 value
         Workbook wbook = null; //initialize Workbook null
         String tmpMSISDN = null; //variable for storing the cell 0 value
+        natVoiceCalledMSISDN = " ";
         try {
             //reading data from a file in the form of bytes
             FileInputStream fis = new FileInputStream(path);
@@ -430,6 +661,317 @@ public class SSH2 {
                             tmpOfferKey=String.valueOf((int) (celldata.getNumericCellValue()));
                         }
                         break;
+                    case 4             : //National Voice Called MSISDN
+                        try
+                        {
+
+                            natVoiceCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+
+                            natVoiceCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 5             : //National Voice Usage
+                        try
+                        {
+                            natVoiceUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natVoiceUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 6             : //National Data Usage
+                        try
+                        {
+                            natDataUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natDataUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 7             : //National Data Rg
+                        try
+                        {
+                            natDataRg=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natDataRg=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 8             : //National Sms Usage
+                        try
+                        {
+                            natSmsUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natSmsUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 9             : //International Voice Called MSISDN
+                        try
+                        {
+                            intVoiceCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intVoiceCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 10             : //International Voice Usage
+                        try
+                        {
+                            intVoiceUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intVoiceUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 11             : //International Sms Called MSISDN
+                        try
+                        {
+                            intSmsCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intSmsCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 12             : //International Sms Usage
+                        try
+                        {
+                            intSmsUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intSmsUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 13             : //International Mms Called MSISDN
+                        try
+                        {
+                            intMmsCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intMmsCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 14            : //International Mms Usage
+                        try
+                        {
+                            intMmsUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            intMmsUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+
+                    case 15            : //Roaming Voice Called MSISDN
+                        try
+                        {
+                            roamVoiceCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamVoiceCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 16            : //Roaming Voice Usage
+                        try
+                        {
+                            roamVoiceUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamVoiceUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 17            : //Roaming Voice Operator
+                        try
+                        {
+                            roamVoiceOperator=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamVoiceOperator=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 18            : //Roaming Sms Operator
+                        try
+                        {
+                            roamSmsOperator=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamSmsOperator=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 19            : //Roaming Sms Called MSISDN
+                        try
+                        {
+                            roamSmsCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamSmsCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 20            : //Roaming Sms Usage
+                        try
+                        {
+                            roamSmsUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamSmsUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 21            : //Roaming MT Voice Called MSISDN
+                        try
+                        {
+                            roamMTVoiceCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamMTVoiceCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 22            : //Roaming MT Voice Usage
+                        try
+                        {
+                            roamMTVoiceUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamMTVoiceUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 23            : //Roaming MT Voice Operator
+                        try
+                        {
+                            roamMTVoiceOperator=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamMTVoiceOperator=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 24            : //Roaming Data Usage
+                        try
+                        {
+                            roamDataUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamDataUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 25            : //Roaming Data Operator
+                        try
+                        {
+                            roamDataOperator=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            roamDataOperator=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+
+                    case 26            : //National Data Rating Group Usage
+                        try
+                        {
+                            natRatingGroupUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natRatingGroupUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+
+                    case 27            : //National Data Rating Group Rg
+                        try
+                        {
+                            natRatingGroupRg=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natRatingGroupRg=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 28            : //National Voice Vodafone Called MSISDN
+                        try
+                        {
+                            natVoiceVodafoneCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natVoiceVodafoneCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 29            : //National Voice Vodafone Usage
+                        try
+                        {
+                            natVoiceVodafoneUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natVoiceVodafoneUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 30            : //National Voice Fixed Lines Called MSISDN
+                        try
+                        {
+                            natVoiceFixedLineCalledMSISDN=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natVoiceFixedLineCalledMSISDN=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 31            : //National Voice Fixed Lines Usage
+                        try
+                        {
+                            natVoiceFixedLineUsage=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natVoiceFixedLineUsage=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 32            : //National Voice Bundle
+
+                            natVoiceBundle=celldata.getNumericCellValue()
+                            ;
+                        break;
+                    case 33            : //National Data Bundle
+
+                        try
+                        {
+                            natDataBundle=celldata.getStringCellValue().trim();
+                        }
+                        catch (Exception e1)
+                        {
+                            natDataBundle=String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        break;
+                    case 34            : //National Sms Bundle
+
+                            natSmsBundle=celldata.getNumericCellValue();
+
+                        break;
+                    case 35            : //National Rating Group Bundle
+
+                            natRatingGroupBundle=celldata.getNumericCellValue();
+
+                        break;
                 }
             }
             String MSISDN=tmpMSISDN;
@@ -438,8 +980,8 @@ public class SSH2 {
             {
                 break;
             }
-            openAndRun("checkSMS", "10.144.11.99", "gfep", "Huawei123", MSISDN,"0");
-            openAndRun("omon", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,OfferKey);
+             openAndRun("checkSMS", "10.144.11.99", "gfep", "Huawei123", MSISDN,"0");
+            //openAndRun("omon", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,OfferKey);
             openAndRun("nat_voice", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_data", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_sms", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
@@ -450,6 +992,19 @@ public class SSH2 {
             openAndRun("roam_sms", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("roam_mt_voice", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("roam_data", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_rg", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_voice_vodafone", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_voice_fixed_line", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            /*
+            System.out.println("VOICE BUNDLE");
+            openAndRun("nat_voice_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            System.out.println("DATA BUNDLE");
+            openAndRun("nat_data_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            System.out.println("SMS BUNDLE");
+            openAndRun("nat_sms_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            System.out.println("RG BUNDLE");
+            openAndRun("nat_rg_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");    */
+
         }
 
     }
@@ -587,7 +1142,7 @@ public class SSH2 {
             }
 
             //intVoiceData sheet aktarımı
-            XSSFSheet intVoiceDataSheet = workbook.createSheet("int_voice_data_cdr");
+            XSSFSheet intVoiceDataSheet = workbook.createSheet("int_voice_cdr");
             int intVoiceDataRowCount = 0;
             int intVoiceDataListElement = 0;
             Row intVoiceDataRow = intVoiceDataSheet.createRow(intVoiceDataRowCount);
@@ -651,7 +1206,7 @@ public class SSH2 {
             String intMmsTemp = "";
             int intMmsTemplate = 0;
             for (String intMms : intMmsList) {
-                if (intMms.contains("/enip/")){
+                if (intMms.contains("/enip/") || intMms.contains("|")){
                     intMmsRow = intMmsSheet.createRow(++intMmsRowCount);
                     intMmsCell = intMmsRow.createCell(0);
                     if (!(intMmsTemp.equalsIgnoreCase(intMmsMsisdnList.get(intMmsRowCount - 1)))) {
@@ -729,7 +1284,7 @@ public class SSH2 {
             String roamMTVoiceTemp = "";
             int roamMTVoiceTemplate = 0;
             for (String roamMTVoice : roamMTVoiceList) {
-                if (roamMTVoice.contains("/enip/")){
+                if (roamMTVoice.contains("enip/")){
                     roamMTVoiceRow = roamMTVoiceSheet.createRow(++roamMTVoiceRowCount);
                     roamMTVoiceCell = roamMTVoiceRow.createCell(0);
                     if (!(roamMTVoiceTemp.equalsIgnoreCase(roamMTVoiceMsisdnList.get(roamMTVoiceRowCount - 1)))) {
@@ -764,6 +1319,188 @@ public class SSH2 {
                     }
                     roamDataCell = roamDataRow.createCell(1);
                     roamDataCell.setCellValue(roamData);
+                }
+
+            }
+
+            //natRG sheet aktarımı
+            XSSFSheet natRGSheet = workbook.createSheet("nat_rg_cdr");
+            int natRGRowCount = 0;
+            int natRGListElement = 0;
+            Row natRGRow = natRGSheet.createRow(natRGRowCount);
+            Cell natRGCell = natRGRow.createCell(0);
+            natRGCell.setCellValue("MSISDN");
+            natRGCell = natRGRow.createCell(1);
+            natRGCell.setCellValue("NAT_RG_CDR");
+
+            String natRGTemp = "";
+            int natRGTemplate = 0;
+            for (String natRG : natRGList) {
+                if (natRG.contains("/enip/")){
+                    natRGRow = natRGSheet.createRow(++natRGRowCount);
+                    natRGCell = natRGRow.createCell(0);
+                    if (!(natRGTemp.equalsIgnoreCase(natRGMsisdnList.get(natRGRowCount - 1)))) {
+                        natRGTemp = natRGMsisdnList.get(natRGRowCount - 1);
+                        natRGCell.setCellValue(natRGTemp);
+                    }
+                    natRGCell = natRGRow.createCell(1);
+                    natRGCell.setCellValue(natRG);
+                }
+
+            }
+
+            //natVoiceVodafone sheet aktarımı
+            XSSFSheet natVoiceVodafoneSheet = workbook.createSheet("nat_voice_vodafone_cdr");
+            int natVoiceVodafoneRowCount = 0;
+            int natVoiceVodafoneListElement = 0;
+            Row natVoiceVodafoneRow = natVoiceVodafoneSheet.createRow(natVoiceVodafoneRowCount);
+            Cell natVoiceVodafoneCell = natVoiceVodafoneRow.createCell(0);
+            natVoiceVodafoneCell.setCellValue("MSISDN");
+            natVoiceVodafoneCell = natVoiceVodafoneRow.createCell(1);
+            natVoiceVodafoneCell.setCellValue("nat_voice_vodafone_CDR");
+
+            String natVoiceVodafoneTemp = "";
+            int natVoiceVodafoneTemplate = 0;
+            for (String natVoiceVodafone : natVoiceVodafoneList) {
+                if (natVoiceVodafone.contains("/enip/")){
+                    natVoiceVodafoneRow = natVoiceVodafoneSheet.createRow(++natVoiceVodafoneRowCount);
+                    natVoiceVodafoneCell = natVoiceVodafoneRow.createCell(0);
+                    if (!(natVoiceVodafoneTemp.equalsIgnoreCase(natVoiceVodafoneMsisdnList.get(natVoiceVodafoneRowCount - 1)))) {
+                        natVoiceVodafoneTemp = natVoiceVodafoneMsisdnList.get(natVoiceVodafoneRowCount - 1);
+                        natVoiceVodafoneCell.setCellValue(natVoiceVodafoneTemp);
+                    }
+                    natVoiceVodafoneCell = natVoiceVodafoneRow.createCell(1);
+                    natVoiceVodafoneCell.setCellValue(natVoiceVodafone);
+                }
+
+            }
+
+            //natVoiceFixedLine sheet aktarımı
+            XSSFSheet natVoiceFixedLineSheet = workbook.createSheet("nat_voice_fixed_line_cdr");
+            int natVoiceFixedLineRowCount = 0;
+            int natVoiceFixedLineListElement = 0;
+            Row natVoiceFixedLineRow = natVoiceFixedLineSheet.createRow(natVoiceFixedLineRowCount);
+            Cell natVoiceFixedLineCell = natVoiceFixedLineRow.createCell(0);
+            natVoiceFixedLineCell.setCellValue("MSISDN");
+            natVoiceFixedLineCell = natVoiceFixedLineRow.createCell(1);
+            natVoiceFixedLineCell.setCellValue("nat_voice_fixed_line_CDR");
+
+            String natVoiceFixedLineTemp = "";
+            int natVoiceFixedLineTemplate = 0;
+            for (String natVoiceFixedLine : natVoiceFixedLineList) {
+                if (natVoiceFixedLine.contains("/enip/")){
+                    natVoiceFixedLineRow = natVoiceFixedLineSheet.createRow(++natVoiceFixedLineRowCount);
+                    natVoiceFixedLineCell = natVoiceFixedLineRow.createCell(0);
+                    if (!(natVoiceFixedLineTemp.equalsIgnoreCase(natVoiceFixedLineMsisdnList.get(natVoiceFixedLineRowCount - 1)))) {
+                        natVoiceFixedLineTemp = natVoiceFixedLineMsisdnList.get(natVoiceFixedLineRowCount - 1);
+                        natVoiceFixedLineCell.setCellValue(natVoiceFixedLineTemp);
+                    }
+                    natVoiceFixedLineCell = natVoiceFixedLineRow.createCell(1);
+                    natVoiceFixedLineCell.setCellValue(natVoiceFixedLine);
+                }
+
+            }
+
+            //natVoiceBundle sheet aktarımı
+            XSSFSheet natVoiceBundleSheet = workbook.createSheet("nat_voice_bundle_cdr");
+            int natVoiceBundleRowCount = 0;
+            int natVoiceBundleListElement = 0;
+            Row natVoiceBundleRow = natVoiceBundleSheet.createRow(natVoiceBundleRowCount);
+            Cell natVoiceBundleCell = natVoiceBundleRow.createCell(0);
+            natVoiceBundleCell.setCellValue("MSISDN");
+            natVoiceBundleCell = natVoiceBundleRow.createCell(1);
+            natVoiceBundleCell.setCellValue("National Voice Bundle CDR");
+
+            String natVoiceBundleTemp = "";
+            int natVoiceBundleTemplate = 0;
+            for (String natVoiceBundle : natVoiceBundleList) {
+                if (natVoiceBundle.contains("/enip/")){
+                    natVoiceBundleRow = natVoiceBundleSheet.createRow(++natVoiceBundleRowCount);
+                    natVoiceBundleCell = natVoiceBundleRow.createCell(0);
+                    if (!(natVoiceBundleTemp.equalsIgnoreCase(natVoiceBundleMsisdnList.get(natVoiceBundleRowCount - 1)))) {
+                        natVoiceBundleTemp = natVoiceBundleMsisdnList.get(natVoiceBundleRowCount - 1);
+                        natVoiceBundleCell.setCellValue(natVoiceBundleTemp);
+                    }
+                    natVoiceBundleCell = natVoiceBundleRow.createCell(1);
+                    natVoiceBundleCell.setCellValue(natVoiceBundle);
+                }
+
+            }
+
+            //natDataBundle sheet aktarımı
+            XSSFSheet natDataBundleSheet = workbook.createSheet("nat_data_bundle_cdr");
+            int natDataBundleRowCount = 0;
+            int natDataBundleListElement = 0;
+            Row natDataBundleRow = natDataBundleSheet.createRow(natDataBundleRowCount);
+            Cell natDataBundleCell = natDataBundleRow.createCell(0);
+            natDataBundleCell.setCellValue("MSISDN");
+            natDataBundleCell = natDataBundleRow.createCell(1);
+            natDataBundleCell.setCellValue("National Data Bundle CDR");
+
+            String natDataBundleTemp = "";
+            int natDataBundleTemplate = 0;
+            for (String natDataBundle : natDataBundleList) {
+                if (natDataBundle.contains("/enip/")){
+                    natDataBundleRow = natDataBundleSheet.createRow(++natDataBundleRowCount);
+                    natDataBundleCell = natDataBundleRow.createCell(0);
+                    if (!(natDataBundleTemp.equalsIgnoreCase(natDataBundleMsisdnList.get(natDataBundleRowCount - 1)))) {
+                        natDataBundleTemp = natDataBundleMsisdnList.get(natDataBundleRowCount - 1);
+                        natDataBundleCell.setCellValue(natDataBundleTemp);
+                    }
+                    natDataBundleCell = natDataBundleRow.createCell(1);
+                    natDataBundleCell.setCellValue(natDataBundle);
+                }
+
+            }
+
+            //natSmsBundle sheet aktarımı
+            XSSFSheet natSmsBundleSheet = workbook.createSheet("nat_sms_bundle_cdr");
+            int natSmsBundleRowCount = 0;
+            int natSmsBundleListElement = 0;
+            Row natSmsBundleRow = natSmsBundleSheet.createRow(natSmsBundleRowCount);
+            Cell natSmsBundleCell = natSmsBundleRow.createCell(0);
+            natSmsBundleCell.setCellValue("MSISDN");
+            natSmsBundleCell = natSmsBundleRow.createCell(1);
+            natSmsBundleCell.setCellValue("National Sms Bundle CDR");
+
+            String natSmsBundleTemp = "";
+            int natSmsBundleTemplate = 0;
+            for (String natSmsBundle : natSmsBundleList) {
+                if (natSmsBundle.contains("/enip/")){
+                    natSmsBundleRow = natSmsBundleSheet.createRow(++natSmsBundleRowCount);
+                    natSmsBundleCell = natSmsBundleRow.createCell(0);
+                    if (!(natSmsBundleTemp.equalsIgnoreCase(natSmsBundleMsisdnList.get(natSmsBundleRowCount - 1)))) {
+                        natSmsBundleTemp = natSmsBundleMsisdnList.get(natSmsBundleRowCount - 1);
+                        natSmsBundleCell.setCellValue(natSmsBundleTemp);
+                    }
+                    natSmsBundleCell = natSmsBundleRow.createCell(1);
+                    natSmsBundleCell.setCellValue(natSmsBundle);
+                }
+
+            }
+
+            //natRGBundle sheet aktarımı
+            XSSFSheet natRGBundleSheet = workbook.createSheet("nat_rg_bundle_cdr");
+            int natRGBundleRowCount = 0;
+            int natRGBundleListElement = 0;
+            Row natRGBundleRow = natRGBundleSheet.createRow(natRGBundleRowCount);
+            Cell natRGBundleCell = natRGBundleRow.createCell(0);
+            natRGBundleCell.setCellValue("MSISDN");
+            natRGBundleCell = natRGBundleRow.createCell(1);
+            natRGBundleCell.setCellValue("National Rating Group Bundle CDR");
+
+            String natRGBundleTemp = "";
+            int natRGBundleTemplate = 0;
+            for (String natRGBundle : natRGBundleList) {
+                if (natRGBundle.contains("/enip/")){
+                    natRGBundleRow = natRGBundleSheet.createRow(++natRGBundleRowCount);
+                    natRGBundleCell = natRGBundleRow.createCell(0);
+                    if (!(natRGBundleTemp.equalsIgnoreCase(natRGBundleMsisdnList.get(natRGBundleRowCount - 1)))) {
+                        natRGBundleTemp = natRGBundleMsisdnList.get(natRGBundleRowCount - 1);
+                        natRGBundleCell.setCellValue(natRGBundleTemp);
+                    }
+                    natRGBundleCell = natRGBundleRow.createCell(1);
+                    natRGBundleCell.setCellValue(natRGBundle);
                 }
 
             }
