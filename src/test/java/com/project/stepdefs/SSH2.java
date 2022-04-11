@@ -73,6 +73,18 @@ public class SSH2 {
     public static ArrayList<String> natRGBundleList = new ArrayList<>();
     public static ArrayList<String> natRGBundleMsisdnList = new ArrayList<>();
 
+    public static ArrayList<String> natVoice100BundleList = new ArrayList<>();
+    public static ArrayList<String> natVoice100BundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natData100BundleList = new ArrayList<>();
+    public static ArrayList<String> natData100BundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natSms100BundleList = new ArrayList<>();
+    public static ArrayList<String> natSms100BundleMsisdnList = new ArrayList<>();
+
+    public static ArrayList<String> natRG100BundleList = new ArrayList<>();
+    public static ArrayList<String> natRG100BundleMsisdnList = new ArrayList<>();
+
     static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
     static String natVoiceCalledMSISDN = " ";
     static String natVoiceUsage = " ";
@@ -107,10 +119,10 @@ public class SSH2 {
     static String natVoiceFixedLineCalledMSISDN = " ";
     static String natVoiceFixedLineUsage = " ";
 
-    static double natVoiceBundle = 0;
-    static String natDataBundle = null;
-    static double natSmsBundle = 0;
-    static double natRatingGroupBundle = 0;
+    static long natVoiceBundle = 0;
+    static long natDataBundle = 0;
+    static long natSmsBundle = 0;
+    static long natRatingGroupBundle = 0;
 
     public static void main(String[] args) throws IOException {
         File dirPath = new File(filePath);
@@ -247,7 +259,7 @@ public class SSH2 {
                 newMsiSdn = msisdn;
             }
             shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceFixedLineCalledMSISDN + " " + natVoiceFixedLineUsage;
-        } else if(shType == "nat_voice_bundle") {
+        } else if(shType == "nat_voice_80_bundle") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
             } else if (msisdn.length() == 11) {
@@ -255,8 +267,11 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceCalledMSISDN + " " + (natVoiceBundle * 0.85);
-        } else if(shType == "nat_data_bundle") {
+            long natVoiceBundle80 = (long) (natVoiceBundle * 0.85);
+            String strNatVoice80Bundle = String.valueOf(natVoiceBundle80);
+            System.out.println("VALUE IS " + strNatVoice80Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceCalledMSISDN + " " + strNatVoice80Bundle;
+        } else if(shType == "nat_data_80_bundle") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
             } else if (msisdn.length() == 11) {
@@ -264,12 +279,11 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            int dataBundleTemplate = Integer.parseInt(natDataBundle);
-            String natData80Bundle = Double.toString(dataBundleTemplate * 0.85);
-            System.out.println("DATA BUNDLE IS " + natDataBundle);
-            System.out.println("NAT DATA BUNDLE IS " + natData80Bundle + " NAT DATA RG IS " + natDataRg);
-            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natData80Bundle + " " + natDataRg;
-        } else if(shType == "nat_sms_bundle") {
+            long natDataBundle80 = (long) (natDataBundle * 0.85);
+            String strNatData80Bundle = String.valueOf(natDataBundle80);
+            System.out.println("VALUE IS " + strNatData80Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + strNatData80Bundle + " " + natDataRg;
+        } else if(shType == "nat_sms_80_bundle") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
             } else if (msisdn.length() == 11) {
@@ -277,10 +291,11 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            String natSms80Bundle = Double.toString(natSmsBundle * 0.85);
-            System.out.println("NAT SMS BUNDLE IS " + natSms80Bundle);
-            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + natSms80Bundle;
-        } else if(shType == "nat_rg_bundle") {
+            long natSmsBundle80 = (long) (natSmsBundle * 0.85);
+            String strNatSms80Bundle = String.valueOf(natSmsBundle80);
+            System.out.println("VALUE IS " + strNatSms80Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + strNatSms80Bundle;
+        } else if(shType == "nat_rg_80_bundle") {
             if (msisdn.length() == 12) {
                 newMsiSdn = msisdn.substring(2);
             } else if (msisdn.length() == 11) {
@@ -288,8 +303,58 @@ public class SSH2 {
             } else {
                 newMsiSdn = msisdn;
             }
-            System.out.println("NAT RG BUNDLE IS " + natRatingGroupBundle + " NAT RG RG IS " + natRatingGroupRg);
-            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + natRatingGroupBundle + " " + natRatingGroupRg;
+            long natRGBundle80 = (long) (natRatingGroupBundle * 0.85);
+            String strNatRG80Bundle = String.valueOf(natRGBundle80);
+            System.out.println("VALUE IS " + strNatRG80Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + strNatRG80Bundle + " " + natRatingGroupRg;
+        } else if(shType == "nat_voice_100_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            long natVoiceBundle100 = (long) (natVoiceBundle * 1.05);
+            String strNatVoice100Bundle = String.valueOf(natVoiceBundle100);
+            System.out.println("VALUE IS " + strNatVoice100Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMsiSdn + " " + natVoiceCalledMSISDN + " " + strNatVoice100Bundle;
+        } else if(shType == "nat_data_100_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            long natDataBundle100 = (long) (natDataBundle * 1.05);
+            String strNatData100Bundle = String.valueOf(natDataBundle100);
+            System.out.println("VALUE IS " + strNatData100Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + strNatData100Bundle + " " + natDataRg;
+        } else if(shType == "nat_sms_100_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            long natSmsBundle100 = (long) (natSmsBundle * 1.05);
+            String strNatSms100Bundle = String.valueOf(natSmsBundle100);
+            System.out.println("VALUE IS " + strNatSms100Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMsiSdn + " " + strNatSms100Bundle;
+        } else if(shType == "nat_rg_100_bundle") {
+            if (msisdn.length() == 12) {
+                newMsiSdn = msisdn.substring(2);
+            } else if (msisdn.length() == 11) {
+                newMsiSdn = msisdn.substring(1);
+            } else {
+                newMsiSdn = msisdn;
+            }
+            long natRGBundle100 = (long) (natRatingGroupBundle * 1.05);
+            String strNatRG100Bundle = String.valueOf(natRGBundle100);
+            System.out.println("VALUE IS " + strNatRG100Bundle);
+            shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMsiSdn + " " + strNatRG100Bundle + " " + natRatingGroupRg;
         }
 
         String SMS = "";
@@ -534,7 +599,7 @@ public class SSH2 {
                     bufferedReader.close();
                     inputReader.close();
 
-                } else if (shType.equals("nat_voice_bundle")) {
+                } else if (shType.equals("nat_voice_80_bundle")) {
 
                     String VOICE = "";
                     InputStreamReader inputReader = new InputStreamReader(input);
@@ -550,7 +615,7 @@ public class SSH2 {
                     bufferedReader.close();
                     inputReader.close();
 
-                } else if (shType.equals("nat_data_bundle")) {
+                } else if (shType.equals("nat_data_80_bundle")) {
 
                     String DATA = "";
                     InputStreamReader inputReader = new InputStreamReader(input);
@@ -566,7 +631,7 @@ public class SSH2 {
                     bufferedReader.close();
                     inputReader.close();
 
-                } else if (shType.equals("nat_sms_bundle")) {
+                } else if (shType.equals("nat_sms_80_bundle")) {
 
                     String natSms = "";
                     InputStreamReader inputReader = new InputStreamReader(input);
@@ -582,7 +647,7 @@ public class SSH2 {
                     bufferedReader.close();
                     inputReader.close();
 
-                } else if (shType.equals("nat_rg_bundle")) {
+                } else if (shType.equals("nat_rg_80_bundle")) {
 
                     String natRG = "";
                     InputStreamReader inputReader = new InputStreamReader(input);
@@ -592,6 +657,70 @@ public class SSH2 {
                     while ((line = bufferedReader.readLine()) != null) {
                         natRGBundleMsisdnList.add(msisdn);
                         natRGBundleList.add(line);
+                        natRG += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_voice_100_Bundle")) {
+
+                    String VOICE = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natVoice100BundleMsisdnList.add(msisdn);
+                        natVoice100BundleList.add(line);
+                        VOICE += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_data_100_Bundle")) {
+
+                    String DATA = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natData100BundleMsisdnList.add(msisdn);
+                        natData100BundleList.add(line);
+                        DATA += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_sms_100_Bundle")) {
+
+                    String natSms = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natSms100BundleMsisdnList.add(msisdn);
+                        natSms100BundleList.add(line);
+                        natSms += line + "\n";
+                        System.out.println(line);
+                    }
+                    bufferedReader.close();
+                    inputReader.close();
+
+                } else if (shType.equals("nat_rg_100_Bundle")) {
+
+                    String natRG = "";
+                    InputStreamReader inputReader = new InputStreamReader(input);
+                    BufferedReader bufferedReader = new BufferedReader(inputReader);
+                    String line = null;
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        natRG100BundleMsisdnList.add(msisdn);
+                        natRG100BundleList.add(line);
                         natRG += line + "\n";
                         System.out.println(line);
                     }
@@ -948,28 +1077,22 @@ public class SSH2 {
                         break;
                     case 32            : //National Voice Bundle
 
-                            natVoiceBundle=celldata.getNumericCellValue()
+                            natVoiceBundle=(long)celldata.getNumericCellValue()
                             ;
                         break;
                     case 33            : //National Data Bundle
 
-                        try
-                        {
-                            natDataBundle=celldata.getStringCellValue().trim();
-                        }
-                        catch (Exception e1)
-                        {
-                            natDataBundle=String.valueOf((int) (celldata.getNumericCellValue()));
-                        }
+                            natDataBundle=(long)(celldata.getNumericCellValue());
+
                         break;
                     case 34            : //National Sms Bundle
 
-                            natSmsBundle=celldata.getNumericCellValue();
+                            natSmsBundle=(long)celldata.getNumericCellValue();
 
                         break;
                     case 35            : //National Rating Group Bundle
 
-                            natRatingGroupBundle=celldata.getNumericCellValue();
+                            natRatingGroupBundle=(long)celldata.getNumericCellValue();
 
                         break;
                 }
@@ -980,8 +1103,8 @@ public class SSH2 {
             {
                 break;
             }
-             openAndRun("checkSMS", "10.144.11.99", "gfep", "Huawei123", MSISDN,"0");
-            //openAndRun("omon", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,OfferKey);
+            openAndRun("checkSMS", "10.144.11.99", "gfep", "Huawei123", MSISDN,"0");
+            openAndRun("omon", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,OfferKey);
             openAndRun("nat_voice", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_data", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_sms", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
@@ -995,16 +1118,18 @@ public class SSH2 {
             openAndRun("nat_rg", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_voice_vodafone", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             openAndRun("nat_voice_fixed_line", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
-            /*
-            System.out.println("VOICE BUNDLE");
-            openAndRun("nat_voice_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_voice_80_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_data_80_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_sms_80_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_rg_80_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            /*System.out.println("VOICE BUNDLE");
+            openAndRun("nat_voice_100_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             System.out.println("DATA BUNDLE");
-            openAndRun("nat_data_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_data_100_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             System.out.println("SMS BUNDLE");
-            openAndRun("nat_sms_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
+            openAndRun("nat_sms_100_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");
             System.out.println("RG BUNDLE");
-            openAndRun("nat_rg_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0");    */
-
+            openAndRun("nat_rg_100_bundle", "10.144.15.141", "cbp", "Cbp_0001", MSISDN,"0"); */
         }
 
     }
@@ -1402,14 +1527,14 @@ public class SSH2 {
             }
 
             //natVoiceBundle sheet aktarımı
-            XSSFSheet natVoiceBundleSheet = workbook.createSheet("nat_voice_bundle_cdr");
+            XSSFSheet natVoiceBundleSheet = workbook.createSheet("nat_voice_80_bundle_cdr");
             int natVoiceBundleRowCount = 0;
             int natVoiceBundleListElement = 0;
             Row natVoiceBundleRow = natVoiceBundleSheet.createRow(natVoiceBundleRowCount);
             Cell natVoiceBundleCell = natVoiceBundleRow.createCell(0);
             natVoiceBundleCell.setCellValue("MSISDN");
             natVoiceBundleCell = natVoiceBundleRow.createCell(1);
-            natVoiceBundleCell.setCellValue("National Voice Bundle CDR");
+            natVoiceBundleCell.setCellValue("National Voice 80 Bundle CDR");
 
             String natVoiceBundleTemp = "";
             int natVoiceBundleTemplate = 0;
@@ -1428,14 +1553,14 @@ public class SSH2 {
             }
 
             //natDataBundle sheet aktarımı
-            XSSFSheet natDataBundleSheet = workbook.createSheet("nat_data_bundle_cdr");
+            XSSFSheet natDataBundleSheet = workbook.createSheet("nat_data_80_bundle_cdr");
             int natDataBundleRowCount = 0;
             int natDataBundleListElement = 0;
             Row natDataBundleRow = natDataBundleSheet.createRow(natDataBundleRowCount);
             Cell natDataBundleCell = natDataBundleRow.createCell(0);
             natDataBundleCell.setCellValue("MSISDN");
             natDataBundleCell = natDataBundleRow.createCell(1);
-            natDataBundleCell.setCellValue("National Data Bundle CDR");
+            natDataBundleCell.setCellValue("National Data 80 Bundle CDR");
 
             String natDataBundleTemp = "";
             int natDataBundleTemplate = 0;
@@ -1454,14 +1579,14 @@ public class SSH2 {
             }
 
             //natSmsBundle sheet aktarımı
-            XSSFSheet natSmsBundleSheet = workbook.createSheet("nat_sms_bundle_cdr");
+            XSSFSheet natSmsBundleSheet = workbook.createSheet("nat_sms_80_bundle_cdr");
             int natSmsBundleRowCount = 0;
             int natSmsBundleListElement = 0;
             Row natSmsBundleRow = natSmsBundleSheet.createRow(natSmsBundleRowCount);
             Cell natSmsBundleCell = natSmsBundleRow.createCell(0);
             natSmsBundleCell.setCellValue("MSISDN");
             natSmsBundleCell = natSmsBundleRow.createCell(1);
-            natSmsBundleCell.setCellValue("National Sms Bundle CDR");
+            natSmsBundleCell.setCellValue("National Sms 80 Bundle CDR");
 
             String natSmsBundleTemp = "";
             int natSmsBundleTemplate = 0;
@@ -1480,14 +1605,14 @@ public class SSH2 {
             }
 
             //natRGBundle sheet aktarımı
-            XSSFSheet natRGBundleSheet = workbook.createSheet("nat_rg_bundle_cdr");
+            XSSFSheet natRGBundleSheet = workbook.createSheet("nat_rg_80_bundle_cdr");
             int natRGBundleRowCount = 0;
             int natRGBundleListElement = 0;
             Row natRGBundleRow = natRGBundleSheet.createRow(natRGBundleRowCount);
             Cell natRGBundleCell = natRGBundleRow.createCell(0);
             natRGBundleCell.setCellValue("MSISDN");
             natRGBundleCell = natRGBundleRow.createCell(1);
-            natRGBundleCell.setCellValue("National Rating Group Bundle CDR");
+            natRGBundleCell.setCellValue("National Rating Group 80 Bundle CDR");
 
             String natRGBundleTemp = "";
             int natRGBundleTemplate = 0;
@@ -1501,6 +1626,110 @@ public class SSH2 {
                     }
                     natRGBundleCell = natRGBundleRow.createCell(1);
                     natRGBundleCell.setCellValue(natRGBundle);
+                }
+
+            }
+
+            //natVoice100Bundle sheet aktarımı
+            XSSFSheet natVoice100BundleSheet = workbook.createSheet("nat_voice_100_Bundle_cdr");
+            int natVoice100BundleRowCount = 0;
+            int natVoice100BundleListElement = 0;
+            Row natVoice100BundleRow = natVoice100BundleSheet.createRow(natVoice100BundleRowCount);
+            Cell natVoice100BundleCell = natVoice100BundleRow.createCell(0);
+            natVoice100BundleCell.setCellValue("MSISDN");
+            natVoice100BundleCell = natVoice100BundleRow.createCell(1);
+            natVoice100BundleCell.setCellValue("National Voice 100 Bundle CDR");
+
+            String natVoice100BundleTemp = "";
+            int natVoice100BundleTemplate = 0;
+            for (String natVoice100Bundle : natVoice100BundleList) {
+                if (natVoice100Bundle.contains("/enip/")){
+                    natVoice100BundleRow = natVoice100BundleSheet.createRow(++natVoice100BundleRowCount);
+                    natVoice100BundleCell = natVoice100BundleRow.createCell(0);
+                    if (!(natVoice100BundleTemp.equalsIgnoreCase(natVoice100BundleMsisdnList.get(natVoice100BundleRowCount - 1)))) {
+                        natVoice100BundleTemp = natVoice100BundleMsisdnList.get(natVoice100BundleRowCount - 1);
+                        natVoice100BundleCell.setCellValue(natVoice100BundleTemp);
+                    }
+                    natVoice100BundleCell = natVoice100BundleRow.createCell(1);
+                    natVoice100BundleCell.setCellValue(natVoice100Bundle);
+                }
+
+            }
+
+            //natData100Bundle sheet aktarımı
+            XSSFSheet natData100BundleSheet = workbook.createSheet("nat_data_100_Bundle_cdr");
+            int natData100BundleRowCount = 0;
+            int natData100BundleListElement = 0;
+            Row natData100BundleRow = natData100BundleSheet.createRow(natData100BundleRowCount);
+            Cell natData100BundleCell = natData100BundleRow.createCell(0);
+            natData100BundleCell.setCellValue("MSISDN");
+            natData100BundleCell = natData100BundleRow.createCell(1);
+            natData100BundleCell.setCellValue("National Data 100 Bundle CDR");
+
+            String natData100BundleTemp = "";
+            int natData100BundleTemplate = 0;
+            for (String natData100Bundle : natData100BundleList) {
+                if (natData100Bundle.contains("/enip/")){
+                    natData100BundleRow = natData100BundleSheet.createRow(++natData100BundleRowCount);
+                    natData100BundleCell = natData100BundleRow.createCell(0);
+                    if (!(natData100BundleTemp.equalsIgnoreCase(natData100BundleMsisdnList.get(natData100BundleRowCount - 1)))) {
+                        natData100BundleTemp = natData100BundleMsisdnList.get(natData100BundleRowCount - 1);
+                        natData100BundleCell.setCellValue(natData100BundleTemp);
+                    }
+                    natData100BundleCell = natData100BundleRow.createCell(1);
+                    natData100BundleCell.setCellValue(natData100Bundle);
+                }
+
+            }
+
+            //natSms100Bundle sheet aktarımı
+            XSSFSheet natSms100BundleSheet = workbook.createSheet("nat_sms_100_Bundle_cdr");
+            int natSms100BundleRowCount = 0;
+            int natSms100BundleListElement = 0;
+            Row natSms100BundleRow = natSms100BundleSheet.createRow(natSms100BundleRowCount);
+            Cell natSms100BundleCell = natSms100BundleRow.createCell(0);
+            natSms100BundleCell.setCellValue("MSISDN");
+            natSms100BundleCell = natSms100BundleRow.createCell(1);
+            natSms100BundleCell.setCellValue("National Sms 100 Bundle CDR");
+
+            String natSms100BundleTemp = "";
+            int natSms100BundleTemplate = 0;
+            for (String natSms100Bundle : natSms100BundleList) {
+                if (natSms100Bundle.contains("/enip/")){
+                    natSms100BundleRow = natSms100BundleSheet.createRow(++natSms100BundleRowCount);
+                    natSms100BundleCell = natSms100BundleRow.createCell(0);
+                    if (!(natSms100BundleTemp.equalsIgnoreCase(natSms100BundleMsisdnList.get(natSms100BundleRowCount - 1)))) {
+                        natSms100BundleTemp = natSms100BundleMsisdnList.get(natSms100BundleRowCount - 1);
+                        natSms100BundleCell.setCellValue(natSms100BundleTemp);
+                    }
+                    natSms100BundleCell = natSms100BundleRow.createCell(1);
+                    natSms100BundleCell.setCellValue(natSms100Bundle);
+                }
+
+            }
+
+            //natRG100Bundle sheet aktarımı
+            XSSFSheet natRG100BundleSheet = workbook.createSheet("nat_rg_100_Bundle_cdr");
+            int natRG100BundleRowCount = 0;
+            int natRG100BundleListElement = 0;
+            Row natRG100BundleRow = natRG100BundleSheet.createRow(natRG100BundleRowCount);
+            Cell natRG100BundleCell = natRG100BundleRow.createCell(0);
+            natRG100BundleCell.setCellValue("MSISDN");
+            natRG100BundleCell = natRG100BundleRow.createCell(1);
+            natRG100BundleCell.setCellValue("National Rating Group 100 Bundle CDR");
+
+            String natRG100BundleTemp = "";
+            int natRG100BundleTemplate = 0;
+            for (String natRG100Bundle : natRG100BundleList) {
+                if (natRG100Bundle.contains("/enip/")){
+                    natRG100BundleRow = natRG100BundleSheet.createRow(++natRG100BundleRowCount);
+                    natRG100BundleCell = natRG100BundleRow.createCell(0);
+                    if (!(natRG100BundleTemp.equalsIgnoreCase(natRG100BundleMsisdnList.get(natRG100BundleRowCount - 1)))) {
+                        natRG100BundleTemp = natRG100BundleMsisdnList.get(natRG100BundleRowCount - 1);
+                        natRG100BundleCell.setCellValue(natRG100BundleTemp);
+                    }
+                    natRG100BundleCell = natRG100BundleRow.createCell(1);
+                    natRG100BundleCell.setCellValue(natRG100Bundle);
                 }
 
             }
