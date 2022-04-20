@@ -2,7 +2,6 @@ package com.project.stepdefs;
 
 import com.saf.framework.CommonLib;
 import com.saf.framework.MyTestNGBaseClass;
-import com.saf.framework.TCKN;
 import com.saf.framework.TestUtils;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
@@ -26,7 +25,6 @@ import java.util.*;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
-    TCKN tckn = new TCKN();
     int timeout = 30;
     public String uuid = UUID.randomUUID().toString();
     public boolean checkLoginControl = false;
@@ -567,35 +565,6 @@ public class StepDefs extends MyTestNGBaseClass {
         }
         return flag;
     }
-
-
-    @Then("^I enter random but valid tckn to (.*) element at index (\\d+)")
-    public boolean randomTCKN(String element, int index) throws InterruptedException {
-        WebElement object;
-        object = commonLib.waitElement(element, timeout, index);
-        mytckn = tckn.getSaltString();
-        System.out.println(mytckn);
-        boolean flag = false;
-        try {
-            if (object != null) {
-                object.click();
-                Thread.sleep(1000);
-                object.sendKeys(mytckn);
-                System.out.println("The tckn has been entered.");
-                Allure.addAttachment("The tckn has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-                reportResult("PASS", "The tckn has been entered.", true);
-                return true;
-            }
-        } catch (Exception e) {
-            Allure.addAttachment("The tckn has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
-            System.out.println("The tckn has not been entered.");
-            reportResult("FAIL", "The tckn has not been entered.", true);
-            Assert.fail("An error during the entering tckn");
-            flag = false;
-        }
-        return flag;
-    }
-
 
     @And("^I wait (.*) element (\\d+) seconds at index (\\d+)")
     public void waitElement(String element, int timeout, int index) throws InterruptedException {
@@ -1786,156 +1755,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
     }
 
-    @Then("I have to create a real customer")
-    public void createRealCustomer() throws InterruptedException {
-        openUrl("https://www.simlict.com/");
-        seePage("simlict");
-        waitElement("generate tckn button", timeout, 1);
-        clickElement("generate tckn button", 1);
-        getTheReferenceNumber("generated tckn area", 1);
-        waitElement("go to tax no button", timeout, 2);
-        clickElement("go to tax no button", 2);
-        waitElement("generate tax no button", timeout, 1);
-        clickElement("generate tax no button", 1);
-        getTheReferenceNumber("generated tax area", 1);
-        openUrl("https://orion-finance-finco-amtest.apps.dvt-fcloud.vfinans.local/");
-        seePage("login");
-        enterText("30060", "username text area", 1);
-        enterText("1", "password text area", 1);
-        waitElement("login button", timeout, 1);
-        clickElement("login button", 1);
-        seePage("home");
-        waitElement("gateway button", timeout, 1);
-        clickElement("gateway button", 1);
-        seePage("gateway");
-        waitElement("test data actions", timeout, 1);
-        clickElement("test data actions", 1);
-        waitElement("test data insert", timeout, 1);
-        clickElement("test data insert", 1);
-        waitElement("test data template name", timeout, 1);
-        //#***************************KPS**********************************
-        selectElement("KPS", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //  #Name&Surname - KPS
-        justWait();
-        topOfWebsite();
-        waitElement("name template area", timeout, 1);
-        clickElement("name template area", 1);
-        waitElement("general area", timeout, 1);
-        enterText("AutomationTest", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-        waitElement("clear data button", timeout, 1);
-        clickElement("clear data button", 1);
-        waitElement("test data template name", timeout, 1);
-        //************************************GIB******************************************
-        selectElement("GIB", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //VergiNo
-        waitElement("tax no template area", timeout, 1);
-        clickElement("tax no template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTaxNumberText("general area", 1);
-        storeInformationVKN();
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
 
-
-        //Ünvan
-        waitElement("title template area", timeout, 1);
-        clickElement("title template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("Gercek Kisi", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-
-        //Şirket Türü
-        waitElement("company type template area", timeout, 1);
-        clickElement("company type template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("01", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-
-        //Faaliyet Kodu
-        waitElement("action code template area", timeout, 1);
-        clickElement("action code template area", 1);
-        waitElement("general area", timeout, 1);
-        clearText("general area", 1);
-        enterText("009000", "general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-        waitElement("clear data button", timeout, 1);
-        clickElement("clear data button", 1);
-        waitElement("test data template name", timeout, 1);
-
-        //#***************************APS**********************************
-        selectElement("APS", "test data template name", 1);
-        waitElement("test data version name", timeout, 1);
-        selectElement("1.0.0", "test data version name", 1);
-        waitElement("load template button", timeout, 1);
-        clickElement("load template button", 1);
-        //TCKN
-        waitElement("tckn template area", timeout, 1);
-        clickElement("tckn template area", 1);
-        waitElement("general area", timeout, 1);
-        dynamicTCKNNumberText("general area", 1);
-        waitElement("save button for test data input", timeout, 1);
-        clickElement("save button for test data input", 1);
-        //#Burada top page yapmamız lazım yoksa test patlıyor.
-        topOfWebsite();
-        waitElement("save data button", timeout, 1);
-        clickElement("save data button", 1);
-        waitElement("warning popup for template", timeout, 1);
-        waitElement("yes button", timeout, 1);
-        clickElement("yes button", 1);
-        waitElement("close button for template popup", timeout, 1);
-        clickElement("close button for template popup", 1);
-        System.out.println("*********************************************************");
-        System.out.println("I created a real customer.");
-        System.out.println("*********************************************************");
-
-    }
 
     @When("^I wait for (\\d+) seconds")
     public void waitForSeconds(int time) throws InterruptedException {
