@@ -1,6 +1,7 @@
 package com.project.stepdefs;
 
 import com.jcraft.jsch.*;
+import com.saf.framework.MyTestNGBaseClass;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -157,86 +158,108 @@ public class CCS_Usage_Test {
         switch (shType) {
             case "checkSMS":
                 shCommand = "cd /home/gfep/fep/SMSC/; ./check_sms.sh " + msisdn;
+                MyTestNGBaseClass.allureReport("","checkSMS sh'ına başlandı.",false);
                 break;
             case "nat_voice_80_bundle":
                 long natVoiceBundle80 = (long) (natVoiceBundle * 0.85);
                 String strNatVoice80Bundle = String.valueOf(natVoiceBundle80);
                 shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMSISDN(msisdn) + " " + natVoiceCalledMSISDN + " " + strNatVoice80Bundle;
+                MyTestNGBaseClass.allureReport("","National Voice %80 sh'ına başlandı.",false);
                 break;
             case "nat_data_80_bundle":
                 long natDataBundle80 = (long) (natDataBundle * 0.85);
                 String strNatData80Bundle = String.valueOf(natDataBundle80);
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + strNatData80Bundle + " " + natDataRg;
+                MyTestNGBaseClass.allureReport("","National Data %80 sh'ına başlandı.",false);
                 break;
             case "nat_sms_80_bundle":
                 long natSmsBundle80 = (long) (natSmsBundle * 0.85);
                 String strNatSms80Bundle = String.valueOf(natSmsBundle80);
                 shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMSISDN(msisdn) + " " + strNatSms80Bundle;
                 if (smsUsageControl(strNatSms80Bundle,shCommand)) return;
+                MyTestNGBaseClass.allureReport("","National Sms %80 sh'ına başlandı.",false);
                 break;
             case "nat_voice_100_bundle":
                 long natVoiceBundleYuz = (long) (((natVoiceBundle) - ((natVoiceBundle) * 0.85)));
                 String strNatVoiceYuzBundle = String.valueOf(natVoiceBundleYuz);
                 shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMSISDN(msisdn) + " " + natVoiceCalledMSISDN + " " + strNatVoiceYuzBundle;
+                MyTestNGBaseClass.allureReport("","National Voice %100 sh'ına başlandı.",false);
                 break;
             case "nat_data_100_bundle":
                 long natDataBundle100 = (long) (((natDataBundle) - ((natDataBundle) * 0.85)));
                 String strNatData100Bundle = String.valueOf(natDataBundle100);
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + strNatData100Bundle + " " + natDataRg;
+                MyTestNGBaseClass.allureReport("","National Data %100 sh'ına başlandı.",false);
                 break;
             case "nat_sms_100_bundle":
                 long natSmsBundle100 = (long) (((natSmsBundle) - ((natSmsBundle) * 0.85)));
                 String strNatSms100Bundle = String.valueOf(natSmsBundle100);
                 shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMSISDN(msisdn) + " " + strNatSms100Bundle;
                 if (smsUsageControl(strNatSms100Bundle,shCommand)) return;
+                MyTestNGBaseClass.allureReport("","National Sms %100 sh'ına başlandı.",false);
                 break;
             case "nat_voice_overusage":
                 shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMSISDN(msisdn) + " " + natVoiceCalledMSISDN + " 60";
+                MyTestNGBaseClass.allureReport("","National Voice overusage sh'ına başlandı.",false);
                 break;
             case "nat_sms_overusage":
                 shCommand = "cd ismail/awk/script/send_v3/; ./sms.sh " + newMSISDN(msisdn) + " 1";
+                MyTestNGBaseClass.allureReport("","National Sms overusage sh'ına başlandı.",false);
                 break;
             case "nat_data_paradox":
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " 524288" + " " + natDataRg;
+                MyTestNGBaseClass.allureReport("","National Data Paradox sh'ına başlandı.",false);
                 break;
             case "nat_rg1":
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + natRatingGroup1Usage + " " + natRatingGroup1Rg;
+                MyTestNGBaseClass.allureReport("","National Rating Group 1 sh'ına başlandı.",false);
                 break;
             case "nat_rg2":
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + natRatingGroup2Usage + " " + natRatingGroup2Rg;
+                MyTestNGBaseClass.allureReport("","National Rating Group 2 sh'ına başlandı.",false);
                 break;
             case "nat_rg3":
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + natRatingGroup3Usage + " " + natRatingGroup3Rg;
+                MyTestNGBaseClass.allureReport("","National Rating Group 3 sh'ına başlandı.",false);
                 break;
             case "nat_voice_vodafone":
                 shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMSISDN(msisdn) + " " + natVoiceVodafoneCalledMSISDN + " " + natVoiceVodafoneUsage;
+                MyTestNGBaseClass.allureReport("","National Voice Vodafone içi sh'ına başlandı.",false);
                 break;
             case "nat_voice_fixed_line":
                 shCommand = "cd ismail/awk/script/send_v3/; ./calling.sh " + newMSISDN(msisdn) + " " + natVoiceFixedLineCalledMSISDN + " " + natVoiceFixedLineUsage;
+                MyTestNGBaseClass.allureReport("","National Voice Sabit Hatlar sh'ına başlandı.",false);
                 break;
             case "int_voice_data":
                 shCommand = "cd ismail/awk/script/send_v3/; ./internationalcall.sh " + msisdn + " " + intVoiceCalledMSISDN + " " + intVoiceUsage;
+                MyTestNGBaseClass.allureReport("","International Voice sh'ına başlandı.",false);
                 break;
             case "int_sms":
                 shCommand = "cd ismail/awk/script/send_v3/; ./international_sms.sh " + newMSISDN(msisdn) + " " + intSmsCalledMSISDN + " " + intSmsUsage;
                 if (smsUsageControl(intSmsUsage,shCommand)) return;
+                MyTestNGBaseClass.allureReport("","International Sms sh'ına başlandı.",false);
                 break;
             case "int_mms":
                 shCommand = "cd ismail/awk/script/send_v3/; ./international_mms.sh " + newMSISDN(msisdn) + " " + intMmsCalledMSISDN + " " + intMmsUsage;
                 if (smsUsageControl(intMmsUsage,shCommand)) return;
+                MyTestNGBaseClass.allureReport("","International Mms sh'ına başlandı.",false);
                 break;
             case "roam_voice":
                 shCommand = "cd ismail/awk/script/roaming/; ./call_hdpass.sh " + newMSISDN(msisdn) + " " + roamVoiceCalledMSISDN + " " + roamVoiceUsage + " " + roamVoiceOperator;
+                MyTestNGBaseClass.allureReport("","Roaming Voice sh'ına başlandı.",false);
                 break;
             case "roam_sms":
                 shCommand = "cd ismail/awk/script/roaming/; ./sms_hdpass.sh " + roamSmsOperator + " 90 " + msisdn + " " + roamSmsCalledMSISDN + " " + roamSmsUsage;
                 if (smsUsageControl(roamSmsUsage,shCommand)) return;
+                MyTestNGBaseClass.allureReport("","Roaming Sms sh'ına başlandı.",false);
                 break;
             case "roam_data":
                 shCommand = "cd ismail/awk/script/roaming/; ./gprs_roaming_rtg.sh " + newMSISDN(msisdn) + " " + roamDataUsage + " " + roamDataOperator + " " + natDataRg;
+                MyTestNGBaseClass.allureReport("","Roaming Data sh'ına başlandı.",false);
                 break;
             case "nat_data_walle":
                 shCommand = "cd ismail/awk/script/send_v3/; ./gprs_byte.sh " + newMSISDN(msisdn) + " " + wallEDataUsage + " " + natDataRg;
+                MyTestNGBaseClass.allureReport("","National WallE sh'ına başlandı.",false);
                 break;
             case "omon":
             case "omgr":
@@ -244,6 +267,7 @@ public class CCS_Usage_Test {
             case "orec":
             case "osms":
                 shCommand = "cd ismail/awk/script/filter/; ./filtered.sh " + newMSISDN(msisdn) + " " + offerKey + " " + shType;
+                MyTestNGBaseClass.allureReport("",shType + " sh'ına başlandı.",false);
                 break;
         }
         System.out.println(shCommand);
@@ -323,13 +347,16 @@ public class CCS_Usage_Test {
                 session.disconnect();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
+                MyTestNGBaseClass.allureReport("FAIL","Listelere eklenirken sorun yaşandı.",true);
             }
         } catch (JSchException | IOException ex) {
             ex.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL","Sh bağlantısı sağlanırken sorun yaşandı.",true);
         }
     }
 
     public static void readTemplateExcel(String path) {
+        MyTestNGBaseClass.allureReport("","Excelden testler için gerekli değerler okunmaya başlandı.",false);
         boolean firstRow = true;
         String tmpOfferKey = null; //variable for storing the cell 3 value
         Workbook wbook = null; //initialize Workbook null
@@ -349,6 +376,7 @@ public class CCS_Usage_Test {
             wbook = new XSSFWorkbook(fis);
         } catch (IOException e) {
             e.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL","Excel açılamadı.",true);
         }
         System.out.println("readTemplateExcel started");
         Sheet sheet = wbook.getSheetAt(0);
@@ -812,10 +840,12 @@ public class CCS_Usage_Test {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            MyTestNGBaseClass.allureReport("FAIL","Sonuçların excele yazıldığı esnada bir problem yaşandı.",true);
         }
     }
 
     public static String findTemplateFile(File dir) {
+        MyTestNGBaseClass.allureReport("","Template dosyası açılıyor.",false);
         String TemplateName = "";
         FilenameFilter filter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
@@ -835,12 +865,14 @@ public class CCS_Usage_Test {
     }
 
     public static void moveTemplateFile(String file) {
+        MyTestNGBaseClass.allureReport("","Template dosyası Done klasörüne taşınıyor.",false);
         File source = new File(filePath + file);
         File dest = new File(filePath + "Done\\");
         try {
             FileUtils.moveFileToDirectory(source, dest, false);
         } catch (IOException e) {
             e.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL","Template dosyası Done klasörüne taşınamadı.",true);
         }
     }
 
@@ -866,6 +898,7 @@ public class CCS_Usage_Test {
 
     public static void writetoExcelSheet(XSSFWorkbook tmpworkbook, String cdrtype, String cellHeader1, String cellHeader2, String filterText,
                                          ArrayList<String> tmpArrayMSISDNList, ArrayList<String> tmpArrayList) {
+        MyTestNGBaseClass.allureReport("",cdrtype + " excele yazılıyor.",false);
         XSSFSheet tmpSheet =  tmpworkbook.createSheet(cdrtype);
         int RowCount = 0;
         Row tmpSheetRow= tmpSheet.createRow(RowCount);
@@ -904,6 +937,7 @@ public class CCS_Usage_Test {
     }
 
     public static void sftpsript(String host, String user, String password, String msiSdn, String shtype) {
+        MyTestNGBaseClass.allureReport("",shtype + " cdr sorgulanıyor.",false);
         try {
             JSch jsch = new JSch();
             Session session = jsch.getSession(user, host, 22);
@@ -947,6 +981,7 @@ public class CCS_Usage_Test {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL",shtype + " sorgusu esnasında problem yaşandı.",true);
         }
     }
 

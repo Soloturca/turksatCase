@@ -5,12 +5,12 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.screenrecording.CanRecordScreen;
 import io.qameta.allure.Allure;
+import io.qameta.allure.model.Status;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.net.util.Base64;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -110,6 +110,23 @@ public class MyTestNGBaseClass {
 	}
 
 	*/
+
+	public static void allureReport(String status, String message, boolean ssFlag) {
+		try {
+			if (ssFlag) {
+				Allure.addAttachment("Screenshot : " + message, new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+			}
+			if (status.equalsIgnoreCase("PASS")) {
+				Allure.step(message, Status.PASSED);
+			} else if (status.equalsIgnoreCase("FAIL")) {
+				Allure.step(message, Status.FAILED);
+			} else {
+				Allure.step(message);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Parameters({"CalendarName", "TestName"})
 	//@BeforeClass
