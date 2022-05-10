@@ -8,7 +8,7 @@
     <parameter name="browserName" value="ie"/>
 
     <!-- Cucumber Test -->
-    <test name="Test" enabled="true">
+    <test name="Test" enabled="false">
         <classes>
             <class name="com.project.tests.TestRunner"/>
         </classes>
