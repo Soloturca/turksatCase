@@ -13,6 +13,11 @@
             <class name="com.project.tests.TestRunner"/>
         </classes>
     </test>
+    <test name="TestForBilling" enabled="true">
+        <classes>
+            <class name="com.project.tests.TestRunnerForBilling"/>
+        </classes>
+    </test>
     <test name="SeleniumTest" enabled="false">
         <classes>
             <class name="com.project.tests.SeleniumRunner"/>
