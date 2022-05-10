@@ -2,9 +2,10 @@ Feature: Creating Bill
 
   @Test
   Scenario: Create Bill Test
-    Given Check file exist
-    When Connect to server
-    And Move old file to backup
-    And Connect to run server
-    And Run sh files
-    Then Move xlog file
+    Given Check xml file exist
+    And Set commands
+    When Move old file to backup
+    And Remove old xlog files
+    And Copying xml file to server
+    And Run commands
+    Then Check xlog file
