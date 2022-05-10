@@ -1,14 +1,18 @@
 package com.project.stepdefs;
 
 import com.jcraft.jsch.*;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import static com.project.stepdefs.CCS_Usage_Test.filePath;
 import static com.saf.framework.MyTestNGBaseClass.allureReport;
 
 public class CreateBill {
+
+    String xLogName = null;
 
     public String checkFileExist(File dir, boolean ssFlag) {
         allureReport("", "Checking file is exist or not.", false);
@@ -214,9 +218,9 @@ public class CreateBill {
             Session session = jsch.getSession(user, host, 22);
             Properties config = new Properties();
             config.put("StrictHostKeyChecking", "no");
+            config.put("PreferredAuthentications", "publickey,keyboard-interactive,password");
 
             session.setConfig(config);
-            session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
             session.setPassword(password);
             session.connect();
 
@@ -239,7 +243,6 @@ public class CreateBill {
             session.disconnect();
 
         } catch (JSchException | IOException | InterruptedException e) {
-            //
             throw new RuntimeException(e);
         }
         return this;
@@ -248,7 +251,6 @@ public class CreateBill {
     public boolean checkXlogFile(String user, String host, String password) throws JSchException, IOException, InterruptedException {
         allureReport("", "Checking XLOG file is created", false);
         boolean isFind = true;
-        String line = null;
         JSch jsch = new JSch();
         Session session = jsch.getSession(user, host, 22);
         Properties config = new Properties();
@@ -272,15 +274,50 @@ public class CreateBill {
 
             InputStreamReader inputReader = new InputStreamReader(input);
             BufferedReader bufferedReader = new BufferedReader(inputReader);
-            line = bufferedReader.readLine();
+            xLogName = bufferedReader.readLine();
 
-            if (line != null)
+            if (xLogName != null)
                 break;
         }
 
-        if (line == null)
+        if (xLogName == null)
             isFind = false;
         channel.disconnect();
         return isFind;
+    }
+
+    public CreateBill moveXMLDone(String fileName) {
+        allureReport("", "Move XML to Done File", false);
+        File source = new File(filePath + fileName);
+        File dest = new File(filePath + "Done\\");
+        try {
+            FileUtils.moveFileToDirectory(source, dest, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            allureReport("FAIL", "XML File could not move to Done File", true);
+        }
+        return this;
+    }
+
+    public void moveXLogFile(String user, String host, String password, String dir) {
+        allureReport("", "Copying created XLog file", false);
+        try {
+            JSch jsch = new JSch();
+            Session session = jsch.getSession(user, host, 22);
+            Properties config = new Properties();
+            config.put("StrictHostKeyChecking", "no");
+
+            session.setConfig(config);
+            session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
+            session.setPassword(password);
+            session.connect();
+
+            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
+            channelSftp.connect();
+            channelSftp.get("/d101/d01/invprint/data/output/cbu/undetails/" + xLogName, dir);
+            channelSftp.exit();
+        } catch (JSchException | SftpException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
