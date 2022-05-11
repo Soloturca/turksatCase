@@ -4,11 +4,11 @@ import com.jcraft.jsch.*;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.project.stepdefs.CCS_Usage_Test.filePath;
 import static com.saf.framework.MyTestNGBaseClass.allureReport;
+import static java.lang.Thread.sleep;
 
 public class CreateBill {
 
@@ -31,93 +31,6 @@ public class CreateBill {
 
         allureReport("", "File Name : " + fileName, false);
         return fileName;
-    }
-
-    public void connectServerAndMoveExistFile(String user, String host, String password, ArrayList<String> shCommand, String file, String dir) {
-        allureReport("", "Connecting to " + host, false);
-        try {
-            JSch jsch = new JSch();
-            Session session = jsch.getSession(user, host, 22);
-            Properties config = new Properties();
-            config.put("StrictHostKeyChecking", "no");
-
-            session.setConfig(config);
-            session.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
-            session.setPassword(password);
-            session.connect();
-
-            /*allureReport("", "Moving old xml file to backup", false);
-            Channel channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(shCommand.get(0));
-            channel.setInputStream(null);
-            ((ChannelExec) channel).setErrStream(System.err);
-            InputStream input = channel.getInputStream();
-            channel.connect();
-
-            InputStreamReader inputReader = new InputStreamReader(input);
-            BufferedReader bufferedReader = new BufferedReader(inputReader);
-            allureReport("", "Terminal Log : " + bufferedReader.readLine(), false);
-            channel.disconnect();
-
-            allureReport("", "Remove old .xlog files in /d101/d01/invprint/data/output/cbu/undetails/", false);
-            channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(shCommand.get(1));
-            channel.setInputStream(null);
-            ((ChannelExec) channel).setErrStream(System.err);
-            input = channel.getInputStream();
-            channel.connect();
-
-            inputReader = new InputStreamReader(input);
-            bufferedReader = new BufferedReader(inputReader);
-            allureReport("", "Terminal Log : " + bufferedReader.readLine(), false);
-            channel.disconnect();
-
-            allureReport("", "Copying new xml file to /d101/d01/invprint/data/xml_cbu/", false);
-            ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
-            channelSftp.connect();
-            channelSftp.put(file, dir);
-            channelSftp.exit();*/
-
-            ChannelShell channel = (ChannelShell) session.openChannel("shell");
-            channel.setOutputStream(System.out);
-            PrintStream shellStream = new PrintStream(channel.getOutputStream());// printStream for convenience
-            channel.connect();
-
-            shellStream.println(shCommand.get(0));
-            shellStream.flush();
-            Thread.sleep(10000);
-
-            InputStream input = channel.getInputStream();
-            InputStreamReader inputReader = new InputStreamReader(input);
-            BufferedReader bufferedReader = new BufferedReader(inputReader);
-            /*while ((bufferedReader.readLine()) != null) {
-                allureReport("", "Terminal Log : " + bufferedReader.readLine(), false);
-            }*/
-            channel.disconnect();
-
-            channel = (ChannelShell) session.openChannel("shell");
-            channel.setOutputStream(System.out);
-            shellStream = new PrintStream(channel.getOutputStream());// printStream for convenience
-            channel.connect();
-
-            shellStream.println(shCommand.get(1));
-            shellStream.flush();
-            Thread.sleep(150000);
-            input = channel.getInputStream();
-            inputReader = new InputStreamReader(input);
-            bufferedReader = new BufferedReader(inputReader);
-            /*while ((bufferedReader.readLine()) != null) {
-                allureReport("", "Terminal Log : " + bufferedReader.readLine(), false);
-            }*/
-            channel.disconnect();
-
-            session.disconnect();
-
-        } catch (JSchException | IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void moveOldFilesToBackup(String user, String host, String password, String command) {
@@ -207,7 +120,8 @@ public class CreateBill {
             channelSftp.connect();
             channelSftp.put(file, dir);
             channelSftp.exit();
-        } catch (JSchException | SftpException e) {
+            sleep(10000);
+        } catch (JSchException | SftpException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -231,14 +145,11 @@ public class CreateBill {
 
             shellStream.println(command);
             shellStream.flush();
-            Thread.sleep(sleep * 1000);
+            sleep(sleep * 1000);
 
             InputStream input = channel.getInputStream();
             InputStreamReader inputReader = new InputStreamReader(input);
             BufferedReader bufferedReader = new BufferedReader(inputReader);
-            /*while ((bufferedReader.readLine()) != null) {
-                allureReport("", "Terminal Log : " + bufferedReader.readLine(), false);
-            }*/
             channel.disconnect();
             session.disconnect();
 
@@ -264,7 +175,7 @@ public class CreateBill {
         Channel channel = null;
 
         for (int i = 0; i < 20; i++) {
-            Thread.sleep(10000);
+            sleep(10000);
             channel = session.openChannel("exec");
             ((ChannelExec) channel).setCommand("cd /d101/d01/invprint/data/output/cbu/undetails; ls");
             channel.setInputStream(null);

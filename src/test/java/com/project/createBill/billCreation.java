@@ -67,7 +67,7 @@ public class billCreation {
     @When("Run commands")
     public void run_commands() {
         createBill
-                .runShellCommands(user, host, password, commands.get(2), 20)
+                .runShellCommands(user, host, password, commands.get(2), 10)
                 .runShellCommands(user, host, password, commands.get(3), 20);
     }
 
