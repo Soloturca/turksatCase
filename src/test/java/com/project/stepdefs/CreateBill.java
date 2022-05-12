@@ -120,13 +120,14 @@ public class CreateBill {
             channelSftp.connect();
             channelSftp.put(file, dir);
             channelSftp.exit();
-            sleep(10000);
+            sleep(3000);
         } catch (JSchException | SftpException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     public CreateBill runShellCommands(String user, String host, String password, String command, int sleep) {
+        allureReport("", "Running Command : " + command, false);
         try {
             JSch jsch = new JSch();
             Session session = jsch.getSession(user, host, 22);
@@ -139,17 +140,27 @@ public class CreateBill {
             session.connect();
 
             ChannelShell channel = (ChannelShell) session.openChannel("shell");
-            channel.setOutputStream(System.out);
-            PrintStream shellStream = new PrintStream(channel.getOutputStream());// printStream for convenience
-            channel.connect();
+            channel.setXForwarding(true);
+            channel.setOutputStream(System.out, true);
+            channel.setExtOutputStream(System.err, true);
+            channel.setInputStream(System.in, true);
 
+            PrintStream shellStream = new PrintStream(channel.getOutputStream());
+            Thread.sleep(1000);
+            channel.connect();
+            channel.setPty(false);
+            Thread.sleep(1000);
+            shellStream.println("#!/bin/sh");
             shellStream.println(command);
             shellStream.flush();
-            sleep(sleep * 1000);
-
+            Thread.sleep(sleep * 1000);
             InputStream input = channel.getInputStream();
+            Thread.sleep(1000);
             InputStreamReader inputReader = new InputStreamReader(input);
+            Thread.sleep(1000);
             BufferedReader bufferedReader = new BufferedReader(inputReader);
+            Thread.sleep(1000);
+
             channel.disconnect();
             session.disconnect();
 
