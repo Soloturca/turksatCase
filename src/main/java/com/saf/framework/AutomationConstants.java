@@ -19,12 +19,7 @@ public class AutomationConstants
 	public static String CommonFileName = "COMMON.xlsx";
 	
 	public static String reportsDBName = "reports.db";
-	
-	public static int itestCaseID;
-	
-	// Email constants
 
-	//referans kısmı://*[@id="modal-title-text"]/b
-	//güncel referans:  20210611-00152
+	public static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
 	
 }

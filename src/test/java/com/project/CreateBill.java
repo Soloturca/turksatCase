@@ -1,4 +1,4 @@
-package com.project.stepdefs;
+package com.project;
 
 import com.jcraft.jsch.*;
 import org.apache.commons.io.FileUtils;
@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.*;
 import java.util.Properties;
 
-import static com.project.stepdefs.CCS_Usage_Test.filePath;
+import static com.project.CCSUsageTest.filePath;
 import static com.saf.framework.MyTestNGBaseClass.allureReport;
 import static java.lang.Thread.sleep;
 

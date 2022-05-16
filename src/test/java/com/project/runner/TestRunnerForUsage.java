@@ -1,4 +1,4 @@
-package com.project.tests;
+package com.project.runner;
 
 
 //extends AbstractTestNGCucumberTests
@@ -14,13 +14,13 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/features/oldFeatures/CreateBill.feature",
+        features = "src/test/java/com/project/features/CcsUsage.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags = "@Test",
+        tags = "@usakgun",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
-        glue = {"com.project.createBill"})
+        glue = {"com.project.stepDefinitions"})
 
-public class TestRunnerForBilling {
+public class TestRunnerForUsage {
     private TestNGCucumberRunner testNGCucumberRunner;
 
     //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());

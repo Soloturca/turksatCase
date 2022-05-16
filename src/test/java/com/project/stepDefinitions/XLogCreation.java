@@ -1,7 +1,7 @@
-package com.project.createBill;
+package com.project.stepDefinitions;
 
 import com.jcraft.jsch.JSchException;
-import com.project.stepdefs.CreateBill;
+import com.project.CreateBill;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static com.saf.framework.MyTestNGBaseClass.allureReport;
 
-public class billCreation {
+public class XLogCreation {
 
     CreateBill createBill = new CreateBill();
 

@@ -12,17 +12,12 @@
     <!-- Cucumber Test -->
     <test name="TestForUsage" enabled="true">
         <classes>
-            <class name="com.project.tests.TestRunner"/>
+            <class name="com.project.runner.TestRunnerForUsage"/>
         </classes>
     </test>
     <test name="TestForBilling" enabled="true">
         <classes>
-            <class name="com.project.tests.TestRunnerForBilling"/>
-        </classes>
-    </test>
-    <test name="SeleniumTest" enabled="false">
-        <classes>
-            <class name="com.project.tests.SeleniumRunner"/>
+            <class name="com.project.runner.TestRunnerForXLog"/>
         </classes>
     </test>
     <!-- Cucumber Test -->

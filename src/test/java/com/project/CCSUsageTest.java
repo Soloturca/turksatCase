@@ -1,4 +1,4 @@
-package com.project.stepdefs;
+package com.project;
 
 import com.jcraft.jsch.*;
 import com.saf.framework.MyTestNGBaseClass;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Properties;
 
-public class CCS_Usage_Test {
+public class CCSUsageTest {
 
     public static ArrayList<String> msisdnList = new ArrayList<>();
     public static ArrayList<String> messageList = new ArrayList<>();
