@@ -14,14 +14,33 @@ public class CreateBill {
 
     String xLogName = null;
 
-    public String checkFileExist(File dir, boolean ssFlag) {
+    public String checkFileExistStartsWith(File dir, boolean ssFlag, String startsWith, String fileType) {
         allureReport("", "Checking file is exist or not.", false);
         String fileName = "";
-        FilenameFilter filter = (dir1, name) -> name.startsWith("ip");
+        FilenameFilter filter = (dir1, name) -> name.startsWith(startsWith);
         String[] children = dir.list(filter);
 
         if (children.length == 0 && ssFlag)
-            allureReport("FAIL", "Xml file could not find at below directory : \n" + dir + "", false);
+            allureReport("FAIL", fileType + " file could not find at below directory : \n" + dir + "", false);
+        else {
+            for (String child : children) {
+                fileName = child;
+                break;
+            }
+        }
+
+        allureReport("", "File Name : " + fileName, false);
+        return fileName;
+    }
+
+    public String checkFileWithExtension(File dir, boolean ssFlag, String file, String fileType) {
+        allureReport("", "Checking file is exist or not.", false);
+        String fileName = "";
+        FilenameFilter filter = (dir1, name) -> name.startsWith(file) && name.endsWith(fileType);
+        String[] children = dir.list(filter);
+
+        if (children.length == 0 && ssFlag)
+            allureReport("FAIL", fileType + " file could not find at below directory : \n" + dir + "", false);
         else {
             for (String child : children) {
                 fileName = child;
@@ -230,6 +249,60 @@ public class CreateBill {
             channelSftp.exit();
         } catch (JSchException | SftpException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public CreateBill deleteDirectory(File file) {
+        allureReport("", "Deleting inside of folder : " + file, false);
+        File[] allContents = file.listFiles();
+        if (allContents != null) {
+            for (File files : allContents) {
+                files.delete();
+            }
+        }
+        return this;
+    }
+
+    public void deleteFilesWithExtension(File file, String extension) {
+        allureReport("", "Deleting " + extension + " files", false);
+        File fList[] = file.listFiles();
+        for (int i = 0; i < fList.length; i++) {
+            File pes = fList[i];
+            if (pes.getName().contains(extension)) {
+                fList[i].delete();
+            }
+        }
+    }
+
+    public void moveFile(String sourceFile, String destFile, String fileType) {
+        allureReport("", "Move " + fileType + " file to " + destFile, false);
+        File source = new File(sourceFile);
+        File dest = new File(destFile);
+        try {
+            FileUtils.moveFileToDirectory(source, dest, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            allureReport("FAIL", fileType + " File could not move", false);
+        }
+    }
+
+    public void runBat(String path, String batFileName, String message) {
+        allureReport("", "Running " + batFileName + " file", false);
+        try {
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/C", path + batFileName);
+            pb.redirectErrorStream(true);
+            Process process = pb.start();
+            String line;
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                if (line.equalsIgnoreCase(message))
+                    process.destroyForcibly();
+            }
+
+        } catch (IOException ex) {
+            allureReport("FAIL", batFileName + " could not execute", false);
         }
     }
 }

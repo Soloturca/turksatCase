@@ -29,7 +29,7 @@ public class XLogCreation {
     public void check_xml_file_exist() {
         File dirPath = new File(filePath);
         fileName = createBill
-                .checkFileExist(dirPath, true);
+                .checkFileExistStartsWith(dirPath, true, "ip", "XML");
     }
 
     @Given("Set commands")
@@ -79,8 +79,10 @@ public class XLogCreation {
         if (!isFileCreated)
             allureReport("FAIL", "Xlog file could not created", false);
 
+        File path = new File(filePath + "XLOG");
         createBill
                 .moveXMLDone(fileName)
+                .deleteDirectory(path)
                 .moveXLogFile(user, host, password, filePath + "XLog");
 
     }

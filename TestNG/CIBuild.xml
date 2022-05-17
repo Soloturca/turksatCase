@@ -20,5 +20,10 @@
             <class name="com.project.runner.TestRunnerForXLog"/>
         </classes>
     </test>
+    <test name="TestForPDF" enabled="true">
+        <classes>
+            <class name="com.project.runner.TestRunnerForPDF"/>
+        </classes>
+    </test>
     <!-- Cucumber Test -->
 </suite>
