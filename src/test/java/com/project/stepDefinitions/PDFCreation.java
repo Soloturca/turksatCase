@@ -45,7 +45,7 @@ public class PDFCreation {
     @When("Move xlog file")
     public void move_xlog_file() {
         createBill
-                .moveFile(filePath + "XLOG\\" + fileName, doc1devFilePath + "data", "XLog");
+                .copyFile(filePath + "XLOG\\" + fileName, doc1devFilePath + "data\\", "XLog");
     }
 
     @When("Run bat file")
@@ -62,7 +62,7 @@ public class PDFCreation {
                 .checkFileWithExtension(path, true, fileName, ".pdf");
 
         createBill
-                .moveFile(doc1devFilePath + "pdf\\" + fileName, filePath + "Fatura_PDF\\", "PDF");
+                .copyFile(doc1devFilePath + "pdf\\" + fileName, filePath + "Fatura_PDF\\", "PDF");
 
     }
 }

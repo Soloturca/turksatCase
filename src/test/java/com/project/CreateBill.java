@@ -274,15 +274,15 @@ public class CreateBill {
         }
     }
 
-    public void moveFile(String sourceFile, String destFile, String fileType) {
-        allureReport("", "Move " + fileType + " file to " + destFile, false);
+    public void copyFile(String sourceFile, String destFile, String fileType) {
+        allureReport("", "Copy " + fileType + " file to " + destFile, false);
         File source = new File(sourceFile);
         File dest = new File(destFile);
         try {
-            FileUtils.moveFileToDirectory(source, dest, false);
+            FileUtils.copyFileToDirectory(source, dest, false);
         } catch (IOException e) {
             e.printStackTrace();
-            allureReport("FAIL", fileType + " File could not move", false);
+            allureReport("FAIL", fileType + " File could not copy", false);
         }
     }
 
