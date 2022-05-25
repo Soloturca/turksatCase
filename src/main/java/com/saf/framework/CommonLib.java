@@ -496,6 +496,10 @@ public class CommonLib extends MyTestNGBaseClass {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(myFrame)));
             oDriver.switchTo().frame(myFrame);
         }
+        else if(locatorType.equalsIgnoreCase("xpath")){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(myFrame)));
+            oDriver.switchTo().frame(myFrame);
+        }
         System.out.println("Switched to " + myFrame + " frame, type: " + locatorType);
     }
 

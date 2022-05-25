@@ -15,6 +15,11 @@
             <class name="com.project.runner.TestRunnerForUsage"/>
         </classes>
     </test>
+    <test name="TestForSelenium" enabled="true">
+        <classes>
+            <class name="com.project.runner.SeleniumRunner"/>
+        </classes>
+    </test>
     <test name="TestForBilling" enabled="true">
         <classes>
             <class name="com.project.runner.TestRunnerForXLog"/>
