@@ -761,4 +761,12 @@ public class StepDefs extends MyTestNGBaseClass {
         Pattern clickedImage = new Pattern(filepath + image + ".PNG");
         s.click(clickedImage);
     }
+
+    @When("I double click {string} image element")
+    public void sikuliDoubleClick(String image) throws FindFailed {
+        String filepath = "C:\\Users\\amdocsuakgun\\IdeaProjects\\growth_handsup_icbs_web\\Library\\SikuliImages\\";
+        Screen s = new Screen();
+        Pattern clickedImage = new Pattern(filepath + image + ".PNG");
+        s.doubleClick(clickedImage);
+    }
 }

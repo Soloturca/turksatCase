@@ -39,6 +39,18 @@
         },
         {
           "subscriber number": "//*[@id=\"pageTablesubscriber_NO\"]"
+        },
+        {
+          "product catalog": "//*[@title=\"Product Catalog\"]"
+        },
+        {
+          "product management sub product menu": "//*[@id=\"6301004\"]"
+        },
+        {
+          "enter offer detail": "//*[@class=\"isap_table_last_cell\"]"
+        },
+        {
+          "offer detail": "//*[@class=\"mw_img\" and @src=\"/bme_common/images/icon_view.gif\"]"
         }
       ]
     }
