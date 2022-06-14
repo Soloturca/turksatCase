@@ -25,10 +25,6 @@ public class Product {
     public Product(){
 
     }
-
-
-
-
     public String getDisplay_value() {
         return display_value;
     }
@@ -44,10 +40,6 @@ public class Product {
     public String getPoint() {
         return point;
     }
-
-
-
-
 
     public String getCharge_aggr_key() {
         return charge_aggr_key;
@@ -72,7 +64,6 @@ public class Product {
     public void setService_id(String service_id) {
         this.service_id = service_id;
     }
-
 
     public String getPoint_id() {
         return point_id;
@@ -105,8 +96,4 @@ public class Product {
     public void setContent_id(String content_id) {
         this.content_id = content_id;
     }
-
-
-
-
 }

@@ -8,9 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -316,5 +314,49 @@ public class DonationAutomation {
         infoFromDB(pointId,"POINT_ID","SELECT ID POINT_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='POINT_ID' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(jurisdiction,"JURISDICTION","SELECT ID JURISDICTION FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JURISDICTION' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(seqNum,"SEQNUM","SELECT ID SEQNUM FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='SEQNUM' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
+    }
+
+    public static void kervan(String filename, int x) throws IOException {
+        try{
+            String verify, putData;
+            File file = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan" + filename);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.flush();
+            bw.close();
+            while( br.readLine() != null ){
+                verify = br.readLine();
+
+                if(verify != null){
+                    putData = verify.replaceAll("$CHARGE_AGGR_KEY", chargeAggrKey.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$JURISDICTION", jurisdiction.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$JNL_LINE_ID", jnlLineId.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$SERVICE_ID", serviceId.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$DISPLAY_VALUE", displayValue.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$CONTENT_ID", contentId.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$SEQNUM", seqNum.get(x));
+                    bw.write(putData);
+                    putData = putData.replaceAll("$POINT_ID", pointId.get(x));
+                    bw.write(putData);
+                }
+            }
+            br.close();
+
+            File directory = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + filename);
+            if (!directory.exists()){
+                directory.mkdirs();
+            }
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
