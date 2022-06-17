@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,16 +35,18 @@ public class DonationAutomation {
     public static ArrayList<String> bagisArrayList = new ArrayList<>();
 
 
-    static String path = "C:\\Users\\amdocsuakgun\\Desktop\\01.06.2022.xlsx";
-
+    static File excelPath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\");
+    static String excelFileName = " ";
+    static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
     public static void main(String[] args) throws Exception {
-        readTemplateExcel(path);
+        excelFileName = findExcel(excelPath);
         infoGathering();
         excelList();
-        createExcel("1111");
+        createExcel(excelFileName);
+        findTemplateFile(folderpath);
     }
 
-    public static void readTemplateExcel(String path) {
+    public static void readExcel(String path) {
         MyTestNGBaseClass.allureReport("", "Excelden testler için gerekli değerler okunmaya başlandı.", false);
         boolean firstRow = true;
         String tmpProductName = null; //variable for storing the cell 0 value
@@ -191,9 +194,12 @@ public class DonationAutomation {
     }
 
     public static void createExcel(String newFileName) throws IOException {
-        MyTestNGBaseClass.allureReport("", "CBU_BAGIS_Kenan_AGILE-" + newFileName + ".xlsx excel dosyası oluşturuluyor.", false);
+        String excelName = newFileName.replaceAll("_CBU_Donation_Kenan.xlsx", "");
+        MyTestNGBaseClass.allureReport("", excelName + ".xlsx excel dosyası oluşturuluyor.", false);
         try {
-            String fileName = "C:\\Users\\amdocsuakgun\\Desktop\\" + "CBU_BAGIS_Kenan_AGILE-" + newFileName + ".xlsx";
+
+            //String templateName = "C:\\Users\\amdocsuakgun\\Desktop\\" + excelName + "_Template.xlsx";
+            String templateName = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelName + "_Template.xlsx";
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Bagis_Kenan");
             //Needed element for the excel
@@ -246,7 +252,7 @@ public class DonationAutomation {
                 cell.setCellValue(p.getContent_id());
             }
             rowCount = 0;
-            FileOutputStream outputStream = new FileOutputStream(fileName);
+            FileOutputStream outputStream = new FileOutputStream(templateName);
             workbook.write(outputStream);
 
         } catch (Exception e) {
@@ -316,47 +322,104 @@ public class DonationAutomation {
         infoFromDB(seqNum,"SEQNUM","SELECT ID SEQNUM FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='SEQNUM' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
     }
 
-    public static void kervan(String filename, int x) throws IOException {
+    public static void kenan(String filename) throws IOException {
+        File filepath= new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\" + filename);
+        File directory = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName + "\\");
+        if (!directory.exists()){
+            directory.mkdirs();
+        }
         try{
-            String verify, putData;
-            File file = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan" + filename);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.flush();
-            bw.close();
-            while( br.readLine() != null ){
-                verify = br.readLine();
+            FileReader fr = new FileReader(filepath);
+            String s;
+            String totalStr = "";
+            FileWriter fw = new FileWriter(directory + "\\" + filename);
+            try (BufferedReader br = new BufferedReader(fr)) {
+                for (int x=0;x<productList.size();x++) {
 
-                if(verify != null){
-                    putData = verify.replaceAll("$CHARGE_AGGR_KEY", chargeAggrKey.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$JURISDICTION", jurisdiction.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$JNL_LINE_ID", jnlLineId.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$SERVICE_ID", serviceId.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$DISPLAY_VALUE", displayValue.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$CONTENT_ID", contentId.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$SEQNUM", seqNum.get(x));
-                    bw.write(putData);
-                    putData = putData.replaceAll("$POINT_ID", pointId.get(x));
-                    bw.write(putData);
+                    while ((s = br.readLine()) != null) {
+                        totalStr += s + "\n";
+                    }
+
+                    String tempTotalStr = totalStr;
+
+                    totalStr = totalStr.replaceAll("\\$CHARGE_AGGR_KEY", chargeAggrKey.get(x));
+                    totalStr = totalStr.replaceAll("\\$JURISDICTION", jurisdiction.get(x));
+                    totalStr = totalStr.replaceAll("\\$JNL_LINE_ID", jnlLineId.get(x));
+                    totalStr = totalStr.replaceAll("\\$SERVICE_ID", serviceId.get(x));
+                    totalStr = totalStr.replaceAll("\\$DISPLAY_VALUE", displayValue.get(x));
+                    totalStr = totalStr.replaceAll("\\$CONTENT_ID", contentId.get(x));
+                    totalStr = totalStr.replaceAll("\\$SEQNUM", seqNum.get(x));
+                    totalStr = totalStr.replaceAll("\\$POINT_ID", pointId.get(x));
+                    totalStr = totalStr.replaceAll("\\$POINT",point.get(x));
+
+                    fw.write(totalStr);
+
+                    totalStr = tempTotalStr;
+
                 }
-            }
-            br.close();
 
-            File directory = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + filename);
-            if (!directory.exists()){
-                directory.mkdirs();
+                fw.close();
             }
-
-        } catch(IOException e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
+
+    public static String findTemplateFile(File dir) throws IOException {
+        MyTestNGBaseClass.allureReport("", "Template dosyası açılıyor.", false);
+        String TemplateName = "";
+        FilenameFilter filter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.contains("DML_");
+            }
+        };
+        String[] children = dir.list(filter);
+        if (children == null) {
+            System.out.println("Either dir does not exist or is not a directory");
+        } else {
+            for (int i=0; i<children.length;i++) {
+                TemplateName = children[i];
+                System.out.println("Editing " + children[i]);
+                kenan(children[i]);
+            }
+            File moveFile = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName + "\\DML_BCA_ELIG_AGGR_REF_del_vftrbill_agl.sql");
+            moveFixedFiles(moveFile);
+        }
+        return TemplateName;
+    }
+
+    public static String findExcel(File dir) {
+        MyTestNGBaseClass.allureReport("", "Excel dosyası açılıyor.", false);
+        String TemplateName = "";
+        FilenameFilter filter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.contains("CBU_Donation_Kenan.xlsx");
+            }
+        };
+        String[] children = dir.list(filter);
+        if (children == null) {
+            System.out.println("Either dir does not exist or is not a directory");
+        } else {
+            for (int i = 0; i < children.length; i++) {
+                TemplateName = children[i];
+                readExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\" + TemplateName);
+                break;
+            }
+        }
+        return TemplateName;
+    }
+
+    public static void copyFile( File from, File to ) throws IOException {
+        Files.copy( from.toPath(), to.toPath() );
+    }
+
+    public static void moveFixedFiles(File dirTo){
+        System.out.println("Moving fixed files to Kenan Conf.");
+        File dirFrom = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\CBU_BAGIS_KENAN_Otomasyonu_sabitDosyalar\\DML_BCA_ELIG_AGGR_REF_del_vftrbill_agl.sql");
+        try {
+            copyFile(dirFrom, dirTo);
+        } catch (IOException ex) {
+        }
+    }
+
 }
