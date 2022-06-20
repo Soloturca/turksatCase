@@ -34,9 +34,9 @@ public class TestFilterListener implements IMethodInterceptor {
     public List<IMethodInstance> intercept(List<IMethodInstance> methods, ITestContext context) {
 
         String testNames = System.getProperty("testname");
-        String msisdn = System.getProperty("msisdn");
+        //String msisdn = System.getProperty("msisdn");
         System.out.println(testNames);
-        System.out.println("MSISDN : " + msisdn);
+        //System.out.println("MSISDN : " + msisdn);
         //System.out.println("Method-->"+methods.get(0).getMethod());
         if (testNames == null || testNames.trim().isEmpty()) {
             return methods;
