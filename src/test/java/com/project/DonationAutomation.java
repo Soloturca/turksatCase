@@ -35,9 +35,9 @@ public class DonationAutomation {
     public static ArrayList<String> bagisArrayList = new ArrayList<>();
 
 
-    static File excelPath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\");
-    static String excelFileName = " ";
-    static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
+    public static File excelPath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\");
+    public static String excelFileName = " ";
+    public static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
     public static void main(String[] args) throws Exception {
         excelFileName = findExcel(excelPath);
         infoGathering();

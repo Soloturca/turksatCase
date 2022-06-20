@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@umutsakgun",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
-        glue = {"com.project.stepDefinitions"})
+        glue = {"com.project.stepDefsWithoutDriver"})
 
 public class TestRunnerForDonation {
     private TestNGCucumberRunner testNGCucumberRunner;
