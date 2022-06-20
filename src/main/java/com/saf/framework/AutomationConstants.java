@@ -1,6 +1,8 @@
 package com.saf.framework;
 
-public class AutomationConstants 
+import java.io.File;
+
+public class AutomationConstants
 
 {
 	
@@ -21,5 +23,8 @@ public class AutomationConstants
 	public static String reportsDBName = "reports.db";
 
 	public static String filePath = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\";
-	
+	public static File excelPath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\");
+	public static String excelFileName = " ";
+	public static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
+
 }

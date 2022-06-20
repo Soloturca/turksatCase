@@ -1,5 +1,5 @@
 Feature: DONATION
 
-  @usakgun
+  @umutsakgun
   Scenario: DONATION
     When I run donation automation

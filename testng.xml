@@ -6,7 +6,7 @@
     <parameter name="browserName" value="ie"/>
   <test name="Test">
   <classes>
-  	<class name="com.project.runner.SeleniumRunner"></class>
+  	<class name="com.project.runner.TestRunnerForDonation"></class>
   </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
