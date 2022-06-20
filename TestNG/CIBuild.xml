@@ -10,22 +10,22 @@
     <parameter name="browserName" value="ie"/>
 
     <!-- Cucumber Test -->
-    <test name="TestForUsage" enabled="true">
+    <test name="TestForUsage" enabled="false">
         <classes>
             <class name="com.project.runner.TestRunnerForUsage"/>
         </classes>
     </test>
-    <test name="TestForSelenium" enabled="true">
+    <test name="TestForSelenium" enabled="false">
         <classes>
             <class name="com.project.runner.SeleniumRunner"/>
         </classes>
     </test>
-    <test name="TestForBilling" enabled="true">
+    <test name="TestForBilling" enabled="false">
         <classes>
             <class name="com.project.runner.TestRunnerForXLog"/>
         </classes>
     </test>
-    <test name="TestForPDF" enabled="true">
+    <test name="TestForPDF" enabled="false">
         <classes>
             <class name="com.project.runner.TestRunnerForPDF"/>
         </classes>
