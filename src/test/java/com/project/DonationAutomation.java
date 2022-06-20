@@ -194,11 +194,10 @@ public class DonationAutomation {
     }
 
     public static void createExcel(String newFileName) throws IOException {
-        String excelName = newFileName.replaceAll("_CBU_Donation_Kenan.xlsx", "");
+        String excelName = newFileName.replace("_CBU_Donation_Kenan.xlsx", "");
         MyTestNGBaseClass.allureReport("", excelName + ".xlsx excel dosyası oluşturuluyor.", false);
         try {
 
-            //String templateName = "C:\\Users\\amdocsuakgun\\Desktop\\" + excelName + "_Template.xlsx";
             String templateName = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelName + "_Template.xlsx";
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Bagis_Kenan");
