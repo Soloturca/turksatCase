@@ -30,5 +30,10 @@
             <class name="com.project.runner.TestRunnerForPDF"/>
         </classes>
     </test>
+    <test name="TestForDonation" enabled="true">
+        <classes>
+            <class name="com.project.runner.TestRunnerForDonation"/>
+        </classes>
+    </test>
     <!-- Cucumber Test -->
 </suite>
