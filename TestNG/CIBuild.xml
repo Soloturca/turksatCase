@@ -30,7 +30,7 @@
             <class name="com.project.runner.TestRunnerForPDF"/>
         </classes>
     </test>
-    <test name="TestForDonation" enabled="true">
+    <test name="DonationTest" enabled="true">
         <classes>
             <class name="com.project.runner.TestRunnerForDonation"/>
         </classes>
