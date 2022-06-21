@@ -194,8 +194,8 @@ public class DonationAutomation {
     }
 
     public static void createExcel(String newFileName) throws IOException {
-        String excelName = newFileName.replace("_CBU_Donation_Kenan.xlsx", "");
-        MyTestNGBaseClass.allureReport("", excelName + ".xlsx excel dosyası oluşturuluyor.", false);
+        String excelName = newFileName.replace(".xlsx", "");
+        MyTestNGBaseClass.allureReport("", excelName + "_Template excel dosyası oluşturuluyor.", false);
         try {
 
             String templateName = "\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelName + "_Template.xlsx";
@@ -257,6 +257,7 @@ public class DonationAutomation {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        MyTestNGBaseClass.allureReport("", excelName + "_Template excel dosyası oluşturuldu.", false);
     }
 
     public static List<Product> excelList() throws Exception  {
@@ -323,7 +324,7 @@ public class DonationAutomation {
 
     public static void kenan(String filename) throws IOException {
         File filepath= new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\" + filename);
-        File directory = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName + "\\");
+        File directory = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName.replace("_CBU_Donation_Kenan.xlsx","") + "\\");
         if (!directory.exists()){
             directory.mkdirs();
         }
@@ -381,7 +382,7 @@ public class DonationAutomation {
                 System.out.println("Editing " + children[i]);
                 kenan(children[i]);
             }
-            File moveFile = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName + "\\DML_BCA_ELIG_AGGR_REF_del_vftrbill_agl.sql");
+            File moveFile = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\" + excelFileName.replace("_CBU_Donation_Kenan.xlsx","") + "\\DML_BCA_ELIG_AGGR_REF_del_vftrbill_agl.sql");
             moveFixedFiles(moveFile);
         }
         return TemplateName;
