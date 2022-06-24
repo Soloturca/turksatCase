@@ -40,9 +40,10 @@ public class DonationAutomation {
     public static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
     public static void main(String[] args) throws Exception {
         excelFileName = findExcel(excelPath);
-        infoGathering();
-        excelList();
-        createExcel(excelFileName);
+        //infoGathering();
+        //excelList();
+        //createExcel(excelFileName);
+        attendVariablesFromExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\BAGIS-001_CBU_Donation_Kenan_Template.xlsx");
         findTemplateFile(folderpath);
     }
 
@@ -236,7 +237,7 @@ public class DonationAutomation {
                 cell = row.createCell(++i);
                 cell.setCellValue(p.getCharge_aggr_key());
                 cell = row.createCell(++i);
-                cell.setCellValue(p.getJnl_line_id());
+                cell.setCellValue("IT-BASGS" + p.getJnl_line_id());
                 cell = row.createCell(++i);
                 cell.setCellValue(p.getService_id());
                 cell = row.createCell(++i);
@@ -334,7 +335,7 @@ public class DonationAutomation {
             String totalStr = "";
             FileWriter fw = new FileWriter(directory + "\\" + filename);
             try (BufferedReader br = new BufferedReader(fr)) {
-                for (int x=0;x<productList.size();x++) {
+                for (int x=0;x<displayValue.size();x++) {
 
                     while ((s = br.readLine()) != null) {
                         totalStr += s + "\n";
@@ -419,6 +420,134 @@ public class DonationAutomation {
         try {
             copyFile(dirFrom, dirTo);
         } catch (IOException ex) {
+        }
+    }
+
+    public static void attendVariablesFromExcel(String templatePath){
+        displayValue.clear();
+        chargeAggrKey.clear();
+        jnlLineId.clear();
+        serviceId.clear();
+        point.clear();
+        pointId.clear();
+        jurisdiction.clear();
+        seqNum.clear();
+        contentId.clear();
+        System.out.println("cleared array" + displayValue);
+
+        Workbook templateBook = null; //initialize Workbook null
+        boolean firstRow = true;
+
+        String tmpdisplayValue = null; //variable for storing the cell 0 value
+        String tmpChargeAggrKey = null; //variable for storing the cell 1 value
+        String tmpJnlLineId = null; //variable for storing the cell 2 value
+        String tmpServiceId = null; //variable for storing the cell 3 value
+        String tmpPoint = null; //variable for storing the cell 4 value
+        String tmpPointId = null; //variable for storing the cell 5 value
+        String tmpJurisdiction = null; //variable for storing the cell 6 value
+        String tmpSeqNum = null; //variable for storing the cell 7 value
+        String tmpContentId = null; //variable for storing the cell 8 value
+
+        try {
+            //reading data from a file in the form of bytes
+            FileInputStream fis = new FileInputStream(templatePath);
+            //creates an XSSFWorkbook object by buffering the whole stream into the memory
+            templateBook = new XSSFWorkbook(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL", "Excel açılamadı.", true);
+        }
+
+        Sheet sheet = templateBook.getSheetAt(0);
+        //getting the XSSFSheet object at given index
+
+        Iterator<Row> itr = sheet.iterator();
+        while (itr.hasNext()) {
+            if (firstRow) {
+                itr.next();
+                firstRow = false;
+            }
+            Row rowitr = itr.next();
+            Iterator<Cell> cellitr = rowitr.cellIterator();
+            while (cellitr.hasNext()) {
+                Cell celldata = cellitr.next();
+                switch (celldata.getColumnIndex()) {
+                    case 0: //DISPLAY_VALUE
+                        try {
+                            tmpdisplayValue = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpdisplayValue = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        System.out.println("value=" + tmpdisplayValue);
+                        displayValue.add(tmpdisplayValue);
+                        System.out.println("excel value" + displayValue);
+                        break;
+                    case 1: //CHARGE_AGGR_KEY
+                        try {
+                            tmpChargeAggrKey = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpChargeAggrKey = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        chargeAggrKey.add(tmpChargeAggrKey);
+                        break;
+                    case 2: //JNL_LINE_ID
+                        try {
+                            tmpJnlLineId = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpJnlLineId = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        jnlLineId.add(tmpJnlLineId);
+                        break;
+                    case 3: //SERVICE_ID
+                        try {
+                            tmpServiceId = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpServiceId = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        serviceId.add(tmpServiceId);
+                        break;
+                    case 4: //POINT
+                        try {
+                            tmpPoint = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpPoint = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        point.add(tmpPoint);
+                        break;
+                    case 5: //POINT_ID
+                        try {
+                            tmpPointId = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpPointId = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        pointId.add(tmpPointId);
+                        break;
+                    case 6: //JURISDICTION
+                        try {
+                            tmpJurisdiction = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpJurisdiction = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        jurisdiction.add(tmpJurisdiction);
+                        break;
+                    case 7: //SEQNUM
+                        try {
+                            tmpSeqNum = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpSeqNum = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        seqNum.add(tmpSeqNum);
+                        break;
+                    case 8: //CONTENT_ID
+                        try {
+                            tmpContentId = celldata.getStringCellValue().trim();
+                        } catch (Exception e1) {
+                            tmpContentId = String.valueOf((int) (celldata.getNumericCellValue()));
+                        }
+                        contentId.add(tmpContentId);
+                        break;
+                }
+            }
         }
     }
 
