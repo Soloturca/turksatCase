@@ -40,9 +40,9 @@ public class DonationAutomation {
     public static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
     public static void main(String[] args) throws Exception {
         excelFileName = findExcel(excelPath);
-        //infoGathering();
-        //excelList();
-        //createExcel(excelFileName);
+        infoGathering();
+        excelList();
+        createExcel(excelFileName);
         attendVariablesFromExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\BAGIS-001_CBU_Donation_Kenan_Template.xlsx");
         findTemplateFile(folderpath);
     }
@@ -228,7 +228,7 @@ public class DonationAutomation {
             cell.setCellValue("CONTENT_ID");
             Product p;
 
-            for (int x = 0; x<chargeAggrKey.size(); x++) {
+            for (int x = 0; x<displayValue.size(); x++) {
                 row = sheet.createRow(++rowCount);
                 int i = 0;
                 p=productList.get(x);
@@ -293,7 +293,7 @@ public class DonationAutomation {
 
     public static ArrayList<String> infoFromDB(ArrayList<String> tmpArrayList, String field, String sql) throws Exception {
         try {
-            int rowNum = displayValue.size()-1;
+            int rowNum = displayValue.size();
             Connection connection = dbConnection();
             PreparedStatement statement=connection.prepareStatement(sql);
             statement.setInt(1, rowNum);
@@ -316,11 +316,17 @@ public class DonationAutomation {
     }
 
     public static void infoGathering() throws Exception {
-        infoFromDB(chargeAggrKey,"CHARGE_AGGR_KEY","SELECT ID CHARGE_AGGR_KEY FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='CHARGE_AGGR_KEY' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
+        infoFromDB(chargeAggrKey,"CHARGE_AGGR_KEY","SELECT ID CHARGE_AGGR_KEY FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='ALL' AND DOMAIN='KENAN' AND ID_TYPE='CHARGE_AGGR_KEY' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(jnlLineId,"JNL_LINE_ID","SELECT ID JNL_LINE_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JNL_LINE_ID' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(pointId,"POINT_ID","SELECT ID POINT_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='POINT_ID' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(jurisdiction,"JURISDICTION","SELECT ID JURISDICTION FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JURISDICTION' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
         infoFromDB(seqNum,"SEQNUM","SELECT ID SEQNUM FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='SEQNUM' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
+
+        updateSQL(jnlLineId,"JNL_LINE_ID");
+        updateSQL(chargeAggrKey,"CHARGE_AGGR_KEY");
+        updateSQL(pointId,"POINT_ID");
+        updateSQL(jurisdiction,"JURISDICTION");
+        updateSQL(seqNum,"SEQNUM");
     }
 
     public static void kenan(String filename) throws IOException {
@@ -548,6 +554,40 @@ public class DonationAutomation {
                         break;
                 }
             }
+        }
+    }
+
+    public static void updateSQL(ArrayList<String> List, String type) throws Exception {
+        String query = "";
+        if (type == "CHARGE_AGGR_KEY"){
+            query = "UPDATE SIEBEL.CX_OFFERUI_ID_X SET RESERVED = 'Y',UPD_USER='JENKINS',UPD_DATE=SYSDATE WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='ALL' AND DOMAIN='KENAN' AND ID_TYPE= ? AND RESERVED = 'N' AND ID= ?";
+
+        } else {
+            query = "UPDATE SIEBEL.CX_OFFERUI_ID_X SET RESERVED = 'Y',UPD_USER='JENKINS',UPD_DATE=SYSDATE WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE= ? AND RESERVED = 'N' AND ID= ?";
+        }
+        try {
+            Connection connection = dbConnection();
+            PreparedStatement statement = null;
+
+            for(int i=0; i<displayValue.size();i++){
+                System.out.println("display size" + displayValue.size());
+                statement=connection.prepareStatement(query);
+                statement.setString(1, type);
+                statement.setString(2, List.get(i));
+                System.out.println("i is = " + i);
+                System.out.println("type is = " + type);
+                System.out.println("List element is = " + List.get(i));
+                System.out.println("Statement is = " + query);
+                int affected = statement.executeUpdate();
+                System.out.println("affected = " +affected);
+                statement.close();
+            }
+
+            connection.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            MyTestNGBaseClass.allureReport("FAIL", type + " güncellemesi sırasında problem yaşandı.", true);
         }
     }
 
