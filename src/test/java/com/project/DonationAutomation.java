@@ -188,10 +188,6 @@ public class DonationAutomation {
             }
 
         }
-        System.out.println("displayValue= " + displayValue);
-        System.out.println("point= " + point);
-        System.out.println("serviceId= " + serviceId);
-        System.out.println("contentId= " + contentId);
     }
 
     public static void createExcel(String newFileName) throws IOException {
@@ -266,19 +262,16 @@ public class DonationAutomation {
         for (int number = 0;number<chargeAggrKey.size();number++){
             Product person = new Product();
             person.setDisplay_value(displayValue.get(number));
-            System.out.println("object display value=" + person.getDisplay_value());
             person.setCharge_aggr_key(chargeAggrKey.get(number));
             person.setJnl_line_id(jnlLineId.get(number));
             person.setService_id(serviceId.get(number));
             person.setPoint(point.get(number));
-            System.out.println("object point value=" + person.getPoint());
             person.setPoint_id(pointId.get(number));
             person.setJurisdiction(jurisdiction.get(number));
             person.setSeqnum(seqNum.get(number));
             person.setContent_id(contentId.get(number));
             productList.add(person);
         }
-        System.out.println(productList);
         return productList;
     }
 
@@ -302,7 +295,6 @@ public class DonationAutomation {
                 String field_= resultset.getString(field);
                 tmpArrayList.add(field_);
             }
-            System.out.println(field+ " = " + tmpArrayList);
 
             resultset.close();
             statement.close();
@@ -439,7 +431,6 @@ public class DonationAutomation {
         jurisdiction.clear();
         seqNum.clear();
         contentId.clear();
-        System.out.println("cleared array" + displayValue);
 
         Workbook templateBook = null; //initialize Workbook null
         boolean firstRow = true;
@@ -484,9 +475,7 @@ public class DonationAutomation {
                         } catch (Exception e1) {
                             tmpdisplayValue = String.valueOf((int) (celldata.getNumericCellValue()));
                         }
-                        System.out.println("value=" + tmpdisplayValue);
                         displayValue.add(tmpdisplayValue);
-                        System.out.println("excel value" + displayValue);
                         break;
                     case 1: //CHARGE_AGGR_KEY
                         try {
@@ -570,16 +559,10 @@ public class DonationAutomation {
             PreparedStatement statement = null;
 
             for(int i=0; i<displayValue.size();i++){
-                System.out.println("display size" + displayValue.size());
                 statement=connection.prepareStatement(query);
                 statement.setString(1, type);
                 statement.setString(2, List.get(i));
-                System.out.println("i is = " + i);
-                System.out.println("type is = " + type);
-                System.out.println("List element is = " + List.get(i));
-                System.out.println("Statement is = " + query);
                 int affected = statement.executeUpdate();
-                System.out.println("affected = " +affected);
                 statement.close();
             }
 
