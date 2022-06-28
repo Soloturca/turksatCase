@@ -38,14 +38,6 @@ public class DonationAutomation {
     public static File excelPath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\");
     public static String excelFileName = " ";
     public static File folderpath = new File("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\CBU_BAGIS_Kampanyasi_Kenan\\");
-    public static void main(String[] args) throws Exception {
-        excelFileName = findExcel(excelPath);
-        infoGathering();
-        excelList();
-        createExcel(excelFileName);
-        attendVariablesFromExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Conf\\BAGIS-001_CBU_Donation_Kenan_Template.xlsx");
-        findTemplateFile(folderpath);
-    }
 
     public static void readExcel(String path) {
         MyTestNGBaseClass.allureReport("", "Excelden testler için gerekli değerler okunmaya başlandı.", false);
@@ -308,11 +300,11 @@ public class DonationAutomation {
     }
 
     public static void infoGathering() throws Exception {
-        infoFromDB(chargeAggrKey,"CHARGE_AGGR_KEY","SELECT ID CHARGE_AGGR_KEY FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='ALL' AND DOMAIN='KENAN' AND ID_TYPE='CHARGE_AGGR_KEY' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
-        infoFromDB(jnlLineId,"JNL_LINE_ID","SELECT ID JNL_LINE_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JNL_LINE_ID' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
-        infoFromDB(pointId,"POINT_ID","SELECT ID POINT_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='POINT_ID' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
-        infoFromDB(jurisdiction,"JURISDICTION","SELECT ID JURISDICTION FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JURISDICTION' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
-        infoFromDB(seqNum,"SEQNUM","SELECT ID SEQNUM FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='SEQNUM' AND RESERVED = 'N' ORDER BY ID) WHERE ROWNUM <= ?");
+        infoFromDB(chargeAggrKey,"CHARGE_AGGR_KEY","SELECT ID CHARGE_AGGR_KEY FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='ALL' AND DOMAIN='KENAN' AND ID_TYPE='CHARGE_AGGR_KEY' AND RESERVED = 'N' ORDER BY TO_NUMBER(ID)) WHERE ROWNUM <= ?");
+        infoFromDB(jnlLineId,"JNL_LINE_ID","SELECT ID JNL_LINE_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JNL_LINE_ID' AND RESERVED = 'N' ORDER BY TO_NUMBER(ID)) WHERE ROWNUM <= ?");
+        infoFromDB(pointId,"POINT_ID","SELECT ID POINT_ID FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='POINT_ID' AND RESERVED = 'N' ORDER BY TO_NUMBER(ID)) WHERE ROWNUM <= ?");
+        infoFromDB(jurisdiction,"JURISDICTION","SELECT ID JURISDICTION FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='JURISDICTION' AND RESERVED = 'N' ORDER BY TO_NUMBER(ID)) WHERE ROWNUM <= ?");
+        infoFromDB(seqNum,"SEQNUM","SELECT ID SEQNUM FROM (SELECT * FROM SIEBEL.CX_OFFERUI_ID_X WHERE CUSTOMER_TYPE='CBU' AND PRODUCT_TYPE='DONATION' AND DOMAIN='KENAN' AND ID_TYPE='SEQNUM' AND RESERVED = 'N' ORDER BY TO_NUMBER(ID)) WHERE ROWNUM <= ?");
 
         updateSQL(jnlLineId,"JNL_LINE_ID");
         updateSQL(chargeAggrKey,"CHARGE_AGGR_KEY");
@@ -401,9 +393,9 @@ public class DonationAutomation {
         } else {
             for (int i = 0; i < children.length; i++) {
                 TemplateName = children[i];
-                readExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\" + TemplateName);
                 break;
             }
+            readExcel("\\\\izmirnas\\vol1_filesrv\\Faturalama&Ucretlendirme_Konfig.Yonetimi\\HandsUP_Squad\\Jenkins\\E2E_Test_Cases\\Kenan_Template\\" + TemplateName);
         }
         return TemplateName;
     }

@@ -1,5 +1,5 @@
-Feature: DONATION
+Feature: CREATING TEMPLATE EXCEL
 
   @umutsakgun
-  Scenario: DONATION
-    When I run donation automation
+  Scenario: CREATING TEMPLATE EXCEL
+    When I create template excel for donation
