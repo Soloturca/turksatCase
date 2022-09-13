@@ -1,7 +1,7 @@
 Feature: Siebel
 
   @handsUpSquad
-  Scenario: Open URL Test
+  Scenario: Siebel Test
     Given Open the https://172.31.70.3/callcenter_enu/ URL
 
     When I see Security page
