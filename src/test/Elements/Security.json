@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "Security",
+        "parent": "",
+        "waitelement": "security step see all"
+      },
+      "elements": [
+        {
+          "open debugger tools": "//*[@id=\"tipDebug\"]"
+        },
+        {
+          "security step see all": "//*[@id=\"moreInfoContainer\"]"
+        },
+        {
+          "security step override": "//*[@id=\"overridelink\"]"
+        }
+      ]
+    }
+  ]
+}

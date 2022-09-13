@@ -15,9 +15,9 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/java/com/project/features/Screenshot.feature",
+        features = "src/test/java/com/project/features/Siebel.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
-        tags = "@Test",
+        tags = "@handsUpSquad",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         glue = {"com.project.stepDefinitions"})
 

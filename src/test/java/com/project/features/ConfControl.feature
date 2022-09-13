@@ -1,6 +1,6 @@
 Feature: Conf Control
 
-  @Test
+  @handsUpSquad
   Scenario: Open URL Test
     Given Open the http://10.144.15.143:7782/frameset/login.action URL
     When I see loginPage page

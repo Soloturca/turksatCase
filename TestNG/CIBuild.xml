@@ -10,34 +10,9 @@
     <parameter name="browserName" value="ie"/>
 
     <!-- Cucumber Test -->
-    <test name="TestForUsage" enabled="false">
-        <classes>
-            <class name="com.project.runner.TestRunnerForUsage"/>
-        </classes>
-    </test>
     <test name="TestForSelenium" enabled="false">
         <classes>
             <class name="com.project.runner.SeleniumRunner"/>
-        </classes>
-    </test>
-    <test name="TestForBilling" enabled="false">
-        <classes>
-            <class name="com.project.runner.TestRunnerForXLog"/>
-        </classes>
-    </test>
-    <test name="TestForPDF" enabled="false">
-        <classes>
-            <class name="com.project.runner.TestRunnerForPDF"/>
-        </classes>
-    </test>
-    <test name="DonationTest" enabled="true">
-        <classes>
-            <class name="com.project.runner.TestRunnerForDonation"/>
-        </classes>
-    </test>
-    <test name="DonationSqlPhase" enabled="true">
-        <classes>
-            <class name="com.project.runner.TestRunnerForDonationSqlPhase"/>
         </classes>
     </test>
     <!-- Cucumber Test -->

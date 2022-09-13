@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "siebelHome",
+        "parent": "loginPage",
+        "waitelement": ""
+      },
+      "elements": [
+        {
+          "vodafone image": "//*[@src=\"images/Vodafone_logo_.gif\" and @alt=\"Vodafone TRK\"]"
+        },
+        {
+          "file menu": "//*[@id=\"File\"]"
+        },
+        {
+          "product menu": "//*[@title=\"Product\"]"
+        }
+      ]
+    }
+  ]
+}

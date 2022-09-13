@@ -14,6 +14,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 import org.testng.Assert;
 
 import java.io.ByteArrayInputStream;
@@ -751,7 +754,7 @@ public class StepDefs extends MyTestNGBaseClass {
         commonLib.switchToDefault();
     }
 
-    /*@When("I click {string} image element")
+    @When("I click {string} image element")
     public void sikuliClick(String image) throws FindFailed {
         String filepath = "C:\\Users\\amdocsuakgun\\IdeaProjects\\growth_handsup_icbs_web\\Library\\SikuliImages\\";
         Screen s = new Screen();
@@ -765,5 +768,5 @@ public class StepDefs extends MyTestNGBaseClass {
         Screen s = new Screen();
         Pattern clickedImage = new Pattern(filepath + image + ".PNG");
         s.doubleClick(clickedImage);
-    }*/
+    }
 }
