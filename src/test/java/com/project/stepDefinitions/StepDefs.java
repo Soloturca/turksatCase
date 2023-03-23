@@ -769,4 +769,16 @@ public class StepDefs extends MyTestNGBaseClass {
         Pattern clickedImage = new Pattern(filepath + image + ".PNG");
         s.doubleClick(clickedImage);
     }
+
+    @Then("I get text box parameters as strings and print them")
+    public void getTextBoxParameterAsAStringAndPrintIt() {
+        String TesterAdi = System.getenv("Talebi Yapan Tester'ın Adı");
+        System.out.println("Otomasyon Talep Eden Tester Adı:" +TesterAdi);
+        String UrunAdi = System.getenv("Otomasyon Talebi Hangi Ürün İçin Yapılmaktadır?");
+        System.out.println("Otomasyon Talep Edilen Ürün Adı:" +UrunAdi);
+        String OtomasyonTuru = System.getenv("Talep Ettiğiniz Otomasyon Türü");
+        System.out.println("Talep Edilen Otomasyon Türü:" +OtomasyonTuru);
+        String TalepEdilenOtomasyon = System.getenv("Talep Ettiğiniz Otomasyon Nedir?");
+        System.out.println("Talep Edilen Otomasyon Açıklaması:" +TalepEdilenOtomasyon);
+    }
 }
