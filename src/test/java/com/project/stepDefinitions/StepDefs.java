@@ -780,5 +780,6 @@ public class StepDefs extends MyTestNGBaseClass {
         System.out.println("Talep Edilen Otomasyon Türü:" +OtomasyonTuru);
         String TalepEdilenOtomasyon = System.getenv("Talep Ettiğiniz Otomasyon Nedir?");
         System.out.println("Talep Edilen Otomasyon Açıklaması:" +TalepEdilenOtomasyon);
+        Allure.addAttachment(TalepEdilenOtomasyon,OtomasyonTuru );
     }
 }
