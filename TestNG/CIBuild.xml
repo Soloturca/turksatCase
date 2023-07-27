@@ -21,4 +21,9 @@
             <class name="com.project.runner.itwikiRunner"/>
         </classes>
     </test>
+    <test name="TestForSOTCOH" enabled="false">
+        <classes>
+            <class name="com.project.runner.sotCOHRunner"/>
+        </classes>
+    </test>
 </suite>

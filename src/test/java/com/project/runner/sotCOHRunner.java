@@ -15,14 +15,14 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/java/com/project/features/itwiki.feature",
+        features = "src/test/java/com/project/features/SOT_COH.feature",
         // tags="@JiraScenarioKey1, @JiraScenarioKey2, @Payment",
         tags = "@handsUpSquad",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         glue = {"com.project.stepDefinitions"})
 
-public class SeleniumRunner extends MyTestNGBaseClass {
-    private io.cucumber.testng.TestNGCucumberRunner testNGCucumberRunner;
+public class sotCOHRunner extends MyTestNGBaseClass {
+    private TestNGCucumberRunner testNGCucumberRunner;
 
     //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
     @BeforeClass(alwaysRun = true)
