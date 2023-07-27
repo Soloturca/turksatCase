@@ -10,18 +10,30 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.qameta.allure.Allure;
+import io.qameta.allure.model.Status;
+import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.given;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.*;
+
+import static com.saf.framework.EmailReporting.sendMail;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
@@ -35,6 +47,8 @@ public class StepDefs extends MyTestNGBaseClass {
     public static HashMap<String, String> strings = new HashMap<String, String>();
     InputStream stringsis;
     TestUtils utils;
+
+    public String TCKNnumber = "";
 
     @Before
     public void setReportName(Scenario scenario) {
@@ -675,7 +689,7 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @When("^I wait for (\\d+) seconds")
     public void waitForSeconds(int time) throws InterruptedException {
-        Thread.sleep(time*1000);
+        Thread.sleep(time * 1000);
     }
 
     @When("^(?:I )?see element: (\\w+(?: \\w+)*) at index (\\d+)")
@@ -700,27 +714,24 @@ public class StepDefs extends MyTestNGBaseClass {
 
     @When("^(?:I )?switch to window")
     public void switchToChildWindow() throws InterruptedException {
-        String MainWindow=oDriver.getWindowHandle();
+        String MainWindow = oDriver.getWindowHandle();
         int timeCount = 1;
-        do
-        {
+        do {
             oDriver.getWindowHandles();
             Thread.sleep(200);
             timeCount++;
-            if ( timeCount > 50 )
-            {
+            if (timeCount > 50) {
                 break;
             }
         }
-        while ( oDriver.getWindowHandles().size() == 1 );
-        Set<String> s1=oDriver.getWindowHandles();
-        Iterator<String> i1=s1.iterator();
+        while (oDriver.getWindowHandles().size() == 1);
+        Set<String> s1 = oDriver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
 
-        while(i1.hasNext()) {
-            String ChildWindow=i1.next();
+        while (i1.hasNext()) {
+            String ChildWindow = i1.next();
             //System.out.println(ChildWindow + "******" + driver.getTitle());
-            if(!MainWindow.equalsIgnoreCase(ChildWindow))
-            {
+            if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
                 // Switching to Child window
                 oDriver.switchTo().window(ChildWindow);
                 Thread.sleep(3000);
@@ -731,7 +742,7 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @When("I hover click {string} sub element at {string}")
-    public void hoverFunction(String subElement, String mainElement){
+    public void hoverFunction(String subElement, String mainElement) {
         Actions actions = new Actions(oDriver);
         //WebElement mainMenu = commonLib.findElement(mainElement,1);
         WebElement mainMenu = oDriver.findElement(By.linkText("Product"));
@@ -745,8 +756,8 @@ public class StepDefs extends MyTestNGBaseClass {
     }
 
     @Given("^I switch to frame:([^\"]*) frame type:(name|id|xpath)$")
-    public void switchToFrame(String myFrame,String locatorType) throws InterruptedException {
-        commonLib.switchToFrame(myFrame,locatorType);
+    public void switchToFrame(String myFrame, String locatorType) throws InterruptedException {
+        commonLib.switchToFrame(myFrame, locatorType);
     }
 
     @Given("^I switch to default content$")
@@ -773,13 +784,97 @@ public class StepDefs extends MyTestNGBaseClass {
     @Then("I get text box parameters as strings and print them")
     public void getTextBoxParameterAsAStringAndPrintIt() {
         String TesterAdi = System.getenv("Talebi Yapan Tester'ın Adı");
-        System.out.println("Otomasyon Talep Eden Tester Adı:" +TesterAdi);
+        System.out.println("Otomasyon Talep Eden Tester Adı:" + TesterAdi);
         String UrunAdi = System.getenv("Otomasyon Talebi Hangi Ürün İçin Yapılmaktadır?");
-        System.out.println("Otomasyon Talep Edilen Ürün Adı:" +UrunAdi);
+        System.out.println("Otomasyon Talep Edilen Ürün Adı:" + UrunAdi);
         String OtomasyonTuru = System.getenv("Talep Ettiğiniz Otomasyon Türü");
-        System.out.println("Talep Edilen Otomasyon Türü:" +OtomasyonTuru);
+        System.out.println("Talep Edilen Otomasyon Türü:" + OtomasyonTuru);
         String TalepEdilenOtomasyon = System.getenv("Talep Ettiğiniz Otomasyon Nedir?");
-        System.out.println("Talep Edilen Otomasyon Açıklaması:" +TalepEdilenOtomasyon);
-        Allure.addAttachment(TalepEdilenOtomasyon,OtomasyonTuru );
+        System.out.println("Talep Edilen Otomasyon Açıklaması:" + TalepEdilenOtomasyon);
+        Allure.addAttachment(TalepEdilenOtomasyon, OtomasyonTuru);
+    }
+
+    @When("I scroll down by 500 unit")
+    public void scrollDown() throws InterruptedException {
+
+        JavascriptExecutor jsx = (JavascriptExecutor) oDriver;
+        Thread.sleep(5000);
+        jsx.executeScript("window.scrollBy(0,500)");
+        Thread.sleep(5000);
+        System.out.println("Scroll success");
+
+    }
+
+    @When("I do TCKN api call")
+    public void getTCKNResponse() {
+        allureReport("", "Started TCKN api call.", false);
+        try {
+            String serviceUrl = "http://satautoat15:64271/kenanconf/tcknsot";
+            System.out.println("serviceUrl = " + serviceUrl);
+
+            Response response = given()
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .post(serviceUrl)
+                    .then().log().all()
+                    .assertThat()
+                    .extract().response();
+            String responseString = response.getBody().asPrettyString();
+            System.out.println("----------------");
+            System.out.println(responseString);
+            String tckn = StringUtils.substringAfter(responseString, "tckn\": \"");
+            tckn = StringUtils.substringBefore(tckn, "\"");
+            System.out.println("----------------\n" + tckn);
+            TCKNnumber = tckn;
+            allureReport("", "Finished TCKN api call.", false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Then("I enter tckn to {string}")
+    public boolean enterTckn(String element) throws InterruptedException {
+        int index = 1;
+        WebElement object;
+        object = commonLib.waitElement(element, timeout, index);
+        boolean flag = false;
+        try {
+            if (object != null) {
+                object.sendKeys(TCKNnumber);
+                System.out.println("The text has been entered:" + TCKNnumber);
+                Allure.addAttachment("The text has been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                reportResult("PASS", "I entered the text: " + TCKNnumber, true);
+                return true;
+            }
+        } catch (Exception e) {
+            Allure.addAttachment("The text has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            reportResult("FAIL", "I cannot entered the element: " + TCKNnumber, true);
+            Assert.fail("Could not entered the text:" + TCKNnumber);
+            flag = false;
+        }
+        return flag;
+    }
+
+    @When("I click element: {string} if it exists at index {int}")
+    public void clickIfExists(String element, int index) {
+        boolean flag = false;
+        try {
+            WebElement object = commonLib.findElement(element, index, false);
+            if (object != null && object.isDisplayed()) {
+                System.out.println(element + " exists.");
+                object.click();
+                Allure.addAttachment("Element is clicked.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                //reportResult("PASS", "I clicked the element: " + element, true);
+                flag = true;
+            } else {
+                System.out.println(element + " does not exist.");
+                Allure.addAttachment("Element does not exist.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+                Allure.step("The element does not exist", Status.SKIPPED);
+                flag = false;
+            }
+        } catch (Exception e) {
+            Allure.addAttachment("Element does not exist.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
+            Allure.step("The element does not exist", Status.SKIPPED);
+        }
     }
 }

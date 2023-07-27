@@ -1,0 +1,94 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "tariffPage",
+        "parent": "",
+        "waitelement": "see tariffs"
+      },
+      "elements": [
+        {
+          "see tariffs": "//*[@class=\"button button--primary btn-nsl-vfli\"]"
+        },
+        {
+          "slide to right button": "//*[@class=\"swiper-button-next\" and @role=\"button\" and @aria-label=\"Next slide\"]"
+        },
+        {
+          "slide to left button": "//*[@id=\"s_swepi_2\" and @name=\"SWEPassword\"]"
+        },
+        {
+          "login button": "//*[@_ngcontent-vrk-c89=\"COH_Kirmizi Firsat 8GB Paket\"]"
+        },
+        {
+          "move your number button": "//div[@class=\"icerik\"]/a[@class=\"button button--primary\" and text()=\"Numaranı Taşı\"]"
+        },
+        {
+          "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
+        },
+        {
+          "COH kirmizi firsat paketi": "//div[@class=\"red tarife-card\"]/div[@class=\"tarife-top\"]/span[text()=\"COH_Kirmizi Firsat 16GB Paketi_062023\"]"
+        },
+        {
+          "COH kirmizi firsat paketi select tariff button": "(//div[@class=\"swiper-slide ng-star-inserted swiper-slide-active\"]//div[@class=\"tarif-button\"]/a[@class=\"button button--primary\" and text()=\"Tarifeyi seç\"])[1]"
+        },
+        {
+          "phone number input area": "//*[@class=\"form__input ng-untouched ng-pristine ng-valid\" and @name=\"form-input-text-required\"]"
+        },
+        {
+          "OTP code input area": "//*[@class=\"form__input otp-input ng-untouched ng-pristine ng-invalid\" and @name=\"form-input-text-required\"]"
+        },
+        {
+          "Onayla button": "//*[@class=\"button button--primary button--full-width\"]"
+        },
+        {
+          "name input area": "//*[@type=\"text\" and @name=\"ad\"]"
+        },
+        {
+          "surname input area": "//*[@type=\"text\" and @name=\"soyad\"]"
+        },
+        {
+          "tckn input area": "//*[@type=\"tel\" and @name=\"form-input-number\"]"
+        },
+        {
+          "father name input area": "//*[@type=\"text\" and @name=\"baba-adi\"]"
+        },
+        {
+          "date of birth input area": "//*[@type=\"tel\" and @name=\"dogum-tarihi\"]"
+        },
+        {
+          "submit button": "//*[@class=\"button button--primary ng-star-inserted\" and @type=\"submit\"]"
+        },
+        {
+          "deliver to shop selection": "//div[@class=\"component appearance ng-star-inserted\"]//div[@class=\"front-kart ng-star-inserted\"]/div[@class=\"cc-select\"]/a[@class=\"item\"]/span[text()=\"Kuryenin gelmesini beklemeden, istediğiniz Vodafone mağazasından ücretsiz teslim alabilirsiniz.\"]"
+        },
+        {
+          "city selection": "//*[@id=\"deliveryCitiesSelect\" or @id=\"billCitiesSelect\"]"
+        },
+        {
+          "city selection Ankara button": "//*[@id=\"deliveryCitiesSelect\" or @id=\"billCitiesSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'ANKARA')]"
+        },
+        {
+          "district selection": "//*[@id=\"deliveryDistrictsSelect\" or @id=\"billDistrictsSelect\"]"
+        },
+        {
+          "district selection Akyurt button": "//*[@id=\"deliveryDistrictsSelect\" or @id=\"billDistrictsSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'AKYURT')]"
+        },
+        {
+          "neighbourhood selection": "//*[@id=\"deliveryNeighborhoodsSelect\" or @id=\"billNeighborhoodsSelect\"]"
+        },
+        {
+          "neighbourhood selection Ataturk button": "//*[@id=\"deliveryNeighborhoodsSelect\" or @id=\"billNeighborhoodsSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'ATATÜRK')]"
+        },
+        {
+          "address input box": "//*[@id=\"address\" or @id=\"billAddress\" and @name=\"adres\"]"
+        },
+        {
+          "email input box" : "//*[@id=\"eposta\" and @name=\"eposta\"]"
+        },
+        {
+          "continue button": "//*[@class=\"button button--primary btn-fll\" and contains(text(),'Devam et')]"
+        }
+      ]
+    }
+  ]
+}

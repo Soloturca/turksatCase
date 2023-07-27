@@ -1,0 +1,31 @@
+{
+  "pages": [
+    {
+      "pageInfo": {
+        "pageName": "login",
+        "parent": "",
+        "waitelement": ""
+      },
+      "elements": [
+        {
+          "username text area": "//*[@id='mat-input-0']"
+        },
+        {
+          "password text area": "//*[@id='mat-input-1']"
+        },
+        {
+          "login button": "//main[@id='login']//form/button[@class='button-login ng-star-inserted']"
+        },
+        {
+          "OTP text area": "//*[@id='otp2']/main/div/input"
+        },
+        {
+          "OTP submit button": "//*[contains(text(),'Devam')]"
+        },
+        {
+          "rep": "//*[contains(text(),'represent')]"
+        }
+      ]
+    }
+  ]
+}
