@@ -345,8 +345,8 @@ public class CommonLib extends MyTestNGBaseClass {
                 break;
 
             case 3:
-                //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
-                WebDriverManager.chromedriver().setup();
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + AutomationConstants.sChromeDriverPath);
+//                WebDriverManager.chromedriver().setup();
                 oDriver = new ChromeDriver(getChromeOptions());
                 break;
             case 4:

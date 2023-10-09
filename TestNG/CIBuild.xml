@@ -16,12 +16,12 @@
         </classes>
     </test>
     <!-- Cucumber Test -->
-    <test name="itwikiTalepOtomasyonu" enabled="true">
+    <test name="itwikiTalepOtomasyonu" enabled="false">
         <classes>
             <class name="com.project.runner.itwikiRunner"/>
         </classes>
     </test>
-    <test name="TestForSOTCOH" enabled="false">
+    <test name="TestForSOTCOH" enabled="true">
         <classes>
             <class name="com.project.runner.sotCOHRunner"/>
         </classes>

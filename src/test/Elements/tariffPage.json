@@ -26,10 +26,7 @@
           "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
         },
         {
-          "COH kirmizi firsat paketi": "//div[@class=\"red tarife-card\"]/div[@class=\"tarife-top\"]/span[text()=\"COH_Kirmizi Firsat 16GB Paketi_062023\"]"
-        },
-        {
-          "COH kirmizi firsat paketi select tariff button": "(//div[@class=\"swiper-slide ng-star-inserted swiper-slide-active\"]//div[@class=\"tarif-button\"]/a[@class=\"button button--primary\" and text()=\"Tarifeyi seç\"])[1]"
+          "paket sec button": "//*[@id=\"2500372\"]/div[5]/div/a"
         },
         {
           "phone number input area": "//*[@class=\"form__input ng-untouched ng-pristine ng-valid\" and @name=\"form-input-text-required\"]"
@@ -62,25 +59,37 @@
           "deliver to shop selection": "//div[@class=\"component appearance ng-star-inserted\"]//div[@class=\"front-kart ng-star-inserted\"]/div[@class=\"cc-select\"]/a[@class=\"item\"]/span[text()=\"Kuryenin gelmesini beklemeden, istediğiniz Vodafone mağazasından ücretsiz teslim alabilirsiniz.\"]"
         },
         {
-          "city selection": "//*[@id=\"deliveryCitiesSelect\" or @id=\"billCitiesSelect\"]"
+          "city selection": "//*[@id=\"cities-boxes\"]/input"
         },
         {
-          "city selection Ankara button": "//*[@id=\"deliveryCitiesSelect\" or @id=\"billCitiesSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'ANKARA')]"
+          "city selection Ankara button": "//*[contains(text(),'ANKARA')]"
         },
         {
-          "district selection": "//*[@id=\"deliveryDistrictsSelect\" or @id=\"billDistrictsSelect\"]"
+          "district selection": "//*[@id=\"district-boxes\"]/input"
         },
         {
-          "district selection Akyurt button": "//*[@id=\"deliveryDistrictsSelect\" or @id=\"billDistrictsSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'AKYURT')]"
+          "district selection Akyurt button": "//*[contains(text(),'AKYURT')]"
         },
         {
-          "neighbourhood selection": "//*[@id=\"deliveryNeighborhoodsSelect\" or @id=\"billNeighborhoodsSelect\"]"
+          "neighbourhood selection": "//*[@id=\"neighborhood-boxes\"]/input"
         },
         {
-          "neighbourhood selection Ataturk button": "//*[@id=\"deliveryNeighborhoodsSelect\" or @id=\"billNeighborhoodsSelect\"]/div[@class=\"list-block\"]//span[contains(text(),'ATATÜRK')]"
+          "neighbourhood selection Ataturk button": "//*[contains(text(),'ATATÜRK')]"
         },
         {
-          "address input box": "//*[@id=\"address\" or @id=\"billAddress\" and @name=\"adres\"]"
+          "street selection": "//*[@id=\"street-boxes\"]/input"
+        },
+        {
+          "street selection babacan button": "//*[@id=\"street\"]/label[2]/span[2]"
+        },
+        {
+          "bina selection": "//*[@id=\"building-boxes\"]/input"
+        },
+        {
+          "bina selection 1 button": "//*[@id=\"building\"]/label[1]/span[2]"
+        },
+        {
+          "address input box": "//*[@id=\"addressDetail\"]"
         },
         {
           "email input box" : "//*[@id=\"eposta\" and @name=\"eposta\"]"

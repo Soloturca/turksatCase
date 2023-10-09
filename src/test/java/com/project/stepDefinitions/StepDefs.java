@@ -15,7 +15,6 @@ import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
@@ -32,8 +31,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.*;
-
-import static com.saf.framework.EmailReporting.sendMail;
 
 public class StepDefs extends MyTestNGBaseClass {
     CommonLib commonLib = new CommonLib();
@@ -830,6 +827,7 @@ public class StepDefs extends MyTestNGBaseClass {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Then("I enter tckn to {string}")
@@ -837,7 +835,6 @@ public class StepDefs extends MyTestNGBaseClass {
         int index = 1;
         WebElement object;
         object = commonLib.waitElement(element, timeout, index);
-        boolean flag = false;
         try {
             if (object != null) {
                 object.sendKeys(TCKNnumber);
@@ -850,14 +847,14 @@ public class StepDefs extends MyTestNGBaseClass {
             Allure.addAttachment("The text has not been entered.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             reportResult("FAIL", "I cannot entered the element: " + TCKNnumber, true);
             Assert.fail("Could not entered the text:" + TCKNnumber);
-            flag = false;
         }
-        return flag;
+
+        return false;
     }
+
 
     @When("I click element: {string} if it exists at index {int}")
     public void clickIfExists(String element, int index) {
-        boolean flag = false;
         try {
             WebElement object = commonLib.findElement(element, index, false);
             if (object != null && object.isDisplayed()) {
@@ -865,16 +862,78 @@ public class StepDefs extends MyTestNGBaseClass {
                 object.click();
                 Allure.addAttachment("Element is clicked.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 //reportResult("PASS", "I clicked the element: " + element, true);
-                flag = true;
             } else {
                 System.out.println(element + " does not exist.");
                 Allure.addAttachment("Element does not exist.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
                 Allure.step("The element does not exist", Status.SKIPPED);
-                flag = false;
             }
         } catch (Exception e) {
             Allure.addAttachment("Element does not exist.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
             Allure.step("The element does not exist", Status.SKIPPED);
         }
+    }
+    public static Connection dbConnection(String ConnectionType) throws Exception {
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        String dbURL = "";
+        String username = "";
+        String password = "";
+
+        switch (ConnectionType) {
+            case "SBLBGFD":
+                allureReport("", "connectionType is SBLBGFD ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.70.4:1526:SBLBGFD";
+                username = "SIEBEL";
+                password = "SBL_dbfx";
+
+                break;
+            case "SBLCBUST":
+                allureReport("", "connectionType is SBLCBUST ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.70.173:1526:SBLCBUST";
+                username = "TESTUSER";
+                password = "TESTUSER";
+
+                break;
+            case "KNNBGFD0":
+                allureReport("", "connectionType is KNNBGFD0 ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.70.164:1526:KNNBGFD0";
+                username = "ARBOR";
+                password = "ARBOR";
+
+                break;
+            case "KNCBUST0":
+                allureReport("", "connectionType is KNCBUST0 ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.70.227:1526:KNCBUST0";
+                username = "TESTUSER";
+                password = "TESTUSER";
+
+                break;
+            case "KNCBUST1":
+                allureReport("", "connectionType is KNCBUST1 ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.70.227:1526:KNCBUST1";
+                username = "TESTUSER";
+                password = "TESTUSER";
+
+                break;
+            case "PPRODDB1":
+                allureReport("", "connectionType is PPRODDB1 ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.60.134:1521:PPRODDB1";
+                username = "CLICK";
+                password = "CLICK123*";
+
+                break;
+        }
+
+
+        return DriverManager.getConnection(dbURL, username, password);
+    }
+
+
+    @Then("I execute update sql")
+    public void givenIExecuteUpdateSql() throws Exception {
+        Connection connection_PPRODDB1 = dbConnection("PPRODDB1");
+        String cohSQL = "update click_candidates set is_coh='1' where mnp_msisdn in ('5559981215');\nCOMMIT";
+        PreparedStatement statement = connection_PPRODDB1.prepareStatement(cohSQL);
+        System.out.println("COH data process done");
     }
 }

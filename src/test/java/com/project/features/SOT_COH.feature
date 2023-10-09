@@ -10,20 +10,19 @@ Feature: SOT-COH
     And I scroll down by 500 unit
 
     When I click element: swipe right button 1 at index 1
-    Then I see element: COH kirmizi firsat paketi at index 1
-    And I click element: COH kirmizi firsat paketi select tariff button at index 1
+    And I see element: paket sec button at index 1
+    And I click element: paket sec button at index 1
 
-    When I enter "5559992324" text to phone number input area at index 1
+    When I enter "5559981215" text to phone number input area at index 1
     Then I click element: Onayla button at index 1
 
     When I enter "1111" text to OTP code input area at index 1
     Then I click element: Onayla button at index 1
-    And I see element: name input area at index 1
 
+    And I see element: name input area at index 1
     When I enter "OFFER" text to name input area at index 1
     Then I enter "UI" text to surname input area at index 1
     And I enter tckn to "tckn input area"
-
     When I enter "OFFERUI" text to father name input area at index 1
     Then I enter "12121999" text to date of birth input area at index 1
     And I click element: submit button at index 1
@@ -31,21 +30,29 @@ Feature: SOT-COH
     When I click element: "deliver to shop selection" if it exists at index 1
     Then I click element: city selection at index 1
     Then I click element: city selection Ankara button at index 1
+    And I wait for 3 seconds
     Then I click element: district selection at index 1
     Then I click element: district selection Akyurt button at index 1
-
+    And I wait for 3 seconds
     Then I click element: neighbourhood selection at index 1
     Then I click element: neighbourhood selection Ataturk button at index 1
+    And I wait for 3 seconds
+    Then I click element: street selection at index 1
+    Then I click element: street selection babacan button at index 1
+    And I wait for 3 seconds
+    Then I click element: bina selection at index 1
+    Then I click element: bina selection 1 button at index 1
     Then I enter "merkez" text to address input box at index 1
     And I enter "abc@gmail.com" text to email input box at index 1
 
+
     When I see element: continue button at index 1
     Then I click element: continue button at index 1
-    And I wait for 60 seconds
+    And I wait for 20 seconds
 
-    #Given I execute update sql
+    Then I execute update sql
 
-  Scenario: SOT-DPC
+    #DPC
     Given Open the http://sot-ui-hf.apps.mbt.vodafone.local/login URL
 
     When I see login page
@@ -62,5 +69,5 @@ Feature: SOT-COH
 
     When I click element: tam senlik menu button at index 1
     Then I enter tckn to "tam senlik tckn input area"
-    
+    When I click element: sorgula button at index 1
     And I wait for 20 seconds

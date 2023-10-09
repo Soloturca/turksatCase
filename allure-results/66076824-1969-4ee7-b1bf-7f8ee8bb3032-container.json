@@ -1,0 +1,1 @@
+{"uuid":"66076824-1969-4ee7-b1bf-7f8ee8bb3032","name":"Scenario: itwiki Talep Otomasyonu","children":["09d5a272-5efc-44e8-bd03-ee8582b87136"],"befores":[{"name":"StepDefs.setReportName(Scenario)","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1695887572381,"stop":1695887572428}],"afters":[],"start":1695887572378,"stop":1695887572436}
