@@ -6,9 +6,12 @@ Feature: SOT-COH
     Given I do TCKN api call
 
     When I see tariffPage page
+    And I wait for 3 seconds
     Then I click element: move your number button at index 1
     And I scroll down by 500 unit
-
+    When I click element: swipe right button 1 at index 1
+    When I click element: swipe right button 1 at index 1
+    When I click element: swipe right button 1 at index 1
     When I click element: swipe right button 1 at index 1
     And I see element: paket sec button at index 1
     And I click element: paket sec button at index 1

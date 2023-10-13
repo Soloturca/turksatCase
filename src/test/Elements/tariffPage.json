@@ -20,7 +20,7 @@
           "login button": "//*[@_ngcontent-vrk-c89=\"COH_Kirmizi Firsat 8GB Paket\"]"
         },
         {
-          "move your number button": "//div[@class=\"icerik\"]/a[@class=\"button button--primary\" and text()=\"Numaranı Taşı\"]"
+          "move your number button": "/html/body/app-root/app-welcome-page/div[1]/div[1]/div/div/div/div[1]/div/div[2]/a"
         },
         {
           "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
