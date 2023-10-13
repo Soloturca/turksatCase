@@ -3,6 +3,7 @@ Feature: SOT-COH
   @handsUpSquad
   Scenario: SOT-COH
     Given Open the https://efes.vodafone.com.tr/clicktodoor-mobil-dxl/ URL
+    Then I maximize the window
     Given I do TCKN api call
 
     When I see tariffPage page

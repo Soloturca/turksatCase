@@ -661,6 +661,11 @@ public class StepDefs extends MyTestNGBaseClass {
             throw new InterruptedException("Your page is already opened. You cannot open the URL one more time.");
         }
     }
+    @Then("I maximize the window")
+        public void maximizeTheWindow(){
+        oDriver.manage().window().maximize();
+        System.out.println("Window maximized");
+    }
 
     @Then("^(?:I )?I need to checkbox verify for (\\w+(?: \\w+)*) at index (\\d+)")
     public boolean verifyCheckbox(String element, int index) {
