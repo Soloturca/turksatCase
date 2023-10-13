@@ -74,7 +74,7 @@
           "neighbourhood selection": "//*[@id=\"neighborhood-boxes\"]/input"
         },
         {
-          "neighbourhood selection Ataturk button": "//*[contains(text(),'ATATÜRK')]"
+          "neighbourhood selection Ataturk button": "//*[contains(text(),'ATAT\u00dcRK')]"
         },
         {
           "street selection": "//*[@id=\"street-boxes\"]/input"
