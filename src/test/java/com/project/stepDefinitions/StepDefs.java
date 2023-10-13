@@ -692,6 +692,7 @@ public class StepDefs extends MyTestNGBaseClass {
     @When("^I wait for (\\d+) seconds")
     public void waitForSeconds(int time) throws InterruptedException {
         Thread.sleep(time * 1000);
+        Allure.addAttachment("Element seen.", new ByteArrayInputStream(((TakesScreenshot) oDriver).getScreenshotAs(OutputType.BYTES)));
     }
 
     @When("^(?:I )?see element: (\\w+(?: \\w+)*) at index (\\d+)")
