@@ -15,7 +15,7 @@ Feature: SOT-COH
     When I click element: swipe right button 1 at index 1
     When I click element: swipe right button 1 at index 1
     And I see element: paket sec button at index 1
-    And I click element: paket sec button at index 1
+    And I double click element: paket sec button at index 1
 
     When I enter "5559981215" text to phone number input area at index 1
     Then I click element: Onayla button at index 1
@@ -32,6 +32,7 @@ Feature: SOT-COH
     And I click element: submit button at index 1
 
     When I click element: "deliver to shop selection" if it exists at index 1
+    And I wait for 3 seconds
     Then I click element: city selection at index 1
     Then I click element: city selection Ankara button at index 1
     And I wait for 3 seconds
