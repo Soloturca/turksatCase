@@ -96,6 +96,9 @@
         },
         {
           "continue button": "//*[@class=\"button button--primary btn-fll\" and contains(text(),'Devam et')]"
+        },
+        {
+          "hayir imzala button": "//*[contains(text(),'Hay\u0131r, evraklar\u0131 imzalayaca\u011f\u0131m')]"
         }
       ]
     }
