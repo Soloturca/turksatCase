@@ -70,9 +70,11 @@ Feature: SOT-COH
 
     When I see musteriPortali page
     Then I click element: hamburger menu at index 1
+    And I wait for 3 seconds
     And I click element: activation menu button at index 1
-
+    And I wait for 3 seconds
     When I click element: tam senlik menu button at index 1
+    And I wait for 3 seconds
     Then I enter tckn to "tam senlik tckn input area"
     When I click element: sorgula button at index 1
     And I wait for 20 seconds
