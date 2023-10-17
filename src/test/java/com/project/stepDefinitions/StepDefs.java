@@ -942,4 +942,16 @@ public class StepDefs extends MyTestNGBaseClass {
         PreparedStatement statement = connection_PPRODDB1.prepareStatement(cohSQL);
         System.out.println("COH data process done");
     }
+
+    @And("I see tarife karti element: paket sec button at index {int}")
+    public void iSeeTarifeKartiElementPaketSecButtonAtIndex(int arg0) {
+        String tarifeKarti = System.getenv("tarifeKarti");
+        System.out.println(tarifeKarti);
+    }
+
+    @And("I click tarife karti element: paket sec button at index {int}")
+    public void iClickTarifeKartiElementPaketSecButtonAtIndex(int arg0) {
+        String tarifeKarti = System.getenv("tarifeKarti");
+        System.out.println(tarifeKarti);
+    }
 }
