@@ -14,7 +14,7 @@ Feature: SOT-COH
     When I click element: swipe right button 1 at index 1
     When I click element: swipe right button 1 at index 1
     When I click element: swipe right button 1 at index 1
-    Then I click element: paket sec button at index 1
+    Then I double click element: paket sec button at index 1
     #And I see tarife karti element: paket sec button at index 1
     #And I click tarife karti element: paket sec button at index 1
 
