@@ -31,7 +31,8 @@ Feature: SOT-COH
     Then I enter "12121999" text to date of birth input area at index 1
     And I click element: submit button at index 1
 
-    When I click element: "deliver to shop selection" if it exists at index 1
+    And I wait for 3 seconds
+    Then I click element: deliver to shop selection at index 1
     And I wait for 5 seconds
     Then I click element: city selection at index 1
     Then I click element: city selection Ankara button at index 1
