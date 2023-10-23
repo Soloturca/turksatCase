@@ -34,7 +34,7 @@ Feature: SOT-COH
     And I click element: submit button at index 1
 
     And I wait for 3 seconds
-    Then I click element: deliver to shop selection at index 1
+    Then I double click element: deliver to shop selection at index 1
     And I wait for 5 seconds
     Then I click element: city selection at index 1
     Then I click element: city selection Ankara button at index 1
