@@ -6,6 +6,7 @@ Feature: SOT-COH
     Then I maximize the window
     Given I do TCKN api call
 
+
     When I see tariffPage page
     And I wait for 3 seconds
     Then I click element: move your number button at index 1
