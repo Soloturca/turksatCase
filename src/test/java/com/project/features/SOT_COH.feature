@@ -30,26 +30,31 @@ Feature: SOT-COH
     Then I enter "12121999" text to date of birth input area at index 1
     And I click element: submit button at index 1
 
-    And I wait for 3 seconds
+    And I wait for 5 seconds
     Then I click element: deliver to shop selection at index 1
     And I wait for 5 seconds
     Then I click element: city selection at index 1
+    And I wait for 5 seconds
     Then I click element: city selection Ankara button at index 1
     And I wait for 5 seconds
     Then I click element: district selection at index 1
+    And I wait for 5 seconds
     Then I click element: district selection Akyurt button at index 1
     And I wait for 5 seconds
     Then I click element: neighbourhood selection at index 1
+    And I wait for 5 seconds
     Then I click element: neighbourhood selection Ataturk button at index 1
     And I wait for 5 seconds
     Then I click element: street selection at index 1
+    And I wait for 5 seconds
     Then I click element: street selection babacan button at index 1
     And I wait for 5 seconds
     Then I click element: bina selection at index 1
+    And I wait for 5 seconds
     Then I click element: bina selection 1 button at index 1
     And I wait for 5 seconds
     Then I enter "merkez" text to address input box at index 1
-    And I wait for 3 seconds
+    And I wait for 5 seconds
     And I enter "abc@gmail.com" text to email input box at index 1
 
 
