@@ -26,7 +26,7 @@
           "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
         },
         {
-          "paket sec button": "//*[@id=\"2500372\"]/div[5]/div/a"
+          "paket sec button": "//*[@id=\"1379155\"]/div[5]/div/a"
         },
         {
           "phone number input area": "//*[@class=\"form__input ng-untouched ng-pristine ng-valid\" and @name=\"form-input-text-required\"]"
@@ -56,7 +56,7 @@
           "submit button": "//*[@class=\"button button--primary ng-star-inserted\" and @type=\"submit\"]"
         },
         {
-          "deliver to shop selection": "/html/body/app-root/app-shipping/app-shipping-info-rd/div/div[2]/div/div/div[3]/div/div[1]/div/div/a[2]/p"
+          "deliver to shop selection": "//a[@class=\"item\"]"
         },
         {
           "city selection": "//*[@id=\"cities-boxes\"]/input"

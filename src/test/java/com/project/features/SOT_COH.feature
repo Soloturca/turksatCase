@@ -10,7 +10,9 @@ Feature: SOT-COH
     Then I click element: move your number button at index 1
     And I scroll down by 500 unit
 
-    Then I double click element: paket sec button at index 1
+    And I wait for 3 seconds
+    And I see element: paket sec button at index 1
+    Then I click element: paket sec button at index 1
     #And I see tarife karti element: paket sec button at index 1
     #And I click tarife karti element: paket sec button at index 1
 
