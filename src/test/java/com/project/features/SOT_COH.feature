@@ -62,9 +62,8 @@ Feature: SOT-COH
 
     When I see element: continue button at index 1
     Then I click element: continue button at index 1
-    And I wait for 10 seconds
-    Then I click element: hayir imzala button at index 1
-    And I wait for 10 seconds
+    And I wait for 5 seconds
+
 
     Then I execute update sql
 
