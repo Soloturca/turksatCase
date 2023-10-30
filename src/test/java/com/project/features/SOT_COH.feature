@@ -33,6 +33,8 @@ Feature: SOT-COH
     And I wait for 5 seconds
     Then I click element: deliver to shop selection at index 1
     And I wait for 5 seconds
+    And I scroll down by 500 unit
+    And I wait for 3 seconds
     Then I click element: city selection at index 1
     And I wait for 5 seconds
     Then I click element: city selection Ankara button at index 1
