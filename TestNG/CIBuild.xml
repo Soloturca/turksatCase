@@ -7,7 +7,7 @@
 
     <parameter name="VIDEO_RECORDING" value="false"/>
     <parameter name="CalendarName" value="Calendar.xlsx"/>
-    <parameter name="browserName" value="htmlunit"/>
+    <parameter name="browserName" value="edge"/>
 
     <!-- Cucumber Test -->
     <test name="TestForSelenium" enabled="false">
