@@ -62,7 +62,7 @@
           "city selection": "//*[@id=\"cities-boxes\"]/input"
         },
         {
-          "city selection Ankara button": "//*[contains(text(),'Kuryenin')]"
+          "city selection Ankara button": "//*[contains(text(),'ANKARA')]"
         },
         {
           "district selection": "//*[@id=\"district-boxes\"]/input"
