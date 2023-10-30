@@ -26,7 +26,7 @@
           "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
         },
         {
-          "paket sec button": "//*[@id=\"1379155\"]/div[5]/div/a"
+          "paket sec button": "//*[@id=\"2372022\"]/div[5]/div/a"
         },
         {
           "phone number input area": "//*[@class=\"form__input ng-untouched ng-pristine ng-valid\" and @name=\"form-input-text-required\"]"
