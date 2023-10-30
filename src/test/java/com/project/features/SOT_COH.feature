@@ -8,6 +8,7 @@ Feature: SOT-COH
     When I see tariffPage page
     And I wait for 3 seconds
     Then I click element: move your number button at index 1
+    And I wait for 5 seconds
     And I scroll down by 500 unit
 
     And I wait for 3 seconds
