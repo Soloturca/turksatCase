@@ -26,6 +26,9 @@
           "swipe right button 1": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[1]"
         },
         {
+          "swipe right button 2": "(//div[@class=\"tarifeler ng-star-inserted\"]//div[@class=\"swiper-button-next\"])[2]"
+        },
+        {
           "paket sec button": "//*[@id=\"2965842\"]/div[5]/div/a"
         },
         {

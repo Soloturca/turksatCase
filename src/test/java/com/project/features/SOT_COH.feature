@@ -10,6 +10,13 @@ Feature: SOT-COH
     Then I click element: move your number button at index 1
     And I wait for 5 seconds
     And I scroll down by 500 unit
+    And I scroll down by 500 unit
+
+    Then I click element: swipe right button 2 at index 1
+    Then I click element: swipe right button 2 at index 1
+    Then I click element: swipe right button 2 at index 1
+    Then I click element: swipe right button 2 at index 1
+    Then I click element: swipe right button 2 at index 1
 
     And I wait for 3 seconds
     And I see element: paket sec button at index 1
@@ -17,6 +24,8 @@ Feature: SOT-COH
     #And I see tarife karti element: paket sec button at index 1
     #And I click tarife karti element: paket sec button at index 1
 
+    And I wait for 5 seconds
+    And I see element: phone number input area at index 1
     When I enter "5559981217" text to phone number input area at index 1
     Then I click element: Onayla button at index 1
 
