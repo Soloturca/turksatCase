@@ -1,1 +1,0 @@
-{"uuid":"0b254497-ceb0-48af-84f8-e8e4dc1928e7","name":"Scenario: SOT-DPC","children":["6a29e79e-7c6b-440c-809d-cbc2a8cd2d9d"],"befores":[{"name":"StepDefs.setReportName(Scenario)","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1696594024891,"stop":1696594024891}],"afters":[],"start":1696594024890,"stop":1696594045960}

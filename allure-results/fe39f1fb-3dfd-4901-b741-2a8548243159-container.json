@@ -1,1 +1,0 @@
-{"uuid":"fe39f1fb-3dfd-4901-b741-2a8548243159","name":"Scenario: SOT-COH","children":["a3503625-8937-4545-9fb3-3ef96175eaee"],"befores":[{"name":"StepDefs.setReportName(Scenario)","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1696839053254,"stop":1696839053276}],"afters":[],"start":1696839053252,"stop":1696839110185}
