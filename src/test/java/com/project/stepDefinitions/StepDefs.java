@@ -939,7 +939,7 @@ public class StepDefs extends MyTestNGBaseClass {
     @Then("I execute update sql")
     public void givenIExecuteUpdateSql() throws Exception {
         Connection connection_PPRODDB1 = dbConnection("PPRODDB1");
-        String cohSQL = "update click_candidates set is_coh='1' where mnp_msisdn in ('5559981217');\nCOMMIT";
+        String cohSQL = "update click_candidates set is_coh=1 where mnp_msisdn in ('5559981216');\nCOMMIT";
         PreparedStatement statement = connection_PPRODDB1.prepareStatement(cohSQL);
         System.out.println("COH data process done");
     }

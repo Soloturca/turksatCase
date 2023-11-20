@@ -29,7 +29,7 @@ Feature: SOT-COH
 
     And I wait for 5 seconds
     And I see element: phone number input area at index 1
-    When I enter "5559981217" text to phone number input area at index 1
+    When I enter "5559981216" text to phone number input area at index 1
     Then I click element: Onayla button at index 1
 
     When I enter "1111" text to OTP code input area at index 1
@@ -100,4 +100,5 @@ Feature: SOT-COH
     And I wait for 3 seconds
     Then I enter tckn to "tam senlik tckn input area"
     When I click element: sorgula button at index 1
-    And I wait for 20 seconds
+    And I wait for 3 seconds
+
