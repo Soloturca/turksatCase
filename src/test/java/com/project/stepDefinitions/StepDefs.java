@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 
 public class StepDefs extends MyTestNGBaseClass {
@@ -929,6 +930,14 @@ public class StepDefs extends MyTestNGBaseClass {
                 password = "CLICK123*";
 
                 break;
+
+            case "CFICCB":
+                allureReport("", "connectionType is CFICCB ", false);
+                dbURL = "jdbc:oracle:thin:@172.31.61.57:1522:CFICCB";
+                username = "TESTUSER";
+                password = "TESTUSER";
+
+                break;
         }
 
 
@@ -939,9 +948,13 @@ public class StepDefs extends MyTestNGBaseClass {
     @Then("I execute update sql")
     public void givenIExecuteUpdateSql() throws Exception {
         Connection connection_PPRODDB1 = dbConnection("PPRODDB1");
-        String cohSQL = "update click_candidates set is_coh=1 where mnp_msisdn in ('5559981216');\nCOMMIT";
+        String cohSQL = "update click.click_candidates set is_coh=1 where mnp_msisdn in ('5559981216')";
         PreparedStatement statement = connection_PPRODDB1.prepareStatement(cohSQL);
+        ResultSet resultSet = statement.executeQuery();
         System.out.println("COH data process done");
+        resultSet.close();
+        statement.close();
+        connection_PPRODDB1.close();
     }
 
     @And("I see tarife karti element: paket sec button at index {int}")

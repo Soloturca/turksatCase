@@ -2,6 +2,8 @@ Feature: SOT-COH
 
   @handsUpSquad
   Scenario: SOT-COH
+
+    #C2D Adımları
     Given Open the https://efes.vodafone.com.tr/clicktodoor-mobil-dxl/ URL
     Then I maximize the window
     Given I do TCKN api call
@@ -14,12 +16,8 @@ Feature: SOT-COH
 
     Then I click element: swipe right button 2 at index 1
     Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
-    Then I click element: swipe right button 2 at index 1
+
+
 
     And I wait for 3 seconds
     And I see element: paket sec button at index 1
@@ -43,46 +41,45 @@ Feature: SOT-COH
     Then I enter "12121999" text to date of birth input area at index 1
     And I click element: submit button at index 1
 
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: deliver to shop selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     And I scroll down by 500 unit
     And I wait for 3 seconds
     Then I click element: city selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: city selection Ankara button at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: district selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: district selection Akyurt button at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: neighbourhood selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: neighbourhood selection Ataturk button at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: street selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: street selection babacan button at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: bina selection at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I click element: bina selection 1 button at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     Then I enter "merkez" text to address input box at index 1
-    And I wait for 5 seconds
+    And I wait for 3 seconds
     And I enter "abc@gmail.com" text to email input box at index 1
-
-
-    When I see element: continue button at index 1
+    And I wait for 3 seconds
+    #Hata Cıkan Adım!
     Then I click element: continue button at index 1
-    And I wait for 5 seconds
+    #Hata Cıkan Adım!
+    And I wait for 10 seconds
 
 
     Then I execute update sql
 
-    #DPC
+    #SOT Adımları
     Given Open the http://sot-ui-hf.apps.mbt.vodafone.local/login URL
-
     When I see login page
     Then I enter "VF_GENERIC9" text to username text area at index 1
     And I enter "Voda12345678" text to password text area at index 1
@@ -101,4 +98,5 @@ Feature: SOT-COH
     Then I enter tckn to "tam senlik tckn input area"
     When I click element: sorgula button at index 1
     And I wait for 3 seconds
+    Then I click element: tarife karti button at index 1
 

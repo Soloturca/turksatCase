@@ -32,7 +32,7 @@
           "activation tamam button": "//*[@class=\"swal2-confirm swal2-styled\" or @type=\"button\" and contains(text(),'Tamam')]"
         },
         {
-          "sorgula button": "//*[@id=\"tcknSearch\"]/span"
+          "tarife karti button": "//*[@id=\"tcknSearch\"]/span"
         }
       ]
     }
