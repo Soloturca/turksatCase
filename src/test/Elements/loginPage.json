@@ -3,24 +3,24 @@
     {
       "pageInfo": {
         "pageName": "loginPage",
-        "parent": "common",
-        "waitelement": "username text area"
+        "parent": "",
+        "waitelement": "türksatIcon"
       },
       "elements": [
         {
-          "username text area": "//*[@id=\"loginID\"]"
+          "türksatIcon": "//*[@id=\"giris\"]/article/div[1]/div[2]/div[1]/img"
         },
         {
-          "password text area": "//*[@id=\"password\"]"
+          "demoButton": "//*[@id=\"menu\"]/ul/li[1]/a"
         },
         {
-          "login button": "//*[@id=\"login_submit\"]"
+          "usernameTextBox": "//*[@id=\"parolaSertifikaAccordion:uForm:txtUKullaniciAdi\"]"
         },
         {
-          "security step see all": "//*[@id=\"infoBlockIDImage\"]"
+          "passwordTextBox": "//*[@id=\"loginUSifre\"]"
         },
         {
-          "security step override": "//*[@id=\"overridelink\"]"
+          "girisYapButton": "//*[@id=\"parolaSertifikaAccordion:uForm:girisYapButton\"]"
         }
       ]
     }

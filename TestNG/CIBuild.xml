@@ -10,20 +10,10 @@
     <parameter name="browserName" value="chrome"/>
 
     <!-- Cucumber Test -->
-    <test name="TestForSelenium" enabled="false">
+
+    <test name="TestForBelgeOlusturma" enabled="true">
         <classes>
-            <class name="com.project.runner.SeleniumRunner"/>
-        </classes>
-    </test>
-    <!-- Cucumber Test -->
-    <test name="itwikiTalepOtomasyonu" enabled="false">
-        <classes>
-            <class name="com.project.runner.itwikiRunner"/>
-        </classes>
-    </test>
-    <test name="TestForSOTCOH" enabled="true">
-        <classes>
-            <class name="com.project.runner.sotCOHRunner"/>
+            <class name="com.project.runner.BelgeOlusturmaRunner"/>
         </classes>
     </test>
 </suite>

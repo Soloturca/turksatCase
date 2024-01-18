@@ -6,7 +6,7 @@
     <parameter name="browserName" value="chrome"/>
   <test name="Test">
   <classes>
-  	<class name="com.project.runner.SeleniumRunner"></class>
+  	<class name="com.project.runner.BelgeOlusturmaRunner"></class>
   </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

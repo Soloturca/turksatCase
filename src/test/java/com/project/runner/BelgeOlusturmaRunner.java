@@ -15,13 +15,13 @@ import org.testng.annotations.Test;
 
 
 @CucumberOptions(
-        features = "src/test/java/com/project/features/itwiki.feature",
-        tags = "@itwikiTalepOtomasyonu",
+        features = "src/test/java/com/project/features/BelgeOlusturma.feature",
+        // tags="",
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"},
         glue = {"com.project.stepDefinitions"})
 
-public class itwikiRunner extends MyTestNGBaseClass {
-    private io.cucumber.testng.TestNGCucumberRunner testNGCucumberRunner;
+public class BelgeOlusturmaRunner extends MyTestNGBaseClass {
+    private TestNGCucumberRunner testNGCucumberRunner;
 
     //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
     @BeforeClass(alwaysRun = true)
